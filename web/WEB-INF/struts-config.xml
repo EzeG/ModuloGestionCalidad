@@ -19,9 +19,50 @@
     </global-forwards>
 
     <action-mappings>
-        <action input="/nueva_publicacion" name="nueva_publicacion" path="/nueva_publicacion" scope="request" type="accion_nueva_publicacion" validate="false"/>
-        <action input="/crear_grupo" name="crear_grupo" path="/crear_grupo" scope="request" type="accion_crear_grupo" validate="false"/>        
-        <action path="" type="org.apache.struts.actions.ForwardAction" parameter="contenidos.jsp"/>
+        <action input="/links_panel" name="nueva_publicacion" 
+                path="/link_panel" scope="request" 
+                type="link_panel" validate="false"/>
+        
+        <action input="/nueva_publicacion" name="nueva_publicacion" 
+                path="/nueva_publicacion" scope="request" 
+                type="accion_nueva_publicacion" validate="false"/>
+        
+        <action input="/crear_grupo" name="crear_grupo" 
+                path="/crear_grupo" scope="request" 
+                type="accion_crear_grupo" validate="false"/>   
+        
+        <!-- Inicio -->
+        <action path="/inicio" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_home.jsp"/>
+        
+        <!-- LINKS PANEL IZQUIERDO--> 
+        
+        <action path="/agenda" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_construccion.jsp"/>
+        
+        <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_crear_publicacion.jsp"/>
+        
+        <action path="/quejas" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_construccion.jsp"/>
+        
+        <action path="/procesos" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_construccion.jsp"/>
+        
+        <action path="/estadisticas" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_construccion.jsp"/>
+        
+        <action path="/grupos" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/vista_crear_grupo.jsp"/>
+        
+        
     </action-mappings>
     
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

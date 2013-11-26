@@ -63,25 +63,25 @@
     </head>
     <body class="html not-front not-logged-in two-sidebars page-noticias" >
         <div id="skip-link">
-            <a href="#main-content" class="element-invisible element-focusable">Pasar al contenido principal</a>
+            <a href="" class="element-invisible element-focusable">Pasar al contenido principal</a>
         </div>
         <div id="container" class="container-16">
             <header id="header" class="section section-header clearfix" role="banner">
                 <hgroup class="grid-10">
-                    <a title="Inicio" rel="home" href="/"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></a>
+                    <html:link action="inicio"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
                 </hgroup>
             </header>
             <div id="main" class="section section-main clearfix" role="main">
                 <div id="content" class="column grid-10 push-3">
-                    <h2 class="element-invisible">Se encuentra usted aquí</h2><div class="breadcrumb"><a href="/">Inicio</a></div>      <div class="inner">
+                    <h2 class="element-invisible">Se encuentra usted aquí</h2><div class="breadcrumb"><html:link action="inicio"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
                         <div id="main-content" class="clearfix">
                             <div class="region region-content">
                                 <div class="view view-noticias view-id-noticias view-display-id-page_1 view-dom-id-f258d0e6a6378f17f545a0c53e3df3ad">
 
                                     <div class="view-content">
-                                        
+
                                         <tiles:insert attribute="cuerpo" />
-                                        
+
                                     </div>
 
                                 </div>  </div>
@@ -93,13 +93,14 @@
                         <div id="block-system-main-menu" class="block block-system block-menu first">
                             <div class="inner">
                                 <div class="content">
-                                    <ul class="menu"><li class="first leaf"><a href="/node/9">Agenda</a></li>
-                                        <li class="leaf"><a href="/SGC/web/vista_crear_publicacion.jsp">Cartelera</a></li>
-                                        <li class="leaf"><a href="/node/2">Quejas</a></li>
-                                        <li class="last leaf"><a href="/node/1">Procesos</a></li>
-                                        <li class="last leaf"><a href="/node/1">Estadisticas</a></li>
-                                        <li class="last leaf"><a href="/node/1">Grupos</a></li>
-                                    </ul>    </div>
+                                    <ul class="menu"><li class="first leaf"><html:link action="agenda"><p>Agenda</p></html:link></li>
+                                        <li class="leaf"><html:link action="cartelera"><p>Cartelera</p></html:link></li>
+                                        <li class="leaf"><html:link action="quejas"><p>Quejas</p></html:link></li>
+                                        <li class="last leaf"><html:link action="procesos"><p>Procesos</p></html:link></li>
+                                        <li class="last leaf"><html:link action="estadisticas"><p>Estadisticas</p></html:link></li>
+                                        <li class="last leaf"><html:link action="grupos"><p>Grupos</p></html:link></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div id="block-menu-menu-historico" class="block block-menu">
@@ -143,11 +144,11 @@
                             <div class="content">
                                 <table align="left" border="0" cellpadding="1" cellspacing="1"><tr><td valign="bottom" width="95">
                                             <a href="http://www.usb.ve"><img alt="" src="http://www.ulab.usb.ve/sites/default/files/cebolla_70_45.jpg" /></a>
-                                        <td valign="bottom">
-                                            <a href="http://www.usb.ve/home/node/68">e-virtual</a> | <a href="https://webmail.usb.ve/" target="_blank">Correo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="https://esopo.usb.ve">esopo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="http://www.youtube.com/canalusb" target="_blank">canalUSB</a> | <a href="http://www.usb.ve/agenda.php" target="_blank">Agenda Cultural</a> | <a href="http://usbnoticias.info/" target="_blank">USBnoticias</a> |<span> </span><span> </span><a href="http://www.usb.ve/home/node/55">Calendario</a> |<br />
-                                            Sede Sartenejas, Baruta, Edo. Miranda - Apartado 89000 - Cable Unibolivar - Caracas Venezuela. Teléfono +58 0212-9063111<br />
-                                            Sede Litoral, Camurí Grande, Edo. Vargas Parroquia Naiguatá. Teléfono +58 0212-9069000<br />
-                                            Diseñada y desarrollada por la Dirección de Servicios Multimedia <a href="mailto:webmaster@usb.ve">webmaster@usb.ve</a></td>
+                                            <td valign="bottom">
+                                                <a href="http://www.usb.ve/home/node/68">e-virtual</a> | <a href="https://webmail.usb.ve/" target="_blank">Correo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="https://esopo.usb.ve">esopo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="http://www.youtube.com/canalusb" target="_blank">canalUSB</a> | <a href="http://www.usb.ve/agenda.php" target="_blank">Agenda Cultural</a> | <a href="http://usbnoticias.info/" target="_blank">USBnoticias</a> |<span> </span><span> </span><a href="http://www.usb.ve/home/node/55">Calendario</a> |<br />
+                                                Sede Sartenejas, Baruta, Edo. Miranda - Apartado 89000 - Cable Unibolivar - Caracas Venezuela. Teléfono +58 0212-9063111<br />
+                                                Sede Litoral, Camurí Grande, Edo. Vargas Parroquia Naiguatá. Teléfono +58 0212-9069000<br />
+                                                Diseñada y desarrollada por la Dirección de Servicios Multimedia <a href="mailto:webmaster@usb.ve">webmaster@usb.ve</a></td>
                                     </tr></table><p> </p>
                             </div>
                         </div>

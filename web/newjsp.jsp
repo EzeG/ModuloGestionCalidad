@@ -19,23 +19,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <html:form action="/nueva_publicacion">
-
-    <table>
-        <tbody>
-            <tr>
-                <td><html:text property="titulo_publicacion" value="Titulo de la Publicacion" /></td>
-            </tr>
-            <tr>
-                <td><html:textarea property="contenido_publicacion" value="Escriba aqui el contenido de la publicacion." /></td>
-            </tr>
-            <tr>
-                <td><html:submit value="Publicar" /></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-</html:form>
+        <html:link action="grupo">
+            <p>
+                grupos
+            </p>
+        </html:link>
     </body>
 </html>

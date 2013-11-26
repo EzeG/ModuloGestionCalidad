@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/contenidos.jsp</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/plantilla.jsp</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/WEB-INF/tiles-defs.xml</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/cod_plantilla.jsp</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/WEB-INF/web.xml</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/WEB-INF/struts-config.xml</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/crear_grupo.java</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/vista_construccion.jsp</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/accion_crear_grupo.java</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/grupo.jsp</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/construccion.jsp</file>
         </group>
     </open-files>
 </project-private>
