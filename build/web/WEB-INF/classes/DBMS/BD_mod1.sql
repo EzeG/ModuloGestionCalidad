@@ -22,6 +22,24 @@ WITH (
 OIDS = FALSE
 );
 
+CREATE TABLE "mod1".NOCONFORMIDAD(
+        fecha timestamp with time zone NOT NULL default CURRENT_TIMESTAMP(2),
+        registro VARCHAR(20) NOT NULL,
+        situacion VARCHAR(300) NOT NULL,
+        procedencia INT NOT NULL,
+        descripcionP VARCHAR(100),
+        CONSTRAINT PK_NOCONFORMIDAD PRIMARY KEY (registro)
+)
+WITH (
+OIDS = FALSE
+);
+
+CREATE TABLE "mod1".Trabaja(
+        registroGrupo VARCHAR(30) NOT NULL,
+        registro VARCHAR(20) NOT NULL,
+        CONSTRAINT PK_Trabaja PRIMARY KEY (registroGrupo, registro)
+);
+
 CREATE TABLE "mod1".Conforma(
 	registroGrupo VARCHAR(30) NOT NULL,
 	USBID VARCHAR(20) NOT NULL,
@@ -69,6 +87,14 @@ ALTER TABLE "mod1".Publica ADD
 ALTER TABLE "mod1".Publica ADD
   CONSTRAINT FK_Publica_USUARIO FOREIGN KEY (USBID)
     REFERENCES "mod1".USUARIO(USBID);
+
+ALTER TABLE "mod1".Trabaja ADD
+  CONSTRAINT FK_Trabaja_GRUPO FOREIGN KEY (registroGrupo)
+    REFERENCES "mod1".GRUPO(registroGrupo);
+
+ALTER TABLE "mod1".Trabaja ADD
+  CONSTRAINT FK_Trabaja_NOCONFORMIDAD FOREIGN KEY (registro)
+    REFERENCES "mod1".NOCONFORMIDAD(registro);
 
 ------------------------ Inserts Temporales ------------------------
 INSERT INTO "mod1".USUARIO VALUES ( 'Militza Macías','ulab-calidad@usb.ve', '09-10337');
