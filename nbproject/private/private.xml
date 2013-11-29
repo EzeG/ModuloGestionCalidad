@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/cod_plantilla.jsp</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/WEB-INF/web.xml</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/WEB-INF/struts-config.xml</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/crear_grupo.java</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/vista_construccion.jsp</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/accion_crear_grupo.java</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/grupo.jsp</file>
-            <file>file:/home/edgar/NetBeansProjects/SGC/web/construccion.jsp</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/DBMS/DBMS.java</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/web/grupos/no_conformidad.jsp</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/clases/Grupo.java</file>
+            <file>file:/home/edgar/NetBeansProjects/SGC/src/java/DBMS/BD_mod1.sql</file>
         </group>
     </open-files>
 </project-private>

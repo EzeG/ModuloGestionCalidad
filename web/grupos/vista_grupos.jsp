@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<tiles:insert page="cod_plantilla.jsp" flush="true">
-    <tiles:put name="titulo" value="Pagina en Construccion." />
-    <tiles:put name="cuerpo" value="construccion.jsp" />
+<tiles:insert page="../cod_plantilla.jsp" flush="true">
+    <tiles:put name="titulo" value="Grupos de Trabajo" />
+    <tiles:put name="cuerpo" value="/grupos/grupo.jsp" />
 </tiles:insert>

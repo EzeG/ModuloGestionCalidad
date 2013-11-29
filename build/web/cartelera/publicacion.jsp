@@ -5,7 +5,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
-<html:form action="/nueva_publicacion">
+<html:form action="/CrearNuevaPublicacion">
 
     <table style="margin-left: 10px">
         <tbody>

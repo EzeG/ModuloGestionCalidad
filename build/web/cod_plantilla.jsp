@@ -27,7 +27,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
         <link rel="shortcut icon" href="http://www.ulab.usb.ve/misc/favicon.ico" type="image/vnd.microsoft.icon" />
-        <title><tiles:getAsString name="titulo" /></title>
+        <title><tiles:getAsString name="titulo"/></title>
         <style type="text/css" media="all">@import url("http://www.ulab.usb.ve/modules/system/system.base.css?ml8e0y");</style>
         <style type="text/css" media="all">@import url("http://www.ulab.usb.ve/modules/field/theme/field.css?ml8e0y");
             @import url("http://www.ulab.usb.ve/themes/sky/css/user.css?ml8e0y");
@@ -98,7 +98,7 @@
                                         <li class="leaf"><html:link action="quejas"><p>Quejas</p></html:link></li>
                                         <li class="last leaf"><html:link action="procesos"><p>Procesos</p></html:link></li>
                                         <li class="last leaf"><html:link action="estadisticas"><p>Estadisticas</p></html:link></li>
-                                        <li class="last leaf"><html:link action="grupos"><p>Grupos</p></html:link></li>
+                                        <li class="last leaf"><html:link action="tab_grupos"><p>Grupos</p></html:link></li>
                                     </ul>
                                 </div>
                             </div>

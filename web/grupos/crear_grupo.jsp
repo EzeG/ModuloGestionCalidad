@@ -4,18 +4,22 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<html:form action="/crear_grupo">
+<html:link action="tab_grupos"><p>Atras</p></html:link>
+
+
+<html:form action="/CrearGrupo">
+    <html:hidden property="id_grupo" value="" />
 
     <table style="margin-left: 10px">
         <tbody>
             <tr>
-                <td><html:text property="tema_grupo" value="Nombre" style="width:500px"/></td>
+                <td><html:text property="nombre_grupo" value="Nombre" style="width:500px"/></td>
             </tr>
             <tr>
-                <td><html:textarea property="nc_grupo" value="Descripcion" style="width:495px"/></td>
+                <td><html:link action="no_conformidad"><p>No conformidad</p></html:link></td>
             </tr>
             <tr>
-                <td><html:select property="personas_grupo" value="Integrantes" multiple="true" style="width:511px"/></td>
+                <td><html:select property="integrantes_grupo" value="Integrantes" multiple="true" style="width:511px"/></td>
             </tr>
             <tr>
                 <td><html:textarea property="causas_grupo" value="Causas Probables" style="width:495px"/></td>
