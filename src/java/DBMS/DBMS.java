@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,7 +63,7 @@ public class DBMS {
      * Se sacan todos los usuarios de la tabla
      */
     public ArrayList<Usuario> consultarUsuarios() {
-        PreparedStatement usConsulta = null;
+        PreparedStatement usConsulta = null;        
         try {
             ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
             usConsulta = conexion.prepareStatement("SELECT * FROM \"mod1\".USUARIO;");
@@ -90,7 +92,7 @@ public class DBMS {
             return(i>0);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }    
         
         return false;
     }
@@ -100,30 +102,34 @@ public class DBMS {
         try {
             boolean retorno = true;
             gruAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".GRUPO VALUES (?);");
-            gruAgregar.setString(1, g.getId_grupo());
+            gruAgregar.setString(1, g.getNombre_grupo());
             Integer i = gruAgregar.executeUpdate();
             if(i > 0) {
-                ArrayList<Usuario> us = new ArrayList<Usuario>();
+                ArrayList<Usuario> us;
                 us = g.getIntegrantes_grupo();
                 for(int pos=0;pos < us.size();pos++) {
-                    retorno = retorno && agregarRelacionGU(us.get(pos), g.getId_grupo());
+                    retorno = retorno && agregarRelacionGU(us.get(pos), g.getNombre_grupo());
                 }
                 return retorno;
             } else return false;
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }     
         
         return false;
     }
     
     public boolean agregaNoConformidad(NoConformidad nc) {
         PreparedStatement ncAgregar = null;
+        Date ref = new Date();
+        Timestamp fecha = new Timestamp(ref.getTime());
+        
+        
         try {
             boolean retorno = true;
             ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".NOCONFORMIDAD VALUES (?,?,?,?,?);");
-            //ncAgregar.setString(1, nc.----;
+            ncAgregar.setTimestamp(1, fecha);
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
             ncAgregar.setInt(4, nc.getOrigen_nc());
@@ -136,42 +142,57 @@ public class DBMS {
         
         return false;
     }
-
-    public ArrayList<String> consultarGrupos() {
-        PreparedStatement psConsultar = null;
+    
+        public boolean agregarPublicacion(Publicacion p) {
+        PreparedStatement pubAgregar = null;
+        
         try {
-            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".GRUPO;");
+            pubAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".PUBLICACION VALUES (?,?);");
+            pubAgregar.setString(1, p.getTitulo_publicacion());
+            pubAgregar.setString(2, p.getContenido_publicacion());
+            Integer i = pubAgregar.executeUpdate();
+            return i > 0;
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new ArrayList<String>();
+        return false;
+    }
+
+    public ArrayList<Grupo> consultarGrupos() {
+        PreparedStatement psConsultar = null;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
+        
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".GRUPO;");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("nombreGrupo"));
+                grupos.add(g);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return grupos;
     }
     
     
     public static void main(String argv[]){
         ArrayList<Usuario> test;
+        ArrayList<Grupo> test1;
         int i;
         boolean asuha;
                 
         DBMS base = DBMS.getInstance();
         
-        
-        
-        test = base.consultarUsuarios();
-                
-        Grupo g = new Grupo("Grupo 1", "Los que saben", "No estamos conformes", test, "Causa!", "Accion!", "El Plan!");
-        
-        asuha = base.agregarGrupo(g);
-        
-        NoConformidad nc = new NoConformidad("registro", "situacion", 1, 2013, "documento", "clausula", "requisito", "declaracion", "codigo");
-        
-        asuha = base.agregaNoConformidad(nc);
-        
+        test1 = base.consultarGrupos();
         
         
         
          i=1;
-        
+
     }
     
     

@@ -87,6 +87,11 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     /**
      *
      */
+    public Grupo(){
+        super();
+    }
+    
+    
     public Grupo(String id, String nombre, String nc, ArrayList<Usuario> integrantes, String causas, String acciones, String plan ) {
         super();
         // TODO Auto-generated constructor stub

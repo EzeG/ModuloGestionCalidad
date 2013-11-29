@@ -35,9 +35,9 @@ OIDS = FALSE
 );
 
 CREATE TABLE "mod1".Trabaja(
-        registroGrupo VARCHAR(30) NOT NULL,
-        registro VARCHAR(20) NOT NULL,
-        CONSTRAINT PK_Trabaja PRIMARY KEY (registroGrupo, registro)
+	registroGrupo VARCHAR(30) NOT NULL,
+	registro VARCHAR(20) NOT NULL,
+	CONSTRAINT PK_Trabaja PRIMARY KEY (registroGrupo, registro)
 );
 
 CREATE TABLE "mod1".Conforma(
@@ -51,8 +51,6 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".PUBLICACION(
 	Titulo VARCHAR(60) NOT NULL,
-	Fecha timestamp with time zone NOT NULL default CURRENT_TIMESTAMP(2),
-	Estatico INT NOT NULL,
 	Contenido VARCHAR(100) NOT NULL,
 	CONSTRAINT PK_PUBLICACION PRIMARY KEY (Titulo, Contenido)
 )
