@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -177,7 +178,55 @@ public class DBMS {
         }
         return grupos;
     }
+
+    public boolean eliminarGrupo(Grupo g){
+       
+        try{
+            String sqlquery = "DELETE FROM \"mod1\".Trabaja "
+                        + "WHERE registroGrupo ='" + g.getNombre_grupo() + "';";
+             Statement stmt = conexion.createStatement();
+             Integer i = 1;
+             i = stmt.executeUpdate(sqlquery);
+            if (i>0) {
+                sqlquery = "DELETE FROM \"mod1\".Conforma "
+                        + "WHERE registroGrupo ='" + g.getNombre_grupo() + "';";
+                stmt = conexion.createStatement();
+                Integer j = 1;
+                j = stmt.executeUpdate(sqlquery);
+                if(j>0) {
+                    sqlquery = "DELETE FROM \"mod1\".GRUPO "
+                        + "WHERE registroGrupo ='" + g.getNombre_grupo() + "';";
+                    stmt = conexion.createStatement();
+                    Integer k = 1;
+                    k = stmt.executeUpdate(sqlquery);
+                    return (k>0);
+                }
+            } else return false;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
     
+        }
+        return false;
+    }
+    /*
+    public boolean modificarGrupo(NoConformidad nc) {
+        PreparedStatement psModificar = null;
+        try {
+            psModificar = conexion.prepareStatement("UPDATE \"mod1\".GRUPO SET email= ?, nombre= ?, privilegio= ? "
+                    + "WHERE nombreusuario =? ");
+            psModificar.setString(1, u.getEmail());
+            psModificar.setString(2, u.getNombre());
+            psModificar.setInt(3, u.getPrivilegio());
+            psModificar.setString(4, u.getNombreusuario());
+            
+            Integer i = psModificar.executeUpdate();
+            return i > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }*/
+
     
     public static void main(String argv[]){
         ArrayList<Usuario> test;
