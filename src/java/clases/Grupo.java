@@ -47,30 +47,6 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         this.integrantes_grupo = integrantes_grupo;
     }
 
-    public String getCausas_grupo() {
-        return causas_grupo;
-    }
-
-    public void setCausas_grupo(String causas_grupo) {
-        this.causas_grupo = causas_grupo;
-    }
-
-    public String getAcciones_grupo() {
-        return acciones_grupo;
-    }
-
-    public void setAcciones_grupo(String acciones_grupo) {
-        this.acciones_grupo = acciones_grupo;
-    }
-
-    public String getPlan_grupo() {
-        return plan_grupo;
-    }
-
-    public void setPlan_grupo(String plan_grupo) {
-        this.plan_grupo = plan_grupo;
-    }
-
     /**
      *
      */
@@ -78,14 +54,11 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         super();
     }
 
-    public Grupo(String nombre, ArrayList<Usuario> integrantes, String causas, String acciones, String plan) {
+    public Grupo(String nombre, ArrayList<Usuario> integrantes) {
         super();
         // TODO Auto-generated constructor stub
         this.nombre_grupo = nombre;
         this.integrantes_grupo = integrantes;
-        this.causas_grupo = causas;
-        this.acciones_grupo = acciones;
-        this.plan_grupo = plan;
     }
 
     /**
