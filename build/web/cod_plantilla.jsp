@@ -79,6 +79,7 @@
                                 <div class="view view-noticias view-id-noticias view-display-id-page_1 view-dom-id-f258d0e6a6378f17f545a0c53e3df3ad">
 
                                     <div class="view-content">
+                                        
 
                                         <tiles:insert attribute="cuerpo" />
 

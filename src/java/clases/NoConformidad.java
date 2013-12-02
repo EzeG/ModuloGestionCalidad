@@ -99,6 +99,10 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
     public void setCodigo_nc(String codigo_nc) {
         this.codigo_nc = codigo_nc;
     }
+    
+    public NoConformidad(){
+        
+    }
 
     /**
      *

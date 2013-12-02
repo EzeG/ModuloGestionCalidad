@@ -63,11 +63,11 @@ public class DBMS {
     /*
      * Se sacan todos los usuarios de la tabla
      */
-    public ArrayList<Usuario> consultarUsuarios() {
-        PreparedStatement usConsulta = null;        
+    public ArrayList<Usuario> consultarUsuarios(String user) {
+        PreparedStatement usConsulta;        
         try {
             ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-            usConsulta = conexion.prepareStatement("SELECT * FROM \"mod1\".USUARIO;");
+            usConsulta = conexion.prepareStatement("SELECT * FROM mod1.USUARIO WHERE NombreUsuario = \'"+user+"\';");
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
                 Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"));
@@ -97,7 +97,7 @@ public class DBMS {
         
         return false;
     }
-
+/** ============ agregar grupo con lista de usuarios ============
     public boolean agregarGrupo(Grupo g) {
         PreparedStatement gruAgregar = null;
         try {
@@ -118,6 +118,57 @@ public class DBMS {
             e.printStackTrace();
         }     
         
+        return false;
+    } */
+
+    /**
+     * ============ agregar grupo con lista de usuarios ============
+    public boolean agregarGrupo(Grupo g) {
+        PreparedStatement gruAgregar = null;
+        try {
+            boolean retorno = true;
+            gruAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".GRUPO VALUES (?);");
+            gruAgregar.setString(1, g.getNombre_grupo());
+            Integer i = gruAgregar.executeUpdate();
+            if(i > 0) {
+                ArrayList<Usuario> us;
+                us = g.getIntegrantes_grupo();
+                for(int pos=0;pos < us.size();pos++) {
+                    retorno = retorno &;&; agregarRelacionGU(us.get(pos), g.getNombre_grupo());
+                }
+                return retorno;
+            } else return false;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }     
+        
+        return false;
+    }
+     * @param g
+     * @return 
+     */
+    public boolean agregarGrupo(Grupo g) {
+        PreparedStatement gruAgregar;
+        boolean retorno = true;
+        
+        try {
+            gruAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".GRUPO VALUES (?);");
+            gruAgregar.setString(1, g.getNombre_grupo());
+            Integer i = gruAgregar.executeUpdate();
+            if (i > 0) {
+                for(int j=0; j<g.getIntegrantes_grupo().size(); j++){
+                    retorno = retorno && agregarRelacionGU(g.getIntegrantes_grupo().get(j), g.getNombre_grupo());
+                }
+                return retorno;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
     
@@ -233,10 +284,11 @@ public class DBMS {
         ArrayList<Grupo> test1;
         int i;
         boolean asuha;
-                
-        DBMS base = DBMS.getInstance();
         
-        test1 = base.consultarGrupos();
+        test = DBMS.getInstance().consultarUsuarios("Usuario 2");
+        
+        asuha = test.isEmpty();
+        
         
         
         

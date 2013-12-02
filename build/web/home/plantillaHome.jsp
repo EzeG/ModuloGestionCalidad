@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cod_plantilla
-    Created on : 25/11/2013, 10:44:49 AM
+    Document   : plantillaHome
+    Created on : 01/12/2013, 11:43:23 AM
     Author     : edgar
 --%>
 
@@ -10,6 +10,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+
 
 <!DOCTYPE html>
 <html version="HTML+RDFa 1.0" lang="es" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
@@ -25,8 +26,9 @@
     <head profile="http://www.w3.org/1999/xhtml/vocab">
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
         <link rel="shortcut icon" href="http://www.ulab.usb.ve/misc/favicon.ico" type="image/vnd.microsoft.icon" />
+        <link rel="alternate" type="application/rss+xml" title="Unidad de Laboratoris RSS" href="http://www.ulab.usb.ve/rss.xml" />
+        <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
         <title><tiles:getAsString name="titulo"/></title>
         <style type="text/css" media="all">@import url("http://www.ulab.usb.ve/modules/system/system.base.css?ml8e0y");</style>
         <style type="text/css" media="all">@import url("http://www.ulab.usb.ve/modules/field/theme/field.css?ml8e0y");
@@ -46,48 +48,56 @@
         <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.js?v=1.4.4"></script>
         <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.once.js?v=1.2"></script>
         <script type="text/javascript" src="http://www.ulab.usb.ve/misc/drupal.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.cookie.js?v=1.0"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.form.js?v=2.52"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/ajax.js?v=7.22"></script>
         <script type="text/javascript" src="http://www.ulab.usb.ve/sites/default/files/languages/es_4XpqCflKazTuXzLphPzjQcs4p_0-3cW6doKJyQdMlBo.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/sites/all/modules/views/js/base.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/progress.js?v=7.22"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/sites/all/modules/views/js/ajax_view.js?ml8e0y"></script>
         <script type="text/javascript" src="http://www.ulab.usb.ve/themes/sky/js/scripts.js?ml8e0y"></script>
         <script type="text/javascript">
             <!--//--><![CDATA[//><!--
-        jQuery.extend(Drupal.settings, {"basePath": "\/", "pathPrefix": "", "ajaxPageState": {"theme": "sky", "theme_token": "1mcfSKBygVSp27Fx0CDiUUZ_GAkCPYFfROsiND8pVpQ", "js": {"misc\/jquery.js": 1, "misc\/jquery.once.js": 1, "misc\/drupal.js": 1, "misc\/jquery.cookie.js": 1, "misc\/jquery.form.js": 1, "misc\/ajax.js": 1, "public:\/\/languages\/es_4XpqCflKazTuXzLphPzjQcs4p_0-3cW6doKJyQdMlBo.js": 1, "sites\/all\/modules\/views\/js\/base.js": 1, "misc\/progress.js": 1, "sites\/all\/modules\/views\/js\/ajax_view.js": 1, "themes\/sky\/js\/scripts.js": 1}, "css": {"modules\/system\/system.base.css": 1, "modules\/field\/theme\/field.css": 1, "modules\/user\/user.css": 1, "sites\/all\/modules\/views\/css\/views.css": 1, "sites\/all\/modules\/ckeditor\/ckeditor.css": 1, "sites\/all\/modules\/ctools\/css\/ctools.css": 1, "themes\/sky\/css\/layout.css": 1, "themes\/sky\/css\/style.css": 1, "themes\/sky\/css\/forms.css": 1, "themes\/sky\/css\/colors.css": 1, "themes\/sky\/css\/print.css": 1, "themes\/sky\/css\/ie.css": 1}}, "views": {"ajax_path": "\/views\/ajax", "ajaxViews": {"views_dom_id:f258d0e6a6378f17f545a0c53e3df3ad": {"view_name": "noticias", "view_display_id": "page_1", "view_args": "", "view_path": "noticias", "view_base_path": "noticias", "view_dom_id": "f258d0e6a6378f17f545a0c53e3df3ad", "pager_element": 0}}}});
+        jQuery.extend(Drupal.settings, {"basePath": "\/", "pathPrefix": "", "ajaxPageState": {"theme": "sky", "theme_token": "6hpfUJ7HdsnqkUl-lDXJHRqwcWoct6mWVa2W4ZNZH3o", "js": {"misc\/jquery.js": 1, "misc\/jquery.once.js": 1, "misc\/drupal.js": 1, "public:\/\/languages\/es_4XpqCflKazTuXzLphPzjQcs4p_0-3cW6doKJyQdMlBo.js": 1, "themes\/sky\/js\/scripts.js": 1}, "css": {"modules\/system\/system.base.css": 1, "modules\/field\/theme\/field.css": 1, "modules\/user\/user.css": 1, "sites\/all\/modules\/views\/css\/views.css": 1, "sites\/all\/modules\/ckeditor\/ckeditor.css": 1, "sites\/all\/modules\/ctools\/css\/ctools.css": 1, "themes\/sky\/css\/layout.css": 1, "themes\/sky\/css\/style.css": 1, "themes\/sky\/css\/forms.css": 1, "themes\/sky\/css\/colors.css": 1, "themes\/sky\/css\/print.css": 1, "themes\/sky\/css\/ie.css": 1}}});
             //--><!]]>
         </script>
         <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
-    <body class="html not-front not-logged-in two-sidebars page-noticias" >
+    <body class="html front not-logged-in two-sidebars page-node" >
         <div id="skip-link">
-            <a href="" class="element-invisible element-focusable">Pasar al contenido principal</a>
+            <a href="#main-content" class="element-invisible element-focusable">Pasar al contenido principal</a>
         </div>
         <div id="container" class="container-16">
             <header id="header" class="section section-header clearfix" role="banner">
                 <hgroup class="grid-10">
-                    <html:link action="inicio"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
+                    <a title="Inicio" rel="home" href="/"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></a>
                 </hgroup>
             </header>
             <div id="main" class="section section-main clearfix" role="main">
                 <div id="content" class="column grid-10 push-3">
-                    <h2 class="element-invisible">Se encuentra usted aquí</h2><div class="breadcrumb"><html:link action="inicio"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
+                    <div class="inner">
                         <div id="main-content" class="clearfix">
                             <div class="region region-content">
-                                <div class="view view-noticias view-id-noticias view-display-id-page_1 view-dom-id-f258d0e6a6378f17f545a0c53e3df3ad">
+                                
+                                <!-- ********************ARTICULOS **************-->
+                                
+                                <article id="node-53" class="node node-article node-promoted node-teaser clearfix" about="/node/53" typeof="sioc:Item foaf:Document" role="article">
+                                    <header class="clearfix">
+                                        <h2 property="dc:title" datatype="" class="title node-title"><a href="/node/53">1° Jornadas Científico-Técnicas Unidad de Laboratorios Mayo 2013</a></h2>
+                                    </header>
+                                    <div class="content clearfix">
+                                        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>La Unidad de Laboratorios tiene el gusto de informar que las nuevas fechas para llevar a cabo las 1° Jornadas Científico - Técnicas de la Unidad de Laboratorios serán; los días miércoles 29 de mayo (Sede de Camurí), jueves 30 y viernes 31 de mayo (Sartenejas).</p>
+                                                    <p>A todos nuestra mas cordial invitación a acompañarnos. </p>
+                                                </div></div></div>  </div>
+                                    <footer>
+                                        <nav class="links">
+                                            <ul class="links inline"><li class="node-readmore first last"><a href="/node/53" rel="tag" title="1° Jornadas Científico-Técnicas Unidad de Laboratorios Mayo 2013">Leer más</a></li>
+                                            </ul>      </nav>
+                                    </footer>
+                                </article>
 
-                                    <div class="view-content">
-                                        
-
-                                        <tiles:insert attribute="cuerpo" />
-
-                                    </div>
-
-                                </div>  </div>
+                                <h2 class="element-invisible">Páginas</h2><div class="item-list"><ul class="pager"><li class="pager-current first">1</li>
+                                        <li class="pager-item"><a title="Ir a la página 2" href="/node?page=1">2</a></li>
+                                        <li class="pager-item"><a title="Ir a la página 3" href="/node?page=2">3</a></li>
+                                        <li class="pager-next"><a title="Ir a la página siguiente" href="/node?page=1">siguiente ›</a></li>
+                                        <li class="pager-last last"><a title="Ir a la última página" href="/node?page=2">última »</a></li>
+                                    </ul></div>  </div>
                         </div>
-                    </div>
+                        <a href="/rss.xml" class="feed-icon" title="Subscribe to Unidad de Laboratoris RSS"><img typeof="foaf:Image" src="http://www.ulab.usb.ve/misc/feed.png" width="16" height="16" alt="Subscribe to Unidad de Laboratoris RSS" /></a>    </div>
                 </div>
                 <div id="sidebar-first" class="sidebar grid-3 pull-10">
                     <div class="region region-sidebar-first">
@@ -107,7 +117,7 @@
                         <div id="block-menu-menu-historico" class="block block-menu">
                             <div class="inner">
                                 <div class="content">
-                                    <ul class="menu"><li class="first last leaf active-trail"><a href="/noticias" title="Archivo de Noticias" class="active-trail active">Archivo de Noticias</a></li>
+                                    <ul class="menu"><li class="first last leaf"><a href="/noticias" title="Archivo de Noticias">Archivo de Noticias</a></li>
                                     </ul>    </div>
                             </div>
                         </div>
@@ -143,7 +153,7 @@
                     <div id="block-block-1" class="block block-block first">
                         <div class="inner">
                             <div class="content">
-                                <table align="left" border="0" cellpadding="1" cellspacing="1"><tr><td valign="bottom" width="95">
+                                 <table align="left" border="0" cellpadding="1" cellspacing="1"><tr><td valign="bottom" width="95">
                                             <a href="http://www.usb.ve"><img alt="" src="http://www.ulab.usb.ve/sites/default/files/cebolla_70_45.jpg" /></a>
                                             <td valign="bottom">
                                                 <a href="http://www.usb.ve/home/node/68">e-virtual</a> | <a href="https://webmail.usb.ve/" target="_blank">Correo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="https://esopo.usb.ve">esopo</a> |<a href="http://www.usb.ve/buscador.php" target="_blank"> </a><a href="http://www.youtube.com/canalusb" target="_blank">canalUSB</a> | <a href="http://www.usb.ve/agenda.php" target="_blank">Agenda Cultural</a> | <a href="http://usbnoticias.info/" target="_blank">USBnoticias</a> |<span> </span><span> </span><a href="http://www.usb.ve/home/node/55">Calendario</a> |<br />

@@ -19,7 +19,7 @@
                 <td><html:link action="no_conformidad"><p>No conformidad</p></html:link></td>
             </tr>
             <tr>
-                <td><html:select property="integrantes_grupo" value="Integrantes" multiple="true" style="width:511px"/></td>
+                <td><html:text property="string_grupo" value="Integrantes" style="width:511px"/></td>
             </tr>
             <tr>
                 <td><html:textarea property="causas_grupo" value="Causas Probables" style="width:495px"/></td>

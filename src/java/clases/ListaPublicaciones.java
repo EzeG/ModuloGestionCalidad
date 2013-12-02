@@ -1,68 +1,40 @@
-package clases;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+package clases;
+
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+
+
 /**
  *
  * @author edgar
  */
-public class Usuario extends org.apache.struts.action.ActionForm {
-    
-    private String nombre;
-    private String email;
-    private String usbid;
+public class ListaPublicaciones extends org.apache.struts.action.ActionForm {
 
-    public String getNombre() {
-        return nombre;
+    ArrayList<Publicacion> listPublicaciones = new ArrayList<Publicacion>();
+
+    public ArrayList<Publicacion> getListPublicaciones() {
+        return listPublicaciones;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setListPublicaciones(ArrayList<Publicacion> listPublicaciones) {
+        this.listPublicaciones = listPublicaciones;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsbid() {
-        return usbid;
-    }
-
-    public void setUsbid(String usbid) {
-        this.usbid = usbid;
-    }
-
 
     /**
      *
-     * @param nombre
-     * @param id
-     * @param email
      */
-    public Usuario(String nombre, String id, String email) {
-        super();
-        this.nombre = nombre;
-        this.email = email;
-        this.usbid = id;
-        
-        // TODO Auto-generated constructor stub
-    }
- 
-    public Usuario() {
+    public ListaPublicaciones() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -76,7 +48,7 @@ public class Usuario extends org.apache.struts.action.ActionForm {
      */
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        
+       
         return errors;
     }
 }

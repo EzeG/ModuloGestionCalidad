@@ -4,6 +4,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<tiles:insert page="plantillaHome.jsp" flush="true" >
-    <tiles:put name="titulo" value="Gestion de la Calidad" />
-</tiles:insert>
+    <h1>Cartelera</h1>
+    <html:link action="nueva_publicacion"><p>Nueva Publicacion</p></html:link>
+    <html:link action="eliminar_publicacion"><p>Eliminar Publicacion</p></html:link>

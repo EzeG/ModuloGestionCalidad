@@ -5,7 +5,6 @@ package clases;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javax.servlet.http.HttpServletRequest;
 
 import clases.Usuario;
@@ -19,23 +18,13 @@ import org.apache.struts.action.ActionMessage;
  * @author edgar
  */
 public class Grupo extends org.apache.struts.action.ActionForm {
-    
-    private String id_grupo;
+
     private String nombre_grupo;
-    private String nc_grupo;
+    private String string_grupo;
     private ArrayList<Usuario> integrantes_grupo;
     private String causas_grupo;
     private String acciones_grupo;
     private String plan_grupo;
-    
-    
-    public String getId_grupo() {
-        return id_grupo;
-    }
-
-    public void setId_grupo(String id_grupo) {
-        this.id_grupo = id_grupo;
-    }
 
     public String getNombre_grupo() {
         return nombre_grupo;
@@ -45,12 +34,12 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         this.nombre_grupo = tema_grupo;
     }
 
-    public String getNc_grupo() {
-        return nc_grupo;
+    public String getString_grupo() {
+        return string_grupo;
     }
 
-    public void setNc_grupo(String nc_grupo) {
-        this.nc_grupo = nc_grupo;
+    public void setString_grupo(String StringGrupo) {
+        this.string_grupo = StringGrupo;
     }
 
     public ArrayList<Usuario> getIntegrantes_grupo() {
@@ -60,6 +49,7 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     public void setIntegrantes_grupo(ArrayList<Usuario> integrantes_grupo) {
         this.integrantes_grupo = integrantes_grupo;
     }
+
     public String getCausas_grupo() {
         return causas_grupo;
     }
@@ -82,22 +72,19 @@ public class Grupo extends org.apache.struts.action.ActionForm {
 
     public void setPlan_grupo(String plan_grupo) {
         this.plan_grupo = plan_grupo;
-    }    
+    }
 
     /**
      *
      */
-    public Grupo(){
+    public Grupo() {
         super();
     }
-    
-    
-    public Grupo(String id, String nombre, String nc, ArrayList<Usuario> integrantes, String causas, String acciones, String plan ) {
+
+    public Grupo(String nombre, ArrayList<Usuario> integrantes, String causas, String acciones, String plan) {
         super();
         // TODO Auto-generated constructor stub
-        this.id_grupo = id;
         this.nombre_grupo = nombre;
-        this.nc_grupo = nc;
         this.integrantes_grupo = integrantes;
         this.causas_grupo = causas;
         this.acciones_grupo = acciones;
@@ -114,7 +101,7 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        
+
         return errors;
     }
 }

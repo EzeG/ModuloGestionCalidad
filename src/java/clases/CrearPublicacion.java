@@ -12,7 +12,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import java.util.ArrayList;
 import DBMS.DBMS;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author edgar
  */
-public class CrearGrupo extends org.apache.struts.action.Action {
+public class CrearPublicacion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -41,35 +40,16 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        Grupo group = (Grupo) form;
-        ArrayList<Usuario> users;
-        ArrayList<Usuario> cache = new ArrayList<Usuario>();
-        boolean agrego = false;
+        Publicacion pub = (Publicacion) form;
+        HttpSession session = request.getSession(true);
         
-        String[] nombres = group.getString_grupo().split(",");
+        boolean agrego = DBMS.getInstance().agregarPublicacion(pub);
         
-        for(int i=0; i<nombres.length; i++){
-            nombres[i] = nombres[i].trim();
-            users = DBMS.getInstance().consultarUsuarios(nombres[i]);
-            if(!users.isEmpty()){
-                cache.addAll(users);
-                int a = 0;
-            }
-            users.clear();
-        }
-        
-        if(!cache.isEmpty()){
-            group.setIntegrantes_grupo(cache);
-            agrego = DBMS.getInstance().agregarGrupo(group);
-            if(agrego){
-                return mapping.findForward(SUCCESS);
-            } else {
-                return mapping.findForward(FAILURE);
-            }
+        if(agrego){
+            return mapping.findForward(SUCCESS);
         } else {
             return mapping.findForward(FAILURE);
         }
-        
         
     }
 }

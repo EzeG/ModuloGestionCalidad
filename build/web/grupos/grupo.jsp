@@ -5,5 +5,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
     <h1>GRUPOS</h1>
+    
+    
     <html:link action="nuevo_grupo"><p>Nuevo Grupo</p></html:link>
     <html:link action="eliminar_grupo"><p>Eliminar Grupo</p></html:link>
