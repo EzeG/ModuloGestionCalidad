@@ -73,7 +73,7 @@
             </header>
             <div id="main" class="section section-main clearfix" role="main">
                 <div id="content" class="column grid-10 push-3">
-                    <h2 class="element-invisible">Se encuentra usted aquí</h2><div class="breadcrumb"><html:link action="inicio"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
+                    <div class="breadcrumb"><html:link action="inicio"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
                         <div id="main-content" class="clearfix">
                             <div class="region region-content">
                                 <div class="view view-noticias view-id-noticias view-display-id-page_1 view-dom-id-f258d0e6a6378f17f545a0c53e3df3ad">

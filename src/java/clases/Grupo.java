@@ -22,9 +22,6 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String nombre_grupo;
     private String string_grupo;
     private ArrayList<Usuario> integrantes_grupo;
-    private String causas_grupo;
-    private String acciones_grupo;
-    private String plan_grupo;
 
     public String getNombre_grupo() {
         return nombre_grupo;

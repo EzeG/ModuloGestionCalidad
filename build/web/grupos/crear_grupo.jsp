@@ -22,15 +22,6 @@
                 <td><html:text property="string_grupo" value="Integrantes" style="width:511px"/></td>
             </tr>
             <tr>
-                <td><html:textarea property="causas_grupo" value="Causas Probables" style="width:495px"/></td>
-            </tr>
-            <tr>
-                <td><html:textarea property="acciones_grupo" value="Acciones" style="width:495px"/></td>
-            </tr>
-            <tr>
-                <td><html:textarea property="plan_grupo" value="Plan de Trabajo" style="width:495px"/></td>
-            </tr>
-            <tr>
                 <td><html:submit value="Crear Grupo" /></td>
             </tr>
         </tbody>

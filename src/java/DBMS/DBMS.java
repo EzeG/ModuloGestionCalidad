@@ -97,54 +97,8 @@ public class DBMS {
         
         return false;
     }
-/** ============ agregar grupo con lista de usuarios ============
-    public boolean agregarGrupo(Grupo g) {
-        PreparedStatement gruAgregar = null;
-        try {
-            boolean retorno = true;
-            gruAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".GRUPO VALUES (?);");
-            gruAgregar.setString(1, g.getNombre_grupo());
-            Integer i = gruAgregar.executeUpdate();
-            if(i > 0) {
-                ArrayList<Usuario> us;
-                us = g.getIntegrantes_grupo();
-                for(int pos=0;pos < us.size();pos++) {
-                    retorno = retorno && agregarRelacionGU(us.get(pos), g.getNombre_grupo());
-                }
-                return retorno;
-            } else return false;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }     
-        
-        return false;
-    } */
-
-    /**
-     * ============ agregar grupo con lista de usuarios ============
-    public boolean agregarGrupo(Grupo g) {
-        PreparedStatement gruAgregar = null;
-        try {
-            boolean retorno = true;
-            gruAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".GRUPO VALUES (?);");
-            gruAgregar.setString(1, g.getNombre_grupo());
-            Integer i = gruAgregar.executeUpdate();
-            if(i > 0) {
-                ArrayList<Usuario> us;
-                us = g.getIntegrantes_grupo();
-                for(int pos=0;pos < us.size();pos++) {
-                    retorno = retorno &;&; agregarRelacionGU(us.get(pos), g.getNombre_grupo());
-                }
-                return retorno;
-            } else return false;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }     
-        
-        return false;
-    }
+    
+    /*
      * @param g
      * @return 
      */
@@ -220,7 +174,7 @@ public class DBMS {
             ResultSet rs = psConsultar.executeQuery();
             while (rs.next()) {
                 Grupo g = new Grupo();
-                g.setNombre_grupo(rs.getString("nombreGrupo"));
+                g.setNombre_grupo(rs.getString("registroGrupo"));
                 grupos.add(g);
             }
             

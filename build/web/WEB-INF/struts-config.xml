@@ -60,8 +60,9 @@
                 scope="request" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
-        <action path="/tab_grupos" type="org.apache.struts.actions.ForwardAction"
-                parameter="/grupos/vista_grupos.jsp"/>
+        <action path="/tab_grupos" type="clases.FuncionGrupos">
+            <forward name="success" path="/grupos/vista_grupos.jsp"/>
+        </action>
         
         <!--================ Acciones de los grupos ==================-->
         <action path="/nuevo_grupo" type="org.apache.struts.actions.ForwardAction"
@@ -72,9 +73,9 @@
                 <!-- Accion crear -->
         <action path="/CrearGrupo" name="Grupo" scope="request" 
                 type="clases.CrearGrupo" validate="false">
-            <forward name="success" path="/grupos/vista_grupos.jsp" />
+            <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/home/vista_home.jsp" />
-        </action>  
+        </action>
         
         <!--================ Acciones de admin publicacion ==================-->
        <action path="/nueva_publicacion" type="org.apache.struts.actions.ForwardAction"
