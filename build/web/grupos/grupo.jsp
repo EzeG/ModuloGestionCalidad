@@ -20,9 +20,12 @@
     <logic:iterate id="infoGrupo" name="listGrupos">
         <tr>
             <td style="width: 560px">
-                <a style="color: #1c6ea0;">
+                <html:link action="/linkGrupos" paramId="verGrupo"
+                           paramName="infoGrupo" paramProperty="nombre_grupo"> 
+                <p style="color: #1c6ea0;">
                     <bean:write name="infoGrupo" property="nombre_grupo"/><br/>
-                </a>
+                </p>
+                </html:link>
             </td>
             <td style="width: 115px">
                 <p>Eliminar</p>
