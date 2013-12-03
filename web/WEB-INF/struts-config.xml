@@ -22,8 +22,12 @@
     </global-forwards>
 
     <action-mappings>
+        
         <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
-                type="clases.CrearNoConformidad" validate="false"/>
+                type="clases.CrearNoConformidad" validate="false">
+                <forward name="success" path="/crearGrupos.do"/>
+                <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
+        </action>
                                     
         <action path="/CrearPublicacion" name="Publicacion" scope="request" 
                 type="clases.CrearPublicacion" validate="false">
@@ -64,6 +68,10 @@
             <forward name="success" path="/grupos/vista_grupos.jsp"/>
         </action>
         
+        <action path="/tab_no_conformidad" type="clases.FuncionGrupos">
+            <forward name="success" path="/grupos/vista_crear_grupos.jsp"/>
+        </action>
+        
         <!--================ Acciones de los grupos ==================-->
         <action path="/nuevo_grupo" type="org.apache.struts.actions.ForwardAction"
                 parameter="/grupos/vista_crear_grupo.jsp"/>     
@@ -75,6 +83,12 @@
                 type="clases.CrearGrupo" validate="false">
             <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/home/vista_home.jsp" />
+        </action>
+                <!-- Crear no Conformidad -->
+        <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
+                type="clases.CrearNoConformidad" validate="false">
+                <forward name="success" path="/nuevo_grupo.do"/>
+                <forward name="failure" path="/nuevo_grupo.do"/>
         </action>
         
         <!--================ Acciones de admin publicacion ==================-->

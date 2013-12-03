@@ -12,6 +12,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import DBMS.DBMS;
+
 /**
  *
  * @author edgar
@@ -20,7 +22,8 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
-
+    private static final String FAILURE = "failure";
+   
     /**
      * This is the action called from the Struts framework.
      *
@@ -35,8 +38,16 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
+        NoConformidad no_conformidad = (NoConformidad) form;
+        boolean agrego;
+        agrego = DBMS.getInstance().agregaNoConformidad(no_conformidad);
         
         
-        return mapping.findForward(SUCCESS);
+        if(agrego){
+            return mapping.findForward(SUCCESS);
+        } else {
+            return mapping.findForward(FAILURE);
+        }
     }
 }

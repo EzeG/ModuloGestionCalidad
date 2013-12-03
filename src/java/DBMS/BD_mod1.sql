@@ -22,13 +22,15 @@ WITH (
 OIDS = FALSE
 );
 
-CREATE TABLE "mod1".NOCONFORMIDAD(
-        fecha timestamp with time zone NOT NULL default CURRENT_TIMESTAMP(2),
-        registro VARCHAR(20) NOT NULL,
-        situacion VARCHAR(300) NOT NULL,
-        procedencia INT NOT NULL,
-        descripcionP VARCHAR(100),
-        CONSTRAINT PK_NOCONFORMIDAD PRIMARY KEY (registro)
+CREATE TABLE mod1.noconformidad(
+  fecha timestamp with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone,
+  registro character varying(20) NOT NULL,
+  situacion character varying(300) NOT NULL,
+  procedencia integer NOT NULL,
+  descripcionp character varying(100),
+  norma integer,
+  clausula character varying(15),
+  CONSTRAINT pk_noconformidad PRIMARY KEY (registro )
 )
 WITH (
 OIDS = FALSE

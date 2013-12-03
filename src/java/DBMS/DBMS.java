@@ -50,9 +50,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/prueba",
+                    "jdbc:postgresql://localhost:5432/NOMBRE",
                     "postgres",
-                    "postgres");
+                    "17744256");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -134,12 +134,16 @@ public class DBMS {
         
         try {
             boolean retorno = true;
-            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".NOCONFORMIDAD VALUES (?,?,?,?,?);");
+            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".NOCONFORMIDAD VALUES (?,?,?,?,?,?,?,?,?);");
             ncAgregar.setTimestamp(1, fecha);
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
             ncAgregar.setInt(4, nc.getOrigen_nc());
             ncAgregar.setString(5, nc.getDeclaracion_nc());
+            ncAgregar.setString(6, nc.getDocumento_nc());
+            ncAgregar.setString(7, nc.getClausula_nc());
+            ncAgregar.setString(8, nc.getRequisito_nc());
+            ncAgregar.setString(9, nc.getCodigo_nc());
             Integer i = ncAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
