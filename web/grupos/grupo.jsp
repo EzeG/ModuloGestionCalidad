@@ -7,7 +7,7 @@
 
 <table style="margin-top: -10px">
     <tr>
-        <td style="vertical-align: middle">
+        <td style="vertical-align: middle; width: 560px"">
             <p style="color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">GRUPOS</p>
         </td>
         <td>

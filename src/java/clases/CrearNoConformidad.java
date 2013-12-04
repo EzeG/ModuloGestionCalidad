@@ -5,12 +5,13 @@ package clases;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
+import DBMS.DBMS;
 
 /**
  *
@@ -20,6 +21,7 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    private static final String FAILURE = "failure";
 
     /**
      * This is the action called from the Struts framework.
@@ -35,8 +37,17 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
-        
-        return mapping.findForward(SUCCESS);
+
+        NoConformidad nc;
+        nc = (NoConformidad) form;
+
+        boolean agrego = DBMS.getInstance().agregaNoConformidad(nc);
+        if (agrego) {
+            request.setAttribute("nc", nc.getRegistro_nc());
+            return mapping.findForward(SUCCESS);
+        } else {
+            return mapping.findForward(FAILURE);
+        }
+
     }
 }

@@ -22,6 +22,7 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String nombre_grupo;
     private String string_grupo;
     private ArrayList<Usuario> integrantes_grupo;
+    private String noConformidad;
 
     public String getNombre_grupo() {
         return nombre_grupo;
@@ -47,11 +48,27 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         this.integrantes_grupo = integrantes_grupo;
     }
 
+    public String getNoConformidad() {
+        return noConformidad;
+    }
+
+    public void setNoConformidad(String nc) {
+        this.noConformidad = nc;
+    }
+
     /**
      *
      */
     public Grupo() {
         super();
+    }
+
+    public Grupo(String nombre, ArrayList<Usuario> integrantes, String nc) {
+        super();
+        // TODO Auto-generated constructor stub
+        this.nombre_grupo = nombre;
+        this.integrantes_grupo = integrantes;
+        this.noConformidad = nc;
     }
 
     public Grupo(String nombre, ArrayList<Usuario> integrantes) {

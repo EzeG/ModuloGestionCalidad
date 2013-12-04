@@ -5,7 +5,6 @@
  */
 package DBMS;
 
-import clases.Usuario;
 import clases.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -59,7 +58,7 @@ public class DBMS {
     }
 
     /*
-     * Se sacan todos los usuarios de la tabla
+        
      */
     public ArrayList<Usuario> consultarUsuarios(String user) {
         PreparedStatement usConsulta;
@@ -164,18 +163,22 @@ public class DBMS {
     }
 
     public boolean agregaNoConformidad(NoConformidad nc) {
-        PreparedStatement ncAgregar = null;
+        PreparedStatement ncAgregar;
         Date ref = new Date();
         Timestamp fecha = new Timestamp(ref.getTime());
+        String buff;
 
         try {
-            boolean retorno = true;
-            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".NOCONFORMIDAD VALUES (?,?,?,?,?);");
+            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".noconformidad VALUES (?,?,?,?,?,?,?,?,?);");
             ncAgregar.setTimestamp(1, fecha);
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
             ncAgregar.setInt(4, nc.getOrigen_nc());
-            ncAgregar.setString(5, nc.getDeclaracion_nc());
+            ncAgregar.setInt(5, nc.getDocumento_nc());
+            ncAgregar.setString(6, nc.getClausula_nc());
+            ncAgregar.setString(7, nc.getRequisito_nc());
+            ncAgregar.setString(8, nc.getDeclaracion_nc());
+            ncAgregar.setString(9, nc.getCodigo_nc());
             Integer i = ncAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
@@ -184,9 +187,35 @@ public class DBMS {
 
         return false;
     }
+    
+    public boolean asociarNoConformidad(String regGrupo, String Nc){
+        PreparedStatement ncAsociar;
+        try{
+            ncAsociar = conexion.prepareStatement("INSERT INTO \"mod1\".Trabaja VALUES (?,?);");
+            ncAsociar.setString(1, regGrupo);
+            ncAsociar.setString(2, Nc);
+            int i = ncAsociar.executeUpdate();
+            return i>0;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean eliminarNoConformidad(String regNC) {
+        PreparedStatement ncEliminar;
+        try {
+            ncEliminar = conexion.prepareStatement("DELETE FROM \"mod1\".noconformidad " + "WHERE registro ='" + regNC + "';");
+            int i = ncEliminar.executeUpdate();
+            return i > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean agregarPublicacion(Publicacion p) {
-        PreparedStatement pubAgregar = null;
+        PreparedStatement pubAgregar;
 
         try {
             pubAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".PUBLICACION VALUES (?,?);");
@@ -275,10 +304,16 @@ public class DBMS {
         ArrayList<Grupo> test1;
         int i;
         boolean asuha;
+        NoConformidad nc = new NoConformidad("Registrodfga4523", "Situacion", 1, 1, "Clausula", "Registro", "Declaracion", "Codigo");
 
-        test = DBMS.getInstance().consultarUsuarios("Usuario 2");
+        Publicacion pub = new Publicacion();
 
-        asuha = test.isEmpty();
+        pub.setTitulo_publicacion("TITULO");
+        pub.setContenido_publicacion("ASUHAUSHAIUGSIAGSIAGHS");
+
+        asuha = DBMS.getInstance().agregaNoConformidad(nc);
+
+        asuha = DBMS.getInstance().eliminarNoConformidad(nc.getRegistro_nc());
 
         i = 1;
 
