@@ -6,23 +6,25 @@
 
 <html:link action="nuevo_grupo"><p>Atras</p></html:link>
 
-
+    
 <html:form action="/CrearNoConformidad">
-
+    
     <table style="margin-left: 10px">
         <tbody>
             <tr>
-                <td colspan="3"><html:text property="registro_nc" value="Registro" style="width:100px"/></td>
+                <td colspan="3"><html:text name = "nombre" property="registro_nc" value="Registro" style="width:100px" onclick="this.value=''"/></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="3"><html:text property="situacion_nc" value="Situacion" style="width:100px"/></td>
+                <td colspan="3"><html:text property="situacion_nc" value="Situacion" style="width:100px" onclick="this.value=''"/></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td><html:radio property="origen_nc" value="1"/><p>Queja</p></td>
+
+                
+                <td><html:radio  property="origen_nc" value="1"/><p>Queja</p></td>
                 <td><html:radio property="origen_nc" value="2"/><p>Auditoria</p></td>
                 <td><html:radio property="origen_nc" value="3"/><p>Revision del SGC</p></td>
             </tr>
@@ -48,16 +50,16 @@
                 <td><html:radio property="documento_nc" value="ISO/IEC 17025"/><p>Norma ISO/IEC 17025</p></td>
             </tr>
             <tr>
-                <td><html:text property="clausula_nc" value="clausula1" /></td>
+                <td><html:text property="clausula_nc" value="clausula1" onclick="this.value=''"/></td>
             </tr>
             <tr>
-                <td><html:textarea property="requisito_nc" value="Requisito" /></td>
+                <td><html:textarea property="requisito_nc" value="Requisito" onclick="this.value=''"/></td>
             </tr>
             <tr>
-                <td><html:textarea property="declaracion_nc" value="Declaracion de la No Conformidad"/></td>
+                <td><html:textarea property="declaracion_nc" value="Declaracion de la No Conformidad" onclick="this.value=''"/></td>
             </tr>
             <tr>
-                <td><html:text property="codigo_nc" value="Codigo NC"/></td>
+                <td><html:text property="codigo_nc" value="Codigo NC" onclick="this.value=''"/></td>
             </tr>
             <tr>
                 <td><html:submit value="Aceptar" /></td>
