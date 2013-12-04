@@ -6,23 +6,25 @@
 
 <html:link action="nuevo_grupo"><p>Atras</p></html:link>
 
-
+    
 <html:form action="/CrearNoConformidad">
-
+    
     <table style="margin-left: 10px">
         <tbody>
             <tr>
-                <td colspan="3"><html:text property="registro_nc" value="Registro" style="width:100px"/></td>
+                <td colspan="3"><html:text name = "nombre" property="registro_nc" value="Registro" style="width:100px" onclick="this.value=''"/></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="3"><html:text property="situacion_nc" value="Situacion" style="width:100px"/></td>
+                <td colspan="3"><html:text property="situacion_nc" value="Situacion" style="width:100px" onclick="this.value=''"/></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td><html:radio property="origen_nc" value="1"/><p>Queja</p></td>
+
+                
+                <td><html:radio  property="origen_nc" value="1"/><p>Queja</p></td>
                 <td><html:radio property="origen_nc" value="2"/><p>Auditoria</p></td>
                 <td><html:radio property="origen_nc" value="3"/><p>Revision del SGC</p></td>
             </tr>
