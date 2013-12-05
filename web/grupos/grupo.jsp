@@ -6,6 +6,13 @@
 
 
 <table style="margin-top: -10px">
+    
+     <tr>
+        <td>
+            <bean:write name="grupitos" property="error" filter="false"/>
+            &nbsp;
+        </td>
+    </tr>
     <tr>
         <td style="vertical-align: middle; width: 560px"">
             <p style="color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">GRUPOS</p>
@@ -28,7 +35,10 @@
                 </html:link>
             </td>
             <td style="width: 115px">
-                <p>Eliminar</p>
+                <html:form action="/eliminargrupo">
+                    <html:hidden name="infoGrupo" property="nombre_grupo"/>
+                    <html:submit value="Eliminar"/>
+                </html:form>
             </td>
         </tr>
     </logic:iterate>

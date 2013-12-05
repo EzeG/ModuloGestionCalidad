@@ -39,6 +39,7 @@ public class LinksGrupos extends org.apache.struts.action.Action {
             throws Exception {
         ArrayList<Usuario> users;
         String nombreGroup = (String) request.getParameter("verGrupo");
+        String nc = DBMS.getInstance().consultarTrabaja(nombreGroup);
         
         users = DBMS.getInstance().consultarUsuariosGU(nombreGroup);
         
@@ -46,6 +47,8 @@ public class LinksGrupos extends org.apache.struts.action.Action {
         
         request.setAttribute("nombreGrupo", group.getNombre_grupo());
         request.setAttribute("usuariosGrupo", group.getIntegrantes_grupo());
+        request.setAttribute("noConformidad", nc);
+        
 
         return mapping.findForward(SUCCESS);
     }

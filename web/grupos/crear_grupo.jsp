@@ -27,7 +27,15 @@
             </tr>
             <tr>
                 <td>
-                    <html:link action="no_conformidad"><p>No conformidad</p></html:link>
+                    <%
+                        if(nc != null){
+                    %>
+                    <p >No Conformidad: </p><%= nc%> 
+                   <%
+                        } else {
+                    %><html:link action="no_conformidad"><p>No conformidad</p></html:link><%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
@@ -43,13 +51,6 @@
             <tr>
                 <td>
                     <html:hidden property="noConformidad" value="<%= nc %>" />
-                    <%
-                        if(nc != null){
-                    %>
-                    <p >No Conformidad asociada:</p><%= nc%> 
-                   <%
-                        }
-                    %>
                 </td>
             </tr>
         </tbody>

@@ -45,8 +45,12 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         ArrayList<Usuario> users;
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
-        NoConformidad nc;
-
+        
+        if(group.getNoConformidad().equals("")){
+            return mapping.findForward(FAILURE);
+        }
+        
+        
         String[] nombres = group.getString_grupo().split(",");
 
         for (int i = 0; i < nombres.length; i++) {

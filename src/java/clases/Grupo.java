@@ -23,7 +23,15 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String string_grupo;
     private ArrayList<Usuario> integrantes_grupo;
     private String noConformidad;
+    private String error;
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError() {
+        this.error = "No se pudo eliminar el grupo";
+    }
     public String getNombre_grupo() {
         return nombre_grupo;
     }
