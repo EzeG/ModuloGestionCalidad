@@ -68,18 +68,17 @@
         <div id="container" class="container-16">
             <header id="header" class="section section-header clearfix" role="banner">
                 <hgroup class="grid-10">
-                    <html:link action="inicio"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
+                    <html:link action="iniciar.do"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
                 </hgroup>
             </header>
             <div id="main" class="section section-main clearfix" role="main">
                 <div id="content" class="column grid-10 push-3">
-                    <div class="breadcrumb"><html:link action="inicio"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
+                    <h2 class="element-invisible">Se encuentra usted aquí</h2><div class="breadcrumb"><html:link action="iniciar.do"><p class="leaf">Inicio</p></html:link></div>      <div class="inner">
                         <div id="main-content" class="clearfix">
                             <div class="region region-content">
                                 <div class="view view-noticias view-id-noticias view-display-id-page_1 view-dom-id-f258d0e6a6378f17f545a0c53e3df3ad">
 
                                     <div class="view-content">
-                                        
 
                                         <tiles:insert attribute="cuerpo" />
 
@@ -97,7 +96,7 @@
                                     <ul class="menu"><li class="first leaf"><html:link action="agenda"><p>Agenda</p></html:link></li>
                                         <li class="leaf"><html:link action="cartelera"><p>Cartelera</p></html:link></li>
                                         <li class="leaf"><html:link action="quejas"><p>Quejas</p></html:link></li>
-                                        <li class="last leaf"><html:link action="procesos"><p>Procesos</p></html:link></li>
+                                        <li class="last leaf"><html:link action="NuevaPublicacion"><p>Procesos</p></html:link></li>
                                         <li class="last leaf"><html:link action="estadisticas"><p>Estadisticas</p></html:link></li>
                                         <li class="last leaf"><html:link action="tab_grupos"><p>Grupos</p></html:link></li>
                                     </ul>

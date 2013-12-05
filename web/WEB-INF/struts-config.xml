@@ -28,14 +28,24 @@
                 <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
                            
-        <action path="/CrearPublicacion" name="Publicacion" scope="request" 
-                type="clases.CrearPublicacion" validate="false">
-                <forward name="success" path="/home/vista_home.jsp"/>
-                <forward name="failure" path="/home/vista_home.jsp"/>
+        <action path="/CrearNuevaPublicacion" name="Publicacion" scope="request" 
+                type="clases.CrearNuevaPublicacion" validate="false"> 
+            <forward name="success" path="/iniciar.do"/>
+            <forward name="failure" path="/construccion/vista_construccion.jsp"/>
         </action>
+        
         <action name="ListaPublicaciones" path="/listaPublicaciones"
                 scope="request" type="clases.ListaPublicacionesA" 
                 validate="false"/> 
+        
+        <action path="/NuevaPublicacion" name="Usuario" scope="request" 
+                type="clases.NuevaPublicacion" validate="false">
+            <forward name="success" path="/construccion/vista_construccion.jsp"/>
+        </action>
+        
+        <action name="Publicacion" path="/iniciar" scope="request" type="clases.Iniciar" validate="false">
+            <forward name="success" path="/home/vista_home.jsp"/>
+        </action>
         
         <!-- Inicio -->
         <action path="/inicio" type="org.apache.struts.actions.ForwardAction" 
@@ -48,9 +58,13 @@
                 scope="request" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
-        <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
+         <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
                 scope="request" validate="false" 
                 parameter="/cartelera/vista_adminCartelera.jsp"/>
+        
+        <action path="/cartelera2" type="org.apache.struts.actions.ForwardAction" 
+                scope="request" validate="false" 
+                parameter="/cartelera/vista_crear_publicacion.jsp"/>
         
         <action path="/quejas" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
@@ -104,8 +118,13 @@
         
         
         <!--================ Acciones de admin publicacion ==================-->
-       <action path="/nueva_publicacion" type="org.apache.struts.actions.ForwardAction"
-                parameter="/cartelera/vista_crear_publicacion.jsp"/>     
+         <action name="Publicacion" path="/buscar_publicacion" scope="request"
+                type="clases.BuscarPublicacion" validate="false"/>
+        
+       <action  path="/nueva_publicacion" name="Publicacion" type="clases.BuscarPublicacion" validate="false">
+            <forward name="success" path="/cartelera/vista_nueva_publicacion.jsp"/>
+            <forward name="failure" path="/construccion/vista_construccion.jsp"/>
+        </action>     
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
         <action path="/eliminar_publicacion" type="org.apache.struts.actions.ForwardAction"

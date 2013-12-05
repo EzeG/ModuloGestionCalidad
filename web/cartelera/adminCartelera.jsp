@@ -5,5 +5,5 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
     <h1>Cartelera</h1>
-    <html:link action="nueva_publicacion"><p>Nueva Publicacion</p></html:link>
-    <html:link action="eliminar_publicacion"><p>Eliminar Publicacion</p></html:link>
+    <html:link action="cartelera2"><p>Nueva Publicacion</p></html:link>
+    <html:link action="agenda"><p>Eliminar Publicacion</p></html:link>
