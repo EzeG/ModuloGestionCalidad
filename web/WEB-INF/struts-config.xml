@@ -95,7 +95,7 @@
         <action path="/CrearGrupo" name="Grupo" scope="request" 
                 type="clases.CrearGrupo" validate="false">
             <forward name="success" path="/tab_grupos.do"/>
-            <forward name="failure" path="/home/vista_home.jsp" />
+            <forward name="failure" path="/iniciar.do" />
         </action>
         <action path="/linkGrupos" type="clases.LinksGrupos" validate="false">
             <forward name="success" path="/grupos/vista_adminGrupo.jsp"/>
@@ -105,7 +105,7 @@
         <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
                 type="clases.CrearNoConformidad" validate="false">
                 <forward name="success" path="/nuevo_grupo.do"/>
-                <forward name="failure" path="/home/vista_home.jsp"/>
+                <forward name="failure" path="/iniciar.do"/>
         </action>
         
         <action input="/" name="Grupo" path="/eliminargrupo" scope="request" type="clases.EliminarGrupo" validate="false">
