@@ -15,8 +15,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -94,6 +92,28 @@ public class DBMS {
 
         return null;
 
+    }
+
+    /*
+        Busca Usuarios que no estan en el grupo 'grupo'
+    */
+    public ArrayList<Usuario> usuariosSinGrupo(String grupo) {
+        PreparedStatement usConsulta;
+        try {
+            ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+            String query = "SELECT * FROM \"mod1\".USUARIO WHERE USBID NOT IN(SELECT USBID FROM \"mod1\".Conforma WHERE registroGrupo = \'" + grupo + "\');";
+            usConsulta = conexion.prepareStatement(query);
+            ResultSet rs = usConsulta.executeQuery();
+            while (rs.next()) {
+                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"));
+                usuarios.add(us);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /*
@@ -293,7 +313,7 @@ public class DBMS {
     public boolean eliminarGrupo(Grupo g) {
 
         try {
-            
+
             String sqlquery = "DELETE FROM \"mod1\".Trabaja "
                     + "WHERE registroGrupo ='" + g.getNombre_grupo() + "';";
             Statement stmt = conexion.createStatement();

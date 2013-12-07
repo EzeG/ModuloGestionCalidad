@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package clases;
 
+import DBMS.DBMS;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import DBMS.*;
-import java.util.ArrayList;
-
 /**
  *
  * @author edgar
  */
-
-
-public class FuncionGrupos extends org.apache.struts.action.Action {
+public class nuevoGrupo extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -39,11 +37,8 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ArrayList<Grupo> grupos;
         Grupo grupo = new Grupo();
-        grupos = DBMS.getInstance().consultarGrupos();
-        request.setAttribute("listGrupos", grupos);
-        request.setAttribute("grupitos", grupo);
+        request.setAttribute("grupito", grupo);
         return mapping.findForward(SUCCESS);
     }
 }

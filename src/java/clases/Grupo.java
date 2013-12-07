@@ -29,8 +29,8 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         return error;
     }
 
-    public void setError() {
-        this.error = "No se pudo eliminar el grupo";
+    public void setError(String error) {
+        this.error = error;
     }
     public String getNombre_grupo() {
         return nombre_grupo;

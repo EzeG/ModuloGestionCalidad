@@ -39,7 +39,7 @@ public class EliminarGrupo extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
             Grupo grupo = (Grupo) form;
-            boolean elimino = false;
+            boolean elimino;
             elimino = DBMS.getInstance().eliminarGrupo(grupo);
             
             ArrayList<Grupo> grupos;
@@ -50,7 +50,7 @@ public class EliminarGrupo extends org.apache.struts.action.Action {
             
             if(elimino) return mapping.findForward(SUCCESS);
             else {
-                grupo.setError();
+                grupo.setError("No se pudo eliminar el grupo.");
                 return mapping.findForward(FAILURE);
             }
             

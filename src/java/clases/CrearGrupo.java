@@ -13,8 +13,6 @@ import org.apache.struts.action.ActionMapping;
 
 import java.util.ArrayList;
 import DBMS.DBMS;
-import javax.servlet.http.HttpSession;
-import org.apache.struts.action.ActionRedirect;
 
 /**
  *
@@ -46,11 +44,6 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
         
-        if(group.getNoConformidad().equals("")){
-            return mapping.findForward(FAILURE);
-        }
-        
-        
         String[] nombres = group.getString_grupo().split(",");
 
         for (int i = 0; i < nombres.length; i++) {
@@ -67,21 +60,20 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             group.setIntegrantes_grupo(cache);
             agrego = DBMS.getInstance().agregarGrupo(group);
             if (agrego) {
-                
-                /* Se asocia la no conformidad con el grupo */
-                boolean asocio = DBMS.getInstance().asociarNoConformidad(group.getNombre_grupo(), group.getNoConformidad());
-                if(asocio){
-                    return mapping.findForward(SUCCESS);
-                } else {
-                    return mapping.findForward(FAILURE);
-                }
-                
+                request.setAttribute("grupito", group);
+                request.setAttribute("nombreG", group.getNombre_grupo());
+                return mapping.findForward(SUCCESS);
             } else {
+                group.setError("El grupo ya existe.");
+                request.setAttribute("grupito", group);
                 return mapping.findForward(FAILURE);
             }
         } else {
+            group.setError("Debe ingresar al menos un usuario en el grupo.");
+            request.setAttribute("grupito", group);
             return mapping.findForward(FAILURE);
         }
+      
 
     }
 }

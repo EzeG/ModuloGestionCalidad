@@ -10,20 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
 import DBMS.*;
 import java.util.ArrayList;
 
 /**
  *
- * @author edgar
+ * @author ani
  */
-
-
-public class FuncionGrupos extends org.apache.struts.action.Action {
+public class ModificarUsuario extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    private static final String FAILURE = "failure";
 
     /**
      * This is the action called from the Struts framework.
@@ -39,11 +37,25 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ArrayList<Grupo> grupos;
-        Grupo grupo = new Grupo();
-        grupos = DBMS.getInstance().consultarGrupos();
-        request.setAttribute("listGrupos", grupos);
-        request.setAttribute("grupitos", grupo);
-        return mapping.findForward(SUCCESS);
+        Usuario user = (Usuario) form;
+        ArrayList<Usuario> listGrupo;
+
+        user.setUsbid(user.getUsbid());
+
+        boolean agrego = DBMS.getInstance().agregarRelacionGU(user, user.getGrupo());
+
+        if (agrego) {
+            listGrupo = DBMS.getInstance().usuariosSinGrupo(user.getGrupo());
+
+            for (int j = 0; j < listGrupo.size(); j++) {
+                listGrupo.get(j).setGrupo(user.getGrupo());
+            }
+
+            request.setAttribute("huerfanos", listGrupo);
+            return mapping.findForward(SUCCESS);
+        } else {
+                return mapping.findForward(SUCCESS);
+        }
+
     }
 }

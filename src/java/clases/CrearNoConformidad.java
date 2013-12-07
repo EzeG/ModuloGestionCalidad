@@ -12,6 +12,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import DBMS.DBMS;
+import java.util.ArrayList;
+
+;
 
 /**
  *
@@ -40,14 +43,24 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
 
         NoConformidad nc;
         nc = (NoConformidad) form;
+        Grupo group = new Grupo();
 
         boolean agrego = DBMS.getInstance().agregaNoConformidad(nc);
         if (agrego) {
-            request.setAttribute("nc", nc.getRegistro_nc());
-            return mapping.findForward(SUCCESS);
+            boolean asocio = DBMS.getInstance().asociarNoConformidad(nc.getGrupo_nc(), nc.getRegistro_nc());
+            if (asocio) {
+                group.setError("Se agrego el grupo");
+                request.setAttribute("grupito", group);
+                return mapping.findForward(SUCCESS);
+            } else {
+                group.setError("Ocurrio un error asociando la no conformidad.");
+                request.setAttribute("grupito", group);
+                return mapping.findForward(FAILURE);
+            }
         } else {
+            group.setError("La No Conformidad ya existe.");
+            request.setAttribute("grupito", group);
             return mapping.findForward(FAILURE);
         }
-
     }
 }

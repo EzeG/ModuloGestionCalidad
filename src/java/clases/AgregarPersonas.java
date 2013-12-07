@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package clases;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +12,14 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import DBMS.*;
 import java.util.ArrayList;
+import DBMS.*;
 
 /**
  *
- * @author edgar
+ * @author ani
  */
-
-
-public class FuncionGrupos extends org.apache.struts.action.Action {
+public class AgregarPersonas extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -39,11 +38,17 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ArrayList<Grupo> grupos;
-        Grupo grupo = new Grupo();
-        grupos = DBMS.getInstance().consultarGrupos();
-        request.setAttribute("listGrupos", grupos);
-        request.setAttribute("grupitos", grupo);
+        Grupo grupo = (Grupo) form;
+        ArrayList<Usuario> listGrupo;
+        
+        listGrupo = DBMS.getInstance().usuariosSinGrupo(grupo.getNombre_grupo());
+        
+        for(int j =0; j<listGrupo.size(); j++){
+            listGrupo.get(j).setGrupo(grupo.getNombre_grupo());
+        }
+        
+        request.setAttribute("huerfanos", listGrupo);
+
         return mapping.findForward(SUCCESS);
     }
 }

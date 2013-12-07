@@ -21,6 +21,7 @@ public class Usuario extends org.apache.struts.action.ActionForm {
     private String nombre;
     private String email;
     private String usbid;
+    private String grupo;
 
     public String getNombre() {
         return nombre;
@@ -46,6 +47,13 @@ public class Usuario extends org.apache.struts.action.ActionForm {
         this.usbid = usbid;
     }
 
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
 
     /**
      *

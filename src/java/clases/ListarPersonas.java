@@ -6,6 +6,8 @@
 
 package clases;
 
+import DBMS.DBMS;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -14,9 +16,9 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  *
- * @author edgar
+ * @author ani
  */
-public class ListaPublicacionesA extends org.apache.struts.action.Action {
+public class ListarPersonas extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -35,7 +37,12 @@ public class ListaPublicacionesA extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+        ArrayList<Usuario> usu;
+        Usuario usuario = new Usuario();
+       /* usu = DBMS.getInstance().consultarUsuariosTodos();
+        request.setAttribute("listUsuarios", usu);
+        request.setAttribute("usuari", usuario);
+        */
         return mapping.findForward(SUCCESS);
     }
 }

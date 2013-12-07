@@ -72,16 +72,18 @@
         </action>
         
         <!--================ Acciones de los grupos ==================-->
-        <action path="/nuevo_grupo" type="org.apache.struts.actions.ForwardAction"
-                parameter="/grupos/vista_crear_grupo.jsp"/>     
+        <action path="/nuevo_grupo" type="clases.nuevoGrupo">
+            <forward name="success" path="/grupos/vista_crear_grupo.jsp"/>
+        </action>
+           
         <action path="/no_conformidad" type="org.apache.struts.actions.ForwardAction"
                 parameter="/grupos/vista_no_conformidad.jsp"/>
         
                 <!-- Accion crear -->
         <action path="/CrearGrupo" name="Grupo" scope="request" 
                 type="clases.CrearGrupo" validate="false">
-            <forward name="success" path="/tab_grupos.do"/>
-            <forward name="failure" path="/home/vista_home.jsp" />
+            <forward name="success" path="/grupos/vista_no_conformidad.jsp"/>
+            <forward name="failure" path="/grupos/vista_crear_grupo.jsp" />
         </action>
         <action path="/linkGrupos" type="clases.LinksGrupos" validate="false">
             <forward name="success" path="/grupos/vista_adminGrupo.jsp"/>
@@ -90,18 +92,32 @@
                  <!-- Crear no Conformidad -->
         <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
                 type="clases.CrearNoConformidad" validate="false">
-                <forward name="success" path="/nuevo_grupo.do"/>
-                <forward name="failure" path="/home/vista_home.jsp"/>
+                <forward name="success" path="/tab_grupos.do"/>
+                <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
         
         <action input="/" name="Grupo" path="/eliminargrupo" scope="request" type="clases.EliminarGrupo" validate="false">
             <forward name="success" path="/grupos/vista_grupos.jsp"/>
             <forward name="failure" path="/grupos/vista_grupos.jsp"/>
-            
         </action>
         
+        <!--
+        <action input="/" name="Usuario" path="/listarpersonas" scope="request" type="clases.ListarPersonas" validate="false">
+            <forward name="success" path="/grupos/crear_grupo.jsp"/>
+        </action> -->
         
+        <action name="Grupo" path="/agregarPersonas" 
+                scope="request" type="clases.AgregarPersonas" 
+                validate="false">
+            <forward name="success" path="/grupos/vista_agregar_personas.jsp"/>
+        </action>
         
+        <action name="Usuario" path="/modificarUsuarios" 
+                scope="request" type="clases.ModificarUsuario" 
+                validate="false">
+            <forward name="success" path="/grupos/vista_agregar_personas.jsp"/>
+            <forward name="failure" path="/grupos/vista_grupos.jsp"/>
+        </action>
         
         <!--================ Acciones de admin publicacion ==================-->
        <action path="/nueva_publicacion" type="org.apache.struts.actions.ForwardAction"

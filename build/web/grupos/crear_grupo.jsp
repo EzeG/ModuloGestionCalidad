@@ -1,20 +1,14 @@
+<%@page import="clases.NoConformidad"%>
 <%@page contentType="text/html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<%
-    String nc;
-    try{
-        nc = (String) request.getAttribute("nc");
-    } catch(Exception e){
-        nc = "";
-    }
-%>
-
 
 <html:link action="tab_grupos"><p>Atras</p></html:link>
+
+<bean:write name="grupito" property="error" filter="false"/>
 
 <html:form action="/CrearGrupo">
 
@@ -22,38 +16,27 @@
         <tbody>
             <tr>
                 <td>
-                    <html:text property="nombre_grupo" value="Nombre" style="width:500px"/>
+                    <p style="font-size: 12px">Nombre Grupo: </p>
+                    <html:text property="nombre_grupo" value="" alt="Nombre Grupo" style="width:500px"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <%
-                        if(nc != null){
-                    %>
-                    <p >No Conformidad: </p><%= nc%> 
-                   <%
-                        } else {
-                    %><html:link action="no_conformidad"><p>No conformidad</p></html:link><%
-                        }
-                    %>
+                    <p style="font-size: 12px">Integrantes: </p>
+                    <html:text property="string_grupo" value="" alt="Integrantes" style="width:511px"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <html:text property="string_grupo" value="Integrantes" style="width:511px"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <html:submit value="Crear Grupo" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <html:hidden property="noConformidad" value="<%= nc %>" />
+                    <html:submit value="Asociar No Conformidad" />
                 </td>
             </tr>
         </tbody>
     </table>
 
 </html:form>
+<div style="margin: -43px 0 0 165px; position: absolute">
+    <html:link action="tab_grupos">
+        <html:submit value="Cancelar" />
+    </html:link>
+</div>

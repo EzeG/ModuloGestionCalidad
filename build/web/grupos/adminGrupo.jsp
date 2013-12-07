@@ -29,7 +29,10 @@
     </logic:iterate>
     <tr>
         <td style="vertical-align: middle" colspan="3">
-            <p style="color:#336699; font-size: 11px; size: 80px">
+            <p style="color:#336699; font-size: 11px; size: 80px; font-weight: bold">
+                No Conformidad:
+            </p>
+            <p>
 
                     <%= request.getAttribute("noConformidad")%>
 

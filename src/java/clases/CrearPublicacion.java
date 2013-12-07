@@ -5,7 +5,6 @@ package clases;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -39,17 +38,17 @@ public class CrearPublicacion extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+
         Publicacion pub = (Publicacion) form;
         HttpSession session = request.getSession(true);
-        
+
         boolean agrego = DBMS.getInstance().agregarPublicacion(pub);
-        
-        if(agrego){
+
+        if (agrego) {
             return mapping.findForward(SUCCESS);
         } else {
             return mapping.findForward(FAILURE);
         }
-        
+
     }
 }
