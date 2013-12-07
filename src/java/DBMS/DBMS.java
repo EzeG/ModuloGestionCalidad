@@ -138,6 +138,27 @@ public class DBMS {
 
     }
 
+    public ArrayList<Publicacion> consultarPublicacion() {
+        PreparedStatement usConsulta = null;        
+        try {
+            ArrayList<Publicacion> pub = new ArrayList<Publicacion>();
+            usConsulta = conexion.prepareStatement("SELECT * FROM \"mod1\".PUBLICACION;");
+            ResultSet rs = usConsulta.executeQuery();
+            while (rs.next()) {
+                Publicacion us = new Publicacion();
+                us.setTitulo_publicacion(rs.getString("titulo"));
+                us.setContenido_publicacion(rs.getString("contenido"));
+                pub.add(us);
+            }
+            return pub;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+        
+    }
+    
     public boolean agregarRelacionGU(Usuario u, String codigoG) {
         PreparedStatement confAgregar = null;
         try {
@@ -208,6 +229,22 @@ public class DBMS {
         return false;
     }
 
+    public boolean agregarPublicacion(Publicacion p) {
+        PreparedStatement pubAgregar = null;
+        
+        try {
+            pubAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".PUBLICACION VALUES (?,?);");
+            pubAgregar.setString(1, p.getTitulo_publicacion());
+            pubAgregar.setString(2, p.getContenido_publicacion());
+            Integer i = pubAgregar.executeUpdate();
+            return i > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     public boolean asociarNoConformidad(String regGrupo, String Nc) {
         PreparedStatement ncAsociar;
         try {
@@ -275,21 +312,6 @@ public class DBMS {
         return false;
     }
 
-    public boolean agregarPublicacion(Publicacion p) {
-        PreparedStatement pubAgregar;
-
-        try {
-            pubAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".PUBLICACION VALUES (?,?);");
-            pubAgregar.setString(1, p.getTitulo_publicacion());
-            pubAgregar.setString(2, p.getContenido_publicacion());
-            Integer i = pubAgregar.executeUpdate();
-            return i > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     public ArrayList<Grupo> consultarGrupos() {
         PreparedStatement psConsultar;
