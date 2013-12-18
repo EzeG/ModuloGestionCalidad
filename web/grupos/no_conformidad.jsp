@@ -4,10 +4,10 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<html:link action="nuevo_grupo"><p><b>Atras</b></p></html:link>
+<html:link action="tab_grupos"><p><b>Atras</b></p></html:link>
                 <td style="vertical-align: middle">
                     <p style="font-size: 16px; color:#127ba5">
-                        <bean:write name="grupito" property="nombre_grupo" filter="false"/> /No conformidad 
+                        <bean:write name="grupito" property="nombre_grupo" filter="false"/>/No conformidad 
                     </p>
                 </td>
 <fieldset>
@@ -19,28 +19,24 @@
                 <tr>
                 </tr>
 
-                <tr>
+                 <tr>
                     <td><p style="font-size: 14px"><b>Registro:</b></p></td>
-                    <td><html:text  styleId="registro_nc" property="registro_nc" value="" style="width:100px; color: gray; font-size: 14px"/></td>
+                    <td>
+                        <html:text  styleId="registro_nc" property="registro_nc" value="" style="width:100px; color: gray; font-size: 14px"/>
+                        <p id="registro_nc_error" style="font-size: 12px; color: #B22222">
+                    </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><p id="registro_nc_error" style="font-size: 14px; color: #B22222"></p></td>
-                </tr> 
 
                 
                 <tr>
                     <td><p style="font-size: 14px"><b>Situacion:</b></p></td>
                     <td>
                         <html:textarea  styleId="situacion_nc" property="situacion_nc" value="" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
-                        <p id="situacion_nc_counter"  style="font-size: 10px; color: gray">4999</p>
+                        <p id="situacion_nc_counter"  style="margin-left: 290px; font-size: 10px; color: gray">4999</p>
+                        <p id="situacion_nc_error" style=" font-size: 12px; color: #B22222"></p>
                     </td>                   
                 </tr> 
-
-                <tr>
-                    <td></td>
-                    <td><p id="situacion_nc_error" style="font-size: 14px; color: #B22222"></p></td>
-                </tr>
+           
                 
                 <tr>
                     <td><p style="font-size: 14px"><b>Origen:</b></p></td>
@@ -55,6 +51,8 @@
                         </html:select>
                     </td>
                 </tr>
+                
+                
                 <tr>
                     <td><p style="font-size: 14px"><b>Norma:</b></p></td>
                     <td>
@@ -63,46 +61,45 @@
                         <html:option value="ISO/IEC 17025">ISO/IEC 17025</html:option>
                         </html:select>
                     </td>
-                </tr>                            
+                </tr>   
+                
+                
                 <tr>
                     <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
-                    <td><html:text styleId="clausula_nc" property="clausula_nc" value="" style="color: gray; font-size: 14px"/></td>
+                    <td>
+                        <html:text styleId="clausula_nc" property="clausula_nc" value="" style="color: gray; font-size: 14px"/>
+                        <p id="clausula_nc_error" style="font-size: 12px; color: #B22222"></p>
+                    </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><p id="clausula_nc_error" style="font-size: 14px; color: #B22222"></p></td>
-                </tr>
+
                 
                 <tr>
                     <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                     <td>
                         <html:textarea styleId="requisito_nc" property="requisito_nc" value="" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
-                        <p id="requisito_nc_counter"  style="font-size: 10px; color: gray">499</p>
+                        <p id="requisito_nc_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
+                        <p id="requisito_nc_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><p id="requisito_nc_error" style="font-size: 14px; color: #B22222"></p></td>
-                </tr>
+  
+                
                 <tr>
                     <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
                     <td>
                         <html:textarea  styleId="declaracion_nc" property="declaracion_nc" value="" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
-                        <p id="declaracion_nc_counter"  style="font-size: 10px; color: gray">499</p>                    
+                        <p id="declaracion_nc_counter"  style="margin-left: 220px;font-size: 10px; color: gray">4999</p> 
+                        <p id="declaracion_nc_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
 
                 </tr>
-                <tr>
-                    <td></td>
-                    <td><p id="declaracion_nc_error" style="font-size: 14px; color: #B22222"></p></td>
-                </tr>
+
+                
                 <tr>
                     <td><p style="font-size: 12px"><b>Codigo:</b></p></td>
-                    <td><html:text styleId="codigo_nc" property="codigo_nc" value="" style="color: gray; font-size: 14px"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><p id="codigo_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                    <td>
+                        <html:text styleId="codigo_nc" property="codigo_nc" value="" style="color: gray; font-size: 14px"/>
+                        <p id="codigo_nc_error" style="font-size: 12px; color: #B22222"></p>
+                    </td>
                 </tr>
                 <tr>
                     <td><html:submit styleId="submit" value="Aceptar" />

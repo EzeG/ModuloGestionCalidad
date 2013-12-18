@@ -40,10 +40,12 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             throws Exception {
 
         Grupo group = (Grupo) form;
+        NoConformidad nc= new NoConformidad(group.getRegistro_nc(), group.getSituacion_nc(), group.getOrigen_nc(), 
+                                          group.getDocumento_nc(), group.getClausula_nc(), group.getRequisito_nc(), group.getDeclaracion_nc(), group.getCodigo_nc());
         ArrayList<Usuario> users;
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
-        
+        boolean agrego_nc = DBMS.getInstance().agregaNoConformidad(nc);
         String[] nombres = group.getString_grupo().split(",");
 
         for (int i = 0; i < nombres.length; i++) {
@@ -60,9 +62,19 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             group.setIntegrantes_grupo(cache);
             agrego = DBMS.getInstance().agregarGrupo(group);
             if (agrego) {
-                request.setAttribute("grupito", group);
-                request.setAttribute("nombreG", group.getNombre_grupo());
+                if (agrego_nc){
+                    boolean asocio = DBMS.getInstance().asociarNoConformidad(group.getNombre_grupo(), nc.getRegistro_nc());
+                    if (asocio){
+                        return mapping.findForward(SUCCESS);                    
+                    } else {
+                        group.setError("Ocurrio un error asociando la no conformidad.");
+                        return mapping.findForward(FAILURE);
+                    }
+                }
+                
+                
                 return mapping.findForward(SUCCESS);
+          
             } else {
                 group.setError("El grupo ya existe.");
                 request.setAttribute("grupito", group);

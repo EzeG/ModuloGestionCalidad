@@ -48,6 +48,8 @@ public class AgregarPersonas extends org.apache.struts.action.Action {
         }
         
         request.setAttribute("huerfanos", listGrupo);
+        request.setAttribute("grupito", grupo);
+        request.setAttribute("nombreG", grupo.getNombre_grupo());
 
         return mapping.findForward(SUCCESS);
     }

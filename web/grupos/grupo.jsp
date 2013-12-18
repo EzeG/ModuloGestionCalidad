@@ -17,6 +17,7 @@
             <p style="color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">GRUPOS</p>
         </td>
         <td></td>
+        <td></td>
         <td>
             <html:link action="nuevo_grupo">
                 <html:submit value="Crear" style="margin: auto"/>
@@ -33,6 +34,12 @@
                         <bean:write name="infoGrupo" property="nombre_grupo"/><br/>
                     </p>
                 </html:link>
+            </td>
+            <td style="width: 115px">
+                <html:form action="/agregarNC">
+                    <html:hidden name="infoGrupo" property="nombre_grupo"/>
+                    <html:submit value="Agregar No Conformidad"/>
+                </html:form>
             </td>
             <td style="width: 115px">
                 <html:form action="/agregarPersonas">

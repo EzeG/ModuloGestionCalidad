@@ -24,7 +24,88 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private ArrayList<Usuario> integrantes_grupo;
     private String noConformidad;
     private String error;
+    private String registro_nc;
+    private String situacion_nc;
+    private int origen_nc;
+    private int documento_nc;
+    private String clausula_nc;
+    private String requisito_nc;
+    private String declaracion_nc;
+    private String codigo_nc;
+    private String grupo_nc;
 
+    public String getRegistro_nc() {
+        return registro_nc;
+    }
+
+    public void setRegistro_nc(String registro_nc) {
+        this.registro_nc = registro_nc;
+    }
+
+    public String getSituacion_nc() {
+        return situacion_nc;
+    }
+
+    public void setSituacion_nc(String situacion_nc) {
+        this.situacion_nc = situacion_nc;
+    }
+
+    public int getOrigen_nc() {
+        return origen_nc;
+    }
+
+    public void setOrigen_nc(int origen_nc) {
+        this.origen_nc = origen_nc;
+    }
+
+    public int getDocumento_nc() {
+        return documento_nc;
+    }
+
+    public void setDocumento_nc(int documento_nc) {
+        this.documento_nc = documento_nc;
+    }
+
+    public String getClausula_nc() {
+        return clausula_nc;
+    }
+
+    public void setClausula_nc(String clausula_nc) {
+        this.clausula_nc = clausula_nc;
+    }
+
+    public String getRequisito_nc() {
+        return requisito_nc;
+    }
+
+    public void setRequisito_nc(String requisito_nc) {
+        this.requisito_nc = requisito_nc;
+    }
+
+    public String getDeclaracion_nc() {
+        return declaracion_nc;
+    }
+
+    public void setDeclaracion_nc(String declaracion_nc) {
+        this.declaracion_nc = declaracion_nc;
+    }
+
+    public String getCodigo_nc() {
+        return codigo_nc;
+    }
+
+    public void setCodigo_nc(String codigo_nc) {
+        this.codigo_nc = codigo_nc;
+    }
+
+    public String getGrupo_nc() {
+        return grupo_nc;
+    }
+
+    public void setGrupo_nc(String grupo_nc) {
+        this.grupo_nc = grupo_nc;
+    }
+    
     public String getError() {
         return error;
     }
