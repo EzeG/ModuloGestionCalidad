@@ -4,82 +4,117 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<html:link action="nuevo_grupo"><p>Atras</p></html:link>
-
-<html:form action="/CrearNoConformidad">
-    <% String nombreG = (String) request.getAttribute("nombreG");%>
-    <table style="margin-left: 10px">
-        <tbody>
-            <tr>
-                <td colspan="4" style="vertical-align: middle">
-                    <p style="font-size: 14px; color:#127ba5">
-                        <bean:write name="grupito" property="nombre_grupo" filter="false"/>
-                        / No Conformidad
+<html:link action="nuevo_grupo"><p><b>Atras</b></p></html:link>
+                <td style="vertical-align: middle">
+                    <p style="font-size: 16px; color:#127ba5">
+                        <bean:write name="grupito" property="nombre_grupo" filter="false"/> /No conformidad 
                     </p>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <p style="font-size: 12px">Registro:</p>
-                    <html:text name = "nombre" property="registro_nc" value="" style="width:100px"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <p style="font-size: 12px">Situacion: </p>
-                    <html:textarea property="situacion_nc" value="" style="width:100px"/>
-                </td>
-                <td><html:radio  property="origen_nc" value="1"/><p>Queja</p></td>
-                <td><html:radio property="origen_nc" value="2"/><p>Auditoria</p></td>
-                <td><html:radio property="origen_nc" value="3"/><p>Revision del SGC</p></td>
-            </tr>
-            <tr>
-            <tr>
-                <td class="checkboxes"><html:radio property="origen_nc" value="4"/><p>Oportunidad de Mejora</p></td>
-                <td class="checkboxes"><html:radio property="origen_nc" value="5"/><p>Trabajo No Conforme</p></td>
-                <td class="checkboxes"><html:radio property="origen_nc" value="6"/><p>Otro</p></td>
+<fieldset>
+    <html:form styleId="no_conformidad" action="/CrearNoConformidad">
+        <% String nombreG = (String) request.getAttribute("nombreG");%>
+        <table style="margin-left: 10px">
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                </tr>
 
-            </tr>
-            <tr>
-                <td><html:radio property="documento_nc" value="ISO 9001"/><p>Norma ISO 9001</p></td>
-                <td></td>
-                <td><html:radio property="documento_nc" value="ISO/IEC 17025"/><p>Norma ISO/IEC 17025</p></td>
-            </tr>
-    </table>
+                <tr>
+                    <td><p style="font-size: 14px"><b>Registro:</b></p></td>
+                    <td><html:text  styleId="registro_nc" property="registro_nc" value="" style="width:100px; color: gray; font-size: 14px"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="registro_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr> 
 
-    <table style="margin-left: 10px">
-        <tbody>
-            <tr>
-                <td>
-                    <p style="font-size: 12px">Clausula: </p>
-                    <html:text property="clausula_nc" value=""/></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <p style="font-size: 12px">Requisito: </p>
-                    <html:textarea property="requisito_nc" value=""/></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <p style="font-size: 12px">Declaracion: </p>
-                    <html:textarea property="declaracion_nc" value=""/></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <p style="font-size: 12px">Codigo: </p>
-                    <html:text property="codigo_nc" value=""/></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><html:submit value="Aceptar" /><html:hidden property="grupo_nc" value="<%= nombreG%>"/></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+                
+                <tr>
+                    <td><p style="font-size: 14px"><b>Situacion:</b></p></td>
+                    <td>
+                        <html:textarea  styleId="situacion_nc" property="situacion_nc" value="" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                        <p id="situacion_nc_counter"  style="font-size: 10px; color: gray">4999</p>
+                    </td>                   
+                </tr> 
 
+                <tr>
+                    <td></td>
+                    <td><p id="situacion_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr>
+                
+                <tr>
+                    <td><p style="font-size: 14px"><b>Origen:</b></p></td>
+                    <td>
+                        <html:select style="font-size: 14px; height: 20px " property="origen_nc">
+                        <html:option value="1">Queja</html:option>
+                        <html:option value="2">Auditoria</html:option>
+                        <html:option value="3">Revision del SGC</html:option>
+                        <html:option value="4">Oportunidad de Mejora</html:option>
+                        <html:option value="5">Trabajo No Conforme</html:option>
+                        <html:option value="6">Otro</html:option>
+                        </html:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p style="font-size: 14px"><b>Norma:</b></p></td>
+                    <td>
+                        <html:select style="font-size: 14px; height: 20px " property="documento_nc">
+                        <html:option value="ISO 9001">ISO 9001</html:option>
+                        <html:option value="ISO/IEC 17025">ISO/IEC 17025</html:option>
+                        </html:select>
+                    </td>
+                </tr>                            
+                <tr>
+                    <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
+                    <td><html:text styleId="clausula_nc" property="clausula_nc" value="" style="color: gray; font-size: 14px"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="clausula_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr>
+                
+                <tr>
+                    <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
+                    <td>
+                        <html:textarea styleId="requisito_nc" property="requisito_nc" value="" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                        <p id="requisito_nc_counter"  style="font-size: 10px; color: gray">499</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="requisito_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr>
+                <tr>
+                    <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
+                    <td>
+                        <html:textarea  styleId="declaracion_nc" property="declaracion_nc" value="" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                        <p id="declaracion_nc_counter"  style="font-size: 10px; color: gray">499</p>                    
+                    </td>
 
-</html:form>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="declaracion_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr>
+                <tr>
+                    <td><p style="font-size: 12px"><b>Codigo:</b></p></td>
+                    <td><html:text styleId="codigo_nc" property="codigo_nc" value="" style="color: gray; font-size: 14px"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><p id="codigo_nc_error" style="font-size: 14px; color: #B22222"></p></td>
+                </tr>
+                <tr>
+                    <td><html:submit styleId="submit" value="Aceptar" />
+                        <html:hidden property="grupo_nc" value="<%= nombreG%>"/></td>
+                    <td></td>
+                </tr>
+         </table>       
+    </html:form>
+</fieldset>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Ejemplo de código JavaScript en el propio documento</title>
+    <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
+</head>

@@ -16,14 +16,14 @@
         <tbody>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Nombre Grupo: </p>
-                    <html:text property="nombre_grupo" value="" alt="Nombre Grupo" style="width:500px"/>
+                    <p style="font-size: 14px"><b>Nombre Grupo:</b> </p>
+                    <html:text  styleId="nombre_grupo"   property="nombre_grupo" value="" alt="Nombre Grupo" style="width:500px; color:gray; font-size: 14px"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 12px">Integrantes: </p>
-                    <html:text property="string_grupo" value="" alt="Integrantes" style="width:511px"/>
+                    <p style="font-size: 14px"><b>Integrantes:</b> </p>
+                    <html:text styleId="string_grupo" property="string_grupo" value="" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
                 </td>
             </tr>
             <tr>
@@ -40,3 +40,8 @@
         <html:submit value="Cancelar" />
     </html:link>
 </div>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <script type="text/javascript" src="JS/Validacion-Grupo.js"></script>
+</head>
