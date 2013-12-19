@@ -294,38 +294,27 @@ declaracion_nc.onblur = function() {
 }
 
 codigo_nc.onblur = function() {
-    clausula_nc.value = clausula_nc.value.trim();
+    codigo_nc.value = codigo_nc.value.trim();
  if (codigo_nc.value == "") {
+     alert("1");
      codigo_nc.setAttribute("style", "color: gray; font-size: 14px; border-color: #B22222");
      codigo_nc_error.innerHTML = "Codigo de no conformidad es obligatorio";
      codigo_nc.value = "Codigo";
      codigo_nc_value = false;
  }else{
      if (codigo_nc.value.length > 29){
+         alert("2");
          codigo_nc.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
          codigo_nc_error.innerHTML = "El codigo de la no conformidad es muy largo";
          codigo_nc_value = false;
      }else{
-         if(codigo_nc.value.length < 2){
-            codigo_nc.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
-            codigo_nc_error.innerHTML = "Error en el formato del codigo";
-            codigo_nc_value = false;
-         }else{
-            formato= codigo_nc.value[0]+codigo_nc.value[1];
-            formato= formato.toUpperCase();
-            if (formato!="NC"){
-                codigo_nc.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
-                codigo_nc_error.innerHTML = "Error en el formato del codigo";
-                codigo_nc_value = false;
-            }else{
-                codigo_nc.value= formato + codigo_nc.value.substring(2,codigo_nc.value.length);
+         alert("3");
                 codigo_nc_error.innerHTML = "";
                 codigo_nc.setAttribute("style", "color: black; font-size: 14px");
                 codigo_nc_value = true;
-            }
-         }   
      }
  }
+ 
  submit.disabled = !(registro_nc_value && situacion_nc_value && clausula_nc_value && 
                      requisito_nc_value && declaracion_nc_value && codigo_nc_value);
 }

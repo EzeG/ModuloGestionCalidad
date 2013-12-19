@@ -43,26 +43,31 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         NoConformidad nc= new NoConformidad(group.getRegistro_nc(), group.getSituacion_nc(), group.getOrigen_nc(), 
                                           group.getDocumento_nc(), group.getClausula_nc(), group.getRequisito_nc(), group.getDeclaracion_nc(), group.getCodigo_nc());
         ArrayList<Usuario> users;
+        ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
-        boolean agrego_nc = DBMS.getInstance().agregaNoConformidad(nc);
+        boolean agrego_nc;
         String[] nombres = group.getString_grupo().split(",");
 
         for (int i = 0; i < nombres.length; i++) {
             nombres[i] = nombres[i].trim();
             users = DBMS.getInstance().consultarUsuarios(nombres[i]);
+            NC = DBMS.getInstance().consultarNC(group.getRegistro_nc());
             if (!users.isEmpty()) {
                 cache.addAll(users);
                 int a = 0;
             }
             users.clear();
         }
-
+        
+        if (NC.isEmpty()){
+        if (cache.size() == nombres.length){
         if (!cache.isEmpty()) {
             group.setIntegrantes_grupo(cache);
             agrego = DBMS.getInstance().agregarGrupo(group);
+            
             if (agrego) {
-                if (agrego_nc){
+                if (DBMS.getInstance().agregaNoConformidad(nc)){
                     boolean asocio = DBMS.getInstance().asociarNoConformidad(group.getNombre_grupo(), nc.getRegistro_nc());
                     if (asocio){
                         return mapping.findForward(SUCCESS);                    
@@ -86,6 +91,16 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         }
       
-
+       }else{
+            group.setError("Uno o mas integrantes del grupo no pertenecen a la base de datos del sistema.");
+            request.setAttribute("grupito", group);
+            return mapping.findForward(FAILURE);
+        }
+        } else {
+            group.setError("Ya existe una no conformidad con este nombre.");
+            request.setAttribute("grupito", group);
+            return mapping.findForward(FAILURE);
+        }
     }
+ 
 }

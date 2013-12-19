@@ -8,7 +8,9 @@
 
 <html:link action="tab_grupos"><p>Atras</p></html:link>
 
+<p id="submit_error" align="center" style="font-size: 16px; color: #B22222">
 <bean:write name="grupito" property="error" filter="false"/>
+</p>
 
 <html:form action="/CrearGrupo">
 

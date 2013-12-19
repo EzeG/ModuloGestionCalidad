@@ -20,6 +20,7 @@ public class Publicacion extends org.apache.struts.action.ActionForm {
     
     private String titulo_publicacion;
     private String contenido_publicacion;
+    private String error;
         
         
 
@@ -38,6 +39,14 @@ public class Publicacion extends org.apache.struts.action.ActionForm {
     public void setContenido_publicacion(String contenido_publicacion) {
         this.contenido_publicacion = contenido_publicacion;
     }   
+    
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
     
     /**
      * 

@@ -41,14 +41,20 @@ public class CrearNuevaPublicacion extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-      Publicacion p = (Publicacion) form; 
-      System.out.println(p.getTitulo_publicacion()+" "+p.getContenido_publicacion()+"\n\n");
-      boolean pub = DBMS.getInstance().agregarPublicacion(p);
-      if(pub){
+      Publicacion p = (Publicacion) form;
+      ArrayList<Publicacion> pub = DBMS.getInstance().consultarPublicacion(p.getTitulo_publicacion());
+      
+      if(pub.isEmpty()){
+      if(DBMS.getInstance().agregarPublicacion(p)){
           return mapping.findForward(SUCCESS);
       }else{
           return mapping.findForward(FAILURE);
       }      
+      }else{
+          //este es el caso donde intenta agregar una publicacion con el titulo de una ya existente
+          //hay q devolver el mensaje a nueva publicacion
+          p.setError("Ya existe otra publicacion con este titulo");
+          return mapping.findForward(FAILURE);
+      }
     }
-
 }

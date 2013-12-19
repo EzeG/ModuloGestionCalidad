@@ -31,7 +31,7 @@
         <action path="/CrearNuevaPublicacion" name="Publicacion" scope="request" 
                 type="clases.CrearNuevaPublicacion" validate="false"> 
             <forward name="success" path="/iniciar.do"/>
-            <forward name="failure" path="/construccion/vista_construccion.jsp"/>
+            <forward name="failure" path="/cartelera/vista_crear_publicacion.jsp"/>
         </action>
         
         <action name="ListaPublicaciones" path="/listaPublicaciones"

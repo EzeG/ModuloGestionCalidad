@@ -76,6 +76,25 @@ public class DBMS {
         return null;
 
     }
+    
+    public ArrayList<NoConformidad> consultarNC(String NC) {
+        PreparedStatement ncConsulta;
+        try {
+            ArrayList<NoConformidad> noConformidades = new ArrayList<NoConformidad>();
+            ncConsulta = conexion.prepareStatement("SELECT * FROM mod1.NOCONFORMIDAD WHERE Registro = \'" + NC + "\';");
+            ResultSet rs = ncConsulta.executeQuery();
+            while (rs.next()) {
+                NoConformidad nc = new NoConformidad(rs.getString("registro"), rs.getString("situacion"), rs.getInt("procedencia"),rs.getInt("documento"), rs.getString("clausula"), rs.getString("requisito"),rs.getString("declaracion"), rs.getString("codigo"));
+                noConformidades.add(nc);
+            }
+            return noConformidades;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     public Usuario buscarUsuario(String id) {
         PreparedStatement usConsulta;
@@ -155,8 +174,27 @@ public class DBMS {
             e.printStackTrace();
         }
         
-        return null;
+        return null;   
+    }
+    
+    public ArrayList<Publicacion> consultarPublicacion(String Publicacion) {
+        PreparedStatement usConsulta = null;        
+        try {
+            ArrayList<Publicacion> pub = new ArrayList<Publicacion>();
+            usConsulta = conexion.prepareStatement("SELECT * FROM mod1.PUBLICACION WHERE Titulo = \'" + Publicacion + "\';");
+            ResultSet rs = usConsulta.executeQuery();
+            while (rs.next()) {
+                Publicacion us = new Publicacion();
+                us.setTitulo_publicacion(rs.getString("titulo"));
+                us.setContenido_publicacion(rs.getString("contenido"));
+                pub.add(us);
+            }
+            return pub;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         
+        return null;   
     }
     
     public boolean agregarRelacionGU(Usuario u, String codigoG) {
