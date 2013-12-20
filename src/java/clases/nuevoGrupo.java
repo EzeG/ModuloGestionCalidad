@@ -39,6 +39,15 @@ public class nuevoGrupo extends org.apache.struts.action.Action {
             throws Exception {
         Grupo grupo = new Grupo();
         request.setAttribute("grupito", grupo);
+        request.setAttribute("nombre_grupo","Nombre del Grupo");
+        request.setAttribute("string_grupo", "Integrante Uno, Integrante Dos, Integrante Tres...");
+        request.setAttribute("registro_nc", "Registro");
+        request.setAttribute("situacion_nc", "Describa la inconformidad");
+        request.setAttribute("clausula_nc", "Clausula");
+        request.setAttribute("requisito_nc", "Requisito");
+        request.setAttribute("declaracion_nc", "Declaracion");
+        request.setAttribute("codigo_nc", "Codigo");
+        request.setAttribute("error", "");
         return mapping.findForward(SUCCESS);
     }
 }

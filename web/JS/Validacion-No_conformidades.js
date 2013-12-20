@@ -32,18 +32,59 @@ requisito_nc_value= false;
 declaracion_nc_value= false;
 codigo_nc_value= false;
 
-//se inicializan los textbox
-registro_nc.value = "Registro";
-situacion_nc.value = "Describa la inconformidad";
-clausula_nc.value = "Clausula";
-requisito_nc.value = "Requisito";
-declaracion_nc.value = "Declaracion";
-codigo_nc.value = "Codigo";
 
 /*
  * se desactiva el boton de submit hasta que se llene correctamente el formulario
  */
 submit.disabled = true;
+
+//se inician los estilos de los textbox
+if(registro_nc.value=="Registro"){
+    registro_nc.setAttribute("style","width:100px; color: gray; font-size: 14px");
+}else{
+    situacion_nc_value= true;
+    clausula_nc_value= true;
+    requisito_nc_value= true;
+    declaracion_nc_value= true;
+    codigo_nc_value= true;
+    registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #B22222");
+}
+
+if(situacion_nc.value=="Describa la inconformidad"){
+    situacion_nc.setAttribute("style","height: 100px; width:300px; color: gray; font-size: 14px");
+}else{
+    situacion_nc.setAttribute("style","height: 100px; width:300px; color: black; font-size: 14px");
+    cantidad = situacion_nc.value.length;
+    situacion_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(clausula_nc.value=="Clausula"){
+    clausula_nc.setAttribute("style","color: gray; font-size: 14px");    
+}else{
+    clausula_nc.setAttribute("style","color: black; font-size: 14px");
+}
+
+if(requisito_nc.value=="Requisito"){
+    requisito_nc.setAttribute("style","height: 100px; width:250px; color: gray; font-size: 14px"); 
+}else{
+    requisito_nc.setAttribute("style","height: 100px; width:250px; color: black; font-size: 14px");
+    cantidad = requisito_nc.value.length;
+    requisito_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(declaracion_nc.value=="Declaracion"){
+    declaracion_nc.setAttribute("style","height: 100px; width:250px; color: gray; font-size: 14px");   
+}else{
+    declaracion_nc.setAttribute("style","height: 100px; width:250px; color: black; font-size: 14px");
+    cantidad = declaracion_nc.value.length;
+    declaracion_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(codigo_nc.value=="Codigo"){
+    codigo_nc.setAttribute("style","color: gray; font-size: 14px");      
+}else{
+    codigo_nc.setAttribute("style","color: black; font-size: 14px");  
+}
 
 
 situacion_nc.onkeydown = function(){
@@ -294,7 +335,7 @@ declaracion_nc.onblur = function() {
 }
 
 codigo_nc.onblur = function() {
-    clausula_nc.value = clausula_nc.value.trim();
+    codigo_nc.value = codigo_nc.value.trim();
  if (codigo_nc.value == "") {
      codigo_nc.setAttribute("style", "color: gray; font-size: 14px; border-color: #B22222");
      codigo_nc_error.innerHTML = "Codigo de no conformidad es obligatorio";
@@ -306,26 +347,12 @@ codigo_nc.onblur = function() {
          codigo_nc_error.innerHTML = "El codigo de la no conformidad es muy largo";
          codigo_nc_value = false;
      }else{
-         if(codigo_nc.value.length < 2){
-            codigo_nc.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
-            codigo_nc_error.innerHTML = "Error en el formato del codigo";
-            codigo_nc_value = false;
-         }else{
-            formato= codigo_nc.value[0]+codigo_nc.value[1];
-            formato= formato.toUpperCase();
-            if (formato!="NC"){
-                codigo_nc.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
-                codigo_nc_error.innerHTML = "Error en el formato del codigo";
-                codigo_nc_value = false;
-            }else{
-                codigo_nc.value= formato + codigo_nc.value.substring(2,codigo_nc.value.length);
                 codigo_nc_error.innerHTML = "";
                 codigo_nc.setAttribute("style", "color: black; font-size: 14px");
                 codigo_nc_value = true;
-            }
-         }   
      }
  }
+ 
  submit.disabled = !(registro_nc_value && situacion_nc_value && clausula_nc_value && 
                      requisito_nc_value && declaracion_nc_value && codigo_nc_value);
 }
