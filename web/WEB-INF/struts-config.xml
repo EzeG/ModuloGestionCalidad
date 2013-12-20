@@ -22,13 +22,13 @@
     </global-forwards>
 
     <action-mappings>
-        <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
+        <action name="NoConformidad" path="/CrearNoConformidad"  scope="request" 
                 type="clases.CrearNoConformidad" validate="false">
                 <forward name="success" path="/grupos/vista_crear_grupo.jsp"/>
                 <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
                            
-        <action path="/CrearNuevaPublicacion" name="Publicacion" scope="request" 
+        <action name="Publicacion" path="/CrearNuevaPublicacion"  scope="request" 
                 type="clases.CrearNuevaPublicacion" validate="false"> 
             <forward name="success" path="/iniciar.do"/>
             <forward name="failure" path="/cartelera/vista_crear_publicacion.jsp"/>
@@ -38,7 +38,7 @@
                 scope="request" type="clases.ListaPublicacionesA" 
                 validate="false"/> 
         
-        <action path="/NuevaPublicacion" name="Usuario" scope="request" 
+        <action name="Usuario" path="/NuevaPublicacion"  scope="request" 
                 type="clases.NuevaPublicacion" validate="false">
             <forward name="success" path="/construccion/vista_construccion.jsp"/>
         </action>
@@ -58,13 +58,11 @@
                 scope="request" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
-         <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
+         
+        
+        <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
                 scope="request" validate="false" 
                 parameter="/cartelera/vista_adminCartelera.jsp"/>
-        
-        <action path="/cartelera2" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
-                parameter="/cartelera/vista_crear_publicacion.jsp"/>
         
         <action path="/quejas" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
@@ -76,6 +74,10 @@
         <action path="/estadisticas" type="org.apache.struts.actions.ForwardAction" 
                 scope="request" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
+        
+        <action path="/cartelera2" type="clases.FuncionPublicacion" >
+             <forward name="success" path= "/cartelera/vista_crear_publicacion.jsp"/>
+        </action>
         
         <action path="/tab_grupos" type="clases.FuncionGrupos">
             <forward name="success" path="/grupos/vista_grupos.jsp"/>

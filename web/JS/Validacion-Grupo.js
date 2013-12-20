@@ -13,6 +13,7 @@ declaracion_nc= document.getElementById("declaracion_nc");
 codigo_nc= document.getElementById("codigo_nc");
 submit=document.getElementById("submit");
 
+
 //se definen contadores de textareas
 situacion_nc_counter= document.getElementById("situacion_nc_counter");
 requisito_nc_counter= document.getElementById("requisito_nc_counter");
@@ -28,6 +29,7 @@ requisito_nc_error= document.getElementById("requisito_nc_error");
 declaracion_nc_error= document.getElementById("declaracion_nc_error");
 codigo_nc_error= document.getElementById("codigo_nc_error");
 submit_error=document.getElementById("submit_error");
+error_style=document.getElementById("error_style");
 
 //se definen las variables de validacion
 nombre_grupo_value = false;
@@ -38,21 +40,102 @@ clausula_nc_value= false;
 requisito_nc_value= false;
 declaracion_nc_value= false;
 codigo_nc_value= false;
-
-//se inicializan los textbox
-nombre_grupo.value = "Nombre del Grupo";
-string_grupo.value = "Integrante Uno, Integrante Dos, Integrante Tres...";
-registro_nc.value = "Registro";
-situacion_nc.value = "Describa la inconformidad";
-clausula_nc.value = "Clausula";
-requisito_nc.value = "Requisito";
-declaracion_nc.value = "Declaracion";
-codigo_nc.value = "Codigo";
-
 /*
  * se desactiva el boton de submit hasta que se llene correctamente el formulario
  */
 submit.disabled = true;
+
+//se inicializan los estilos de los textbox y textareas
+if(nombre_grupo.value== "Nombre del Grupo"){
+    nombre_grupo.setAttribute("style", "width:500px; color: gray; font-size: 14px");
+}else{
+    string_grupo_value = true;
+    registro_nc_value= true;
+    situacion_nc_value= true;
+    clausula_nc_value= true;
+    requisito_nc_value= true;
+    declaracion_nc_value= true;
+    codigo_nc_value= true;
+    if(error_style.value=="El grupo ya existe."){
+        nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px; border-color: #B22222");
+    }else{
+        nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px");
+    }  
+}
+
+if(miembros_grupo.value=="Integrante Uno, Integrante Dos, Integrante Tres..." ){
+    miembros_grupo.setAttribute("style","width:500px; color:gray; font-size: 14px");
+}else{
+    nombre_grupo_value = true;
+    registro_nc_value= true;
+    situacion_nc_value= true;
+    clausula_nc_value= true;
+    requisito_nc_value= true;
+    declaracion_nc_value= true;
+    codigo_nc_value= true;
+    if(error_style.value=="Uno o mas integrantes del grupo no pertenecen a la base de datos del sistema."
+            || error_style.value=="Debe ingresar al menos un usuario en el grupo."){
+        miembros_grupo.setAttribute("style","width:500px; color:black; font-size: 14px; border-color: #B22222");
+    }else{
+        miembros_grupo.setAttribute("style","width:500px; color:black; font-size: 14px");
+    }
+}       
+
+if(registro_nc.value=="Registro"){
+    registro_nc.setAttribute("style","width:100px; color: gray; font-size: 14px");
+}else{
+    nombre_grupo_value = true;
+    string_grupo_value = true;
+    situacion_nc_value= true;
+    clausula_nc_value= true;
+    requisito_nc_value= true;
+    declaracion_nc_value= true;
+    codigo_nc_value= true;
+    if(error_style.value=="Ya existe una no conformidad con este nombre."){
+        registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #B22222");
+    }else{
+        registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px");
+    }
+}
+
+if(situacion_nc.value=="Describa la inconformidad"){
+    situacion_nc.setAttribute("style","height: 100px; width:300px; color: gray; font-size: 14px");
+}else{
+    situacion_nc.setAttribute("style","height: 100px; width:300px; color: black; font-size: 14px");
+    cantidad = situacion_nc.value.length;
+    situacion_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(clausula_nc.value=="Clausula"){
+    clausula_nc.setAttribute("style","color: gray; font-size: 14px");    
+}else{
+    clausula_nc.setAttribute("style","color: black; font-size: 14px");
+}
+
+if(requisito_nc.value=="Requisito"){
+    requisito_nc.setAttribute("style","height: 100px; width:250px; color: gray; font-size: 14px"); 
+}else{
+    requisito_nc.setAttribute("style","height: 100px; width:250px; color: black; font-size: 14px");
+    cantidad = requisito_nc.value.length;
+    requisito_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(declaracion_nc.value=="Declaracion"){
+    declaracion_nc.setAttribute("style","height: 100px; width:250px; color: gray; font-size: 14px");   
+}else{
+    declaracion_nc.setAttribute("style","height: 100px; width:250px; color: black; font-size: 14px");
+    cantidad = declaracion_nc.value.length;
+    declaracion_nc_counter.innerHTML= (4999 - cantidad).toString();
+}
+
+if(codigo_nc.value=="Codigo"){
+    codigo_nc.setAttribute("style","color: gray; font-size: 14px");      
+}else{
+    codigo_nc.setAttribute("style","color: black; font-size: 14px");  
+}
+
+
+
 
 
 

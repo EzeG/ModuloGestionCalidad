@@ -1,6 +1,7 @@
 titulo_publicacion= document.getElementById("titulo_publicacion");
 contenido_publicacion= document.getElementById("contenido_publicacion");
-submit=document.getElementById("submit");
+submit= document.getElementById("submit");
+
 
 
 //se definen contadores de textareas
@@ -18,9 +19,24 @@ submit.disable= true;
 
 
 
+
+
 //se inicializan los textbox
-titulo_publicacion.value = "Titulo de la Publicacion";
-contenido_publicacion.value = "Escriba aqui el contenido de la publicacion";
+//estilo del titulo de la publicacion
+if (titulo_publicacion.value == "Titulo de la Publicacion"){
+    titulo_publicacion.setAttribute("style", "width:500px; color: gray; font-size: 14px");
+} else {
+    titulo_publicacion.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #B22222");
+}
+//estilo del contenido de la publicacion
+if (contenido_publicacion.value == "Escriba aqui el contenido de la publicacion"){
+    contenido_publicacion.setAttribute("style", "height: 100px; width:495px; color: gray; font-size: 14px");
+} else {
+    contenido_publicacion.setAttribute("style", "height: 100px; width:495px; color: black; font-size: 14px");
+    cantidad = contenido_publicacion.value.length;
+    contenido_publicacion_counter.innerHTML= (4999 - cantidad).toString();
+
+}
 
 contenido_publicacion.onkeydown = function(){
     cantidad = contenido_publicacion.value.length;

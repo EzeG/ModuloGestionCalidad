@@ -11,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
 import java.util.ArrayList;
 import DBMS.*;
 
 /**
  *
- * @author ani
+ * @author edgar
  */
-public class AgregarNC extends org.apache.struts.action.Action {
+public class FuncionPublicacion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -38,18 +37,13 @@ public class AgregarNC extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Grupo grupo = (Grupo) form;
-        ArrayList<Usuario> listGrupo;
-        NoConformidad nc = new NoConformidad();
         
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "Registro");
-        request.setAttribute("situacion_nc", "Describa la inconformidad");
-        request.setAttribute("clausula_nc", "Clausula");
-        request.setAttribute("requisito_nc", "Requisito");
-        request.setAttribute("declaracion_nc", "Declaracion");
-        request.setAttribute("codigo_nc", "Codigo");
+        Publicacion pub = new Publicacion();
+        pub.setError("");
+        
+        request.setAttribute("public", pub);
+        request.setAttribute("Titulo", "Titulo de la Publicacion");
+        request.setAttribute("Contenido", "Escriba aqui el contenido de la publicacion");
         return mapping.findForward(SUCCESS);
     }
 }

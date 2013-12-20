@@ -9,6 +9,8 @@ import DBMS.DBMS;
 import clases.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Writer;
+import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,12 +50,17 @@ public class CrearNuevaPublicacion extends org.apache.struts.action.Action {
       if(DBMS.getInstance().agregarPublicacion(p)){
           return mapping.findForward(SUCCESS);
       }else{
+          p.setError("Error al agregar su publicacion.");
+          request.setAttribute("public",p);
           return mapping.findForward(FAILURE);
       }      
       }else{
           //este es el caso donde intenta agregar una publicacion con el titulo de una ya existente
           //hay q devolver el mensaje a nueva publicacion
           p.setError("Ya existe otra publicacion con este titulo");
+          request.setAttribute("public",p);
+          request.setAttribute("Titulo", p.getTitulo_publicacion());
+        request.setAttribute("Contenido", p.getContenido_publicacion());
           return mapping.findForward(FAILURE);
       }
     }
