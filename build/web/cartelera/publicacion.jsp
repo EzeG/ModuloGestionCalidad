@@ -10,16 +10,25 @@
     <table style="margin-left: 10px">
         <tbody>
             <tr>
-                <td><html:text property="titulo_publicacion" value="Titulo de la Publicacion" style="width:500px" /></td>
+                <td>
+                    <html:text styleId="titulo_publicacion" property="titulo_publicacion" value="" style="width:500px; color:gray; font-size: 14px" />
+                    <p id="titulo_publicacion_error" style="font-size: 12px; color: #B22222"></p>
+                </td>
             </tr>
             <tr>
-                <td><html:textarea property="contenido_publicacion" value="Escriba aqui el contenido de la publicacion." style="width:495px"/></td>
+                <td>
+                    <html:textarea styleId="contenido_publicacion" property="contenido_publicacion" value="" style="height: 100px; width:495px; color: gray; font-size: 14px"/>
+                    <p id="contenido_publicacion_counter"  style="margin-left: 480px; font-size: 10px; color: gray">4999</p>
+                    <p id="contenido_publicacion_error" style="margin-top: -20px; font-size: 12px; color: #B22222"></p>
+                </td>
             </tr>
             <tr>
-                <td><html:submit value="Publicar" /></td>
+                <td><html:submit styleId="submit" value="Publicar" /></td>
             </tr>
         </tbody>
     </table>
-
-
 </html:form>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <script type="text/javascript" src="JS/Validacion-nueva_publicacion.js"></script>
+</head>

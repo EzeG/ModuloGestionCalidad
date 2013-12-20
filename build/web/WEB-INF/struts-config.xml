@@ -96,7 +96,7 @@
                 <!-- Accion crear -->
         <action path="/CrearGrupo" name="Grupo" scope="request" 
                 type="clases.CrearGrupo" validate="false">
-            <forward name="success" path="/grupos/vista_no_conformidad.jsp"/>
+            <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/grupos/vista_crear_grupo.jsp" />
         </action>
         <action path="/linkGrupos" type="clases.LinksGrupos" validate="false">
@@ -131,6 +131,12 @@
                 validate="false">
             <forward name="success" path="/grupos/vista_agregar_personas.jsp"/>
             <forward name="failure" path="/grupos/vista_grupos.jsp"/>
+        </action>
+        
+        <action name="Grupo" path="/agregarNC" 
+                scope="request" type="clases.AgregarNC" 
+                validate="false">
+            <forward name="success" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
         
         <!--================ Acciones de admin publicacion ==================-->
