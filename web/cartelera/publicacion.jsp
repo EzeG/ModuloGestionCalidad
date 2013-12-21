@@ -37,5 +37,5 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <script type="text/javascript" src="JS/Validacion-nueva_publicacion.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
 </head>

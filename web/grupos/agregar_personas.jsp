@@ -21,9 +21,14 @@
                 <html:form action="/modificarUsuarios">
                     <html:hidden name="usuario" property="usbid"/>
                     <html:hidden name="usuario" property="grupo"/>
-                    <html:submit value="Agregar"/>
+                    <html:submit styleId="agregar" value="Agregar"/>
                 </html:form>
             </td>
         </logic:iterate>
     </tr>
 </table>
+
+
+<head>
+        <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+</head>

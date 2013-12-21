@@ -20,9 +20,9 @@
 <%String declaracion= (String) request.getAttribute("declaracion_nc");%>
 <%String codigo= (String) request.getAttribute("codigo_nc");%>
 
-<fieldset>
+
     <html:form styleId="no_conformidad" action="/CrearNoConformidad">
-        
+        <fieldset>
         <table style="margin-left: 10px">
                 <tr></tr>
                 <tr></tr>
@@ -51,7 +51,7 @@
                 <tr>
                     <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 20px " property="origen_nc">
+                        <html:select style="font-size: 14px; height: 20px" property="origen_nc">
                         <html:option value="1">Queja</html:option>
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
@@ -66,7 +66,7 @@
                 <tr>
                     <td><p style="font-size: 14px"><b>Norma:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 20px " property="documento_nc">
+                        <html:select style="font-size: 14px; height: 20px"  property="documento_nc">
                         <html:option value="ISO 9001">ISO 9001</html:option>
                         <html:option value="ISO/IEC 17025">ISO/IEC 17025</html:option>
                         </html:select>
@@ -112,17 +112,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><html:submit styleId="submit" value="Aceptar" />
-                        <html:hidden property="grupo_nc" value="<%=nombreG%>"/>
+                    <td>
                     </td>
                     <td></td>
                 </tr>
-         </table>       
+         </table>  
+ </fieldset>
+         <html:submit styleId="submit" value="Aceptar" />
+         <html:hidden property="grupo_nc" value="<%=nombreG%>"/>
     </html:form>
-</fieldset>
+
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Ejemplo de código JavaScript en el propio documento</title>
     <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+
 </head>

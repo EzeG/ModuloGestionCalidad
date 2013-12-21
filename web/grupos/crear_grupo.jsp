@@ -141,13 +141,14 @@
     <html:submit styleId="submit" value="Aceptar" />
     <html:hidden styleId="error_style" name="error_style" property="error" value="<%=error%>"/>
  </html:form>
-<div style="margin: -25px 0 0 80px; position: absolute">
+<div style="margin: -24px 0 0 90px; position: absolute">
     <html:link action="tab_grupos">
-        <html:submit value="Cancelar" />
+        <html:submit styleId= "cancel" value="Cancelar" />
     </html:link>
 </div>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <script type="text/javascript" src="JS/Validacion-Grupo.js"></script>
+        <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
 </head>

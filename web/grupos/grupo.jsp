@@ -20,12 +20,13 @@
         <td></td>
         <td>
             <html:link action="nuevo_grupo">
-                <html:submit value="Crear" style="margin: auto"/>
+                <html:submit styleId="crear" value="Crear Nuevo" style="margin: 0px 0px 0px -30px"/>
             </html:link>
         </td>
     </tr>
 
     <logic:iterate id="infoGrupo" name="listGrupos">
+        
         <tr>
             <td style="width: 560px">
                 <html:link action="/linkGrupos" paramId="verGrupo"
@@ -38,21 +39,28 @@
             <td style="width: 115px">
                 <html:form action="/agregarNC">
                     <html:hidden name="infoGrupo" property="nombre_grupo"/>
-                    <html:submit value="Agregar No Conformidad"/>
+                    <html:submit styleId= "agregarnc" value="+ No Conformidad"/>
                 </html:form>
             </td>
             <td style="width: 115px">
                 <html:form action="/agregarPersonas">
                     <html:hidden name="infoGrupo" property="nombre_grupo"/>
-                    <html:submit value="Agregar Personas"/>
+                    <html:submit styleId= "agregarp" value="+ Personas"/>
                 </html:form>
             </td>
             <td style="width: 115px">
                 <html:form action="/eliminargrupo">
                     <html:hidden name="infoGrupo" property="nombre_grupo"/>
-                    <html:submit value="Eliminar"/>
+                    <html:submit styleId="eliminar" value="Eliminar"/>
                 </html:form>
             </td>
         </tr>
+        
+        
     </logic:iterate>
 </table>
+        
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+</head>
