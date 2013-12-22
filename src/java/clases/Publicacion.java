@@ -21,6 +21,7 @@ public class Publicacion extends org.apache.struts.action.ActionForm {
     private String titulo_publicacion;
     private String contenido_publicacion;
     private String error;
+    private String resumen;
         
         
 
@@ -35,9 +36,16 @@ public class Publicacion extends org.apache.struts.action.ActionForm {
     public String getContenido_publicacion() {
         return contenido_publicacion;
     }
+    
+    public String getResumen() {
+        return resumen;
+    }
 
     public void setContenido_publicacion(String contenido_publicacion) {
+        
         this.contenido_publicacion = contenido_publicacion;
+        String[] partida = contenido_publicacion.split("\\.");
+        this.resumen = partida[0]+".";
     }   
     
     public String getError() {
@@ -63,6 +71,7 @@ public class Publicacion extends org.apache.struts.action.ActionForm {
      * @param request The HTTP Request we are processing.
      * @return
      */
+    
    @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();

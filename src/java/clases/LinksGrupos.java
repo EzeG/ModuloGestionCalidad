@@ -22,6 +22,7 @@ public class LinksGrupos extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    private static final String FAILURE = "failure";
 
     /**
      * This is the action called from the Struts framework.
@@ -38,18 +39,23 @@ public class LinksGrupos extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ArrayList<Usuario> users;
+        ArrayList<NoConformidad> ncs;
         String nombreGroup = (String) request.getParameter("verGrupo");
-        String nc = DBMS.getInstance().consultarTrabaja(nombreGroup);
         
+        ncs = DBMS.getInstance().consultarTrabaja(nombreGroup);
+                                 
         users = DBMS.getInstance().consultarUsuariosGU(nombreGroup);
         
         Grupo group = new Grupo(nombreGroup, users);
-        
+        if (ncs.isEmpty()){
+           return mapping.findForward(FAILURE); 
+        }else{
         request.setAttribute("nombreGrupo", group.getNombre_grupo());
         request.setAttribute("usuariosGrupo", group.getIntegrantes_grupo());
-        request.setAttribute("noConformidad", nc);
+        request.setAttribute("noConformidad", ncs);
         
 
         return mapping.findForward(SUCCESS);
+        }
     }
 }

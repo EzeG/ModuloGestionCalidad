@@ -7,8 +7,7 @@
 package clases;
 
 import DBMS.DBMS;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -39,9 +38,8 @@ public class Iniciar extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         List<Publicacion> listMsg = new ArrayList<Publicacion>();
- 
 	listMsg = DBMS.getInstance().consultarPublicacion();
- 
+        Collections.reverse(listMsg);
         request.setAttribute("listMsg", listMsg);
         return mapping.findForward(SUCCESS);
     }

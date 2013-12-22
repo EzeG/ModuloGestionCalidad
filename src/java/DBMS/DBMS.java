@@ -321,21 +321,24 @@ public class DBMS {
         return null;
     }
 
-    public String consultarTrabaja(String regGrupo) {
+   public ArrayList<NoConformidad> consultarTrabaja(String grupo) {
         PreparedStatement consultaT;
-        String regNc = "";
-
+        ArrayList<NoConformidad> ncs = new ArrayList<NoConformidad>();
         try {
-            consultaT = conexion.prepareStatement("SELECT * FROM mod1.trabaja WHERE mod1.trabaja.registrogrupo = \'" + regGrupo + "\'");
+            
+            consultaT = conexion.prepareStatement("SELECT * FROM mod1.TRABAJA WHERE RegistroGrupo = \'" + grupo + "\';");
             ResultSet rs = consultaT.executeQuery();
-            if (rs.next()) {
-                regNc = rs.getString("registro");
+            while (rs.next()) {
+                ArrayList<NoConformidad> nc = consultarNC(rs.getString("Registro"));
+                ncs.add(nc.get(0));
             }
-            return regNc;
+            return ncs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return regNc;
+
+        return ncs;
+
     }
 
     public boolean eliminarNoConformidad(String regNC) {

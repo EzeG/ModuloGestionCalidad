@@ -9,6 +9,7 @@
         <td style="vertical-align: middle" colspan="3">
             <p style="color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
                 <%= request.getAttribute("nombreGrupo")%>
+                
             </p>
         </td>
         <td></td>
@@ -27,14 +28,22 @@
             </td>
         </tr>
     </logic:iterate>
+    
     <tr>
         <td style="vertical-align: middle" colspan="3">
             <p style="color:#336699; font-size: 11px; size: 80px; font-weight: bold">
                 No Conformidad:
             </p>
             <p>
-
-                    <%= request.getAttribute("noConformidad")%>
+                
+                 <logic:iterate id="ncG" name="noConformidad">
+                        <tr>
+                            <td style="vertical-align: middle">
+                                <bean:write name="ncG" property="registro_nc" />           
+                            </td>
+                        </tr>
+                 </logic:iterate>
+                   
 
             </p>
         </td>

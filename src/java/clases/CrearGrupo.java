@@ -46,7 +46,6 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
-        boolean agrego_nc;
         String[] nombres = group.getString_grupo().split(",");
 
         for (int i = 0; i < nombres.length; i++) {
@@ -54,7 +53,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             users = DBMS.getInstance().consultarUsuarios(nombres[i]);
             if (!users.isEmpty()) {
                 cache.addAll(users);
-                int a = 0;
+
             }
             users.clear();
         }
