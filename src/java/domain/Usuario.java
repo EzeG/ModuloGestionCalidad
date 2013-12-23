@@ -21,8 +21,17 @@ public class Usuario extends org.apache.struts.action.ActionForm {
     private String nombre;
     private String email;
     private String usbid;
+    private String password;
     private String grupo;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public String getNombre() {
         return nombre;
     }

@@ -41,10 +41,19 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ArrayList<Grupo> grupos;
+        String rango = "encargado";
         Grupo grupo = new Grupo();
         grupos = DBMS.getInstance().consultarGrupos();
         request.setAttribute("listGrupos", grupos);
         request.setAttribute("grupitos", grupo);
+        if (rango== "coordinadora"){
+            request.setAttribute("Agregar","+ No Conformidad");
+            request.setAttribute("AgregarAction","/agregarNC");
+        }else{
+            request.setAttribute("Agregar","+ Persona");
+            request.setAttribute("AgregarAction","/agregarPersonas");
+        }
         return mapping.findForward(SUCCESS);
+        
     }
 }

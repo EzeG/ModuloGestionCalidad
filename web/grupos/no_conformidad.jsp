@@ -51,7 +51,7 @@
                 <tr>
                     <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 20px" property="origen_nc">
+                        <html:select style="font-size: 14px; height: 24px" property="origen_nc">
                         <html:option value="1">Queja</html:option>
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
@@ -66,7 +66,7 @@
                 <tr>
                     <td><p style="font-size: 14px"><b>Norma:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 20px"  property="documento_nc">
+                        <html:select style="font-size: 14px; height: 24px"  property="documento_nc">
                         <html:option value="ISO 9001">ISO 9001</html:option>
                         <html:option value="ISO/IEC 17025">ISO/IEC 17025</html:option>
                         </html:select>

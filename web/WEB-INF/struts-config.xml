@@ -12,6 +12,7 @@
         <form-bean name="NoConformidad" type="domain.NoConformidad"/>
         <form-bean name="Publicacion" type="domain.Publicacion"/>
         <form-bean name="Grupo" type="domain.Grupo"/>
+        <form-bean name="login" type="domain.Usuario"/>
     </form-beans>
     
     <global-exceptions>
@@ -32,10 +33,16 @@
                 type="cartelera.action.CrearNuevaPublicacion" validate="false"> 
             <forward name="success" path="/iniciar.do"/>
             <forward name="failure" path="/cartelera/vista_crear_publicacion.jsp"/>
-        </action>     
+        </action>    
+        
+         
         
         <action name="Publicacion" path="/iniciar" scope="request" type="cartelera.action.Iniciar" validate="false">
             <forward name="success" path="/home/vista_home.jsp"/>
+        </action>
+        
+        <action name="Usuario" path="/login" scope="request" type="cartelera.action.Login" validate="false">
+            <forward name="success" path="/home/vista_login.jsp"/>
         </action>
         
         <!-- Inicio -->
@@ -136,7 +143,11 @@
        <action  path="/nueva_publicacion" name="Publicacion" type="cartelera.action.BuscarPublicacion" validate="false">
             <forward name="success" path="/cartelera/vista_nueva_publicacion.jsp"/>
             <forward name="failure" path="/construccion/vista_construccion.jsp"/>
-        </action>     
+        </action>
+        
+            
+        
+            
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
         <action path="/eliminar_publicacion" type="org.apache.struts.actions.ForwardAction"

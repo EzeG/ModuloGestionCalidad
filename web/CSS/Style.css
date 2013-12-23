@@ -256,6 +256,33 @@ border-width: thin;
   
 }
 
+#login{
+  background: #E7E7E7;
+  margin-left: -200px;
+  margin-top:100px;
+  width: 200px;
+  padding: 20px;
+  text-align: left;
+  /* border-radius */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+
+#titulo{
+  font-size: 16px;
+  border-bottom: solid;
+  border-bottom-width:1px;
+  border-color: gray;
+  }
+  
+#etiqueta{
+  font-size: 12px;
+  }
 
 
 
@@ -270,5 +297,49 @@ background-image: -webkit-linear-gradient(top, #ededed 10%,#ededed 51%);
 ::-webkit-scrollbar-track {
 }
 
+#loginbt{
+	-moz-box-shadow:inset -1px 0px 0px -1px #ffffff;
+	-webkit-box-shadow:inset -1px 0px 0px -1px #ffffff;
+	box-shadow:inset -1px 0px 0px -1px #ffffff;
+	background-color:#ededed;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	font-style:normal;
+	height:24px;
+	line-height:9px;
+	width:auto;
+        margin-top:10px;
+        margin-left: 70px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffffff;
+}
 
-
+#password, #usbid{
+    font-size: 14px;
+    border-width: 1px;
+    height: 24px;
+    width: 180px;
+    padding: 0px;
+    border-color: gray;
+    border-style: outset;
+    background-color: #FFFFE4;
+    
+}

@@ -1,4 +1,4 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 
-<jsp:forward page="iniciar.do"/>
+<jsp:forward page="login.do"/>

@@ -4,6 +4,8 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+<%String Agregar= (String) request.getAttribute("Agregar");%>
+<%String AgregarAction= (String) request.getAttribute("AgregarAction");%>
 
 <table style="margin-top: -10px">
 
@@ -37,15 +39,12 @@
                 </html:link>
             </td>
             <td style="width: 115px">
-                <html:form action="/agregarNC">
-                    <html:hidden name="infoGrupo" property="nombre_grupo"/>
-                    <html:submit styleId= "agregarnc" value="+ No Conformidad"/>
-                </html:form>
+                
             </td>
             <td style="width: 115px">
-                <html:form action="/agregarPersonas">
+                <html:form action="<%=AgregarAction%>">
                     <html:hidden name="infoGrupo" property="nombre_grupo"/>
-                    <html:submit styleId= "agregarp" value="+ Personas"/>
+                    <html:submit styleId= "agregarp" value="<%=Agregar%>"/>
                 </html:form>
             </td>
             <td style="width: 115px">
