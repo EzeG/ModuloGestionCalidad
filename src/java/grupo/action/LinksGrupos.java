@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package clases;
+package grupo.action;
 
+import domain.Grupo;
+import domain.NoConformidad;
+import domain.Usuario;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;

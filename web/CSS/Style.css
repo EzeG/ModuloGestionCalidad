@@ -232,5 +232,43 @@ background: #d2d2d2;
 }
 
 
+#cartelera{
+  max-height: 600px;
+	display: block;
+	margin: 0;
+	padding: 0 5px;
+	position: relative;
+	z-index: 1;
+	overflow: auto;
+  
+}
+
+#noconformidades, #miembros{
+  height: 200px;
+border-style: groove;
+display: block;
+border-width: thin;
+	margin: 0;
+	padding: 0 5px;
+	position: relative;
+	z-index: 1;
+	overflow: auto;
+  
+}
+
+
+
+
+::-webkit-scrollbar {
+background:#fff;
+width:10px;
+}
+::-webkit-scrollbar-thumb {
+-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 1);
+background-image: -webkit-linear-gradient(top, #ededed 10%,#ededed 51%);
+}
+::-webkit-scrollbar-track {
+}
+
 
 

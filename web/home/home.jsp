@@ -7,7 +7,7 @@
 
 
 <body>
-    <div style="overflow:scroll;height:600px; overflow-y:visible; overflow-x:hidden;">
+    <div id="cartelera" >
          <logic:iterate name="listMsg" id="listMsgid">
             <html:form action="/nueva_publicacion"  >
                 <b>

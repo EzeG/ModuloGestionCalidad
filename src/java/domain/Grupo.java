@@ -1,4 +1,4 @@
-package clases;
+package domain;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,7 +7,7 @@ package clases;
  */
 import javax.servlet.http.HttpServletRequest;
 
-import clases.Usuario;
+import domain.Usuario;
 import java.util.ArrayList;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;

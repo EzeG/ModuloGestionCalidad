@@ -3,26 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package cartelera.action;
 
-package clases;
-
+import domain.Publicacion;
+import DBMS.DBMS;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import java.util.ArrayList;
-import DBMS.*;
-
 /**
  *
- * @author ani
+ * @author Ricardo
  */
-public class AgregarNC extends org.apache.struts.action.Action {
+public class BuscarPublicacion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    private static final String FAILURE = "failure";
 
     /**
      * This is the action called from the Struts framework.
@@ -38,18 +40,20 @@ public class AgregarNC extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Grupo grupo = (Grupo) form;
-        ArrayList<Usuario> listGrupo;
-        NoConformidad nc = new NoConformidad();
-        
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "Registro");
-        request.setAttribute("situacion_nc", "Describa la inconformidad");
-        request.setAttribute("clausula_nc", "Clausula");
-        request.setAttribute("requisito_nc", "Requisito");
-        request.setAttribute("declaracion_nc", "Declaracion");
-        request.setAttribute("codigo_nc", "Codigo");
-        return mapping.findForward(SUCCESS);
+        Publicacion p = (Publicacion) form;
+        List<Publicacion> listMsg = new ArrayList<Publicacion>();
+        listMsg = DBMS.getInstance().consultarPublicacion();
+        int i = 0;
+        while (i < listMsg.size()) {
+            if (p.getTitulo_publicacion().equals(listMsg.get(i).getTitulo_publicacion())) {
+                p.setTitulo_publicacion(listMsg.get(i).getTitulo_publicacion());
+                p.setContenido_publicacion(listMsg.get(i).getContenido_publicacion());
+                HttpSession session = request.getSession(true);
+                session.setAttribute("listo", p);
+                return mapping.findForward(SUCCESS);
+            }
+            i++;
+        }
+        return mapping.findForward(FAILURE);
     }
 }

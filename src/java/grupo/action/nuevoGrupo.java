@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package clases;
+package grupo.action;
 
+import domain.Grupo;
 import DBMS.DBMS;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +17,13 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  *
- * @author ani
+ * @author edgar
  */
-public class ListarPersonas extends org.apache.struts.action.Action {
+public class nuevoGrupo extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
+    private static final String FAILURE = "failure";
 
     /**
      * This is the action called from the Struts framework.
@@ -37,12 +39,17 @@ public class ListarPersonas extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ArrayList<Usuario> usu;
-        Usuario usuario = new Usuario();
-       /* usu = DBMS.getInstance().consultarUsuariosTodos();
-        request.setAttribute("listUsuarios", usu);
-        request.setAttribute("usuari", usuario);
-        */
+        Grupo grupo = new Grupo();
+        request.setAttribute("grupito", grupo);
+        request.setAttribute("nombre_grupo","Nombre del Grupo");
+        request.setAttribute("string_grupo", "Integrante Uno, Integrante Dos, Integrante Tres...");
+        request.setAttribute("registro_nc", "Registro");
+        request.setAttribute("situacion_nc", "Describa la inconformidad");
+        request.setAttribute("clausula_nc", "Clausula");
+        request.setAttribute("requisito_nc", "Requisito");
+        request.setAttribute("declaracion_nc", "Declaracion");
+        request.setAttribute("codigo_nc", "Codigo");
+        request.setAttribute("error", "");
         return mapping.findForward(SUCCESS);
     }
 }

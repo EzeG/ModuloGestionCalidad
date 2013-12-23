@@ -5,7 +5,10 @@
  */
 package DBMS;
 
-import clases.*;
+import domain.Grupo;
+import domain.Publicacion;
+import domain.NoConformidad;
+import domain.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

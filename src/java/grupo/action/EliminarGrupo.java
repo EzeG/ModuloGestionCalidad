@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package clases;
+package grupo.action;
 
+import domain.Grupo;
 import DBMS.DBMS;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;

@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 
-package clases;
+package cartelera.action;
 
-import DBMS.DBMS;
-import java.util.*;
+import domain.Publicacion;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import java.util.ArrayList;
+import DBMS.*;
 
 /**
  *
- * @author Ricardo
+ * @author edgar
  */
-public class Iniciar extends org.apache.struts.action.Action {
+public class FuncionPublicacion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -37,10 +38,13 @@ public class Iniciar extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Publicacion> listMsg = new ArrayList<Publicacion>();
-	listMsg = DBMS.getInstance().consultarPublicacion();
-        Collections.reverse(listMsg);
-        request.setAttribute("listMsg", listMsg);
+        
+        Publicacion pub = new Publicacion();
+        pub.setError("");
+        
+        request.setAttribute("public", pub);
+        request.setAttribute("Titulo", "Titulo de la Publicacion");
+        request.setAttribute("Contenido", "Escriba aqui el contenido de la publicacion");
         return mapping.findForward(SUCCESS);
     }
 }
