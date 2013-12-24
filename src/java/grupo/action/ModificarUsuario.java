@@ -43,7 +43,7 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
 
         user.setUsbid(user.getUsbid());
 
-        boolean agrego = DBMS.getInstance().agregarRelacionGU(user, user.getGrupo());
+        boolean agrego = DBMS.getInstance().agregarRelacionGU(user, user.getGrupo(), 1);
 
         if (agrego) {
             listGrupo = DBMS.getInstance().usuariosSinGrupo(user.getGrupo());

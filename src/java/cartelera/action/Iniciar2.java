@@ -6,7 +6,7 @@
 
 package cartelera.action;
 
-import domain.Publicacion;
+import domain.*;
 import DBMS.DBMS;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +19,11 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author Ricardo
  */
-public class Login extends org.apache.struts.action.Action {
+public class Iniciar2 extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
-
+    private static final String FAILURE = "failure";
     /**
      * This is the action called from the Struts framework.
      *
@@ -34,11 +34,24 @@ public class Login extends org.apache.struts.action.Action {
      * @throws java.lang.Exception
      * @return
      */
-    @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
+        @Override
+        public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        request.setAttribute("error", "");
-        return mapping.findForward(SUCCESS);
+        Usuario us = (Usuario) form;
+        Usuario usuario = DBMS.getInstance().consultarUSBID(us.getUsbid());
+        if (us.getPassword().equals(usuario.getPassword())){
+            List<Publicacion> listMsg = new ArrayList<Publicacion>();
+            listMsg = DBMS.getInstance().consultarPublicacion();
+            Collections.reverse(listMsg);
+            request.setAttribute("listMsg", listMsg);
+            request.setAttribute("usuario", usuario);
+            return mapping.findForward(SUCCESS);
+        }else{
+            request.setAttribute("error", "El nombre de usuario o la contraseña introducidos no son correctos.");
+            
+            return mapping.findForward(FAILURE);
+        }
     }
 }
+

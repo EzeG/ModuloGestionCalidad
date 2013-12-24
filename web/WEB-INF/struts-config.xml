@@ -23,13 +23,13 @@
     </global-forwards>
 
     <action-mappings>
-        <action name="NoConformidad" path="/CrearNoConformidad"  scope="request" 
+        <action name="NoConformidad" path="/CrearNoConformidad"  scope="session" 
                 type="grupo.action.CrearNoConformidad" validate="false">
                 <forward name="success" path="/grupos/vista_crear_grupo.jsp"/>
                 <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
                            
-        <action name="Publicacion" path="/CrearNuevaPublicacion"  scope="request" 
+        <action name="Publicacion" path="/CrearNuevaPublicacion"  scope="session" 
                 type="cartelera.action.CrearNuevaPublicacion" validate="false"> 
             <forward name="success" path="/iniciar.do"/>
             <forward name="failure" path="/cartelera/vista_crear_publicacion.jsp"/>
@@ -37,40 +37,45 @@
         
          
         
-        <action name="Publicacion" path="/iniciar" scope="request" type="cartelera.action.Iniciar" validate="false">
+        <action name="Publicacion" path="/iniciar" scope="session" type="cartelera.action.Iniciar" validate="false">
             <forward name="success" path="/home/vista_home.jsp"/>
         </action>
         
-        <action name="Usuario" path="/login" scope="request" type="cartelera.action.Login" validate="false">
+        <action name="Usuario" path="/iniciar2" scope="session" type="cartelera.action.Iniciar2" validate="false">
+            <forward name="success" path="/home/vista_home.jsp"/>
+            <forward name="failure" path="/home/vista_login.jsp"/>
+        </action>
+        
+        <action name="Usuario" path="/login" scope="session" type="cartelera.action.Login" validate="false">
             <forward name="success" path="/home/vista_login.jsp"/>
         </action>
         
         <!-- Inicio -->
         <action path="/inicio" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
+                scope="session" validate="false" 
                 parameter="/home/vista_home.jsp"/>
         
         <!-- LINKS PANEL IZQUIERDO--> 
         
         <action path="/agenda" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
+                scope="session" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
          
         
         <action path="/cartelera" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
+                scope="session" validate="false" 
                 parameter="/cartelera/vista_adminCartelera.jsp"/>
         
         <action path="/quejas" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
         
         <action path="/procesos" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
+                scope="session" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
         <action path="/estadisticas" type="org.apache.struts.actions.ForwardAction" 
-                scope="request" validate="false" 
+                scope="session" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
         <action path="/cartelera2" type="cartelera.action.FuncionPublicacion" >
@@ -95,7 +100,7 @@
                 parameter="/grupos/vista_no_conformidad.jsp"/>
         
                 <!-- Accion crear -->
-        <action path="/CrearGrupo" name="Grupo" scope="request" 
+        <action path="/CrearGrupo" name="Grupo" scope="session" 
                 type="grupo.action.CrearGrupo" validate="false">
             <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/grupos/vista_crear_grupo.jsp" />
@@ -106,38 +111,38 @@
         </action>
         
                  <!-- Crear no Conformidad -->
-        <action path="/CrearNoConformidad" name="NoConformidad" scope="request" 
+        <action path="/CrearNoConformidad" name="NoConformidad" scope="session" 
                 type="grupo.action.CrearNoConformidad" validate="false">
                 <forward name="success" path="/tab_grupos.do"/>
                 <forward name="failure" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
         
-        <action input="/" name="Grupo" path="/eliminargrupo" scope="request" type="grupo.action.EliminarGrupo" validate="false">
+        <action input="/" name="Grupo" path="/eliminargrupo" scope="session" type="grupo.action.EliminarGrupo" validate="false">
             <forward name="success" path="/grupos/vista_grupos.jsp"/>
             <forward name="failure" path="/grupos/vista_grupos.jsp"/>
         </action>
            
         <action name="Grupo" path="/agregarPersonas" 
-                scope="request" type="grupo.action.AgregarPersonas" 
+                scope="session" type="grupo.action.AgregarPersonas" 
                 validate="false">
             <forward name="success" path="/grupos/vista_agregar_personas.jsp"/>
         </action>
         
         <action name="Usuario" path="/modificarUsuarios" 
-                scope="request" type="grupo.action.ModificarUsuario" 
+                scope="session" type="grupo.action.ModificarUsuario" 
                 validate="false">
             <forward name="success" path="/grupos/vista_agregar_personas.jsp"/>
             <forward name="failure" path="/grupos/vista_grupos.jsp"/>
         </action>
         
         <action name="Grupo" path="/agregarNC" 
-                scope="request" type="grupo.action.AgregarNC" 
+                scope="session" type="grupo.action.AgregarNC" 
                 validate="false">
             <forward name="success" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
         
         <!--================ Acciones de admin publicacion ==================-->
-         <action name="Publicacion" path="/buscar_publicacion" scope="request"
+         <action name="Publicacion" path="/buscar_publicacion" scope="session"
                 type="cartelera.action.BuscarPublicacion" validate="false"/>
         
        <action  path="/nueva_publicacion" name="Publicacion" type="cartelera.action.BuscarPublicacion" validate="false">

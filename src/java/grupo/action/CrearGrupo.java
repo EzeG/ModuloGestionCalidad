@@ -49,21 +49,18 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         ArrayList<Usuario> cache = new ArrayList<Usuario>();
         boolean agrego;
-        String[] nombres = group.getString_grupo().split(",");
-
-        for (int i = 0; i < nombres.length; i++) {
-            nombres[i] = nombres[i].trim();
-            users = DBMS.getInstance().consultarUsuarios(nombres[i]);
-            if (!users.isEmpty()) {
-                cache.addAll(users);
-
-            }
-            users.clear();
+        String nombre = group.getString_grupo();
+        nombre = nombre.trim();
+        users = DBMS.getInstance().consultarUsuarios(nombre);
+        if (!users.isEmpty()) {
+           cache.addAll(users);
         }
+        users.clear();
+        
         
         NC = DBMS.getInstance().consultarNC(group.getRegistro_nc());
         if (NC.isEmpty()){
-            if (cache.size() == nombres.length){
+            if (cache.size() > 0){
                 if (!cache.isEmpty()) {
                     group.setIntegrantes_grupo(cache);
                     agrego = DBMS.getInstance().agregarGrupo(group);
@@ -123,7 +120,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                 }
 
            }else{
-                group.setError("Uno o mas integrantes del grupo no pertenecen a la base de datos del sistema.");
+                group.setError("Persona no registrada.");
                 request.setAttribute("grupito", group);
                 request.setAttribute("nombre_grupo",group.getNombre_grupo());
                 request.setAttribute("string_grupo", group.getString_grupo());

@@ -4,14 +4,16 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+<%String error = (String) request.getAttribute("error"); %>
 
 
 <body>
+    <p><%=error%></p>
     <div id="login">
        <div id="titulo">
             <p>Introduzca USBID y Contraseña.</p>
        </div>
-        <html:form action="/iniciar">
+        <html:form action="/iniciar2">
 
             <table >
                 <tbody id="etiqueta">

@@ -22,8 +22,17 @@ public class Usuario extends org.apache.struts.action.ActionForm {
     private String email;
     private String usbid;
     private String password;
+    private int cargo;
     private String grupo;
 
+    public int getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(int cargo) {
+        this.cargo = cargo;
+    }
+    
     public String getPassword() {
         return password;
     }
@@ -69,12 +78,16 @@ public class Usuario extends org.apache.struts.action.ActionForm {
      * @param nombre
      * @param id
      * @param email
+     * @param password
+     * @param cargo
      */
-    public Usuario(String nombre, String id, String email) {
+    public Usuario(String nombre, String id, String email, String password, int cargo) {
         super();
         this.nombre = nombre;
         this.email = email;
         this.usbid = id;
+        this.password = password;
+        this.cargo = cargo;
         
         // TODO Auto-generated constructor stub
     }

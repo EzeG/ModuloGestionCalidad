@@ -48,9 +48,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/CALIDAD",
+                    "jdbc:postgresql://localhost:5432/NOMBRE",
                     "postgres",
-                    "123");
+                    "17744256");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -68,10 +68,29 @@ public class DBMS {
             usConsulta = conexion.prepareStatement("SELECT * FROM mod1.USUARIO WHERE NombreUsuario = \'" + user + "\';");
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
-                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"));
+                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
                 usuarios.add(us);
             }
             return usuarios;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+    
+     public Usuario consultarUSBID(String usbid) {
+        PreparedStatement usConsulta;
+        try {
+            Usuario usuario = new Usuario();
+            usConsulta = conexion.prepareStatement("SELECT * FROM mod1.USUARIO WHERE USBID = \'" + usbid + "\';");
+            ResultSet rs = usConsulta.executeQuery();
+            while (rs.next()) {
+            Usuario  us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
+            usuario = us;
+            }
+            return usuario;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -105,7 +124,7 @@ public class DBMS {
             usConsulta = conexion.prepareStatement("SELECT * FROM mod1.USUARIO WHERE USBID = \'" + id + "\';");
             ResultSet rs = usConsulta.executeQuery();
             if (rs.next()) {
-                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"));
+                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
                 return us;
             }
         } catch (SQLException e) {
@@ -127,7 +146,7 @@ public class DBMS {
             usConsulta = conexion.prepareStatement(query);
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
-                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"));
+                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
                 usuarios.add(us);
             }
             return usuarios;
@@ -200,13 +219,14 @@ public class DBMS {
         return null;   
     }
     
-    public boolean agregarRelacionGU(Usuario u, String codigoG) {
+    public boolean agregarRelacionGU(Usuario u, String codigoG, int cargo) {
         PreparedStatement confAgregar = null;
         try {
             boolean retorno = true;
-            confAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".Conforma VALUES (?,?);");
+            confAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".Conforma VALUES (?,?,?);");
             confAgregar.setString(1, codigoG);
             confAgregar.setString(2, u.getUsbid());
+            confAgregar.setInt(3, cargo);
             Integer i = confAgregar.executeUpdate();
             return (i > 0);
         } catch (SQLException e) {
@@ -230,7 +250,7 @@ public class DBMS {
             Integer i = gruAgregar.executeUpdate();
             if (i > 0) {
                 for (int j = 0; j < g.getIntegrantes_grupo().size(); j++) {
-                    retorno = retorno && agregarRelacionGU(g.getIntegrantes_grupo().get(j), g.getNombre_grupo());
+                    retorno = retorno && agregarRelacionGU(g.getIntegrantes_grupo().get(j), g.getNombre_grupo(), 0);
                 }
                 return retorno;
             } else {

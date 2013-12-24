@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td>
-                    <p style="font-size: 14px"><b>Integrantes:</b> </p>
+                    <p style="font-size: 14px"><b>Encargado:</b> </p>
                     <html:text styleId="string_grupo" property="string_grupo" value="<%=miembrosG%>" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
                     <p id="string_grupo_error" style="font-size: 12px; color: #B22222"></p>
                 </td>
