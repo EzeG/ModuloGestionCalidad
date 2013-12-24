@@ -6,7 +6,6 @@
 
 <%String error = (String) request.getAttribute("error"); %>
 
-
 <body>
     <p><%=error%></p>
     <div id="login">

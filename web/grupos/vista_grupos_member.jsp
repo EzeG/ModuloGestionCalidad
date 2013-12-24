@@ -4,6 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-
-           <font color="#336699"><h1><bean:write property="titulo_publicacion" name="listo" scope="session" /></h1></font>
-           <bean:write property="contenido_publicacion" name="listo" scope="session"/>
+<tiles:insert page="../cod_plantilla.jsp" flush="true">
+    <tiles:put name="titulo" value="Grupos de Trabajo" />
+    <tiles:put name="cuerpo" value="/grupos/grupo_member.jsp" />
+</tiles:insert>

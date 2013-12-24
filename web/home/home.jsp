@@ -1,3 +1,4 @@
+<%@page import="domain.Usuario"%>
 <%@page contentType="text/html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
@@ -5,6 +6,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
+<%if (request.getAttribute("usuario") != null){
+    session.setAttribute("usuario", request.getAttribute("usuario"));
+    
+}else{
+    request.setAttribute("usuario", session.getAttribute("usuario"));
+}%>  
 
 <body>
     <div id="cartelera" >

@@ -1,9 +1,4 @@
-<%-- 
-    Document   : cod_plantilla
-    Created on : 25/11/2013, 10:44:49 AM
-    Author     : edgar
---%>
-
+<%@page import="domain.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>

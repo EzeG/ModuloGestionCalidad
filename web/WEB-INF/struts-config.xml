@@ -68,7 +68,7 @@
                 parameter="/cartelera/vista_adminCartelera.jsp"/>
         
         <action path="/quejas" type="org.apache.struts.actions.ForwardAction"
-                parameter="/construccion/vista_construccion.jsp"/>
+                scope="session" parameter="/construccion/vista_construccion.jsp"/>
         
         <action path="/procesos" type="org.apache.struts.actions.ForwardAction" 
                 scope="session" validate="false" 
@@ -78,26 +78,24 @@
                 scope="session" validate="false" 
                 parameter="/construccion/vista_construccion.jsp"/>
         
-        <action path="/cartelera2" type="cartelera.action.FuncionPublicacion" >
+        <action path="/cartelera2" type="cartelera.action.FuncionPublicacion" scope="session" >
              <forward name="success" path= "/cartelera/vista_crear_publicacion.jsp"/>
         </action>
         
-        <action path="/tab_grupos" type="grupo.action.FuncionGrupos">
+        <action path="/tab_grupos" type="grupo.action.FuncionGrupos" scope="session">
             <forward name="success" path="/grupos/vista_grupos.jsp"/>
+            <forward name="failure" path="/grupos/vista_grupos_member.jsp"/>
         </action>
         
-        <action path="/tab_no_conformidad" type="grupo.action.FuncionGrupos">
-            <forward name="success" path="/grupos/vista_crear_grupos.jsp"/>
-        </action>
         
         <!--================ Acciones de los grupos ==================-->
-        <action path="/nuevo_grupo" type="grupo.action.nuevoGrupo">
+        <action path="/nuevo_grupo" type="grupo.action.nuevoGrupo" scope="session">
             <forward name="success" path="/grupos/vista_crear_grupo.jsp"/>
             <forward name="failure" path="/iniciar.do"/>
         </action>
            
         <action path="/no_conformidad" type="org.apache.struts.actions.ForwardAction"
-                parameter="/grupos/vista_no_conformidad.jsp"/>
+                parameter="/grupos/vista_no_conformidad.jsp" scope="session"/>
         
                 <!-- Accion crear -->
         <action path="/CrearGrupo" name="Grupo" scope="session" 
@@ -105,7 +103,7 @@
             <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/grupos/vista_crear_grupo.jsp" />
         </action>
-        <action path="/linkGrupos" type="grupo.action.LinksGrupos" validate="false">
+        <action path="/linkGrupos" type="grupo.action.LinksGrupos" validate="false" scope="session">
             <forward name="success" path="/grupos/vista_adminGrupo.jsp"/>
              <forward name="failure" path="/iniciar.do"/>
         </action>
@@ -145,7 +143,7 @@
          <action name="Publicacion" path="/buscar_publicacion" scope="session"
                 type="cartelera.action.BuscarPublicacion" validate="false"/>
         
-       <action  path="/nueva_publicacion" name="Publicacion" type="cartelera.action.BuscarPublicacion" validate="false">
+       <action  path="/nueva_publicacion" name="Publicacion" type="cartelera.action.BuscarPublicacion" validate="false" scope="session">
             <forward name="success" path="/cartelera/vista_nueva_publicacion.jsp"/>
             <forward name="failure" path="/construccion/vista_construccion.jsp"/>
         </action>

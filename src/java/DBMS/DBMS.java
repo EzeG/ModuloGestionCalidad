@@ -142,7 +142,7 @@ public class DBMS {
         PreparedStatement usConsulta;
         try {
             ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-            String query = "SELECT * FROM \"mod1\".USUARIO WHERE USBID NOT IN(SELECT USBID FROM \"mod1\".Conforma WHERE registroGrupo = \'" + grupo + "\');";
+            String query = "SELECT * FROM \"mod1\".USUARIO WHERE USBID NOT IN(SELECT USBID FROM \"mod1\".Conforma WHERE registroGrupo = \'" + grupo + "\') order by nombreusuario;";
             usConsulta = conexion.prepareStatement(query);
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
@@ -393,6 +393,48 @@ public class DBMS {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return grupos;
+    }
+    
+    public ArrayList<Grupo> consultarGruposConEncargado(Usuario user) {
+        String USBID = user.getUsbid();
+        PreparedStatement psConsultar;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma WHERE usbid ='" + USBID + "';");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("registroGrupo"));
+                if(rs.getInt("cargo")==0){
+                    grupos.add(g);
+                }  
+            }     
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  
+        return grupos;
+    }
+    
+     public ArrayList<Grupo> consultarGruposConMiembro(Usuario user) {
+        String USBID = user.getUsbid();
+        PreparedStatement psConsultar;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma WHERE usbid ='" + USBID + "';");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("registroGrupo"));
+                if(rs.getInt("cargo")!=0){
+                    grupos.add(g);
+                }   
+            }          
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }   
         return grupos;
     }
 

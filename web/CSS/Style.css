@@ -60,9 +60,9 @@ and open the template in the editor.
 	-webkit-border-top-right-radius:0px;
 	-moz-border-radius-topright:0px;
 	border-top-right-radius:0px;
-	-webkit-border-bottom-right-radius:0px;
-	-moz-border-radius-bottomright:0px;
-	border-bottom-right-radius:0px;
+	-webkit-border-bottom-right-radius:30px;
+	-moz-border-radius-bottomright:30px;
+	border-bottom-right-radius:30px;
 	-webkit-border-bottom-left-radius:20px;
 	-moz-border-radius-bottomleft:20px;
 	border-bottom-left-radius:20px;
@@ -131,6 +131,14 @@ background: #d2d2d2;
 -moz-transition: all 1s linear;
 -webkit-transition: all 1s linear;
 }
+
+#lista:hover {
+background: #BCF7FF;
+-o-transition: all 1s linear;
+-moz-transition: all 1s linear;
+-webkit-transition: all 1s linear;
+}
+
 
 #agregarp {
 -moz-box-shadow:inset -1px 0px 0px -1px #ffffff;
@@ -209,9 +217,9 @@ background: #d2d2d2;
 	-webkit-border-top-right-radius:0px;
 	-moz-border-radius-topright:0px;
 	border-top-right-radius:0px;
-	-webkit-border-bottom-right-radius:0px;
-	-moz-border-radius-bottomright:0px;
-	border-bottom-right-radius:0px;
+	-webkit-border-bottom-right-radius:30px;
+	-moz-border-radius-bottomright:30px;
+	border-bottom-right-radius:30px;
 	-webkit-border-bottom-left-radius:20px;
 	-moz-border-radius-bottomleft:20px;
 	border-bottom-left-radius:20px;
@@ -245,6 +253,19 @@ background: #d2d2d2;
 
 #noconformidades, #miembros{
   height: 200px;
+border-style: groove;
+display: block;
+border-width: thin;
+	margin: 0;
+	padding: 0 5px;
+	position: relative;
+	z-index: 1;
+	overflow: auto;
+  
+}
+
+#listapersonas{
+  height: 600px;
 border-style: groove;
 display: block;
 border-width: thin;
@@ -341,5 +362,6 @@ background-image: -webkit-linear-gradient(top, #ededed 10%,#ededed 51%);
     border-color: gray;
     border-style: outset;
     background-color: #FFFFE4;
-    
 }
+
+

@@ -33,7 +33,17 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String declaracion_nc;
     private String codigo_nc;
     private String grupo_nc;
+    private String encargado;
 
+    public String getEncargado() {
+        return encargado;
+    }
+
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
+    }
+
+    
     public String getRegistro_nc() {
         return registro_nc;
     }
