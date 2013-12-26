@@ -1,9 +1,4 @@
-<%-- 
-    Document   : cod_plantilla
-    Created on : 25/11/2013, 10:44:49 AM
-    Author     : edgar
---%>
-
+<%@page import="domain.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
@@ -12,16 +7,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE html>
-<html version="HTML+RDFa 1.0" lang="es" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:content="http://purl.org/rss/1.0/modules/content/"
-      xmlns:dc="http://purl.org/dc/terms/"
-      xmlns:foaf="http://xmlns.com/foaf/0.1/"
-      xmlns:og="http://ogp.me/ns#"
-      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-      xmlns:sioc="http://rdfs.org/sioc/ns#"
-      xmlns:sioct="http://rdfs.org/sioc/types#"
-      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-      xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+<html>
     <head profile="http://www.w3.org/1999/xhtml/vocab">
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -39,36 +25,19 @@
             @import url("http://www.ulab.usb.ve/themes/sky/css/forms.css?ml8e0y");
             @import url("http://www.ulab.usb.ve/themes/sky/css/colors.css?ml8e0y");</style>
         <style type="text/css" media="print">@import url("http://www.ulab.usb.ve/themes/sky/css/print.css?ml8e0y");</style>
-
         <!--[if lte IE 7]>
         <link type="text/css" rel="stylesheet" href="http://www.ulab.usb.ve/themes/sky/css/ie.css?ml8e0y" media="all" />
         <![endif]-->
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.js?v=1.4.4"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.once.js?v=1.2"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/drupal.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.cookie.js?v=1.0"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/jquery.form.js?v=2.52"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/ajax.js?v=7.22"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/sites/default/files/languages/es_4XpqCflKazTuXzLphPzjQcs4p_0-3cW6doKJyQdMlBo.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/sites/all/modules/views/js/base.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/misc/progress.js?v=7.22"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/sites/all/modules/views/js/ajax_view.js?ml8e0y"></script>
-        <script type="text/javascript" src="http://www.ulab.usb.ve/themes/sky/js/scripts.js?ml8e0y"></script>
-        <script type="text/javascript">
-            <!--//--><![CDATA[//><!--
-        jQuery.extend(Drupal.settings, {"basePath": "\/", "pathPrefix": "", "ajaxPageState": {"theme": "sky", "theme_token": "1mcfSKBygVSp27Fx0CDiUUZ_GAkCPYFfROsiND8pVpQ", "js": {"misc\/jquery.js": 1, "misc\/jquery.once.js": 1, "misc\/drupal.js": 1, "misc\/jquery.cookie.js": 1, "misc\/jquery.form.js": 1, "misc\/ajax.js": 1, "public:\/\/languages\/es_4XpqCflKazTuXzLphPzjQcs4p_0-3cW6doKJyQdMlBo.js": 1, "sites\/all\/modules\/views\/js\/base.js": 1, "misc\/progress.js": 1, "sites\/all\/modules\/views\/js\/ajax_view.js": 1, "themes\/sky\/js\/scripts.js": 1}, "css": {"modules\/system\/system.base.css": 1, "modules\/field\/theme\/field.css": 1, "modules\/user\/user.css": 1, "sites\/all\/modules\/views\/css\/views.css": 1, "sites\/all\/modules\/ckeditor\/ckeditor.css": 1, "sites\/all\/modules\/ctools\/css\/ctools.css": 1, "themes\/sky\/css\/layout.css": 1, "themes\/sky\/css\/style.css": 1, "themes\/sky\/css\/forms.css": 1, "themes\/sky\/css\/colors.css": 1, "themes\/sky\/css\/print.css": 1, "themes\/sky\/css\/ie.css": 1}}, "views": {"ajax_path": "\/views\/ajax", "ajaxViews": {"views_dom_id:f258d0e6a6378f17f545a0c53e3df3ad": {"view_name": "noticias", "view_display_id": "page_1", "view_args": "", "view_path": "noticias", "view_base_path": "noticias", "view_dom_id": "f258d0e6a6378f17f545a0c53e3df3ad", "pager_element": 0}}}});
-            //--><!]]>
-        </script>
+        
         <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
+    
     <body class="html not-front not-logged-in two-sidebars page-noticias" >
-        <div id="skip-link">
-            <a href="" class="element-invisible element-focusable">Pasar al contenido principal</a>
-        </div>
         <div id="container" class="container-16">
             <header id="header" class="section section-header clearfix" role="banner">
                 <hgroup class="grid-10">
-                    <html:link action="iniciar.do"><img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
+                    <html:link action="iniciar.do">
+                        <img src="http://www.ulab.usb.ve/sites/default/files/logo_drupal.gif" alt="Inicio"/></html:link>
                 </hgroup>
             </header>
             <div id="main" class="section section-main clearfix" role="main">

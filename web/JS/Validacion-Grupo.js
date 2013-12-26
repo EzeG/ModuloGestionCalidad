@@ -1,4 +1,3 @@
-
 /*
  * textboxs y textareas
  * 
@@ -73,7 +72,7 @@ if(miembros_grupo.value=="Integrante Uno, Integrante Dos, Integrante Tres..." ){
     requisito_nc_value= true;
     declaracion_nc_value= true;
     codigo_nc_value= true;
-    if(error_style.value=="Uno o mas integrantes del grupo no pertenecen a la base de datos del sistema."
+    if(error_style.value=="Persona no registrada."
             || error_style.value=="Debe ingresar al menos un usuario en el grupo."){
         miembros_grupo.setAttribute("style","width:500px; color:black; font-size: 14px; border-color: #B22222");
     }else{

@@ -15,7 +15,7 @@ contenido_publicacion_error= document.getElementById("contenido_publicacion_erro
 //se definen las variables de validacion
 titulo_publicacion_value = false;
 contenido_publicacion_value= false;
-submit.disable= true;
+submit.disabled= true;
 
 
 
@@ -26,6 +26,7 @@ submit.disable= true;
 if (titulo_publicacion.value == "Titulo de la Publicacion"){
     titulo_publicacion.setAttribute("style", "width:500px; color: gray; font-size: 14px");
 } else {
+    contenido_publicacion_value= true;
     titulo_publicacion.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #B22222");
 }
 //estilo del contenido de la publicacion
@@ -85,7 +86,7 @@ titulo_publicacion.onblur = function() {
      titulo_publicacion.value = "Titulo de la Publicacion";
      titulo_publicacion_value = false;
  }else{
-     if (titulo_publicacion.value.length > 29){
+     if (titulo_publicacion.value.length > 199){
          titulo_publicacion.setAttribute("style", " width:500px; color: black; font-size: 14px; border-color: #B22222");
          titulo_publicacion_error.innerHTML = "El titulo de la publicacion es muy largo";
          titulo_publicacion_value = false;

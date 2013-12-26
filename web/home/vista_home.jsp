@@ -9,3 +9,8 @@
     <tiles:put name="cuerpo" value="/home/home.jsp" />
 </tiles:insert> 
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+</head>
+
