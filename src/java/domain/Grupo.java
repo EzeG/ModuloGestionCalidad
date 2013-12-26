@@ -27,11 +27,18 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String registro_nc;
     private String situacion_nc;
     private int origen_nc;
-    private int documento_nc;
-    private String clausula_nc;
-    private String requisito_nc;
-    private String declaracion_nc;
-    private String codigo_nc;
+
+    
+    private String clausula_nc1;
+    private String requisito_nc1;
+    private String declaracion_nc1;
+    private String codigo_nc1;
+    
+    private String clausula_nc2;
+    private String requisito_nc2;
+    private String declaracion_nc2;
+    private String codigo_nc2;
+    
     private String grupo_nc;
     private String encargado;
 
@@ -68,44 +75,68 @@ public class Grupo extends org.apache.struts.action.ActionForm {
         this.origen_nc = origen_nc;
     }
 
-    public int getDocumento_nc() {
-        return documento_nc;
+    public String getClausula_nc1() {
+        return clausula_nc1;
     }
 
-    public void setDocumento_nc(int documento_nc) {
-        this.documento_nc = documento_nc;
+    public void setClausula_nc1(String clausula_nc1) {
+        this.clausula_nc1 = clausula_nc1;
     }
 
-    public String getClausula_nc() {
-        return clausula_nc;
+    public String getRequisito_nc1() {
+        return requisito_nc1;
     }
 
-    public void setClausula_nc(String clausula_nc) {
-        this.clausula_nc = clausula_nc;
+    public void setRequisito_nc1(String requisito_nc1) {
+        this.requisito_nc1 = requisito_nc1;
     }
 
-    public String getRequisito_nc() {
-        return requisito_nc;
+    public String getDeclaracion_nc1() {
+        return declaracion_nc1;
     }
 
-    public void setRequisito_nc(String requisito_nc) {
-        this.requisito_nc = requisito_nc;
+    public void setDeclaracion_nc1(String declaracion_nc1) {
+        this.declaracion_nc1 = declaracion_nc1;
     }
 
-    public String getDeclaracion_nc() {
-        return declaracion_nc;
+    public String getCodigo_nc1() {
+        return codigo_nc1;
     }
 
-    public void setDeclaracion_nc(String declaracion_nc) {
-        this.declaracion_nc = declaracion_nc;
+    public void setCodigo_nc1(String codigo_nc1) {
+        this.codigo_nc1 = codigo_nc1;
     }
 
-    public String getCodigo_nc() {
-        return codigo_nc;
+    public String getClausula_nc2() {
+        return clausula_nc2;
     }
 
-    public void setCodigo_nc(String codigo_nc) {
-        this.codigo_nc = codigo_nc;
+    public void setClausula_nc2(String clausula_nc2) {
+        this.clausula_nc2 = clausula_nc2;
+    }
+
+    public String getRequisito_nc2() {
+        return requisito_nc2;
+    }
+
+    public void setRequisito_nc2(String requisito_nc2) {
+        this.requisito_nc2 = requisito_nc2;
+    }
+
+    public String getDeclaracion_nc2() {
+        return declaracion_nc2;
+    }
+
+    public void setDeclaracion_nc2(String declaracion_nc2) {
+        this.declaracion_nc2 = declaracion_nc2;
+    }
+
+    public String getCodigo_nc2() {
+        return codigo_nc2;
+    }
+
+    public void setCodigo_nc2(String codigo_nc2) {
+        this.codigo_nc2 = codigo_nc2;
     }
 
     public String getGrupo_nc() {

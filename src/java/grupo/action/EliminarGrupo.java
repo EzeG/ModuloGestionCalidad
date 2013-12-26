@@ -49,7 +49,8 @@ public class EliminarGrupo extends org.apache.struts.action.Action {
             request.setAttribute("listGrupos", grupos);
             request.setAttribute("grupitos", grupo);
             
-            if(elimino) return mapping.findForward(SUCCESS);
+            if(elimino) 
+                return mapping.findForward(SUCCESS);
             else {
                 grupo.setError("No se pudo eliminar el grupo.");
                 return mapping.findForward(FAILURE);

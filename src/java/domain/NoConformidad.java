@@ -21,11 +21,17 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
     private String registro_nc;
     private String situacion_nc;
     private int origen_nc;
-    private int documento_nc;
-    private String clausula_nc;
-    private String requisito_nc;
-    private String declaracion_nc;
-    private String codigo_nc;
+    
+    private String clausula_nc1;
+    private String requisito_nc1;
+    private String declaracion_nc1;
+    private String codigo_nc1;
+    
+    private String clausula_nc2;
+    private String requisito_nc2;
+    private String declaracion_nc2;
+    private String codigo_nc2;
+    
     private String grupo_nc;
     private String error;
 
@@ -77,74 +83,129 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
         this.origen_nc = origen_nc;
     }
 
-    public int getDocumento_nc() {
-        return documento_nc;
+    public String getClausula_nc1() {
+        return clausula_nc1;
     }
 
-    public void setDocumento_nc(int documento_nc) {
-        this.documento_nc = documento_nc;
+    public void setClausula_nc1(String clausula_nc1) {
+        this.clausula_nc1 = clausula_nc1;
     }
 
-    public String getClausula_nc() {
-        return clausula_nc;
+    public String getRequisito_nc1() {
+        return requisito_nc1;
     }
 
-    public void setClausula_nc(String clausula_nc) {
-        this.clausula_nc = clausula_nc;
+    public void setRequisito_nc1(String requisito_nc1) {
+        this.requisito_nc1 = requisito_nc1;
     }
 
-    public String getRequisito_nc() {
-        return requisito_nc;
+    public String getDeclaracion_nc1() {
+        return declaracion_nc1;
     }
 
-    public void setRequisito_nc(String requisito_nc) {
-        this.requisito_nc = requisito_nc;
+    public void setDeclaracion_nc1(String declaracion_nc1) {
+        this.declaracion_nc1 = declaracion_nc1;
     }
 
-    public String getDeclaracion_nc() {
-        return declaracion_nc;
+    public String getCodigo_nc1() {
+        return codigo_nc1;
     }
 
-    public void setDeclaracion_nc(String declaracion_nc) {
-        this.declaracion_nc = declaracion_nc;
+    public void setCodigo_nc1(String codigo_nc1) {
+        this.codigo_nc1 = codigo_nc1;
     }
 
-    public String getCodigo_nc() {
-        return codigo_nc;
+    public String getClausula_nc2() {
+        return clausula_nc2;
     }
 
-    public void setCodigo_nc(String codigo_nc) {
-        this.codigo_nc = codigo_nc;
+    public void setClausula_nc2(String clausula_nc2) {
+        this.clausula_nc2 = clausula_nc2;
     }
 
+    public String getRequisito_nc2() {
+        return requisito_nc2;
+    }
+
+    public void setRequisito_nc2(String requisito_nc2) {
+        this.requisito_nc2 = requisito_nc2;
+    }
+
+    public String getDeclaracion_nc2() {
+        return declaracion_nc2;
+    }
+
+    public void setDeclaracion_nc2(String declaracion_nc2) {
+        this.declaracion_nc2 = declaracion_nc2;
+    }
+
+    public String getCodigo_nc2() {
+        return codigo_nc2;
+    }
+
+    public void setCodigo_nc2(String codigo_nc2) {
+        this.codigo_nc2 = codigo_nc2;
+    }
+
+    
     public NoConformidad() {
 
     }
 
     /**
      *
+     * @param fecha
      * @param registro
      * @param situacion
      * @param origen
-     * @param fecha
-     * @param documento
-     * @param clausula
-     * @param requisito
-     * @param declaracion
-     * @param codigo
+     * @param clausula1
+     * @param requisito1
+     * @param declaracion1
+     * @param codigo1
+     * @param clausula2
+     * @param declaracion2
+     * @param requisito2
+     * @param codigo2
+
      */
-    public NoConformidad(String registro, String situacion, int origen, int documento, String clausula, String requisito, String declaracion, String codigo) {
+     public NoConformidad(String registro, String situacion, int origen, String clausula1, String requisito1, String declaracion1, String codigo1,String clausula2, String requisito2, String declaracion2, String codigo2) {
         super();
         // TODO Auto-generated constructor stub
+
         this.registro_nc = registro;
         this.situacion_nc = situacion;
         this.origen_nc = origen;
-        this.documento_nc = documento;
-        this.clausula_nc = clausula;
-        this.requisito_nc = requisito;
-        this.declaracion_nc = declaracion;
-        this.codigo_nc = codigo;
 
+        this.clausula_nc1 = clausula1;
+        this.requisito_nc1 = requisito1;
+        this.declaracion_nc1 = declaracion1;
+        this.codigo_nc1 = codigo1;
+        
+        this.clausula_nc2 = clausula2;
+        this.requisito_nc2 = requisito2;
+        this.declaracion_nc2 = declaracion2;
+        this.codigo_nc2 = codigo2;
+    }
+    
+    
+    
+    public NoConformidad(String fecha, String registro, String situacion, int origen, String clausula1, String requisito1, String declaracion1, String codigo1,String clausula2, String requisito2, String declaracion2, String codigo2) {
+        super();
+        // TODO Auto-generated constructor stub
+        this.fecha_nc = fecha;
+        this.registro_nc = registro;
+        this.situacion_nc = situacion;
+        this.origen_nc = origen;
+
+        this.clausula_nc1 = clausula1;
+        this.requisito_nc1 = requisito1;
+        this.declaracion_nc1 = declaracion1;
+        this.codigo_nc1 = codigo1;
+        
+        this.clausula_nc2 = clausula2;
+        this.requisito_nc2 = requisito2;
+        this.declaracion_nc2 = declaracion2;
+        this.codigo_nc2 = codigo2;
     }
     
     /**
@@ -160,21 +221,7 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
      * @param declaracion
      * @param codigo
      */
-    public NoConformidad(String fecha, String registro, String situacion, int origen, int documento, String clausula, String requisito, String declaracion, String codigo) {
-        super();
-        // TODO Auto-generated constructor stub
-        this.fecha_nc = fecha;
-        this.registro_nc = registro;
-        this.situacion_nc = situacion;
-        this.origen_nc = origen;
-        this.documento_nc = documento;
-        this.clausula_nc = clausula;
-        this.requisito_nc = requisito;
-        this.declaracion_nc = declaracion;
-        this.codigo_nc = codigo;
-
-    }
-
+    
     /**
      * This is the action called from the Struts framework.
      *

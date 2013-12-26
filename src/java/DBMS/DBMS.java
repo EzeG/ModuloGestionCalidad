@@ -49,9 +49,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/prueba",
+                    "jdbc:postgresql://localhost:5432/NOMBRE",
                     "postgres",
-                    "postgres");
+                    "17744256");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -109,7 +109,8 @@ public class DBMS {
             if(rs.next()){
                 DateFormat df = DateFormat.getDateInstance();
                 String fecha = df.format(rs.getDate("fecha"));
-                NoConformidad nc = new NoConformidad(fecha, regNc, rs.getString("situacion"), rs.getInt("procedencia"), rs.getInt("documento"), rs.getString("clausula"), rs.getString("requisito"), rs.getString("declaracion"), rs.getString("codigo"));
+                NoConformidad nc = new NoConformidad(fecha, regNc, rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
+                        rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"));
                 return nc;
             }
             return null;
@@ -125,7 +126,8 @@ public class DBMS {
             ncConsulta = conexion.prepareStatement("SELECT * FROM mod1.NOCONFORMIDAD WHERE Registro = \'" + NC + "\';");
             ResultSet rs = ncConsulta.executeQuery();
             while (rs.next()) {
-                NoConformidad nc = new NoConformidad(rs.getString("registro"), rs.getString("situacion"), rs.getInt("procedencia"), rs.getInt("documento"), rs.getString("clausula"), rs.getString("requisito"), rs.getString("declaracion"), rs.getString("codigo"));
+                NoConformidad nc = new NoConformidad(rs.getString("registro"), rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
+                        rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"));
                 noConformidades.add(nc);
             }
             return noConformidades;
@@ -290,16 +292,19 @@ public class DBMS {
         String buff;
 
         try {
-            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".noconformidad VALUES (?,?,?,?,?,?,?,?,?);");
+            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".noconformidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
             ncAgregar.setTimestamp(1, fecha);
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
             ncAgregar.setInt(4, nc.getOrigen_nc());
-            ncAgregar.setInt(5, nc.getDocumento_nc());
-            ncAgregar.setString(6, nc.getClausula_nc());
-            ncAgregar.setString(7, nc.getRequisito_nc());
-            ncAgregar.setString(8, nc.getDeclaracion_nc());
-            ncAgregar.setString(9, nc.getCodigo_nc());
+            ncAgregar.setString(5, nc.getClausula_nc1());
+            ncAgregar.setString(6, nc.getRequisito_nc1());
+            ncAgregar.setString(7, nc.getDeclaracion_nc1());
+            ncAgregar.setString(8, nc.getCodigo_nc1());
+            ncAgregar.setString(9, nc.getClausula_nc2());
+            ncAgregar.setString(10, nc.getRequisito_nc2());
+            ncAgregar.setString(11, nc.getDeclaracion_nc2());
+            ncAgregar.setString(12, nc.getCodigo_nc2());
             Integer i = ncAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
@@ -350,11 +355,16 @@ public class DBMS {
                 nc.setRegistro_nc(rs.getString("registro"));
                 nc.setSituacion_nc(rs.getString("situacion"));
                 nc.setOrigen_nc(rs.getInt("procedencia"));
-                nc.setDocumento_nc(rs.getInt("documento"));
-                nc.setClausula_nc(rs.getString("clausula"));
-                nc.setRegistro_nc(rs.getString("requisito"));
-                nc.setDeclaracion_nc(rs.getString("declaracion"));
-                nc.setCodigo_nc(rs.getString("codigo"));
+
+                nc.setClausula_nc1(rs.getString("clausula1"));
+                nc.setRequisito_nc1(rs.getString("requisito1"));
+                nc.setDeclaracion_nc1(rs.getString("declaracion1"));
+                nc.setCodigo_nc1(rs.getString("codigo1"));
+                
+                nc.setClausula_nc2(rs.getString("clausula2"));
+                nc.setRequisito_nc2(rs.getString("requisito2"));
+                nc.setDeclaracion_nc2(rs.getString("declaracion2"));
+                nc.setCodigo_nc2(rs.getString("codigo2"));
             }
             return nc;
         } catch (SQLException e) {
@@ -511,16 +521,13 @@ public class DBMS {
         ArrayList<Grupo> test1;
         int i;
         boolean asuha;
-        NoConformidad nc = new NoConformidad("Registrodfga4523", "Situacion", 1, 1, "Clausula", "Registro", "Declaracion", "Codigo");
-
+        
         Publicacion pub = new Publicacion();
 
         pub.setTitulo_publicacion("TITULO");
         pub.setContenido_publicacion("ASUHAUSHAIUGSIAGSIAGHS");
 
-        asuha = DBMS.getInstance().agregaNoConformidad(nc);
 
-        asuha = DBMS.getInstance().eliminarNoConformidad(nc.getRegistro_nc());
 
         i = 1;
 

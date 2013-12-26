@@ -27,15 +27,16 @@
 
                     <html:hidden name="listMsgid" property="titulo_publicacion" />
                     <html:hidden name="listMsgid" property="contenido_publicacion" />
-                    <blockquote>
+                    
+                        <div id="quote">
                         <p align="justify" style="margin-left: 20px; margin-right: 20px; margin-top: 20px">
                             <font size="2">
                                 <bean:write  name="listMsgid" property="resumen"/>
                             </font>
                         </p>
-                        <br/>
-                    </blockquote>
-                    <div style="margin-top: -12px; margin-left: 10px">
+                        </div>
+                    
+                    <div style=" margin-left: 10px">
                          <html:submit styleId="leer" value="leer más" /><br /><br />
                     </div>
             </html:form>

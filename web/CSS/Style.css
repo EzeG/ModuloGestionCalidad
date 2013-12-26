@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : 21-dic-2013, 8:11:05
     Author     : Gabriel
 */
-#submit, #cancel, #crear{
+#submit, #cancel, #crear, #norma{
 	-moz-box-shadow:inset -1px 0px 0px -1px #ffffff;
 	-webkit-box-shadow:inset -1px 0px 0px -1px #ffffff;
 	box-shadow:inset -1px 0px 0px -1px #ffffff;
@@ -40,11 +40,11 @@ and open the template in the editor.
 	text-shadow:1px 1px 0px #ffffff;
 }
 
-#submit:hover, #cancel:hover #crear:hover {
+#submit:hover, #cancel:hover, #crear:hover, #norma:hover {
 	background-color:#dfdfdf;
 }
 
-#submit:active, #cancel:active #crear:active{
+#submit:active, #cancel:active, #crear:active, #norma:active{
 	position:relative;
 	top:1px;
 }
@@ -130,6 +130,7 @@ background: #d2d2d2;
 -o-transition: all 1s linear;
 -moz-transition: all 1s linear;
 -webkit-transition: all 1s linear;
+
 }
 
 #lista:hover {
@@ -294,6 +295,8 @@ border-width: thin;
   box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
 }
 
+
+
 #titulo{
   font-size: 16px;
   border-bottom: solid;
@@ -364,4 +367,25 @@ background-image: -webkit-linear-gradient(top, #ededed 10%,#ededed 51%);
     background-color: #FFFFE4;
 }
 
+#quote{
 
+  text-align: left;
+  padding: 3px;
+  /* border-radius */
+  
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+}
+
+#quote:hover{
+  background: #d2d2d2;
+  text-align: left;
+  padding: 3px;
+  /* border-radius */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /* box-shadow */
+}

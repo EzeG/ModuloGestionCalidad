@@ -62,10 +62,16 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
                     request.setAttribute("nombreG", nc.getGrupo_nc());
                     request.setAttribute("registro_nc", nc.getRegistro_nc());
                     request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                    request.setAttribute("clausula_nc", nc.getClausula_nc());
-                    request.setAttribute("requisito_nc", nc.getRequisito_nc());
-                    request.setAttribute("declaracion_nc", nc.getDeclaracion_nc());
-                    request.setAttribute("codigo_nc", nc.getCodigo_nc());
+                    
+                    request.setAttribute("clausula_nc1", nc.getClausula_nc1());
+                    request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
+                    request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
+                    request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
+                    
+                    request.setAttribute("clausula_nc2", nc.getClausula_nc2());
+                    request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
+                    request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
+                    request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
                     return mapping.findForward(FAILURE);
                 }
             } else {
@@ -74,10 +80,16 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
                 request.setAttribute("nombreG", nc.getGrupo_nc());
                 request.setAttribute("registro_nc", nc.getRegistro_nc());
                 request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                request.setAttribute("clausula_nc", nc.getClausula_nc());
-                request.setAttribute("requisito_nc", nc.getRequisito_nc());
-                request.setAttribute("declaracion_nc", nc.getDeclaracion_nc());
-                request.setAttribute("codigo_nc", nc.getCodigo_nc());
+                
+                request.setAttribute("clausula_nc1", nc.getClausula_nc1());
+                request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
+                request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
+                request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
+
+                request.setAttribute("clausula_nc2", nc.getClausula_nc2());
+                request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
+                request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
+                request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
                 return mapping.findForward(FAILURE);
             }
         }else{
@@ -86,10 +98,16 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
                 request.setAttribute("nombreG", nc.getGrupo_nc());
                 request.setAttribute("registro_nc", nc.getRegistro_nc());
                 request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                request.setAttribute("clausula_nc", nc.getClausula_nc());
-                request.setAttribute("requisito_nc", nc.getRequisito_nc());
-                request.setAttribute("declaracion_nc", nc.getDeclaracion_nc());
-                request.setAttribute("codigo_nc", nc.getCodigo_nc());
+                
+                request.setAttribute("clausula_nc1", nc.getClausula_nc1());
+                request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
+                request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
+                request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
+
+                request.setAttribute("clausula_nc2", nc.getClausula_nc2());
+                request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
+                request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
+                request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
                 return mapping.findForward(FAILURE);
         }
         
