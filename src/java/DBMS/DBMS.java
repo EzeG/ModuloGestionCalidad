@@ -118,7 +118,6 @@ public class DBMS {
         }
         return null;
     }
-
     public ArrayList<NoConformidad> consultarNC(String NC) {
         PreparedStatement ncConsulta;
         try {
@@ -238,7 +237,7 @@ public class DBMS {
 
         return null;
     }
-
+    
     public boolean agregarRelacionGU(Usuario u, String codigoG, int cargo) {
         PreparedStatement confAgregar = null;
         try {
@@ -368,7 +367,6 @@ public class DBMS {
         PreparedStatement consultaT;
         ArrayList<NoConformidad> ncs = new ArrayList<NoConformidad>();
         try {
-
             consultaT = conexion.prepareStatement("SELECT * FROM mod1.TRABAJA WHERE RegistroGrupo = \'" + grupo + "\';");
             ResultSet rs = consultaT.executeQuery();
             while (rs.next()) {
@@ -414,7 +412,7 @@ public class DBMS {
         }
         return grupos;
     }
-
+    
     public ArrayList<Grupo> consultarGruposConEncargado(Usuario user) {
         String USBID = user.getUsbid();
         PreparedStatement psConsultar;
@@ -426,17 +424,17 @@ public class DBMS {
             while (rs.next()) {
                 Grupo g = new Grupo();
                 g.setNombre_grupo(rs.getString("registroGrupo"));
-                if (rs.getInt("cargo") == 0) {
+                if(rs.getInt("cargo")==0){
                     grupos.add(g);
-                }
-            }
+                }  
+            }     
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }  
         return grupos;
     }
-
-    public ArrayList<Grupo> consultarGruposConMiembro(Usuario user) {
+    
+     public ArrayList<Grupo> consultarGruposConMiembro(Usuario user) {
         String USBID = user.getUsbid();
         PreparedStatement psConsultar;
         ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
@@ -447,13 +445,13 @@ public class DBMS {
             while (rs.next()) {
                 Grupo g = new Grupo();
                 g.setNombre_grupo(rs.getString("registroGrupo"));
-                if (rs.getInt("cargo") != 0) {
+                if(rs.getInt("cargo")!=0){
                     grupos.add(g);
-                }
-            }
+                }   
+            }          
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }   
         return grupos;
     }
 

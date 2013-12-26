@@ -155,6 +155,7 @@
             <forward name="failure" path="/construccion/vista_construccion.jsp"/>
         </action>
 
+
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>
         <action path="/eliminar_publicacion" type="org.apache.struts.actions.ForwardAction"
