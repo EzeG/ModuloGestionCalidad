@@ -80,16 +80,16 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".Acciones
 (
-   Codigonc character varying(30), 
+   Registronc character varying(30), 
    Accion character varying(100), 
    Tipo character varying(11), 
    Prioridad integer, 
    Proceso character varying(100), 
-   Responsable character varying(30), 
+   Responsable character varying(100), 
    Recursos character varying(200), 
    FechaI time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
    FechaF time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
-   PRIMARY KEY (Codigonc, Accion) 
+   PRIMARY KEY (Registronc, Accion) 
 
 ) 
 WITH (
@@ -124,7 +124,7 @@ ALTER TABLE "mod1".Trabaja ADD
     REFERENCES "mod1".NOCONFORMIDAD(registro);
 
 ALTER TABLE "mod1".Acciones ADD
-  CONSTRAINT FK_Acciones_NOCONFORMIDAD FOREIGN KEY (Codigonc)
+  CONSTRAINT FK_Acciones_NOCONFORMIDAD FOREIGN KEY (Registronc)
     REFERENCES "mod1".NOCONFORMIDAD(registro);
 
 ------------------------ Inserts Temporales ------------------------

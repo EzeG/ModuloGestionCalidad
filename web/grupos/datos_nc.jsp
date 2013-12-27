@@ -1,13 +1,18 @@
+<%@page import="domain.NoConformidad"%>
 <%@page contentType="text/html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+<%NoConformidad nc = (NoConformidad) request.getAttribute("nc");
+String registro_nc = nc.getRegistro_nc();
+String visible = (String) request.getAttribute("visible");%>
+<html:hidden property="" styleId="encargado" value="<%=visible%>"/>
 <table>
     <tr>
         <td>
-            <p style="margin-top: -10px; color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
+            <p style="margin-top: -10px; color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
                 No Conformidad
             </p>
         </td>
@@ -19,6 +24,7 @@
         </td>
     </tr>
 </table>
+            
 <div id="noconformidades">
     <table>
         <tr>
@@ -46,15 +52,17 @@
     <table>
         <tr>
             <td style="width: 50%">
+                <p align="center"><b>Norma ISO 9001:</b></p><br>
                 <p style="font-size: 12px">
-                    <b>Documento:</b>
-                    <bean:write name="nc" property="documento_nc"/>
+                    <b>Codigo:</b>
+                    <bean:write name="nc" property="codigo_nc1"/>
                 </p>
             </td>
             <td>
+                <p align="center"><b>ISO/IEC 17025</b></p><br>
                 <p style="font-size: 12px">
-                    <b>Clausula:</b>
-                    <bean:write name="nc" property="clausula_nc"/>
+                    <b>Codigo:</b>
+                    <bean:write name="nc" property="codigo_nc2"/>
                 </p>
             </td>
         </tr>
@@ -63,27 +71,85 @@
                 <p style="font-size: 12px">
                     <b>Requisito:</b>
                 </p>
-                <bean:write name="nc" property="requisito_nc"/>
+                <bean:write name="nc" property="requisito_nc1"/>
             </td>
             <td>
                 <p style="font-size: 12px">
-                    <b>Declaracion de la No Conformidad:</b>
+                    <b>Requisito:</b>
                 </p>
-                <bean:write name="nc" property="declaracion_nc"/>
+                <bean:write name="nc" property="requisito_nc2"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%">
+                <p style="font-size: 12px">
+                    <b>Clausula:</b>
+                    <bean:write name="nc" property="clausula_nc1"/>
+                </p>
+            </td>
+            <td>
+                <p style="font-size: 12px">
+                    <b>Clausula:</b>
+                    <bean:write name="nc" property="clausula_nc2"/>
+                </p>
             </td>
         </tr>
         <tr>
             <td>
                 <p style="font-size: 12px">
-                    <b>Codigo:</b>
+                    <b>Declaracion de la No Conformidad:</b>
                 </p>
-                <bean:write name="nc" property="codigo_nc"/>
+                <bean:write name="nc" property="declaracion_nc1"/>
+            </td>
+            <td>
+                <p style="font-size: 12px">
+                    <b>Declaracion de la No Conformidad:</b>
+                </p>
+                <bean:write name="nc" property="declaracion_nc2"/>
             </td>
         </tr>
     </table>
 </div>
+            
+        <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
+            <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Preventivas:</p>
+        </div>
+<div id="noconformidades">
+    <table>
+        <logic:iterate id="a_p" name="AccionPreventiva">
+            <tr>
+                <td style="vertical-align: middle">
+                    <bean:write name="a_p" property="accion" />
+                </td>
+            </tr>
+        </logic:iterate>
+    </table>
+</div> 
+        <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
+            <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Correctivas:</p>
+        </div>           
+<div id="noconformidades">
+    <table>
+        <logic:iterate id="a_c" name="AccionCorrectiva">
+            <tr>
+                <td style="vertical-align: middle">
+                    <bean:write name="a_c" property="accion" />
+                </td>
+            </tr>
+        </logic:iterate>
+    </table>
+</div> 
+<br>       
 
+<html:form action="/nueva_accion">
+    <html:hidden property="registro_nc" value="<%=registro_nc%>" />
+    <html:submit style="visibility: hidden" styleId="agregarp" value="+ Accion" />
+</html:form>           
+  
+            
+           
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+        <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
+        <script type="text/javascript" src="JS/sesion.js"></script>
 </head>

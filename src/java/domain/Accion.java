@@ -18,7 +18,7 @@ import org.apache.struts.action.ActionMessage;
  */
 public class Accion extends org.apache.struts.action.ActionForm {
     
-    private String codigo_nc;
+    private String registro_nc;
     private String accion;      //nombre de la accion
     private String tipo;           //correctiva o preventiva
     private int prioridad;
@@ -27,12 +27,12 @@ public class Accion extends org.apache.struts.action.ActionForm {
     private String recursos;
 
 
-    public String getCodigo_nc() {
-        return codigo_nc;
+    public String getRegistro_nc() {
+        return registro_nc;
     }
 
-    public void setCodigo_nc(String codigo_nc) {
-        this.codigo_nc = codigo_nc;
+    public void setRegistro_nc(String codigo_nc) {
+        this.registro_nc = codigo_nc;
     }
 
     public String getAccion() {
@@ -84,11 +84,14 @@ public class Accion extends org.apache.struts.action.ActionForm {
     }
 
 
-
+    public Accion(){
+        super();
+    }
     
     
-    public Accion(String codigo_nc, String accion, String tipo, int prioridad, String proceso, String responsable, String recursos) {
-        this.codigo_nc = codigo_nc;
+    public Accion(String registro_nc, String accion, String tipo, int prioridad, String proceso, String responsable, String recursos) {
+        super();
+        this.registro_nc = registro_nc;
         this.accion = accion;
         this.tipo = tipo;
         this.prioridad = prioridad;

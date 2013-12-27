@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import domain.*;
 import DBMS.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,7 +41,8 @@ public class linksNc extends org.apache.struts.action.Action {
         NoConformidad nc = new NoConformidad();
         String nombreNc = (String) request.getParameter("NoConformidad");
         String origen = "";
-        
+        ArrayList<Accion> acciones_preventivas;
+        ArrayList<Accion> acciones_correctivas;
         nc = DBMS.getInstance().buscarNc(nombreNc);
         
         /* Origen segun el numero */
@@ -56,10 +58,25 @@ public class linksNc extends org.apache.struts.action.Action {
             origen = "Trabajo No Conforme";
         } else if(nc.getOrigen_nc() == 6){
             origen = "Otro";
-        }
-        
+        }  
         request.setAttribute("nc", nc);
         request.setAttribute("origen", origen);
+        acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
+        acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+        request.setAttribute("AccionPreventiva", acciones_preventivas);
+        request.setAttribute("AccionCorrectiva", acciones_correctivas);
+        String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
+        Usuario usuario;
+        usuario = (Usuario) request.getSession().getAttribute("usuario");
+        String usbid = usuario.getUsbid();
+            
+         if(DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
+             request.setAttribute("visible", "visible");
+         }else{
+             request.setAttribute("visible", "hidden");
+         }    
+       
+        
         
         return mapping.findForward(SUCCESS);
     }

@@ -88,18 +88,20 @@
                     </td>
                 </tr>
         </table>
-            Norma ISO 9001: 
-                <table>
+            <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
+        <fieldset style="margin-left:20px; margin-right: 20px">    
+        <table>
             <tr>
                 <td>
-                <p style="font-size: 12px"><b>Codigo:</b></p>
+                <p style="font-size: 14px"><b>Codigo:</b></p>
                 </td>
-                <td style="margin-left: 20">
+                <td>
                 <html:text styleClass="boton1"  styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
-                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                 </td>
+                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
-        </table>  
+        </table> 
+        
         <div id="desplegable1"> 
             <table>
                 <tr>
@@ -125,27 +127,21 @@
                         <p id="declaracion_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr> 
-                <tr>
-                    <td></td>
-                    <td>
-                        
-                    </td>
-                </tr>     
-                <tr>
-                    <td></td>
-                </tr>
+                
             </table> 
         </div>  
-        <b>ISO/IEC 17025</b>
+        </fieldset>
+        <p style="font-size: 14px; color:gray" align="center"><b>ISO/IEC 17025 </b></p>
+        <fieldset style="margin-left:20px; margin-right: 20px"> 
         <table>
             <tr>
-                <td style="size: 150px">
-                <p style="font-size: 12px"><b>Codigo:</b></p>
+                <td>
+                <p style="font-size: 14px"><b>Codigo:</b></p>
                 </td>
                 <td>
                 <html:text styleClass="boton2"  styleId="codigo_nc2" property="codigo_nc2" value="<%=codigo2%>" style="color: gray; font-size: 14px"/>
-                <p id="codigo_nc2_error" style="font-size: 12px; color: #B22222"></p>
                 </td>
+                <p id="codigo_nc2_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>
         <div id="desplegable2"> 
@@ -175,6 +171,7 @@
                 </tr>   
             </table> 
          </div>
+     </fieldset>
     </fieldset>
     <html:submit styleId="submit" value="Aceptar" />
     <html:hidden styleId="error_style" name="error_style" property="error" value="<%=error%>"/>
@@ -200,15 +197,13 @@
             $(".boton1").click(function(){
             $("#desplegable1").slideToggle("slow");
             });
-            $("#desplegable1").css({ display: 'none' });
-            });
-            $(document).ready(function(){
             $(".boton2").click(function(){
             $("#desplegable2").slideToggle("slow");
-            $("#desplegable1").slideToggle("slow");
             });
+            $("#desplegable1").css({ display: 'none' });
             $("#desplegable2").css({ display: 'none' });
             });
+            
         </script>
         
 </head>

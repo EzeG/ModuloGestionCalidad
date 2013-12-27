@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="Accion" type="domain.Accion"/>
         <form-bean name="ListaPublicaciones" type="domain.ListaPublicaciones"/>
         <form-bean name="Usuario" type="domain.Usuario"/>
         <form-bean name="NoConformidad" type="domain.NoConformidad"/>
@@ -93,6 +94,11 @@
             <forward name="success" path="/grupos/vista_crear_grupo.jsp"/>
             <forward name="failure" path="/iniciar.do"/>
         </action>
+        
+        <action path="/nueva_accion" name= "Accion" type="grupo.action.nuevaAccion" scope="session">
+            <forward name="success" path="/grupos/vista_crear_accion.jsp"/>
+            <forward name="failure" path="/iniciar.do"/>
+        </action>
            
         <action path="/no_conformidad" type="org.apache.struts.actions.ForwardAction"
                 parameter="/grupos/vista_no_conformidad.jsp" scope="session"/>
@@ -103,6 +109,14 @@
             <forward name="success" path="/tab_grupos.do"/>
             <forward name="failure" path="/grupos/vista_crear_grupo.jsp" />
         </action>
+        
+        <action path="/CrearAccion" name="Accion" scope="session" 
+                type="grupo.action.CrearAccion" validate="false">
+            <forward name="success" path="/grupos/vista_datos_nc.jsp"/>
+            <forward name="failure" path="/grupos/vista_crear_accion.jsp" />
+        </action>
+        
+        
         <action path="/linkGrupos" type="grupo.action.LinksGrupos" validate="false" scope="session">
             <forward name="success" path="/grupos/vista_adminGrupo.jsp"/>
              <forward name="failure" path="/iniciar.do"/>

@@ -69,10 +69,11 @@
                 <td>
                 <p style="font-size: 12px"><b>Codigo:</b></p>
                 </td>
-                <td style="margin-left: 20">
+                <td>
                 <html:text styleClass="boton1"  styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
-                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
+                
                 </td>
+                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>  
         <div id="desplegable1"> 
@@ -100,15 +101,7 @@
                         <p id="declaracion_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr> 
-                <tr>
-                    <td></td>
-                    <td>
-                        
-                    </td>
-                </tr>     
-                <tr>
-                    <td></td>
-                </tr>
+                
             </table> 
         </div>  
         <b>ISO/IEC 17025</b>
@@ -119,8 +112,8 @@
                 </td>
                 <td>
                 <html:text styleClass="boton2"  styleId="codigo_nc2" property="codigo_nc2" value="<%=codigo2%>" style="color: gray; font-size: 14px"/>
-                <p id="codigo_nc2_error" style="font-size: 12px; color: #B22222"></p>
                 </td>
+                <p id="codigo_nc2_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>
         <div id="desplegable2"> 

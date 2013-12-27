@@ -70,10 +70,7 @@ if(registro_nc.value=="Registro"){
     declaracion_nc2_value= true;
     codigo_nc2_value= true;    
     registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #B22222");
-    alert("llega");
-  
 
-    
 }
 
 if(situacion_nc.value=="Describa la inconformidad"){

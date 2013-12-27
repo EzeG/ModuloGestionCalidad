@@ -5,10 +5,7 @@
  */
 package DBMS;
 
-import domain.Grupo;
-import domain.Publicacion;
-import domain.NoConformidad;
-import domain.Usuario;
+import domain.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -168,7 +165,8 @@ public class DBMS {
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
                 Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
-                usuarios.add(us);
+                if(us.getCargo() != 0)
+                    usuarios.add(us);
             }
             return usuarios;
         } catch (SQLException e) {
@@ -195,10 +193,9 @@ public class DBMS {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
+        
 
     public ArrayList<Publicacion> consultarPublicacion() {
         PreparedStatement usConsulta = null;
@@ -284,6 +281,25 @@ public class DBMS {
 
         return false;
     }
+    
+    public boolean agregarAccion(Accion ac) {
+        PreparedStatement acAgregar;
+        try {
+            acAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".acciones VALUES (?,?,?,?,?,?,?);");
+            acAgregar.setString(1, ac.getRegistro_nc());
+            acAgregar.setString(2, ac.getAccion());
+            acAgregar.setString(3, ac.getTipo());
+            acAgregar.setInt(4, ac.getPrioridad());
+            acAgregar.setString(5, ac.getProceso());
+            acAgregar.setString(6, ac.getResponsable());
+            acAgregar.setString(7, ac.getRecursos());
+            Integer i = acAgregar.executeUpdate();
+            return i > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean agregaNoConformidad(NoConformidad nc) {
         PreparedStatement ncAgregar;
@@ -367,6 +383,23 @@ public class DBMS {
                 nc.setCodigo_nc2(rs.getString("codigo2"));
             }
             return nc;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public String buscarGrupoPNC(String recNC) {
+        PreparedStatement ncBuscar;
+        String NombreG = "";
+
+        try {
+            ncBuscar = conexion.prepareStatement("SELECT * FROM mod1.trabaja WHERE registro = \'" + recNC + "\'");
+            ResultSet rs = ncBuscar.executeQuery();
+            if (rs.next()) {
+                NombreG = rs.getString("registrogrupo");
+            }
+            return NombreG;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -463,6 +496,57 @@ public class DBMS {
             e.printStackTrace();
         }   
         return grupos;
+    }
+     
+    
+     
+        public boolean verificarMiembroEncargado(String usbid, String NombreG) {
+        PreparedStatement Consulta;
+        try {
+            boolean esEncargado = false;
+            Consulta = conexion.prepareStatement("SELECT * FROM mod1.conforma WHERE USBID = \'" + usbid + "\' AND registrogrupo = \'" + NombreG + "\' AND cargo = '0';");
+            ResultSet rs = Consulta.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+        public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
+        PreparedStatement acConsulta;
+        try {
+            ArrayList<Accion> acciones = new ArrayList<Accion>();
+            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
+            ResultSet rs = acConsulta.executeQuery();
+            while (rs.next()) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if(ac.getTipo().equals("Correctiva"))
+                    acciones.add(ac);
+            }
+            return acciones;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+        
+        public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
+        PreparedStatement acConsulta;
+        try {
+            ArrayList<Accion> acciones = new ArrayList<Accion>();
+            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
+            ResultSet rs = acConsulta.executeQuery();
+            while (rs.next()) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if(ac.getTipo().equals("Preventiva"))
+                    acciones.add(ac);
+            }
+            return acciones;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public boolean eliminarGrupo(Grupo g) {
