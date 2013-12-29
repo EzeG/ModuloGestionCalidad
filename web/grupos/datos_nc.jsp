@@ -119,7 +119,18 @@ String visible = (String) request.getAttribute("visible");%>
         <logic:iterate id="a_p" name="AccionPreventiva">
             <tr>
                 <td style="vertical-align: middle">
-                    <bean:write name="a_p" property="accion" />
+                    <html:form action="/linkaccion">
+                        
+                        <html:hidden name="a_p" property="registro_nc"/>
+                        <html:hidden name="a_p" property="accion"/>
+                        <html:submit><bean:write name="a_p" property="accion"/></html:submit>
+                    </html:form>
+                    
+                    <html:link action="linkaccion" paramId="Accion" paramName="a_p"
+                                       paramProperty="accion" >
+                        
+                        
+                    </html:link>
                 </td>
             </tr>
         </logic:iterate>

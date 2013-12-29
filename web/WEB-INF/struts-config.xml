@@ -169,6 +169,9 @@
             <forward name="failure" path="/construccion/vista_construccion.jsp"/>
         </action>
 
+        <action input="/" name="Accion" path="/linkaccion" scope="request" type="grupo.action.LinkAccion">
+            <forward name="success" path="/grupos/vista_accion.jsp"/>
+        </action>
 
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>

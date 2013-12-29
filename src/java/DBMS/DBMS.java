@@ -49,6 +49,7 @@ public class DBMS {
                     "jdbc:postgresql://localhost:5432/NOMBRE",
                     "postgres",
                     "17744256");
+            //17744256
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -548,6 +549,21 @@ public class DBMS {
         }
         return null;
     }
+        
+        public Accion consultarAccionCorrectiva(String registro, String accion) {
+            PreparedStatement accionConsulta;
+            Accion acc = null;
+            try {
+                accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'"+registro+"\' AND Accion = \'"+accion+"\';");
+                ResultSet rs = accionConsulta.executeQuery();
+                if (rs.next()) {
+                    acc = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return acc;
+        }
 
     public boolean eliminarGrupo(Grupo g) {
 
