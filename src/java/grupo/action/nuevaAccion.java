@@ -6,7 +6,7 @@
 
 package grupo.action;
 
-import domain.Grupo;
+import domain.*;
 import DBMS.DBMS;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author edgar
  */
-public class nuevoGrupo extends org.apache.struts.action.Action {
+public class nuevaAccion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -39,20 +39,13 @@ public class nuevoGrupo extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Grupo grupo = new Grupo();
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombre_grupo","Nombre del Grupo");
-        request.setAttribute("string_grupo", "Encargado del Grupo");
-        request.setAttribute("registro_nc", "Registro");
-        request.setAttribute("situacion_nc", "Describa la inconformidad");
-        request.setAttribute("clausula_nc1", "Clausula");
-        request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaracion");
-        request.setAttribute("codigo_nc1", "Codigo");
-        request.setAttribute("clausula_nc2", "Clausula");
-        request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaracion");
-        request.setAttribute("codigo_nc2", "Codigo");
+        Accion ac= (Accion) form;
+        String registro_nc= ac.getRegistro_nc();
+        request.setAttribute("registro_nc", registro_nc);
+        request.setAttribute("accion","Accion");
+        request.setAttribute("proceso", "Proceso");
+        request.setAttribute("responsable", "Responsable");
+        request.setAttribute("recursos", "Recursos");
         request.setAttribute("error", "");
         return mapping.findForward(SUCCESS);
     }

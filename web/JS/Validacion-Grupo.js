@@ -85,7 +85,7 @@ if(nombre_grupo.value== "Nombre del Grupo"){
     }  
 }
 
-if(miembros_grupo.value=="Integrante Uno, Integrante Dos, Integrante Tres..." ){
+if(miembros_grupo.value=="Encargado del Grupo" ){
     miembros_grupo.setAttribute("style","width:500px; color:gray; font-size: 14px");
 }else{
     nombre_grupo_value = true;
@@ -315,7 +315,7 @@ nombre_grupo.onclick = function() {
 string_grupo.onclick = function() {
     string_grupo_error.innerHTML = "";
     string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
-    if (string_grupo.value == "Integrante Uno, Integrante Dos, Integrante Tres...") {
+    if (string_grupo.value == "Encargado del Grupo") {
         string_grupo.value = "";
     }
 }
@@ -437,7 +437,7 @@ string_grupo.onblur = function() {
  if (string_grupo.value == "") {
      string_grupo.setAttribute("style", "width:500px; color: gray; font-size: 14px; border-color: #B22222");
      string_grupo_error.innerHTML = "El grupo debe estar formado por al menos una persona";
-     string_grupo.value = "Integrante Uno, Integrante Dos, Integrante Tres...";
+     string_grupo.value = "Encargado del Grupo";
      string_grupo_value = false;
  }else{
      string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px");

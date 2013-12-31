@@ -70,7 +70,7 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".Publica(
 	USBID VARCHAR(20) NOT NULL,
-	Titulo VARCHAR(100) NOT NULL,
+	Titulo VARCHAR(100) REFERENCES "mod1".PUBLICACION(Titulo) NOT NULL,
 	Contenido VARCHAR(5000) NOT NULL,
 	CONSTRAINT PK_Publica PRIMARY KEY (Titulo, Contenido, USBID)
 )
@@ -80,16 +80,16 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".Acciones
 (
-   Codigonc character varying(30), 
+   Registronc character varying(30), 
    Accion character varying(100), 
    Tipo character varying(11), 
    Prioridad integer, 
    Proceso character varying(100), 
-   Responsable character varying(30), 
+   Responsable character varying(100), 
    Recursos character varying(200), 
    FechaI time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
    FechaF time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
-   PRIMARY KEY (Codigonc, Accion) 
+   PRIMARY KEY (Registronc, Accion) 
 
 ) 
 WITH (
@@ -108,10 +108,6 @@ ALTER TABLE "mod1".Conforma ADD
     REFERENCES "mod1".USUARIO(USBID);
 
 ALTER TABLE "mod1".Publica ADD
-  CONSTRAINT FK_Publica_PUBLICACION FOREIGN KEY (Titulo, Contenido)
-    REFERENCES "mod1".PUBLICACION;
-
-ALTER TABLE "mod1".Publica ADD
   CONSTRAINT FK_Publica_USUARIO FOREIGN KEY (USBID)
     REFERENCES "mod1".USUARIO(USBID);
 
@@ -124,7 +120,7 @@ ALTER TABLE "mod1".Trabaja ADD
     REFERENCES "mod1".NOCONFORMIDAD(registro);
 
 ALTER TABLE "mod1".Acciones ADD
-  CONSTRAINT FK_Acciones_NOCONFORMIDAD FOREIGN KEY (Codigonc)
+  CONSTRAINT FK_Acciones_NOCONFORMIDAD FOREIGN KEY (Registronc)
     REFERENCES "mod1".NOCONFORMIDAD(registro);
 
 ------------------------ Inserts Temporales ------------------------
@@ -139,3 +135,44 @@ INSERT INTO "mod1".USUARIO VALUES ('Ana Guadalupe Ramos', 'aramos@usb.ve', 'aram
 INSERT INTO "mod1".USUARIO VALUES ('Wilfrido Gonzalez', 'wgonzal@usb.ve', 'wgonzal', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Héctor Rojas', 'hrojas@usb.ve', 'hrojas', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Salazar', 'jarriojas@usb.ve', 'jarriojas', 'member', 1);
+
+------------------------ Inserts Temporales Grupo ------------------------
+--- Nombre del grupo ---
+INSERT INTO "mod1".GRUPO VALUES ('Laboratorio E');
+--- Encargado del grupo ---
+INSERT INTO "mod1".Conforma VALUES ('Laboratorio E', 'wgonzal', '0');
+--- Usuarios del grupo ---
+INSERT INTO mod1.conforma (registrogrupo, usbid, cargo) 
+	VALUES ('Laboratorio E', 'jgruiz', 1);
+INSERT INTO mod1.conforma (registrogrupo, usbid, cargo) 
+	VALUES ('Laboratorio E', 'aramos', 1);
+--- No Conformidad del grupo ---
+INSERT INTO mod1.noconformidad (fecha, registro, situacion, procedencia, clausula1, requisito1, declaracion1, codigo1, clausula2, requisito2, declaracion2, codigo2) 
+	VALUES ('2013-12-29 21:52:01.82', 'UL04/13213', 'Inconformidad del cliente en cuanto al producto entregado por prestación de servicio a la empresa TurboCare, C.A., según queja registrada como UL04/13-230', 1, '7.2.2', 'La organización debe revisar los requisitos relacionados con el producto () antes de que se comprometa a proporcionar un producto al cliente. () Deben mantenerse registros de los resultados de la revisión y de las acciones originadas por la misma', 'El laboratorio no mantiene registros que evidencien que se hayan revisado los requisitos relacionados con el producto solicitado antes que se comprometiera a proporcionarlo, lo que contraviene lo establecido en la cláusula 7.2.2 de la norma ISO 9001:2008', 'NC131111a', '4.1.1 a)', 'Las políticas y los procedimientos para las revisiones de los pedidos, las ofertas y los contratos, que den por resultado un contrato para la realización de un ensayo o una calibración, deben asegurar que: a) los requisitos, incluidos los métodos a utilizar, están adecuadamente definidos, documentados y entendidos', 'Las políticas y los procedimientos para las revisiones de los pedidos, las ofertas y los contratos, que den por resultado un contrato para la realización de un ensayo o una calibración, deben asegurar que: a) los requisitos, incluidos los métodos a utilizar, están adecuadamente definidos, documentados y entendidos', 'NC131111b');
+--- Asociar grupo con no conformidad ---
+INSERT INTO "mod1".trabaja VALUES ('Laboratorio E', 'UL04/13213');
+--- Acciones asociadas a la No Conformidad ---
+INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
+	VALUES ('UL04/13213', 'Repetir el Ensayo de Microscopia Electrónica', 'Correctiva', 1, 'Microscopía Electrónica', 'Prof. Marlon Cruz', 'Microsocopio Electrónico e insumos', '00:06:09', '00:06:09');
+INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
+	VALUES ('UL04/13213', 'Elaborar el informe técnico del ensayo', 'Correctiva', 2, 'Microscopía electrónica', 'Prof. Marlon Cruz', 'Microscopio Electrónico e Insumos', '00:06:40', '00:06:40');
+INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
+	VALUES ('UL04/13213', 'Modificar el procedimiento de revisión de pedidos, ofertas y contratos', 'Correctiva', 3, 'Coord. de Calidad Lab E', 'ing. Héctor Rojas', 'Computadora', '00:08:55', '00:08:55');
+INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
+	VALUES ('UL04/13213', 'Seguimiento a los cambios realizados en el punto anterior', 'Correctiva', 4, 'Coord. de Calidad Lab E', 'Ing. Héctor Rojas', 'Computadora', '00:09:22', '00:09:22');
+INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
+	VALUES ('UL04/13213', 'Elaborar un listado de ensayos comunes y su alcance para Microscopía  Electrónica', 'Preventiva', 5, 'Microscopía Electrónica', 'Prof. Marlon cruz', 'Computadora', '00:09:47', '00:09:47');
+
+------------------------ Inserts Temporales Publicacion ------------------------
+
+INSERT INTO mod1.publicacion (titulo, contenido) 
+	VALUES ('Invitación - Visita a SENCAMER', 'Ante todo un cordial saludo y sirva la presente para invitarlos a participar de la visita a los laboratorios de SENCAMER - Maracay, pautada para el día Jueves doce (12) de Diciembre del presente año. El propósito de la misma, es intercambiar información sobre las capacidades tanto de la USB como de SENCAMER para la prestación de servicios de laboratorios, evaluando la posibilidad de restablecer vínculos de cooperación entre ambas instituciones. 
+
+La hora de salida es a las 8:00 a.m.; el sitio de reunión es en la Unidad de Laboratorios, en el Edificio de Energética, planta baja. Nuestros teléfonos: 0212-9063708 al 11.
+
+Agradecemos la confirmación de su asistencia a través del correo ulab-calidad@usb.ve.
+
+Atentamente,
+
+Coordinación de la Calidad 
+Unidad de Laboratorios');

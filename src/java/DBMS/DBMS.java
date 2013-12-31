@@ -5,10 +5,7 @@
  */
 package DBMS;
 
-import domain.Grupo;
-import domain.Publicacion;
-import domain.NoConformidad;
-import domain.Usuario;
+import domain.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -104,9 +101,9 @@ public class DBMS {
         PreparedStatement ncConsultar;
 
         try {
-            ncConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".noconformidad WHERE registro = \'"+ regNc +"\';");
+            ncConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".noconformidad WHERE registro = \'" + regNc + "\';");
             ResultSet rs = ncConsultar.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 DateFormat df = DateFormat.getDateInstance();
                 String fecha = df.format(rs.getDate("fecha"));
                 NoConformidad nc = new NoConformidad(fecha, regNc, rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
@@ -119,6 +116,7 @@ public class DBMS {
         }
         return null;
     }
+
     public ArrayList<NoConformidad> consultarNC(String NC) {
         PreparedStatement ncConsulta;
         try {
@@ -168,7 +166,9 @@ public class DBMS {
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
                 Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
-                usuarios.add(us);
+                if (us.getCargo() != 0) {
+                    usuarios.add(us);
+                }
             }
             return usuarios;
         } catch (SQLException e) {
@@ -195,9 +195,7 @@ public class DBMS {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
 
     public ArrayList<Publicacion> consultarPublicacion() {
@@ -239,7 +237,7 @@ public class DBMS {
 
         return null;
     }
-    
+
     public boolean agregarRelacionGU(Usuario u, String codigoG, int cargo) {
         PreparedStatement confAgregar = null;
         try {
@@ -282,6 +280,25 @@ public class DBMS {
             e.printStackTrace();
         }
 
+        return false;
+    }
+
+    public boolean agregarAccion(Accion ac) {
+        PreparedStatement acAgregar;
+        try {
+            acAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".acciones VALUES (?,?,?,?,?,?,?);");
+            acAgregar.setString(1, ac.getRegistro_nc());
+            acAgregar.setString(2, ac.getAccion());
+            acAgregar.setString(3, ac.getTipo());
+            acAgregar.setInt(4, ac.getPrioridad());
+            acAgregar.setString(5, ac.getProceso());
+            acAgregar.setString(6, ac.getResponsable());
+            acAgregar.setString(7, ac.getRecursos());
+            Integer i = acAgregar.executeUpdate();
+            return i > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -360,13 +377,30 @@ public class DBMS {
                 nc.setRequisito_nc1(rs.getString("requisito1"));
                 nc.setDeclaracion_nc1(rs.getString("declaracion1"));
                 nc.setCodigo_nc1(rs.getString("codigo1"));
-                
+
                 nc.setClausula_nc2(rs.getString("clausula2"));
                 nc.setRequisito_nc2(rs.getString("requisito2"));
                 nc.setDeclaracion_nc2(rs.getString("declaracion2"));
                 nc.setCodigo_nc2(rs.getString("codigo2"));
             }
             return nc;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String buscarGrupoPNC(String recNC) {
+        PreparedStatement ncBuscar;
+        String NombreG = "";
+
+        try {
+            ncBuscar = conexion.prepareStatement("SELECT * FROM mod1.trabaja WHERE registro = \'" + recNC + "\'");
+            ResultSet rs = ncBuscar.executeQuery();
+            if (rs.next()) {
+                NombreG = rs.getString("registrogrupo");
+            }
+            return NombreG;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -422,7 +456,7 @@ public class DBMS {
         }
         return grupos;
     }
-    
+
     public ArrayList<Grupo> consultarGruposConEncargado(Usuario user) {
         String USBID = user.getUsbid();
         PreparedStatement psConsultar;
@@ -434,17 +468,17 @@ public class DBMS {
             while (rs.next()) {
                 Grupo g = new Grupo();
                 g.setNombre_grupo(rs.getString("registroGrupo"));
-                if(rs.getInt("cargo")==0){
+                if (rs.getInt("cargo") == 0) {
                     grupos.add(g);
-                }  
-            }     
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        }  
+        }
         return grupos;
     }
-    
-     public ArrayList<Grupo> consultarGruposConMiembro(Usuario user) {
+
+    public ArrayList<Grupo> consultarGruposConMiembro(Usuario user) {
         String USBID = user.getUsbid();
         PreparedStatement psConsultar;
         ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
@@ -455,14 +489,80 @@ public class DBMS {
             while (rs.next()) {
                 Grupo g = new Grupo();
                 g.setNombre_grupo(rs.getString("registroGrupo"));
-                if(rs.getInt("cargo")!=0){
+                if (rs.getInt("cargo") != 0) {
                     grupos.add(g);
-                }   
-            }          
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        }   
+        }
         return grupos;
+    }
+
+    public boolean verificarMiembroEncargado(String usbid, String NombreG) {
+        PreparedStatement Consulta;
+        try {
+            boolean esEncargado = false;
+            Consulta = conexion.prepareStatement("SELECT * FROM mod1.conforma WHERE USBID = \'" + usbid + "\' AND registrogrupo = \'" + NombreG + "\' AND cargo = '0';");
+            ResultSet rs = Consulta.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
+        PreparedStatement acConsulta;
+        ArrayList<Accion> acciones = new ArrayList<Accion>();
+        try {
+            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
+            ResultSet rs = acConsulta.executeQuery();
+            while (rs.next()) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if (ac.getTipo().equals("Correctiva")) {
+                    acciones.add(ac);
+                }
+            }
+            return acciones;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return acciones;
+    }
+
+    public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
+        PreparedStatement acConsulta;
+        ArrayList<Accion> acciones = new ArrayList<Accion>();
+        try {
+            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'" + registro + "\' ORDER BY Prioridad;");
+            ResultSet rs = acConsulta.executeQuery();
+            while (rs.next()) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if (ac.getTipo().equals("Preventiva")) {
+                    acciones.add(ac);
+                }
+            }
+            return acciones;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return acciones;
+    }
+
+    public Accion consultarAccionCorrectiva(String registro, String accion) {
+        PreparedStatement accionConsulta;
+        Accion acc = new Accion();
+        try {
+            accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'" + registro + "\' AND Accion = \'" + accion + "\';");
+            ResultSet rs = accionConsulta.executeQuery();
+            if (rs.next()) {
+                acc = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return acc;
     }
 
     public boolean eliminarGrupo(Grupo g) {
@@ -521,13 +621,11 @@ public class DBMS {
         ArrayList<Grupo> test1;
         int i;
         boolean asuha;
-        
+
         Publicacion pub = new Publicacion();
 
         pub.setTitulo_publicacion("TITULO");
         pub.setContenido_publicacion("ASUHAUSHAIUGSIAGSIAGHS");
-
-
 
         i = 1;
 
