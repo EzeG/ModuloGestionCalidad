@@ -83,6 +83,7 @@
                         <html:option value="6">Otro</html:option>
                     </html:select>
                 </td>
+                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>
         <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>

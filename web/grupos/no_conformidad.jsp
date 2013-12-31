@@ -6,28 +6,28 @@
 
 <html:link action="tab_grupos"><p><b>Atras</b></p></html:link>
 <p id="registro_nc_error" style="font-size: 14px; color: #B22222"><b><bean:write name="grupito" property="error" filter="false"/></b></p>
-                <td style="vertical-align: middle">
-                    <p style="font-size: 16px; color:#127ba5">
-                        <bean:write name="grupito" property="nombre_grupo" filter="false"/>/No conformidad 
-                    </p>
-                </td>
+<td style="vertical-align: middle">
+    <p style="font-size: 16px; color:#127ba5">
+        <bean:write name="grupito" property="nombre_grupo" filter="false"/>/No conformidad 
+    </p>
+</td>
 
-<%String nombreG= (String) request.getAttribute("nombreG");%>
-<%String registro= (String) request.getAttribute("registro_nc");%>
-<%String situacion= (String) request.getAttribute("situacion_nc");%>
+<%String nombreG = (String) request.getAttribute("nombreG");%>
+<%String registro = (String) request.getAttribute("registro_nc");%>
+<%String situacion = (String) request.getAttribute("situacion_nc");%>
 
-<%String clausula1= (String) request.getAttribute("clausula_nc1");%>
-<%String requisito1= (String) request.getAttribute("requisito_nc1");%>
-<%String declaracion1= (String) request.getAttribute("declaracion_nc1");%>
-<%String codigo1= (String) request.getAttribute("codigo_nc1");%>
+<%String clausula1 = (String) request.getAttribute("clausula_nc1");%>
+<%String requisito1 = (String) request.getAttribute("requisito_nc1");%>
+<%String declaracion1 = (String) request.getAttribute("declaracion_nc1");%>
+<%String codigo1 = (String) request.getAttribute("codigo_nc1");%>
 
-<%String clausula2= (String) request.getAttribute("clausula_nc2");%>
-<%String requisito2= (String) request.getAttribute("requisito_nc2");%>
-<%String declaracion2= (String) request.getAttribute("declaracion_nc2");%>
-<%String codigo2= (String) request.getAttribute("codigo_nc2");%>
+<%String clausula2 = (String) request.getAttribute("clausula_nc2");%>
+<%String requisito2 = (String) request.getAttribute("requisito_nc2");%>
+<%String declaracion2 = (String) request.getAttribute("declaracion_nc2");%>
+<%String codigo2 = (String) request.getAttribute("codigo_nc2");%>
 
 
-    <html:form styleId="no_conformidad" action="/CrearNoConformidad">
+<html:form styleId="no_conformidad" action="/CrearNoConformidad">
     <fieldset>
         <table style="margin-left: 10px">
             <tr>
@@ -57,6 +57,7 @@
                         <html:option value="6">Otro</html:option>
                     </html:select>
                 </td>
+            <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>
         <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
@@ -144,9 +145,9 @@
             </div>
         </fieldset>
     </fieldset>
-         <html:submit styleId="submit" value="Aceptar" />
-         <html:hidden property="grupo_nc" value="<%=nombreG%>"/>
-    </html:form>
+    <html:submit styleId="submit" value="Aceptar" />
+    <html:hidden property="grupo_nc" value="<%=nombreG%>"/>
+</html:form>
 
 
 <head>

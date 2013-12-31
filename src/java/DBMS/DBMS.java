@@ -197,6 +197,7 @@ public class DBMS {
         }
         return null;
     }
+        
 
     public ArrayList<Publicacion> consultarPublicacion() {
         PreparedStatement usConsulta = null;
@@ -282,7 +283,7 @@ public class DBMS {
 
         return false;
     }
-
+    
     public boolean agregarAccion(Accion ac) {
         PreparedStatement acAgregar;
         try {
@@ -389,7 +390,7 @@ public class DBMS {
         }
         return null;
     }
-
+    
     public String buscarGrupoPNC(String recNC) {
         PreparedStatement ncBuscar;
         String NombreG = "";
@@ -498,8 +499,10 @@ public class DBMS {
         }
         return grupos;
     }
-
-    public boolean verificarMiembroEncargado(String usbid, String NombreG) {
+     
+    
+     
+        public boolean verificarMiembroEncargado(String usbid, String NombreG) {
         PreparedStatement Consulta;
         try {
             boolean esEncargado = false;
@@ -511,59 +514,57 @@ public class DBMS {
         }
         return false;
     }
-
-    public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
+    
+        public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
         PreparedStatement acConsulta;
-        ArrayList<Accion> acciones = new ArrayList<Accion>();
         try {
+            ArrayList<Accion> acciones = new ArrayList<Accion>();
             acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
-                if (ac.getTipo().equals("Correctiva")) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if(ac.getTipo().equals("Correctiva"))
                     acciones.add(ac);
-                }
             }
             return acciones;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return acciones;
+        return null;
     }
-
-    public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
+        
+        public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
         PreparedStatement acConsulta;
-        ArrayList<Accion> acciones = new ArrayList<Accion>();
         try {
-            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'" + registro + "\' ORDER BY Prioridad;");
+            ArrayList<Accion> acciones = new ArrayList<Accion>();
+            acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
-                if (ac.getTipo().equals("Preventiva")) {
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                if(ac.getTipo().equals("Preventiva"))
                     acciones.add(ac);
-                }
             }
             return acciones;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return acciones;
+        return null;
     }
-
-    public Accion consultarAccionCorrectiva(String registro, String accion) {
-        PreparedStatement accionConsulta;
-        Accion acc = new Accion();
-        try {
-            accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'" + registro + "\' AND Accion = \'" + accion + "\';");
-            ResultSet rs = accionConsulta.executeQuery();
-            if (rs.next()) {
-                acc = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"), rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+        
+        public Accion consultarAccionCorrectiva(String registro, String accion) {
+            PreparedStatement accionConsulta;
+            Accion acc = null;
+            try {
+                accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'"+registro+"\' AND Accion = \'"+accion+"\';");
+                ResultSet rs = accionConsulta.executeQuery();
+                if (rs.next()) {
+                    acc = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return acc;
         }
-        return acc;
-    }
 
     public boolean eliminarGrupo(Grupo g) {
 

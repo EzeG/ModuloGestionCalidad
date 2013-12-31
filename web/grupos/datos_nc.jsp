@@ -23,7 +23,7 @@
             </p>
         </td>
     </tr>
-</table>
+</table>    
 <div style="width: 500px">
     <table>
         <tr>
@@ -147,14 +147,10 @@
     </table>
 </div> 
 <br>       
-
 <html:form action="/nueva_accion">
     <html:hidden property="registro_nc" value="<%=registro_nc%>" />
     <html:submit style="visibility: hidden" styleId="agregarp" value="+ Accion" />
 </html:form>           
-
-
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 

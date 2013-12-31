@@ -168,7 +168,7 @@
             <forward name="success" path="/cartelera/vista_nueva_publicacion.jsp"/>
             <forward name="failure" path="/construccion/vista_construccion.jsp"/>
         </action>
-
+        
         <action name="Accion" path="/linkaccion" scope="request" type="grupo.action.LinkAccion">
             <forward name="success" path="/grupos/vista_accion.jsp"/>
         </action>
