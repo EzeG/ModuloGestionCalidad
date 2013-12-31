@@ -40,16 +40,9 @@ public class LinkAccion extends org.apache.struts.action.Action {
         Accion accionForm = (Accion) form;
         Accion informacion;
         informacion = DBMS.getInstance().consultarAccionCorrectiva(accionForm.getRegistro_nc(), accionForm.getAccion());
-        if (informacion != null) {
-            request.setAttribute("descripcion", informacion.getAccion());
-            request.setAttribute("registroNC", informacion.getRegistro_nc());
-            request.setAttribute("tipo", informacion.getTipo());
-            request.setAttribute("prioridad", informacion.getPrioridad());
-            request.setAttribute("proceso", informacion.getProceso());
-            request.setAttribute("responsable", informacion.getResponsable());
-            request.setAttribute("recursos", informacion.getRecursos());
+        if(informacion != null) {
+            request.setAttribute("Accionn", informacion);
         }
-        
         return mapping.findForward(SUCCESS);
     }
 }

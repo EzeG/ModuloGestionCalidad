@@ -12,10 +12,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 /**
  *
@@ -46,9 +49,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/prueba",
+                    "jdbc:postgresql://localhost:5432/CALIDAD",
                     "postgres",
-                    "postgres");
+                    "123");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -287,7 +290,7 @@ public class DBMS {
     public boolean agregarAccion(Accion ac) {
         PreparedStatement acAgregar;
         try {
-            acAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".acciones VALUES (?,?,?,?,?,?,?);");
+            acAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".acciones VALUES (?,?,?,?,?,?,?,?,?);");
             acAgregar.setString(1, ac.getRegistro_nc());
             acAgregar.setString(2, ac.getAccion());
             acAgregar.setString(3, ac.getTipo());
@@ -295,6 +298,8 @@ public class DBMS {
             acAgregar.setString(5, ac.getProceso());
             acAgregar.setString(6, ac.getResponsable());
             acAgregar.setString(7, ac.getRecursos());
+            acAgregar.setDate(8, new java.sql.Date(ac.getFechainicio().getTime()));
+            acAgregar.setDate(9, new java.sql.Date(ac.getFechafinal().getTime()));
             Integer i = acAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
@@ -522,7 +527,7 @@ public class DBMS {
             acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
                 if(ac.getTipo().equals("Correctiva"))
                     acciones.add(ac);
             }
@@ -535,12 +540,14 @@ public class DBMS {
         
         public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
         PreparedStatement acConsulta;
+        Date di=new Date(), df= new Date();
         try {
             ArrayList<Accion> acciones = new ArrayList<Accion>();
             acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+              
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
                 if(ac.getTipo().equals("Preventiva"))
                     acciones.add(ac);
             }
@@ -553,17 +560,20 @@ public class DBMS {
         
         public Accion consultarAccionCorrectiva(String registro, String accion) {
             PreparedStatement accionConsulta;
-            Accion acc = null;
+            ArrayList<Accion> acc = new ArrayList<Accion>();
+            Accion acci = new Accion();
             try {
                 accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'"+registro+"\' AND Accion = \'"+accion+"\';");
                 ResultSet rs = accionConsulta.executeQuery();
                 if (rs.next()) {
-                    acc = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"));
+                    acci = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
+                    acc.add(acci);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return acc;
+            if (acc.size() > 0) return acc.get(0);
+            else return null;
         }
 
     public boolean eliminarGrupo(Grupo g) {

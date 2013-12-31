@@ -118,13 +118,43 @@
     <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Preventivas:</p>
 </div>
 <div id="noconformidades">
-    <table>
+    <table border = "1">
+        <tr bgcolor="#999999" style="font-size: 12px">
+            <td align="center">
+                <b>Acción</b>
+            </td>
+            <td align="center">
+                <b>Prior</b>
+            </td>
+            <td align="center">
+                <b>Proceso/Responsable</b>
+            </td>
+            <td align="center">
+                <b>Fecha Inicio</b>
+            </td>
+            <td align="center">
+                <b>Culminación</b>
+            </td>
+        </tr>
         <logic:iterate id="a_p" name="AccionPreventiva">
             <tr>
                 <td style="vertical-align: middle">
                     <html:link action="linkaccion.do?registro_nc=${a_p.registro_nc}&accion=${a_p.accion}">
                         <bean:write name="a_p" property="accion"/>
                     </html:link>
+                </td>
+                <td>
+                    <bean:write name="a_p" property="prioridad"/>
+                </td>
+                
+                <td>
+                    <bean:write name="a_p" property="proceso"/>/<bean:write name="a_p" property="responsable"/>
+                </td>
+                <td>
+                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechainicio"/>
+                </td>
+                <td>
+                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechafinal"/>
                 </td>
             </tr>
         </logic:iterate>
@@ -134,13 +164,43 @@
     <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Correctivas:</p>
 </div>           
 <div id="noconformidades">
-    <table>
+    <table border = "1">
+        <tr bgcolor="#999999">
+            <td align="center">
+                <b>Acción</b>
+            </td>
+            <td align="center">
+                <b>Prior</b>
+            </td>
+            <td align="center">
+                <b>Proceso/Responsable</b>
+            </td>
+            <td align="center">
+                <b>Fecha Inicio</b>
+            </td>
+            <td align="center">
+                <b>Culminación</b>
+            </td>
+        </tr>
         <logic:iterate id="a_c" name="AccionCorrectiva">
             <tr>
                 <td style="vertical-align: middle">
                     <html:link action="linkaccion.do?registro_nc=${a_c.registro_nc}&accion=${a_c.accion}">
                         <bean:write name="a_c" property="accion"/>
                     </html:link>
+                </td>
+                <td>
+                    <bean:write name="a_p" property="prioridad"/>
+                </td>
+                
+                <td>
+                    <bean:write name="a_p" property="proceso"/>/<bean:write name="a_p" property="responsable"/>
+                </td>
+                <td>
+                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechainicio"/>
+                </td>
+                <td>
+                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechafinal"/>
                 </td>
             </tr>
         </logic:iterate>

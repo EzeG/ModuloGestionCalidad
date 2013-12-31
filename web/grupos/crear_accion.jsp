@@ -82,6 +82,20 @@ String error= (String) request.getAttribute("error");%>
             </td>
         </tr>
         <tr>
+            <td><p style="font-size: 14px"><b>Fecha Inicio:</b></p></td>
+            <td>
+                <html:text styleId="fechainicioinput" property="fechainicioinput" value="dd-mm-yyyy" style="width:300px; color:gray; font-size: 14px"/>
+                <p id="fechainicioinput_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Fecha Culminación:</b></p></td>
+            <td>
+                <html:text styleId="fechafinalinput" property="fechafinalinput" value="dd-mm-yyyy" style="width:300px; color:gray; font-size: 14px"/>
+                <p id="fechafinalinput_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+        <tr>
             <td><p style="font-size: 14px"><b>Recursos:</b></p></td>
             <td>
                 <html:textarea styleId="recursos" property="recursos" value="<%=recursos%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
