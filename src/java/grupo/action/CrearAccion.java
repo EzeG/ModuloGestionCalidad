@@ -73,13 +73,20 @@ public class CrearAccion extends org.apache.struts.action.Action {
             return mapping.findForward(SUCCESS);
             
         }else{
+            ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+            String registroGrupo;
             String registro_nc= accion.getRegistro_nc();
             request.setAttribute("registro_nc", registro_nc);
-            request.setAttribute("accion",accion.getAccion());
-            request.setAttribute("proceso", accion.getProceso());
-            request.setAttribute("responsable", accion.getResponsable());
-            request.setAttribute("recursos", accion.getRecursos());
-            request.setAttribute("error", "ya hay otra accion con este titulo");
+            registroGrupo = DBMS.getInstance().buscarGrupoPNC(registro_nc);
+            if (registroGrupo != null) {
+                listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
+            }
+            request.setAttribute("accion","Accion");
+            request.setAttribute("proceso", "Proceso");
+            request.setAttribute("responsable", "Responsable");
+            request.setAttribute("recursos", "Recursos");
+            request.setAttribute("integrantes", listUsuarios);
+            request.setAttribute("error", "Ya existe la acción");
             return mapping.findForward(FAILURE);
         }    
     }

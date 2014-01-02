@@ -41,12 +41,19 @@ public class nuevaAccion extends org.apache.struts.action.Action {
             throws Exception {
         Accion ac= (Accion) form;
         String registro_nc= ac.getRegistro_nc();
+        ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+        String registroGrupo;
         request.setAttribute("registro_nc", registro_nc);
+        registroGrupo = DBMS.getInstance().buscarGrupoPNC(registro_nc);
+        if (registroGrupo != null) {
+            listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
+        }
         request.setAttribute("accion","Accion");
         request.setAttribute("proceso", "Proceso");
         request.setAttribute("responsable", "Responsable");
         request.setAttribute("recursos", "Recursos");
         request.setAttribute("error", "");
+        request.setAttribute("integrantes", listUsuarios);
         return mapping.findForward(SUCCESS);
     }
 }

@@ -15,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
-
+import java.util.ArrayList;
 /**
  *
  * @author edgar
@@ -28,6 +28,7 @@ public class Accion extends org.apache.struts.action.ActionForm {
     private int prioridad;
     private String proceso;
     private String responsable;
+    private ArrayList<String> responsables;
     private String recursos;
     private Date fechainicio;
     private Date fechafinal;
@@ -83,6 +84,19 @@ public class Accion extends org.apache.struts.action.ActionForm {
         this.responsable = responsable;
     }
 
+    public ArrayList<String> getResponsables() {
+        return this.responsables;
+    }
+    
+    public void setResponsables(ArrayList<String> respo) {
+        this.responsables = respo;
+        String[] parts;
+        if (respo.size() > 0) {
+            parts = respo.get(0).split("/");
+            this.responsable = parts[1];
+         }
+    }
+    
     public String getRecursos() {
         return recursos;
     }

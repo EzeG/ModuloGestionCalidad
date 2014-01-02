@@ -252,7 +252,7 @@ background: #BCF7FF;
   
 }
 
-#noconformidades, #miembros{
+#noconformidades, #miembros, #responsableAccion{
   height: 200px;
 border-style: groove;
 display: block;
@@ -263,6 +263,10 @@ border-width: thin;
 	z-index: 1;
 	overflow: auto;
   
+}
+
+#responsableAccion {
+      width: 300px;
 }
 
 #listapersonas{

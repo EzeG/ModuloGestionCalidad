@@ -522,12 +522,18 @@ public class DBMS {
     
         public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
         PreparedStatement acConsulta;
+        Usuario us;
+        String responsable;
         try {
             ArrayList<Accion> acciones = new ArrayList<Accion>();
             acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
+                us = buscarUsuario(rs.getString("responsable"));
+                if(us == null) {
+                    responsable = rs.getString("responsable");
+                } else responsable = us.getNombre()+"-"+us.getUsbid();
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), responsable, rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
                 if(ac.getTipo().equals("Correctiva"))
                     acciones.add(ac);
             }
@@ -540,14 +546,18 @@ public class DBMS {
         
         public ArrayList<Accion> consultarAccionesPreventivas(String registro) {
         PreparedStatement acConsulta;
-        Date di=new Date(), df= new Date();
+        Usuario us;
+        String responsable;
         try {
             ArrayList<Accion> acciones = new ArrayList<Accion>();
             acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE registronc = \'" + registro + "\' order by prioridad;");
             ResultSet rs = acConsulta.executeQuery();
             while (rs.next()) {
-              
-                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
+                us = buscarUsuario(rs.getString("responsable"));
+                if(us == null) {
+                    responsable = rs.getString("responsable");
+                } else responsable = us.getNombre()+"-"+us.getUsbid();
+                Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), responsable, rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
                 if(ac.getTipo().equals("Preventiva"))
                     acciones.add(ac);
             }
@@ -561,12 +571,18 @@ public class DBMS {
         public Accion consultarAccionCorrectiva(String registro, String accion) {
             PreparedStatement accionConsulta;
             ArrayList<Accion> acc = new ArrayList<Accion>();
+            Usuario us;
+            String responsable;
             Accion acci = new Accion();
             try {
                 accionConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE Registronc = \'"+registro+"\' AND Accion = \'"+accion+"\';");
                 ResultSet rs = accionConsulta.executeQuery();
                 if (rs.next()) {
-                    acci = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), rs.getString("responsable"), rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
+                    us = buscarUsuario(rs.getString("responsable"));
+                    if(us == null) {
+                        responsable = rs.getString("responsable");
+                    } else responsable = us.getNombre()+"-"+us.getUsbid();
+                    acci = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), responsable, rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
                     acc.add(acci);
                 }
             } catch (SQLException e) {

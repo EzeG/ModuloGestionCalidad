@@ -74,11 +74,13 @@ String error= (String) request.getAttribute("error");%>
                 <p id="proceso_error" style="font-size: 12px; color: #B22222"></p>
             </td>
         </tr>
+
         <tr>
-            <td><p style="font-size: 14px"><b>Responsable:</b></p></td>
+             <td><p style="font-size: 14px"><b>Responsable:</b></p></td>
             <td>
-                <html:text styleId="responsable" property="responsable" value="<%=responsable%>" style="width:300px; color:gray; font-size: 14px" />
-                <p id="responsable_error" style="font-size: 12px; color: #B22222"></p>
+             <html:select style="font-size: 14px; height: 24px " property="responsable">
+                <html:options collection="integrantes" labelProperty="nombre" property="usbid" />
+             </html:select>
             </td>
         </tr>
         <tr>

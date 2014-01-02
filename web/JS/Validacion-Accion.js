@@ -23,7 +23,7 @@ fechafinalinput_error = document.getElementById("fechafinalinput_error");
 //se definen las variables de validacion
 accion_value= false;
 proceso_value= false;
-responsable_value= false;
+responsable_value= true;
 recursos_value= false;
 fechainicioinput_value = false;
 fechafinalinput_value = false;
@@ -59,11 +59,6 @@ if(proceso.value=="Proceso"){
     proceso.setAttribute("style","width:300px; color: black; font-size: 14px");
 }
 
-if(responsable.value=="Responsable"){
-    responsable.setAttribute("style","width:300px; color: gray; font-size: 14px");    
-}else{
-    responsable.setAttribute("style","width:300px; color: black; font-size: 14px");
-}
 
 
 
@@ -120,13 +115,6 @@ proceso.onclick = function() {
  }
 };
 
-responsable.onclick = function() {
-     responsable.setAttribute("style", "width:300px; color: black;font-size: 14px; border-color: #127ba5");
-     responsable_error.innerHTML = "";
- if (responsable.value == "Responsable") {
-     responsable.value = "";
- }
-};
 
 fechainicioinput.onclick = function() {
      fechainicioinput.setAttribute("style", "width:300px; color: black;font-size: 14px; border-color: #127ba5");
@@ -196,25 +184,7 @@ recursos.onblur = function() {
    submit.disabled = !(accion_value && proceso_value && recursos_value && responsable_value && fechafinalinput_value && fechainicioinput_value);
 };
 
-responsable.onblur = function() {
-    responsable.value = responsable.value.trim();
- if (responsable.value == "") {
-     responsable.setAttribute("style", "width:300px; color: gray; font-size: 14px; border-color: #127ba5; border-color: #B22222");
-     responsable_error.innerHTML = "Indique el responsable";
-     responsable.value = "Responsable";
-     responsable_value = false;
- }else{
-     if (responsable.value.length > 99){
-         responsable.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #127ba5; border-color: #B22222");
-         responsable_error.innerHTML = "El nombre del responsable es muy largo";
-         responsable_value = false;
-     }else{
-        responsable.setAttribute("style", "width:300px; color: black; font-size: 14px");
-        responsable_value = true;
-    }
- }
-   submit.disabled = !(accion_value && proceso_value && recursos_value && responsable_value && fechafinalinput_value && fechainicioinput_value);
-};
+
 
 proceso.onblur = function() {
     proceso.value = proceso.value.trim();

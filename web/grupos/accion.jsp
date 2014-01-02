@@ -45,7 +45,7 @@
         <tr>
             <td
                 <p style="font-size: 12px; margin-top: -10px">
-                    <b>Responsable/Proceso Asociado</b>
+                    <b>Proceso/Responsable</b>
                 </p>
             </td>
             <td>
@@ -56,7 +56,7 @@
         </tr>
         <tr>
             <td>
-                <bean:write name="Accionn" property="responsable"/>/<bean:write name="Accionn" property="proceso"/>
+                <bean:write name="Accionn" property="proceso"/>/<bean:write name="Accionn" property="responsable"/>
             </td>
             <td>
                 <bean:write name="Accionn" property="prioridad"/>
