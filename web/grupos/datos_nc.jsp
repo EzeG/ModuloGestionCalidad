@@ -137,34 +137,35 @@
     </table>
 </div>
             <center>           
-                <button id="button" style="width: 600px; height: 60px" >Acciones Activas</button>
+                <button id="button" style="width: 600px; height: 60px;" >Acciones Activas</button>
             </center>
             <br/>
     <div id="desplegable1">           
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Preventivas:</p>
+    <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Preventivas</p></center>
 </div>
-              
+        <center>            
 <div id="noconformidades">
 
     <table border = "1">
-        <tr bgcolor="#D3D3D3" style="font-size: 12px">
-            <td align="center">
-                <b>Acción</b>
-            </td>
-            <td align="center">
-                <b>Prior</b>
-            </td>
-            <td align="center">
-                <b>Proceso/Responsable</b>
-            </td>
-            <td align="center">
-                <b>Fecha Inicio</b>
-            </td>
-            <td align="center">
-                <b>Culminación</b>
-            </td>
-        </tr>
+            <tr bgcolor="#D3D3D3" style="font-size: 12px">
+                <td align="center">
+                    <b>Acción</b>
+                </td>
+                <td align="center">
+                    <b>Prior</b>
+                </td>
+                <td align="center">
+                    <b>Proceso/Responsable</b>
+                </td>
+                <td align="center">
+                    <b>Fecha Inicio</b>
+                </td>
+                <td align="center">
+                    <b>Culminación</b>
+                </td>
+            </tr>
+       
         <logic:iterate id="a_p" name="AccionPreventiva">
             <tr>
                 <td style="vertical-align: middle">
@@ -187,14 +188,16 @@
                 </td>
             </tr>
         </logic:iterate>
+        
     </table>
     </div>
-
+        </center>
             <br/>
 
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Correctivas:</p>
-</div>           
+    <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Correctivas</p></center>
+</div>    
+            <center>
 <div id="noconformidades">
     <table border = "1">
         <tr bgcolor="#D3D3D3">
@@ -238,12 +241,14 @@
         </logic:iterate>
     </table>
 </div>
+            </center>
 </div>              
 <br>    
 
 <center>
     <button id="button2"  style="width: 600px; height: 60px;">Acciones Terminadas</button>
 </center>
+<br/>
 <div id="desplegable2">
 <div id="noconformidades">
     <table border = "1">
