@@ -169,9 +169,8 @@ public class DBMS {
             ResultSet rs = usConsulta.executeQuery();
             while (rs.next()) {
                 Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
-                if (us.getCargo() != 0) {
-                    usuarios.add(us);
-                }
+                usuarios.add(us);
+                
             }
             return usuarios;
         } catch (SQLException e) {
@@ -463,6 +462,44 @@ public class DBMS {
         }
         return grupos;
     }
+    
+        public ArrayList<Grupo> consultarGruposActivos() {
+        PreparedStatement psConsultar;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>();
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".GRUPO G WHERE EXISTS(SELECT * FROM \"mod1\".Trabaja T WHERE registroGrupo = G.registroGrupo AND EXISTS (SELECT * FROM \"mod1\".noconformidad WHERE registro = T.registro AND estado = \'activa\'));");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("registroGrupo"));
+                grupos.add(g);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return grupos;
+    }
+        
+        public ArrayList<Grupo> consultarGruposInActivos() {
+        PreparedStatement psConsultar;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>();
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".GRUPO G WHERE NOT EXISTS(SELECT * FROM \"mod1\".Trabaja T WHERE registroGrupo = G.registroGrupo AND EXISTS (SELECT * FROM \"mod1\".noconformidad WHERE registro = T.registro AND estado = \'activa\'));");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("registroGrupo"));
+                grupos.add(g);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return grupos;
+    }
 
     public ArrayList<Grupo> consultarGruposConEncargado(Usuario user) {
         String USBID = user.getUsbid();
@@ -470,7 +507,7 @@ public class DBMS {
         ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
 
         try {
-            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma WHERE usbid ='" + USBID + "';");
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma G WHERE usbid ='" + USBID + "' AND EXISTS(SELECT * FROM \"mod1\".Trabaja T WHERE registroGrupo = G.registroGrupo AND EXISTS (SELECT * FROM \"mod1\".noconformidad WHERE registro = T.registro AND estado = \'activa\'));");
             ResultSet rs = psConsultar.executeQuery();
             while (rs.next()) {
                 Grupo g = new Grupo();
@@ -491,7 +528,7 @@ public class DBMS {
         ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
 
         try {
-            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma WHERE usbid ='" + USBID + "';");
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".conforma G WHERE usbid ='" + USBID + "' AND EXISTS(SELECT * FROM \"mod1\".Trabaja T WHERE registroGrupo = G.registroGrupo AND EXISTS (SELECT * FROM \"mod1\".noconformidad WHERE registro = T.registro AND estado = \'activa\'));");
             ResultSet rs = psConsultar.executeQuery();
             while (rs.next()) {
                 Grupo g = new Grupo();
@@ -506,7 +543,25 @@ public class DBMS {
         return grupos;
     }
      
-    
+    public ArrayList<Grupo> consultarGruposSinMiembro(Usuario user) {
+        String USBID = user.getUsbid();
+        PreparedStatement psConsultar;
+        ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".GRUPO G WHERE NOT EXISTS(SELECT * FROM \"mod1\".conforma C WHERE C.registroGrupo = G.registroGrupo AND C.usbid ='" + USBID + "') AND EXISTS(SELECT * FROM \"mod1\".Trabaja T WHERE registroGrupo = G.registroGrupo AND EXISTS (SELECT * FROM \"mod1\".noconformidad WHERE registro = T.registro AND estado = \'activa\'));");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Grupo g = new Grupo();
+                g.setNombre_grupo(rs.getString("registroGrupo"));
+                grupos.add(g);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return grupos;
+    }
+     
      
         public boolean verificarMiembroEncargado(String usbid, String NombreG) {
         PreparedStatement Consulta;

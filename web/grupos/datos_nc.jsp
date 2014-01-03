@@ -137,7 +137,7 @@
     </table>
 </div>
             <center>           
-                <button id="button" style="width: 600px; height: 60px;" >Acciones Activas</button>
+                <button id="button" style="width: 580px; height: 60px;" ><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Activas</b></button>
             </center>
             <br/>
     <div id="desplegable1">           
@@ -246,7 +246,7 @@
 <br>    
 
 <center>
-    <button id="button2"  style="width: 600px; height: 60px;">Acciones Terminadas</button>
+    <button id="button2"  style="width: 580px; height: 60px;"><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Terminadas</b></button>
 </center>
 <br/>
 <div id="desplegable2">
@@ -298,6 +298,6 @@
 <center>
 <html:form action="/nueva_accion">
     <html:hidden property="registro_nc" value="<%=registro_nc%>" />
-    <html:submit style="<%=visual%>" styleId="agregarp" value="+ Accion" />
+    <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
 </html:form>     
 </center>

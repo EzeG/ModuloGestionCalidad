@@ -128,9 +128,9 @@ ALTER TABLE "mod1".Acciones ADD
 
 ------------------------ Inserts Temporales ------------------------
 INSERT INTO "mod1".USUARIO VALUES ('admin', 'admin@usb.ve', 'admin', 'admin', 0);
-INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 1);
-INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'ferreira@sub.ve', 'ferreira','member', 1 );
-INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'sanchezy@usb.ve', 'sanchezy', 'member', 1);
+INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'ferreira@sub.ve', 'ferreira','member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'sanchezy@usb.ve', 'sanchezy', 'member', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Adelis Lucinchi', 'alucinchi@usb.ve', 'alucinchi', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Luis Alvarez', 'lualvare@usb.ve', 'lualvare', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Gregorio Ruiz', 'jgruiz@usb.ve', 'jgruiz', 'member', 1);

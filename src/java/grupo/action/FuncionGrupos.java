@@ -42,14 +42,22 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ArrayList<Grupo> grupos;
+        ArrayList<Grupo> gruposin;
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
         int Cargo = usuario.getCargo();
         
         String rango = "encargado";
         Grupo grupo = new Grupo();
         if (Cargo== 0){
-            grupos = DBMS.getInstance().consultarGrupos();
+            grupos = DBMS.getInstance().consultarGruposActivos();
+            gruposin = DBMS.getInstance().consultarGruposInActivos();
+            request.setAttribute("listInactivos", gruposin);
+            grupos = DBMS.getInstance().consultarGruposConEncargado(usuario);
+            request.setAttribute("listGruposEncargado", grupos);
+            grupos = DBMS.getInstance().consultarGruposConMiembro(usuario);
             request.setAttribute("listGrupos", grupos);
+            grupos = DBMS.getInstance().consultarGruposSinMiembro(usuario);
+            request.setAttribute("listGruposSinMi", grupos);
             request.setAttribute("grupitos", grupo);
             request.setAttribute("Agregar","+ No Conformidad");
             request.setAttribute("AgregarAction","/agregarNC");
