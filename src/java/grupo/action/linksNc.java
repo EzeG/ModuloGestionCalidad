@@ -43,6 +43,7 @@ public class linksNc extends org.apache.struts.action.Action {
         String origen = "";
         ArrayList<Accion> acciones_preventivas = new ArrayList<Accion>();
         ArrayList<Accion> acciones_correctivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
         nc = DBMS.getInstance().buscarNc(nombreNc);
         
         /* Origen segun el numero */
@@ -63,8 +64,10 @@ public class linksNc extends org.apache.struts.action.Action {
         request.setAttribute("origen", origen);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
         acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+        acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
         request.setAttribute("AccionPreventiva", acciones_preventivas);
         request.setAttribute("AccionCorrectiva", acciones_correctivas);
+        request.setAttribute("AccionTerminada", acciones_terminadas);
         String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
         Usuario usuario;
         usuario = (Usuario) request.getSession().getAttribute("usuario");

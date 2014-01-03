@@ -47,6 +47,7 @@ public class CrearAccion extends org.apache.struts.action.Action {
             String origen = "";
             ArrayList<Accion> acciones_preventivas;
             ArrayList<Accion> acciones_correctivas;
+            ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
             nc = DBMS.getInstance().buscarNc(accion.getRegistro_nc());
 
             /* Origen segun el numero */
@@ -67,9 +68,21 @@ public class CrearAccion extends org.apache.struts.action.Action {
             request.setAttribute("origen", origen);
             acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
             acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+            acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
             request.setAttribute("AccionPreventiva", acciones_preventivas);
             request.setAttribute("AccionCorrectiva", acciones_correctivas);
-            request.setAttribute("visible", "visible");
+            request.setAttribute("AccionTerminada", acciones_terminadas);
+            String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
+            Usuario usuario;
+            usuario = (Usuario) request.getSession().getAttribute("usuario");
+            String usbid = usuario.getUsbid();
+
+             if(DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
+                 request.setAttribute("visible", "visible");
+             }else{
+                 request.setAttribute("visible", "hidden");
+             }    
+            //request.setAttribute("visible", "visible");
             return mapping.findForward(SUCCESS);
             
         }else{

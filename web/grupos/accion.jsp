@@ -1,4 +1,4 @@
-<%@page import="domain.Accion"%>
+<%@page import = "domain.Accion" %>
 <%@page contentType="text/html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
@@ -7,11 +7,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
     <script type="text/javascript" src="JS/sesion.js"></script>
+    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
+
 </head>
+<% String accion = (String) request.getAttribute("accion");
+    String registronc = (String) request.getAttribute("noconformidad");
+    String visible = (String) request.getAttribute("visible");
+    String vis = "visibility : "+visible;%>
+    <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
 <body>
     
     <table>
@@ -91,4 +99,10 @@
             </td>
         </tr>
     </table>
+      
 </body>
+    <html:form action="/terminaraccion">
+    <html:hidden property="accion" value="<%=accion%>" />
+    <html:hidden property="registro_nc" value="<%=registronc%>" />
+    <html:submit style="<%=vis%>" styleId="agregarp" value="Terminar Acción" />
+</html:form> 

@@ -18,6 +18,7 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".GRUPO(
 	registroGrupo VARCHAR(30) NOT NULL,
+        estado VARCHAR(30) NOT NULL DEFAULT('activo'),
 	CONSTRAINT PK_GRUPO PRIMARY KEY (registroGrupo)
 )
 WITH (
@@ -37,6 +38,7 @@ CREATE TABLE mod1.noconformidad(
   requisito2 VARCHAR(5000),
   declaracion2 VARCHAR(5000),
   codigo2 VARCHAR(30),
+  estado VARCHAR(30) NOT NULL DEFAULT ('activa'), 
   CONSTRAINT pk_noconformidad PRIMARY KEY (registro )
 )
 WITH (
@@ -86,7 +88,8 @@ CREATE TABLE "mod1".Acciones
    Prioridad integer, 
    Proceso character varying(100), 
    Responsable character varying(100), 
-   Recursos character varying(200), 
+   Recursos character varying(200),
+   estado VARCHAR(30) NOT NULL DEFAULT('activa'),
    FechaI date NOT NULL DEFAULT ('now'::text)::timestamp(2), 
    FechaF date NOT NULL DEFAULT ('now'::text)::timestamp(2), 
    PRIMARY KEY (Registronc, Accion) 

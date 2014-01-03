@@ -34,6 +34,7 @@ public class Accion extends org.apache.struts.action.ActionForm {
     private Date fechafinal;
     private String fechainicioinput;
     private String fechafinalinput;
+    private String estado = "activa";
 
 
     public String getRegistro_nc() {
@@ -157,6 +158,14 @@ public class Accion extends org.apache.struts.action.ActionForm {
         this.fechafinalinput = culmina;
     }
     
+    public String getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(String estad) {
+        if(estad.equals("activa") || estad.equals("terminada")) this.estado = estad;
+    }
+    
     public Accion(){
         super();
     }
@@ -173,6 +182,7 @@ public class Accion extends org.apache.struts.action.ActionForm {
         this.recursos = recursos;
         this.fechainicio = inicio;
         this.fechafinal = culmina;
+        this.estado = "activa";
     }
 
 

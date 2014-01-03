@@ -5,10 +5,8 @@
  */
 
 package grupo.action;
-
 import DBMS.DBMS;
 import domain.Accion;
-import domain.Usuario;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -19,7 +17,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author ani
  */
-public class LinkAccion extends org.apache.struts.action.Action {
+public class TerminarAccion extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -38,25 +36,13 @@ public class LinkAccion extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Accion accionForm = (Accion) form;
-        Accion informacion;
-        Usuario usuario;
-        usuario = (Usuario) request.getSession().getAttribute("usuario");
-        String usbid = usuario.getUsbid();
-        informacion = DBMS.getInstance().consultarAccionCorrectiva(accionForm.getRegistro_nc(), accionForm.getAccion());
-        if(informacion != null) {
-            request.setAttribute("Accionn", informacion);
-        }
-        request.setAttribute("noconformidad", accionForm.getRegistro_nc());
-        request.setAttribute("accion", accionForm.getAccion());
-         if(DBMS.getInstance().verificarMiembroEncargadoAccion(usbid, accionForm.getRegistro_nc(), accionForm.getAccion())) {
-            if(informacion.getEstado().equals("terminada")) request.setAttribute("visible", "hidden");
-                 else request.setAttribute("visible", "visible");
-  
-                 
-         }else{
-             request.setAttribute("visible", "hidden");
-         }   
+        
+        Accion acc = (Accion) form;
+        boolean terminada;
+        request.setAttribute("Accion", acc);
+        terminada = DBMS.getInstance().terminarAccion(acc.getRegistro_nc(), acc.getAccion());
+        if(terminada) request.setAttribute("mensaje", "La acción '"+acc.getAccion()+"' ha sido terminada.");
+        else request.setAttribute("mensaje", "La acción '"+acc.getAccion()+"' no se ha podido terminar.");
         return mapping.findForward(SUCCESS);
     }
 }

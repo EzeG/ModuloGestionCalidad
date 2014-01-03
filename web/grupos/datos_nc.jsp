@@ -1,13 +1,36 @@
 <%@page import="domain.NoConformidad"%>
+<%@page import="domain.Accion"%>
 <%@page contentType="text/html" %>
+<%@page import ="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+
+<head>
+           <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#button").click(function() {
+                $("#desplegable1").slideToggle("slow");
+            });
+            $("#button2").click(function() {
+                $("#desplegable2").slideToggle("slow");
+            });
+            $("#desplegable1").css({display: 'none'});
+            $("#desplegable2").css({display: 'none'});
+        });
+
+    </script>
+</head>
 <%NoConformidad nc = (NoConformidad) request.getAttribute("nc");
     String registro_nc = nc.getRegistro_nc();
-    String visible = (String) request.getAttribute("visible");%>
+    String visible = (String) request.getAttribute("visible");
+    String visual = "visibility : "+visible;
+%>
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
 <table>
     <tr>
@@ -113,13 +136,19 @@
         </tr>
     </table>
 </div>
-
+            <center>           
+                <button id="button" style="width: 600px; height: 60px" >Acciones Activas</button>
+            </center>
+            <br/>
+    <div id="desplegable1">           
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
     <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Preventivas:</p>
 </div>
+              
 <div id="noconformidades">
+
     <table border = "1">
-        <tr bgcolor="#999999" style="font-size: 12px">
+        <tr bgcolor="#D3D3D3" style="font-size: 12px">
             <td align="center">
                 <b>Acción</b>
             </td>
@@ -159,13 +188,16 @@
             </tr>
         </logic:iterate>
     </table>
-</div> 
+    </div>
+
+            <br/>
+
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
     <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Correctivas:</p>
 </div>           
 <div id="noconformidades">
     <table border = "1">
-        <tr bgcolor="#999999">
+        <tr bgcolor="#D3D3D3">
             <td align="center">
                 <b>Acción</b>
             </td>
@@ -190,29 +222,77 @@
                     </html:link>
                 </td>
                 <td>
-                    <bean:write name="a_p" property="prioridad"/>
+                    <bean:write name="a_c" property="prioridad"/>
                 </td>
                 
                 <td>
-                    <bean:write name="a_p" property="proceso"/>/<bean:write name="a_p" property="responsable"/>
+                    <bean:write name="a_c" property="proceso"/>/<bean:write name="a_c" property="responsable"/>
                 </td>
                 <td>
-                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechainicio"/>
+                    <bean:write name="a_c" format = "dd-MM-yyyy" property="fechainicio"/>
                 </td>
                 <td>
-                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechafinal"/>
+                    <bean:write name="a_c" format = "dd-MM-yyyy" property="fechafinal"/>
                 </td>
             </tr>
         </logic:iterate>
     </table>
-</div> 
-<br>       
+</div>
+</div>              
+<br>    
+
+<center>
+    <button id="button2"  style="width: 600px; height: 60px;">Acciones Terminadas</button>
+</center>
+<div id="desplegable2">
+<div id="noconformidades">
+    <table border = "1">
+        <tr bgcolor="#D3D3D3">
+            <td align="center">
+                <b>Acción</b>
+            </td>
+            <td align="center">
+                <b>Prior</b>
+            </td>
+            <td align="center">
+                <b>Proceso/Responsable</b>
+            </td>
+            <td align="center">
+                <b>Fecha Inicio</b>
+            </td>
+            <td align="center">
+                <b>Culminación</b>
+            </td>
+        </tr>
+        <logic:iterate id="a_t" name="AccionTerminada">
+            <tr>
+                <td style="vertical-align: middle">
+                    <html:link action="linkaccion.do?registro_nc=${a_t.registro_nc}&accion=${a_t.accion}">
+                        <bean:write name="a_t" property="accion"/>
+                    </html:link>
+                </td>
+                <td>
+                    <bean:write name="a_t" property="prioridad"/>
+                </td>
+                
+                <td>
+                    <bean:write name="a_t" property="proceso"/>/<bean:write name="a_t" property="responsable"/>
+                </td>
+                <td>
+                    <bean:write name="a_t" format = "dd-MM-yyyy" property="fechainicio"/>
+                </td>
+                <td>
+                    <bean:write name="a_t" format = "dd-MM-yyyy" property="fechafinal"/>
+                </td>
+            </tr>
+        </logic:iterate>
+    </table>
+</div>
+</div>
+<br/>
+<center>
 <html:form action="/nueva_accion">
     <html:hidden property="registro_nc" value="<%=registro_nc%>" />
-    <html:submit style="visibility: hidden" styleId="agregarp" value="+ Accion" />
-</html:form>           
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
-    <script type="text/javascript" src="JS/sesion.js"></script>
-</head>
+    <html:submit style="<%=visual%>" styleId="agregarp" value="+ Accion" />
+</html:form>     
+</center>
