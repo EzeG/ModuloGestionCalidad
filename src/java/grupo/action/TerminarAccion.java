@@ -39,10 +39,15 @@ public class TerminarAccion extends org.apache.struts.action.Action {
         
         Accion acc = (Accion) form;
         boolean terminada;
-        request.setAttribute("Accion", acc);
+        
         terminada = DBMS.getInstance().terminarAccion(acc.getRegistro_nc(), acc.getAccion());
-        if(terminada) request.setAttribute("mensaje", "La acción '"+acc.getAccion()+"' ha sido terminada.");
-        else request.setAttribute("mensaje", "La acción '"+acc.getAccion()+"' no se ha podido terminar.");
+        if(terminada) {
+            acc.setMensaje("La acción '"+acc.getAccion()+"' ha sido terminada.");
+        }
+        else {
+            acc.setMensaje("La acción '"+acc.getAccion()+"' no se ha podido terminar.");
+        }
+        request.setAttribute("Accion", acc);
         return mapping.findForward(SUCCESS);
     }
 }

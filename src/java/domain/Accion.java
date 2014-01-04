@@ -35,6 +35,7 @@ public class Accion extends org.apache.struts.action.ActionForm {
     private String fechainicioinput;
     private String fechafinalinput;
     private String estado = "activa";
+    private String mensaje = "";
 
 
     public String getRegistro_nc() {
@@ -164,6 +165,14 @@ public class Accion extends org.apache.struts.action.ActionForm {
     
     public void setEstado(String estad) {
         if(estad.equals("activa") || estad.equals("terminada")) this.estado = estad;
+    }
+    
+    public void setMensaje(String men) {
+        this.mensaje = men;
+    }
+    
+    public String getMensaje() {
+        return this.mensaje;
     }
     
     public Accion(){

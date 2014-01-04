@@ -19,7 +19,7 @@
     </head>
     <%String mensaje = (String)request.getAttribute("mensaje");%>
     <body>
-        <p style="color:#336699" align="center" >mensaje</p>
+        <h1 style="color:#336699" align="center" ><bean:write name="Accion" property="mensaje"/></h1>
         
     </body>
 </html>

@@ -40,7 +40,7 @@
     </table>
 </div>
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">No Conformidades</p></center>
+    <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">No Conformidades</p>
 </div>
         <center>           
             <button id="button" style="width: 580px; height: 60px;" >

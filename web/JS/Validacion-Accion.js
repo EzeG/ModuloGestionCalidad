@@ -24,7 +24,7 @@ fechafinalinput_error = document.getElementById("fechafinalinput_error");
 accion_value= false;
 proceso_value= false;
 responsable_value= true;
-recursos_value= false;
+recursos_value= true;
 fechainicioinput_value = false;
 fechafinalinput_value = false;
 
