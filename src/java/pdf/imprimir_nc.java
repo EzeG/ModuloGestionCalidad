@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pdf;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -29,7 +29,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperDesignViewer;
 import net.sf.jasperreports.view.JasperViewer;
-
+import static org.postgresql.jdbc2.EscapedFunctions.LOG;
 
 /**
  *
@@ -54,23 +54,26 @@ public class imprimir_nc extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+
         Class.forName("org.postgresql.Driver");
         Connection conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/prueba", "postgres", "postgres");
-        
+
         JasperReport reporte = (JasperReport) JRLoader.loadObject("/home/edgar/NetBeansProjects/ModuloGestionCalidad/quejatemplate.jasper");
 
         Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("registronc", request.getParameter("registro"));
 
-        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, conexion);
+        JasperPrint reporteQueja = JasperFillManager.fillReport(reporte, parametros, conexion);
 
         JRExporter exporter = new JRPdfExporter();
-        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-        exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File("/home/edgar/NetBeansProjects/ModuloGestionCalidad/quejagenerada.pdf"));
-        exporter.exportReport();
-        
-        
+        /*  exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+         exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File("/home/edgar/NetBeansProjects/ModuloGestionCalidad/quejagenerada.pdf"));
+         exporter.exportReport();*/
+        String nombreArchivo = "NoConformidad.pdf";
+        JasperViewer.viewReport (reporteQueja);
+        JasperExportManager.exportReportToPdfFile(reporteQueja, nombreArchivo);
+
+
         return mapping.findForward(SUCCESS);
     }
 }
