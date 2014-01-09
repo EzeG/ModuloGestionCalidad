@@ -33,7 +33,8 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Registro:</b></p></td>
                 <td>
-                    <html:text  styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="width:100px; color: gray; font-size: 14px"/>
+                    <html:text  styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
+                    <span style= "margin-left: -152px; font-size: 14px" >UL04/</span> 
                     <p id="registro_nc_error" style="font-size: 12px; color: #B22222">
                 </td>
             </tr>
@@ -57,7 +58,6 @@
                         <html:option value="6">Otro</html:option>
                     </html:select>
                 </td>
-            <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
             </tr>
         </table>
         <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
@@ -157,10 +157,10 @@
     <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".boton1").click(function() {
+            $(".boton1").focus(function() {
                 $("#desplegable1").slideToggle("slow");
             });
-            $(".boton2").click(function() {
+            $(".boton2").focus(function() {
                 $("#desplegable2").slideToggle("slow");
             });
             $("#desplegable1").css({display: 'none'});

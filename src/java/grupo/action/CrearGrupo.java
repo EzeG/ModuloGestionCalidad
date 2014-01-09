@@ -43,7 +43,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             throws Exception {
 
         Grupo group = (Grupo) form;
-        NoConformidad nc= new NoConformidad(group.getRegistro_nc(), group.getSituacion_nc(), group.getOrigen_nc(), 
+        NoConformidad nc= new NoConformidad("UL04/"+group.getRegistro_nc(), group.getSituacion_nc(), group.getOrigen_nc(), 
                                            group.getClausula_nc1(), group.getRequisito_nc1(), group.getDeclaracion_nc1(), group.getCodigo_nc1(),
                                             group.getClausula_nc2(), group.getRequisito_nc2(), group.getDeclaracion_nc2(), group.getCodigo_nc2());
         ArrayList<Usuario> users;
@@ -59,7 +59,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         users.clear();
         
         
-        NC = DBMS.getInstance().consultarNC(group.getRegistro_nc());
+        NC = DBMS.getInstance().consultarNC("UL04/"+group.getRegistro_nc());
         if (NC.isEmpty()){
             if (cache.size() > 0){
                 if (!cache.isEmpty()) {
@@ -68,7 +68,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
 
                     if (agrego) {
                         if (DBMS.getInstance().agregaNoConformidad(nc)){
-                            boolean asocio = DBMS.getInstance().asociarNoConformidad(group.getNombre_grupo(), nc.getRegistro_nc());
+                            boolean asocio = DBMS.getInstance().asociarNoConformidad(group.getNombre_grupo(), "UL04/"+group.getRegistro_nc());
                             if (asocio){
                                 group.setError("");
                                 return mapping.findForward(SUCCESS);                    
@@ -94,10 +94,6 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                                 return mapping.findForward(FAILURE);
                             }
                         }
-
-                        group.setError("");
-                        return mapping.findForward(SUCCESS);
-
                     } else {
                         group.setError("El grupo ya existe.");
                         request.setAttribute("grupito", group);
@@ -183,6 +179,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             request.setAttribute("error", group.getError());
             return mapping.findForward(FAILURE);
         }
+        return null;
     }
  
 }

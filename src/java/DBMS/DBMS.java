@@ -49,9 +49,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/CALIDAD",
+                    "jdbc:postgresql://localhost:5432/NOMBRE",
                     "postgres",
-                    "123");
+                    "17744256");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

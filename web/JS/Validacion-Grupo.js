@@ -114,8 +114,8 @@ if(miembros_grupo.value=="Encargado del Grupo" ){
     }
 }       
 
-if(registro_nc.value=="Registro"){
-    registro_nc.setAttribute("style","width:100px; color: gray; font-size: 14px");
+if(registro_nc.value=="12345"){
+    registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: gray; font-size: 14px");
 }else{
     nombre_grupo_value = true;
     string_grupo_value = true;
@@ -131,9 +131,9 @@ if(registro_nc.value=="Registro"){
     codigo_nc2_value= true;
     
     if(error_style.value=="Ya existe una no conformidad con este registro."){
-        registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #B22222");
+        registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #B22222");
     }else{
-        registro_nc.setAttribute("style","width:100px; color: black; font-size: 14px");
+        registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px");
     }
 }
 
@@ -309,7 +309,7 @@ declaracion_nc2.onkeypress = function(){
  * onclick events
  */
 
-nombre_grupo.onclick = function() {
+nombre_grupo.onfocus = function() {
     nombre_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
     nombre_grupo_error.innerHTML = "";
  if (nombre_grupo.value == "Nombre del Grupo") {
@@ -317,7 +317,7 @@ nombre_grupo.onclick = function() {
  }
 };
 
-string_grupo.onclick = function() {
+string_grupo.onfocus = function() {
     string_grupo_error.innerHTML = "";
     string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
     if (string_grupo.value == "Encargado del Grupo") {
@@ -325,12 +325,15 @@ string_grupo.onclick = function() {
     }
 };
 
-registro_nc.onclick = function() {
-    registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #127ba5");
+registro_nc.onfocus = function() {
+    registro_nc.setAttribute("style", "padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #127ba5");
     registro_nc_error.innerHTML = "";
+    if (registro_nc.value == "12345") {
+        registro_nc.value = "";   
+    }
 };
 
-situacion_nc.onclick = function() {
+situacion_nc.onfocus = function() {
     situacion_nc.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #127ba5");
     situacion_nc_error.innerHTML = "";
  if (situacion_nc.value == "Describa la inconformidad") {
@@ -338,7 +341,7 @@ situacion_nc.onclick = function() {
  }
 };
 
-clausula_nc1.onclick = function() {
+clausula_nc1.onfocus = function() {
     clausula_nc1_error.innerHTML = "";
     clausula_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
  if (clausula_nc1.value == "Clausula") {
@@ -347,7 +350,7 @@ clausula_nc1.onclick = function() {
  }
 };
 
-requisito_nc1.onclick = function() {
+requisito_nc1.onfocus = function() {
      requisito_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
      requisito_nc1_error.innerHTML = "";
  if (requisito_nc1.value == "Requisito") {
@@ -355,7 +358,7 @@ requisito_nc1.onclick = function() {
  }
 };
 
-declaracion_nc1.onclick = function() {
+declaracion_nc1.onfocus = function() {
      declaracion_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
      declaracion_nc1_error.innerHTML = "";
  if (declaracion_nc1.value == "Declaracion") {
@@ -364,7 +367,7 @@ declaracion_nc1.onclick = function() {
  }
 };
 
-codigo_nc1.onclick = function() {
+codigo_nc1.onfocus = function() {
      codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
      codigo_nc1_error.innerHTML = "";
  if (codigo_nc1.value == "Codigo") {
@@ -372,7 +375,7 @@ codigo_nc1.onclick = function() {
  }
 };
 
-clausula_nc2.onclick = function() {
+clausula_nc2.onfocus = function() {
     clausula_nc2_error.innerHTML = "";
     clausula_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
  if (clausula_nc2.value == "Clausula") {
@@ -381,7 +384,7 @@ clausula_nc2.onclick = function() {
  }
 };
 
-requisito_nc2.onclick = function() {
+requisito_nc2.onfocus = function() {
      requisito_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
      requisito_nc2_error.innerHTML = "";
  if (requisito_nc2.value == "Requisito") {
@@ -389,7 +392,7 @@ requisito_nc2.onclick = function() {
  }
 };
 
-declaracion_nc2.onclick = function() {
+declaracion_nc2.onfocus = function() {
      declaracion_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
      declaracion_nc2_error.innerHTML = "";
  if (declaracion_nc2.value == "Declaracion") {
@@ -398,7 +401,7 @@ declaracion_nc2.onclick = function() {
  }
 };
 
-codigo_nc2.onclick = function() {
+codigo_nc2.onfocus = function() {
      codigo_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
      codigo_nc2_error.innerHTML = "";
  if (codigo_nc2.value == "Codigo") {
@@ -466,25 +469,20 @@ string_grupo.onblur = function() {
 registro_nc.onblur = function() {
     registro_nc.value = registro_nc.value.trim();
  if (registro_nc.value == "") {
-     registro_nc.setAttribute("style", "width:100px; color: gray; font-size: 14px; border-color: #B22222");
+     registro_nc.setAttribute("style", "padding-left: 48px; width:100px; color: gray; font-size: 14px; border-color: #B22222");
      registro_nc_error.innerHTML = "El numero de registro es obligatorio";
-     registro_nc.value = "Registro";
+     registro_nc.value = "12345";
      registro_nc_value = false;
  }else{
-     var registro=/^UL04\//;
+     
      if (registro_nc.value.length > 19){
-         registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
+         registro_nc.setAttribute("style", "padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #B22222");
          registro_nc_error.innerHTML = "El numero de registro es muy largo";
          registro_nc_value = false;
-     }else if(!registro.test(registro_nc.value)) {
-         registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
-            registro_nc_error.innerHTML = "El registro debe comenzar por UL04/";
-            registro_nc_value = false;
      }else{
-         
-         registro_nc_error.innerHTML = "";
-         registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px");
-         registro_nc_value = true;
+            registro_nc_error.innerHTML = "";
+            registro_nc.setAttribute("style", "padding-left: 48px; width:100px; color: black; font-size: 14px");
+            registro_nc_value = true;
      }
     }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
