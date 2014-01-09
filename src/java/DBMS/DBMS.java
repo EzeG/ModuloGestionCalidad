@@ -156,6 +156,22 @@ public class DBMS {
         return null;
 
     }
+    
+    public String getEmail(String id) {
+        PreparedStatement usConsulta;
+        try {
+            usConsulta = conexion.prepareStatement("SELECT Email FROM mod1.USUARIO WHERE USBID = \'" + id + "\';");
+            ResultSet rs = usConsulta.executeQuery();
+            if (rs.next()) {
+                return rs.getString("Email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     /*
      Busca Usuarios que no estan en el grupo 'grupo'
