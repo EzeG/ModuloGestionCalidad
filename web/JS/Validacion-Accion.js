@@ -90,7 +90,7 @@ recursos.onkeypress = function(){
  */
 
 
-accion.onclick = function() {
+accion.onfocus = function() {
     accion.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #127ba5");
     accion_error.innerHTML = "";
  if (accion.value == "Accion") {
@@ -98,7 +98,7 @@ accion.onclick = function() {
  }
 }
 
-recursos.onclick = function() {
+recursos.onfocus = function() {
     recursos.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #127ba5");
     recursos_error.innerHTML = "";
  if (recursos.value == "Recursos") {
@@ -106,7 +106,7 @@ recursos.onclick = function() {
  }
 }
 
-proceso.onclick = function() {
+proceso.onfocus = function() {
     proceso_error.innerHTML = "";
     proceso.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #127ba5");
  if (proceso.value == "Proceso") {
@@ -116,7 +116,7 @@ proceso.onclick = function() {
 };
 
 
-fechainicioinput.onclick = function() {
+fechainicioinput.onfocus = function() {
      fechainicioinput.setAttribute("style", "width:300px; color: black;font-size: 14px; border-color: #127ba5");
      fechainicioinput_error.innerHTML = "";
  if (fechainicioinput.value == "dd-mm-yyyy") {
@@ -124,7 +124,7 @@ fechainicioinput.onclick = function() {
  }
 };
 
-fechafinalinput.onclick = function() {
+fechafinalinput.onfocus = function() {
      fechafinalinput.setAttribute("style", "width:300px; color: black;font-size: 14px; border-color: #127ba5");
      fechafinalinput_error.innerHTML = "";
  if (fechafinalinput.value == "dd-mm-yyyy") {
