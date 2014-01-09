@@ -44,16 +44,19 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
             throws Exception {
 
         NoConformidad nc;
+        NoConformidad nc1;
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         nc = (NoConformidad) form;
+      
         Grupo group = new Grupo();
         group.setNombre_grupo(nc.getGrupo_nc());
-        NC = DBMS.getInstance().consultarNC(nc.getRegistro_nc());
+        NC = DBMS.getInstance().consultarNC("UL04/"+nc.getRegistro_nc());
         
 
         if(NC.isEmpty()){
+            nc.setRegistro_nc("UL04/"+nc.getRegistro_nc());
             if (DBMS.getInstance().agregaNoConformidad(nc)) {
-                boolean asocio = DBMS.getInstance().asociarNoConformidad(nc.getGrupo_nc(), nc.getRegistro_nc());
+                boolean asocio = DBMS.getInstance().asociarNoConformidad(nc.getGrupo_nc(),nc.getRegistro_nc());
                 if (asocio) {
                     return mapping.findForward(SUCCESS);
                 } else {

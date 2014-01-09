@@ -43,7 +43,7 @@ public class nuevoGrupo extends org.apache.struts.action.Action {
         request.setAttribute("grupito", grupo);
         request.setAttribute("nombre_grupo","Nombre del Grupo");
         request.setAttribute("string_grupo", "Encargado del Grupo");
-        request.setAttribute("registro_nc", "Registro");
+        request.setAttribute("registro_nc", "12345");
         request.setAttribute("situacion_nc", "Describa la inconformidad");
         request.setAttribute("clausula_nc1", "Clausula");
         request.setAttribute("requisito_nc1", "Requisito");

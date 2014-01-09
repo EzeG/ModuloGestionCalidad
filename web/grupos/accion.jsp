@@ -101,7 +101,7 @@
     </table>
       
 </body>
-    <html:form action="/terminaraccion">
+<html:form action="terminaraccion">
     <html:hidden property="accion" value="<%=accion%>" />
     <html:hidden property="registro_nc" value="<%=registronc%>" />
     <html:submit style="<%=vis%>" styleId="agregarp" value="Terminar Acción" />

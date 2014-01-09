@@ -68,6 +68,8 @@
                                         <li class="last leaf"><html:link action="procesos"><p>Procesos</p></html:link></li>
                                         <li class="last leaf"><html:link action="estadisticas"><p>Estadisticas</p></html:link></li>
                                         <li class="last leaf"><html:link action="tab_grupos"><p>Grupos</p></html:link></li>
+                                        <li class="last leaf"><html:link action="login"><p>Cerrar Sesión</p></html:link></li>
+
                                     </ul>
                                 </div>
                             </div>

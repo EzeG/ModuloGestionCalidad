@@ -14,6 +14,14 @@ import org.apache.struts.action.ActionMapping;
 
 import java.util.ArrayList;
 import DBMS.DBMS;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -83,6 +91,41 @@ public class CrearAccion extends org.apache.struts.action.Action {
                  request.setAttribute("visible", "hidden");
              }    
             //request.setAttribute("visible", "visible");
+             final String username = "ulab-calidad@usb.ve";
+		final String password = "coordcalidad";
+                String to = DBMS.getInstance().getEmail(accion.getResponsable());
+                Usuario us = DBMS.getInstance().buscarUsuario(accion.getResponsable());
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(to));
+			message.setSubject("SIGULAB-Nueva acción");
+			message.setText(""+us.getNombre()+", "
+				+ "\nEres el encargado de una nueva acción para la resolución de la no conformidad "+accion.getRegistro_nc()
+                                + "\nDescripción: "+accion.getAccion()
+                                + "\nTipo: "+accion.getTipo()
+                                +"\n\nPara más información ingrese al módulo de gestión de calidad SIGULAB");
+ 
+			Transport.send(message);
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
             return mapping.findForward(SUCCESS);
             
         }else{

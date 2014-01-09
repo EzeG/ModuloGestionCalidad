@@ -129,8 +129,8 @@ ALTER TABLE "mod1".Acciones ADD
 ------------------------ Inserts Temporales ------------------------
 INSERT INTO "mod1".USUARIO VALUES ('admin', 'admin@usb.ve', 'admin', 'admin', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 0);
-INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'ferreira@sub.ve', 'ferreira','member', 0);
-INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'sanchezy@usb.ve', 'sanchezy', 'member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'anna.gomez.op@gmail.com', 'ferreira','member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'hpani_radcliffe@hotmail.com', 'sanchezy', 'member', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Adelis Lucinchi', 'alucinchi@usb.ve', 'alucinchi', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Luis Alvarez', 'lualvare@usb.ve', 'lualvare', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Gregorio Ruiz', 'jgruiz@usb.ve', 'jgruiz', 'member', 1);
@@ -139,7 +139,7 @@ INSERT INTO "mod1".USUARIO VALUES ('Wilfrido Gonzalez', 'wgonzal@usb.ve', 'wgonz
 INSERT INTO "mod1".USUARIO VALUES ('Héctor Rojas', 'hrojas@usb.ve', 'hrojas', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Salazar', 'jarriojas@usb.ve', 'jarriojas', 'member', 1);
 
------------------------- Inserts Temporales Grupo ------------------------
+------------------------ Inserts Temporales Grupo ------ferreira@sub.ve'---------sanchezy@usb.ve---------
 --- Nombre del grupo ---
 INSERT INTO "mod1".GRUPO VALUES ('Laboratorio E');
 --- Encargado del grupo ---

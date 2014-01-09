@@ -47,7 +47,7 @@ public class AgregarNC extends org.apache.struts.action.Action {
         
         request.setAttribute("grupito", grupo);
         request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "Registro");
+        request.setAttribute("registro_nc", "12345");
         request.setAttribute("situacion_nc", "Describa la inconformidad");
         request.setAttribute("clausula_nc1", "Clausula");
         request.setAttribute("requisito_nc1", "Requisito");
