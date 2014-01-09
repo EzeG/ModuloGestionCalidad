@@ -13,6 +13,15 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import DBMS.*;
 import java.util.ArrayList;
+import java.util.Properties;
+ 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -47,7 +56,43 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
 
         if (agrego) {
             listGrupo = DBMS.getInstance().usuariosSinGrupo(user.getGrupo());
-
+            
+            
+                final String username = "ulab-calidad@usb.ve";
+		final String password = "coordcalidad";
+                String to = DBMS.getInstance().getEmail(user.getUsbid());
+                Usuario us = DBMS.getInstance().buscarUsuario(user.getUsbid());
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(to));
+			message.setSubject("SIGULAB-Nuevo grupo");
+			message.setText(""+us.getNombre()+", "
+				+ "\nSe te ha agregado al grupo "+user.getGrupo()+"\n\nPara más información ingrese al módulo de gestión de calidad SIGULAB");
+ 
+			Transport.send(message);
+ 
+			System.out.println("Done");
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+            
             for (int j = 0; j < listGrupo.size(); j++) {
                 listGrupo.get(j).setGrupo(user.getGrupo());
             }
