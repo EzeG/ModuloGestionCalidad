@@ -80,6 +80,25 @@ public class DBMS {
         return null;
 
     }
+    
+        public ArrayList<Usuario> consultarUsuariosCalidad() {
+        PreparedStatement usConsulta;
+        try {
+            ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+            usConsulta = conexion.prepareStatement("SELECT * FROM mod1.USUARIO WHERE Cargo = \'0\';");
+            ResultSet rs = usConsulta.executeQuery();
+            while (rs.next()) {
+                Usuario us = new Usuario(rs.getString("NombreUsuario"), rs.getString("USBID"), rs.getString("Email"), rs.getString("Password"), rs.getInt("Cargo"));
+                usuarios.add(us);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 
     public Usuario consultarUSBID(String usbid) {
         PreparedStatement usConsulta;
