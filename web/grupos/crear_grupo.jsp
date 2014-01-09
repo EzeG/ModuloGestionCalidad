@@ -59,7 +59,7 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Registro:</b></p></td>
                 <td>
-                    <html:text  styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="width:100px; color: gray; font-size: 14px"/>
+                    <html:text  styleId="registro_nc" property="registro_nc" value="UL04/" style="width:100px; color: gray; font-size: 14px"/>
                     <p id="registro_nc_error" style="font-size: 12px; color: #B22222">
                 </td>
             </tr>
@@ -187,10 +187,12 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <script type="text/javascript" src="JS/Validacion-Grupo.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
     <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
+        <script type="text/javascript" src="JS/Validacion-Grupo.js"></script>
+
     <script type="text/javascript">
+        
         $(document).ready(function() {
             $(".boton1").click(function() {
                 $("#desplegable1").slideToggle("slow");

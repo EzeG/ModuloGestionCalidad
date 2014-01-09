@@ -145,10 +145,20 @@ accion.onblur = function() {
      accion.value = "Accion";
      accion_value = false;
  }else{
-     if (accion.value.length > 99){
+     var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+     var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+     var inject3 = /^"(.*)"|'(.*)'/;
+        if (accion.value.length > 99){
          accion.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
          accion_error.innerHTML = "El titulo de la accion es muy largo";
          accion_value = false;
+         
+     
+     }else if(inject2.test(accion.value) || inject.test(accion.value) || inject3.test(accion.value)){
+         accion.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         accion_error.innerHTML = "Formato invalido para el titulo de la accion";
+         accion_value = false;
+     
      }else{
          accion_error.innerHTML = "";
          accion.setAttribute("style", "width:300px; color: black; font-size: 14px");
@@ -164,23 +174,23 @@ recursos.onblur = function() {
     minuscula=recursos.value.charAt(0)+"";
     mayuscula=minuscula.toUpperCase();
     recursos.value = mayuscula + recursos.value.substring(1, recursos.value.length);
- if (recursos.value == "") {
-     recursos.setAttribute("style", "height: 100px; width:300px; color: gray; font-size: 14px; border-color: #B22222");
-     recursos_error.innerHTML = "Especifique los recursos";
-     recursos.value = "Recursos";
-     recursos_value= false;
-     recursos_counter.innerHTML = "199";
- }else{
+     var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+     var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+     var inject3 = /^"(.*)"|'(.*)'/;
      if (cantidad > 199){
          recursos.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #B22222");
          recursos_error.innerHTML = "Recursos excede el limite de caracteres";
          recursos_value= false;
+         }else if(inject2.test(recursos.value) || inject.test(recursos.value) || inject3.test(recursos.value)){
+         recursos.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         recursos_error.innerHTML = "Formato invalido para los recursos";
+         recursos_value = false;
     }else{
         recursos_error.innerHTML = "";
         recursos.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px");
         recursos_value= true;
     }
- }
+ 
    submit.disabled = !(accion_value && proceso_value && recursos_value && responsable_value && fechafinalinput_value && fechainicioinput_value);
 };
 
@@ -194,9 +204,16 @@ proceso.onblur = function() {
      proceso.value = "Proceso";
      proceso_value = false;
  }else{
+          var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+     var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+     var inject3 = /^"(.*)"|'(.*)'/;
      if (proceso.value.length > 99){
          proceso.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #127ba5; border-color: #B22222");
          proceso_error.innerHTML = "El nombre del proceso es muy largo";
+         proceso_value = false;
+         }else if(inject2.test(proceso.value) || inject.test(proceso.value) || inject3.test(proceso.value)){
+         proceso.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         proceso_error.innerHTML = "Formato invalido para el proceso";
          proceso_value = false;
      }else{
         proceso.setAttribute("style", "width:300px; color: black; font-size: 14px");

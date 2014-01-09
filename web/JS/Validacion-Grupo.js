@@ -42,6 +42,11 @@ codigo_nc2_error= document.getElementById("codigo_nc2_error");
 submit_error=document.getElementById("submit_error");
 error_style=document.getElementById("error_style");
 
+//Declarando las expresiones regulares para pevenir injection
+inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+inject3 = /^"(.*)"|'(.*)'/;
+
 //se definen las variables de validacion
 nombre_grupo_value = false;
 string_grupo_value = false;
@@ -207,7 +212,7 @@ situacion_nc.onkeydown = function(){
         situacion_nc_counter.setAttribute("style", "margin-left: 290px; font-size: 10px; color: gray");
     }
     situacion_nc_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 situacion_nc.onkeypress = function(){
     cantidad = situacion_nc.value.length;
@@ -217,7 +222,7 @@ situacion_nc.onkeypress = function(){
         situacion_nc_counter.setAttribute("style", "margin-left: 290px; font-size: 10px; color: gray");
     }
     situacion_nc_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 requisito_nc1.onkeydown = function(){
     cantidad = requisito_nc1.value.length;
@@ -227,7 +232,7 @@ requisito_nc1.onkeydown = function(){
         requisito_nc1_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     requisito_nc1_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 requisito_nc1.onkeypress = function(){
     cantidad = requisito_nc1.value.length;
@@ -237,7 +242,7 @@ requisito_nc1.onkeypress = function(){
         requisito_nc1_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     requisito_nc1_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 requisito_nc2.onkeydown = function(){
     cantidad = requisito_nc2.value.length;
@@ -247,7 +252,7 @@ requisito_nc2.onkeydown = function(){
         requisito_nc2_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     requisito_nc2_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 requisito_nc2.onkeypress = function(){
     cantidad = requisito_nc2.value.length;
@@ -257,7 +262,7 @@ requisito_nc2.onkeypress = function(){
         requisito_nc2_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     requisito_nc2_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 declaracion_nc1.onkeydown = function(){
     cantidad = declaracion_nc1.value.length;
@@ -267,7 +272,7 @@ declaracion_nc1.onkeydown = function(){
         declaracion_nc1_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     declaracion_nc1_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 declaracion_nc1.onkeypress = function(){
     cantidad = declaracion_nc1.value.length;
@@ -277,7 +282,7 @@ declaracion_nc1.onkeypress = function(){
         declaracion_nc1_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     declaracion_nc1_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 declaracion_nc2.onkeydown = function(){
     cantidad = declaracion_nc2.value.length;
@@ -287,7 +292,7 @@ declaracion_nc2.onkeydown = function(){
         declaracion_nc2_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     declaracion_nc2_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 declaracion_nc2.onkeypress = function(){
     cantidad = declaracion_nc2.value.length;
@@ -297,7 +302,7 @@ declaracion_nc2.onkeypress = function(){
         declaracion_nc2_counter.setAttribute("style", "margin-left: 220px; font-size: 10px; color: gray");
     }
     declaracion_nc2_counter.innerHTML= (4999 - cantidad).toString();
-}
+};
 
 /*
  * 
@@ -310,7 +315,7 @@ nombre_grupo.onclick = function() {
  if (nombre_grupo.value == "Nombre del Grupo") {
      nombre_grupo.value = "";
  }
-}
+};
 
 string_grupo.onclick = function() {
     string_grupo_error.innerHTML = "";
@@ -318,15 +323,12 @@ string_grupo.onclick = function() {
     if (string_grupo.value == "Encargado del Grupo") {
         string_grupo.value = "";
     }
-}
+};
 
 registro_nc.onclick = function() {
     registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #127ba5");
     registro_nc_error.innerHTML = "";
- if (registro_nc.value == "Registro") {
-     registro_nc.value = "";
- }
-}
+};
 
 situacion_nc.onclick = function() {
     situacion_nc.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #127ba5");
@@ -334,7 +336,7 @@ situacion_nc.onclick = function() {
  if (situacion_nc.value == "Describa la inconformidad") {
      situacion_nc.value = "";   
  }
-}
+};
 
 clausula_nc1.onclick = function() {
     clausula_nc1_error.innerHTML = "";
@@ -343,7 +345,7 @@ clausula_nc1.onclick = function() {
      clausula_nc1.value = "";
      
  }
-}
+};
 
 requisito_nc1.onclick = function() {
      requisito_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
@@ -351,7 +353,7 @@ requisito_nc1.onclick = function() {
  if (requisito_nc1.value == "Requisito") {
      requisito_nc1.value = "";
  }
-}
+};
 
 declaracion_nc1.onclick = function() {
      declaracion_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
@@ -360,7 +362,7 @@ declaracion_nc1.onclick = function() {
      declaracion_nc1.value = "";
 
  }
-}
+};
 
 codigo_nc1.onclick = function() {
      codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
@@ -368,7 +370,7 @@ codigo_nc1.onclick = function() {
  if (codigo_nc1.value == "Codigo") {
      codigo_nc1.value = ""; 
  }
-}
+};
 
 clausula_nc2.onclick = function() {
     clausula_nc2_error.innerHTML = "";
@@ -377,7 +379,7 @@ clausula_nc2.onclick = function() {
      clausula_nc2.value = "";
      
  }
-}
+};
 
 requisito_nc2.onclick = function() {
      requisito_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
@@ -385,7 +387,7 @@ requisito_nc2.onclick = function() {
  if (requisito_nc2.value == "Requisito") {
      requisito_nc2.value = "";
  }
-}
+};
 
 declaracion_nc2.onclick = function() {
      declaracion_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #127ba5");
@@ -394,7 +396,7 @@ declaracion_nc2.onclick = function() {
      declaracion_nc2.value = "";
 
  }
-}
+};
 
 codigo_nc2.onclick = function() {
      codigo_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
@@ -402,7 +404,7 @@ codigo_nc2.onclick = function() {
  if (codigo_nc2.value == "Codigo") {
      codigo_nc2.value = ""; 
  }
-}
+};
 
 /*
  * onblur events
@@ -419,9 +421,16 @@ nombre_grupo.onblur = function() {
      nombre_grupo.value = "Nombre del Grupo";
      nombre_grupo_value = false;
  }else{
+     var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+var inject3 = /^"(.*)"|'(.*)'/;
      if (nombre_grupo.value.length > 29){
          nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px; border-color: #B22222");
          nombre_grupo_error.innerHTML = "El nombre del grupo es muy largo";
+         nombre_grupo_value = false;
+    }else if(inject2.test(nombre_grupo.value) || inject.test(nombre_grupo.value) || inject3.test(nombre_grupo.value)){
+         nombre_grupo.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         nombre_grupo_error.innerHTML = "Formato invalido para el nombre del grupo";
          nombre_grupo_value = false;
      }else{
         nombre_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px");
@@ -431,7 +440,7 @@ nombre_grupo.onblur = function() {
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 string_grupo.onblur = function() {
  if (string_grupo.value == "") {
@@ -440,13 +449,19 @@ string_grupo.onblur = function() {
      string_grupo.value = "Encargado del Grupo";
      string_grupo_value = false;
  }else{
+    if(inject2.test(string_grupo.value) || inject.test(string_grupo.value) || inject3.test(string_grupo.value)){
+         string_grupo.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         string_grupo_error.innerHTML = "Formato invalido para los integrantes del grupo";
+         string_grupo_value = false;
+     } else {
      string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px");
      string_grupo_value = true;
+ }
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 registro_nc.onblur = function() {
     registro_nc.value = registro_nc.value.trim();
@@ -456,20 +471,26 @@ registro_nc.onblur = function() {
      registro_nc.value = "Registro";
      registro_nc_value = false;
  }else{
+     var registro=/^UL04\//;
      if (registro_nc.value.length > 19){
          registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
          registro_nc_error.innerHTML = "El numero de registro es muy largo";
          registro_nc_value = false;
+     }else if(!registro.test(registro_nc.value)) {
+         registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
+            registro_nc_error.innerHTML = "El registro debe comenzar por UL04/";
+            registro_nc_value = false;
      }else{
+         
          registro_nc_error.innerHTML = "";
          registro_nc.setAttribute("style", "width:100px; color: black; font-size: 14px");
          registro_nc_value = true;
+     }
     }
- }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 situacion_nc.onblur = function() {
     cantidad = situacion_nc.value.length;
@@ -488,6 +509,10 @@ situacion_nc.onblur = function() {
          situacion_nc.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #B22222");
          situacion_nc_error.innerHTML = "Situacion excede el limite de caracteres";
          situacion_nc_value= false;
+     }else if(inject2.test(situacion_nc.value) || inject.test(situacion_nc.value) || inject3.test(situacion_nc.value)){
+         situacion_nc.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         situacion_nc.innerHTML = "Formato invalido para la situacion de la no conformidad";
+         situacion_nc_value = false;
     }else{
         situacion_nc_error.innerHTML = "";
         situacion_nc.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px");
@@ -497,7 +522,7 @@ situacion_nc.onblur = function() {
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 clausula_nc1.onblur = function() {
     clausula_nc1.value = clausula_nc1.value.trim();
@@ -511,6 +536,10 @@ clausula_nc1.onblur = function() {
          clausula_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5; border-color: #B22222");
          clausula_nc1_error.innerHTML = "Clausula excede longitud maxima";
          clausula_nc1_value = false;
+     }else if(inject2.test(clausula_nc1.value) || inject.test(clausula_nc1.value) || inject3.test(clausula_nc1.value)){
+         clausula_nc1.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         clausula_nc1_error.innerHTML = "Formato invalido para la clausula de la no confomidad";
+         clausula_nc1_value = false;
      }else{
         clausula_nc1.setAttribute("style", "color: black; font-size: 14px");
         clausula_nc1_value = true;
@@ -519,7 +548,7 @@ clausula_nc1.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 requisito_nc1.onblur = function() {
     requisito_nc1.value = requisito_nc1.value.trim();
@@ -538,6 +567,10 @@ requisito_nc1.onblur = function() {
          requisito_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #B22222");
          requisito_nc1_error.innerHTML = "Requisito excede el limite de caracteres";
          requisito_nc1_value= false;
+                           }else if(inject2.test(requisito_nc1.value) || inject.test(requisito_nc1.value) || inject3.test(requisito_nc1.value)){
+         requisito_nc1.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         requisito_nc1_error.innerHTML = "Formato invalido para el requisito de la no conformidad";
+         requisito_nc1_value = false;
     }else{
         requisito_nc1_error.innerHTML = "";
         requisito_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px");
@@ -547,7 +580,7 @@ requisito_nc1.onblur = function() {
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 declaracion_nc1.onblur = function() {
     declaracion_nc1.value = declaracion_nc1.value.trim();
@@ -566,6 +599,10 @@ declaracion_nc1.onblur = function() {
          declaracion_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #B22222");
          declaracion_nc1_error.innerHTML = "Requisito excede el limite de caracteres";
          declaracion_nc1_value= false;
+                           }else if(inject2.test(declaracion_nc1.value) || inject.test(declaracion_nc1.value) || inject3.test(declaracion_nc1.value)){
+         declaracion_nc1.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         declaracion_nc1_error.innerHTML = "Formato invalido para la declaración de la no conformidad.";
+         declaracion_nc1_value = false;
     }else{
         declaracion_nc1.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px");
         declaracion_nc1_error.innerHTML = "";
@@ -575,7 +612,7 @@ declaracion_nc1.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 codigo_nc1.onblur = function() {
     codigo_nc1.value = codigo_nc1.value.trim();
@@ -589,6 +626,10 @@ codigo_nc1.onblur = function() {
          codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
          codigo_nc1_error.innerHTML = "El codigo de la no conformidad es muy largo";
          codigo_nc1_value = false;
+                           }else if(inject2.test(codigo_nc1.value) || inject.test(codigo_nc1.value) || inject3.test(codigo_nc1.value)){
+         codigo_nc1.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         codigo_nc1_error.innerHTML = "Formato invalido para el codigo de la no conformidad";
+         codigo_nc1_value = false;
      }else{
                 codigo_nc1_error.innerHTML = "";
                 codigo_nc1.setAttribute("style", "color: black; font-size: 14px");
@@ -600,7 +641,7 @@ codigo_nc1.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 clausula_nc2.onblur = function() {
     clausula_nc2.value = clausula_nc2.value.trim();
@@ -614,6 +655,10 @@ clausula_nc2.onblur = function() {
          clausula_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5; border-color: #B22222");
          clausula_nc2_error.innerHTML = "Clausula excede longitud maxima";
          clausula_nc2_value = false;
+                           }else if(inject2.test(clausula_nc2.value) || inject.test(clausula_nc2.value) || inject3.test(clausula_nc2.value)){
+         clausula_nc2.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         clausula_nc2_error.innerHTML = "Formato invalido para la clausula de la no conformidad";
+         clausula_nc2_value = false;
      }else{
         clausula_nc2.setAttribute("style", "color: black; font-size: 14px");
         clausula_nc2_value = true;
@@ -622,7 +667,7 @@ clausula_nc2.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 requisito_nc2.onblur = function() {
     requisito_nc2.value = requisito_nc2.value.trim();
@@ -641,6 +686,10 @@ requisito_nc2.onblur = function() {
          requisito_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #B22222");
          requisito_nc2_error.innerHTML = "Requisito excede el limite de caracteres";
          requisito_nc2_value= false;
+                           }else if(inject2.test(requisito_nc2.value) || inject.test(requisito_nc2.value) || inject3.test(requisito_nc2.value)){
+         requisito_nc2.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         requisito_nc2_error.innerHTML = "Formato invalido para el registro de la no conformidad";
+         requisito_nc2_value = false;
     }else{
         requisito_nc2_error.innerHTML = "";
         requisito_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px");
@@ -650,7 +699,7 @@ requisito_nc2.onblur = function() {
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 declaracion_nc2.onblur = function() {
     declaracion_nc2.value = declaracion_nc2.value.trim();
@@ -669,6 +718,10 @@ declaracion_nc2.onblur = function() {
          declaracion_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px; border-color: #B22222");
          declaracion_nc2_error.innerHTML = "Requisito excede el limite de caracteres";
          declaracion_nc2_value= false;
+                           }else if(inject2.test(declaracion_nc2.value) || inject.test(declaracion_nc2.value) || inject3.test(declaracion_nc2.value)){
+         declaracion_nc2.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         declaracion_nc2_error.innerHTML = "Formato invalido para la declaracion de la no conformidad";
+         declaracion_nc2_value = false;
     }else{
         declaracion_nc2.setAttribute("style", "height: 100px; width:250px; color: black;font-size: 14px");
         declaracion_nc2_error.innerHTML = "";
@@ -678,7 +731,7 @@ declaracion_nc2.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 codigo_nc2.onblur = function() {
     codigo_nc2.value = codigo_nc2.value.trim();
@@ -692,6 +745,10 @@ codigo_nc2.onblur = function() {
          codigo_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
          codigo_nc2_error.innerHTML = "El codigo de la no conformidad es muy largo";
          codigo_nc2_value = false;
+     }else if(inject2.test(codigo_nc2.value) || inject.test(codigo_nc2.value) || inject3.test(codigo_nc2.value)){
+         codigo_nc2.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         codigo_nc2_error.innerHTML = "Formato invalido para el codigo de la no conformidad";
+         codigo_nc2_value = false;
      }else{
                 codigo_nc2_error.innerHTML = "";
                 codigo_nc2.setAttribute("style", "color: black; font-size: 14px");
@@ -703,7 +760,7 @@ codigo_nc2.onblur = function() {
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
                      requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-}
+};
 
 
 
