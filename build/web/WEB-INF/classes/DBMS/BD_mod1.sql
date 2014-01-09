@@ -18,6 +18,7 @@ OIDS = FALSE
 
 CREATE TABLE "mod1".GRUPO(
 	registroGrupo VARCHAR(30) NOT NULL,
+        estado VARCHAR(30) NOT NULL DEFAULT('activo'),
 	CONSTRAINT PK_GRUPO PRIMARY KEY (registroGrupo)
 )
 WITH (
@@ -25,7 +26,7 @@ OIDS = FALSE
 );
 
 CREATE TABLE mod1.noconformidad(
-  fecha timestamp with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone,
+  fecha timestamp NOT NULL DEFAULT ('now'::text)::timestamp(2),
   registro VARCHAR(20) NOT NULL,
   situacion VARCHAR(5000) NOT NULL,
   procedencia integer NOT NULL,
@@ -37,6 +38,7 @@ CREATE TABLE mod1.noconformidad(
   requisito2 VARCHAR(5000),
   declaracion2 VARCHAR(5000),
   codigo2 VARCHAR(30),
+  estado VARCHAR(30) NOT NULL DEFAULT ('activa'), 
   CONSTRAINT pk_noconformidad PRIMARY KEY (registro )
 )
 WITH (
@@ -86,9 +88,10 @@ CREATE TABLE "mod1".Acciones
    Prioridad integer, 
    Proceso character varying(100), 
    Responsable character varying(100), 
-   Recursos character varying(200), 
-   FechaI time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
-   FechaF time with time zone NOT NULL DEFAULT ('now'::text)::timestamp(2) with time zone, 
+   Recursos character varying(200),
+   estado VARCHAR(30) NOT NULL DEFAULT('activa'),
+   FechaI date NOT NULL DEFAULT ('now'::text)::timestamp(2), 
+   FechaF date NOT NULL DEFAULT ('now'::text)::timestamp(2), 
    PRIMARY KEY (Registronc, Accion) 
 
 ) 
@@ -125,9 +128,9 @@ ALTER TABLE "mod1".Acciones ADD
 
 ------------------------ Inserts Temporales ------------------------
 INSERT INTO "mod1".USUARIO VALUES ('admin', 'admin@usb.ve', 'admin', 'admin', 0);
-INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 1);
-INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'ferreira@sub.ve', 'ferreira','member', 1 );
-INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'sanchezy@usb.ve', 'sanchezy', 'member', 1);
+INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'ferreira@sub.ve', 'ferreira','member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'sanchezy@usb.ve', 'sanchezy', 'member', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Adelis Lucinchi', 'alucinchi@usb.ve', 'alucinchi', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Luis Alvarez', 'lualvare@usb.ve', 'lualvare', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Gregorio Ruiz', 'jgruiz@usb.ve', 'jgruiz', 'member', 1);
@@ -153,15 +156,15 @@ INSERT INTO mod1.noconformidad (fecha, registro, situacion, procedencia, clausul
 INSERT INTO "mod1".trabaja VALUES ('Laboratorio E', 'UL04/13213');
 --- Acciones asociadas a la No Conformidad ---
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Repetir el Ensayo de Microscopia Electrónica', 'Correctiva', 1, 'Microscopía Electrónica', 'Prof. Marlon Cruz', 'Microsocopio Electrónico e insumos', '00:06:09', '00:06:09');
+	VALUES ('UL04/13213', 'Repetir el Ensayo de Microscopia Electrónica', 'Correctiva', 1, 'Microscopía Electrónica', 'Prof. Marlon Cruz', 'Microsocopio Electrónico e insumos', '11-11-1111', '11-11-1111');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Elaborar el informe técnico del ensayo', 'Correctiva', 2, 'Microscopía electrónica', 'Prof. Marlon Cruz', 'Microscopio Electrónico e Insumos', '00:06:40', '00:06:40');
+	VALUES ('UL04/13213', 'Elaborar el informe técnico del ensayo', 'Correctiva', 2, 'Microscopía electrónica', 'Prof. Marlon Cruz', 'Microscopio Electrónico e Insumos', '12-12-1999', '12-12-1999');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Modificar el procedimiento de revisión de pedidos, ofertas y contratos', 'Correctiva', 3, 'Coord. de Calidad Lab E', 'ing. Héctor Rojas', 'Computadora', '00:08:55', '00:08:55');
+	VALUES ('UL04/13213', 'Modificar el procedimiento de revisión de pedidos, ofertas y contratos', 'Correctiva', 3, 'Coord. de Calidad Lab E', 'ing. Héctor Rojas', 'Computadora', '12-12-1111', '12-12-1222');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Seguimiento a los cambios realizados en el punto anterior', 'Correctiva', 4, 'Coord. de Calidad Lab E', 'Ing. Héctor Rojas', 'Computadora', '00:09:22', '00:09:22');
+	VALUES ('UL04/13213', 'Seguimiento a los cambios realizados en el punto anterior', 'Correctiva', 4, 'Coord. de Calidad Lab E', 'Ing. Héctor Rojas', 'Computadora', '12-12-1111', '12-12-1111');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Elaborar un listado de ensayos comunes y su alcance para Microscopía  Electrónica', 'Preventiva', 5, 'Microscopía Electrónica', 'Prof. Marlon cruz', 'Computadora', '00:09:47', '00:09:47');
+	VALUES ('UL04/13213', 'Elaborar un listado de ensayos comunes y su alcance para Microscopía  Electrónica', 'Preventiva', 5, 'Microscopía Electrónica', 'Prof. Marlon cruz', 'Computadora', '11-11-1111', '11-11-1111');
 
 ------------------------ Inserts Temporales Publicacion ------------------------
 

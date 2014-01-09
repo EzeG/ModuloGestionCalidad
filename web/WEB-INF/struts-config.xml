@@ -153,6 +153,7 @@
             <forward name="success" path="/grupos/vista_no_conformidad.jsp"/>
         </action>
         
+        
         <!-- LINKS DE LAS NO CONFORMIDADES -->
         <action path="/linkNc" type="grupo.action.linksNc" validate="false" scope="session">
             <forward name = "success" path="/grupos/vista_datos_nc.jsp"/>
@@ -172,9 +173,12 @@
         <action name="Accion" path="/linkaccion" scope="request" type="grupo.action.LinkAccion">
             <forward name="success" path="/grupos/vista_accion.jsp"/>
         </action>
+        
         <action name="Accion" path="/terminaraccion" type="grupo.action.TerminarAccion">
             <forward name ="success" path="/grupos/vista_accioncerrada.jsp"/>
         </action>
+        
+        <action path="/imprimir_nc" type="pdf.imprimir_nc"/>
 
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
                 parameter="/construccion/vista_construccion.jsp"/>

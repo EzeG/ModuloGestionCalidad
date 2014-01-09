@@ -9,7 +9,7 @@
 
 
 <head>
-           <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
+    <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
     <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
     <script type="text/javascript">
@@ -29,7 +29,7 @@
 <%NoConformidad nc = (NoConformidad) request.getAttribute("nc");
     String registro_nc = nc.getRegistro_nc();
     String visible = (String) request.getAttribute("visible");
-    String visual = "visibility : "+visible;
+    String visual = "visibility : " + visible;
 %>
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
 <table>
@@ -136,19 +136,123 @@
         </tr>
     </table>
 </div>
-            <center>           
-                <button id="button" style="width: 580px; height: 60px;" ><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Activas</b></button>
-            </center>
-            <br/>
-    <div id="desplegable1">           
-<div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Preventivas</p></center>
-</div>
-        <center>            
-<div id="noconformidades">
+<center>           
+    <button id="button" style="width: 580px; height: 60px;" ><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Activas</b></button>
+</center>
+<br/>
+<div id="desplegable1">           
+    <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
+        <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Preventivas</p></center>
+    </div>
+    <center>            
+        <div id="noconformidades">
 
-    <table border = "1">
-            <tr bgcolor="#D3D3D3" style="font-size: 12px">
+            <table border = "1">
+                <tr bgcolor="#D3D3D3" style="font-size: 12px">
+                    <td align="center">
+                        <b>Acción</b>
+                    </td>
+                    <td align="center">
+                        <b>Prior</b>
+                    </td>
+                    <td align="center">
+                        <b>Proceso/Responsable</b>
+                    </td>
+                    <td align="center">
+                        <b>Fecha Inicio</b>
+                    </td>
+                    <td align="center">
+                        <b>Culminación</b>
+                    </td>
+                </tr>
+
+                <logic:iterate id="a_p" name="AccionPreventiva">
+                    <tr>
+                        <td style="vertical-align: middle">
+                            <html:link action="linkaccion.do?registro_nc=${a_p.registro_nc}&accion=${a_p.accion}">
+                                <bean:write name="a_p" property="accion"/>
+                            </html:link>
+                        </td>
+                        <td>
+                            <bean:write name="a_p" property="prioridad"/>
+                        </td>
+
+                        <td>
+                            <bean:write name="a_p" property="proceso"/>/<bean:write name="a_p" property="responsable"/>
+                        </td>
+                        <td>
+                            <bean:write name="a_p" format = "dd-MM-yyyy" property="fechainicio"/>
+                        </td>
+                        <td>
+                            <bean:write name="a_p" format = "dd-MM-yyyy" property="fechafinal"/>
+                        </td>
+                    </tr>
+                </logic:iterate>
+
+            </table>
+        </div>
+    </center>
+    <br/>
+
+    <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
+        <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Correctivas</p></center>
+    </div>    
+    <center>
+        <div id="noconformidades">
+            <table border = "1">
+                <tr bgcolor="#D3D3D3">
+                    <td align="center">
+                        <b>Acción</b>
+                    </td>
+                    <td align="center">
+                        <b>Prior</b>
+                    </td>
+                    <td align="center">
+                        <b>Proceso/Responsable</b>
+                    </td>
+                    <td align="center">
+                        <b>Fecha Inicio</b>
+                    </td>
+                    <td align="center">
+                        <b>Culminación</b>
+                    </td>
+                </tr>
+                <logic:iterate id="a_c" name="AccionCorrectiva">
+                    <tr>
+                        <td style="vertical-align: middle">
+                            <html:link action="linkaccion.do?registro_nc=${a_c.registro_nc}&accion=${a_c.accion}">
+                                <bean:write name="a_c" property="accion"/>
+                            </html:link>
+                        </td>
+                        <td>
+                            <bean:write name="a_c" property="prioridad"/>
+                        </td>
+
+                        <td>
+                            <bean:write name="a_c" property="proceso"/>/<bean:write name="a_c" property="responsable"/>
+                        </td>
+                        <td>
+                            <bean:write name="a_c" format = "dd-MM-yyyy" property="fechainicio"/>
+                        </td>
+                        <td>
+                            <bean:write name="a_c" format = "dd-MM-yyyy" property="fechafinal"/>
+                        </td>
+                    </tr>
+                </logic:iterate>
+            </table>
+        </div>
+    </center>
+</div>              
+<br>    
+
+<center>
+    <button id="button2"  style="width: 580px; height: 60px;"><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Terminadas</b></button>
+</center>
+<br/>
+<div id="desplegable2">
+    <div id="noconformidades">
+        <table border = "1">
+            <tr bgcolor="#D3D3D3">
                 <td align="center">
                     <b>Acción</b>
                 </td>
@@ -165,139 +269,38 @@
                     <b>Culminación</b>
                 </td>
             </tr>
-       
-        <logic:iterate id="a_p" name="AccionPreventiva">
-            <tr>
-                <td style="vertical-align: middle">
-                    <html:link action="linkaccion.do?registro_nc=${a_p.registro_nc}&accion=${a_p.accion}">
-                        <bean:write name="a_p" property="accion"/>
-                    </html:link>
-                </td>
-                <td>
-                    <bean:write name="a_p" property="prioridad"/>
-                </td>
-                
-                <td>
-                    <bean:write name="a_p" property="proceso"/>/<bean:write name="a_p" property="responsable"/>
-                </td>
-                <td>
-                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechainicio"/>
-                </td>
-                <td>
-                    <bean:write name="a_p" format = "dd-MM-yyyy" property="fechafinal"/>
-                </td>
-            </tr>
-        </logic:iterate>
-        
-    </table>
+            <logic:iterate id="a_t" name="AccionTerminada">
+                <tr>
+                    <td style="vertical-align: middle">
+                        <html:link action="linkaccion.do?registro_nc=${a_t.registro_nc}&accion=${a_t.accion}">
+                            <bean:write name="a_t" property="accion"/>
+                        </html:link>
+                    </td>
+                    <td>
+                        <bean:write name="a_t" property="prioridad"/>
+                    </td>
+
+                    <td>
+                        <bean:write name="a_t" property="proceso"/>/<bean:write name="a_t" property="responsable"/>
+                    </td>
+                    <td>
+                        <bean:write name="a_t" format = "dd-MM-yyyy" property="fechainicio"/>
+                    </td>
+                    <td>
+                        <bean:write name="a_t" format = "dd-MM-yyyy" property="fechafinal"/>
+                    </td>
+                </tr>
+            </logic:iterate>
+        </table>
     </div>
-        </center>
-            <br/>
-
-<div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Correctivas</p></center>
-</div>    
-            <center>
-<div id="noconformidades">
-    <table border = "1">
-        <tr bgcolor="#D3D3D3">
-            <td align="center">
-                <b>Acción</b>
-            </td>
-            <td align="center">
-                <b>Prior</b>
-            </td>
-            <td align="center">
-                <b>Proceso/Responsable</b>
-            </td>
-            <td align="center">
-                <b>Fecha Inicio</b>
-            </td>
-            <td align="center">
-                <b>Culminación</b>
-            </td>
-        </tr>
-        <logic:iterate id="a_c" name="AccionCorrectiva">
-            <tr>
-                <td style="vertical-align: middle">
-                    <html:link action="linkaccion.do?registro_nc=${a_c.registro_nc}&accion=${a_c.accion}">
-                        <bean:write name="a_c" property="accion"/>
-                    </html:link>
-                </td>
-                <td>
-                    <bean:write name="a_c" property="prioridad"/>
-                </td>
-                
-                <td>
-                    <bean:write name="a_c" property="proceso"/>/<bean:write name="a_c" property="responsable"/>
-                </td>
-                <td>
-                    <bean:write name="a_c" format = "dd-MM-yyyy" property="fechainicio"/>
-                </td>
-                <td>
-                    <bean:write name="a_c" format = "dd-MM-yyyy" property="fechafinal"/>
-                </td>
-            </tr>
-        </logic:iterate>
-    </table>
-</div>
-            </center>
-</div>              
-<br>    
-
-<center>
-    <button id="button2"  style="width: 580px; height: 60px;"><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Terminadas</b></button>
-</center>
-<br/>
-<div id="desplegable2">
-<div id="noconformidades">
-    <table border = "1">
-        <tr bgcolor="#D3D3D3">
-            <td align="center">
-                <b>Acción</b>
-            </td>
-            <td align="center">
-                <b>Prior</b>
-            </td>
-            <td align="center">
-                <b>Proceso/Responsable</b>
-            </td>
-            <td align="center">
-                <b>Fecha Inicio</b>
-            </td>
-            <td align="center">
-                <b>Culminación</b>
-            </td>
-        </tr>
-        <logic:iterate id="a_t" name="AccionTerminada">
-            <tr>
-                <td style="vertical-align: middle">
-                    <html:link action="linkaccion.do?registro_nc=${a_t.registro_nc}&accion=${a_t.accion}">
-                        <bean:write name="a_t" property="accion"/>
-                    </html:link>
-                </td>
-                <td>
-                    <bean:write name="a_t" property="prioridad"/>
-                </td>
-                
-                <td>
-                    <bean:write name="a_t" property="proceso"/>/<bean:write name="a_t" property="responsable"/>
-                </td>
-                <td>
-                    <bean:write name="a_t" format = "dd-MM-yyyy" property="fechainicio"/>
-                </td>
-                <td>
-                    <bean:write name="a_t" format = "dd-MM-yyyy" property="fechafinal"/>
-                </td>
-            </tr>
-        </logic:iterate>
-    </table>
-</div>
 </div>
 <br/>
 <center>
-<html:form action="/nueva_accion">
-    <html:hidden property="registro_nc" value="<%=registro_nc%>" />
-    <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
-</html:form>     
+    <html:form action="/nueva_accion">
+        <html:hidden property="registro_nc" value="<%=registro_nc%>" />
+        <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
+    </html:form>
+    <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
+        <html:submit style="<%=visual%>" styleId="agregarp" value="Imprimir" />
+    </html:link>
 </center>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41550f2e-c2cc-402b-92eb-251f30475311">
+	<property name="ireport.zoom" value="3.452271214393119"/>
+	<property name="ireport.x" value="1066"/>
+	<property name="ireport.y" value="469"/>
+	<subDataset name="prueba" uuid="de2cc23a-f098-4eb7-b3ac-dc576c83f2e3">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM mod1.noconformidad]]>
+		</queryString>
+		<field name="fecha" class="java.sql.Timestamp"/>
+		<field name="registro" class="java.lang.String"/>
+		<field name="situacion" class="java.lang.String"/>
+		<field name="procedencia" class="java.lang.Integer"/>
+		<field name="clausula1" class="java.lang.String"/>
+		<field name="requisito1" class="java.lang.String"/>
+		<field name="declaracion1" class="java.lang.String"/>
+		<field name="codigo1" class="java.lang.String"/>
+		<field name="clausula2" class="java.lang.String"/>
+		<field name="requisito2" class="java.lang.String"/>
+		<field name="declaracion2" class="java.lang.String"/>
+		<field name="codigo2" class="java.lang.String"/>
+		<field name="estado" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="registronc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM mod1.noconformidad WHERE registro = $P{registronc}]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="registro" class="java.lang.String"/>
+	<field name="situacion" class="java.lang.String"/>
+	<field name="procedencia" class="java.lang.Integer"/>
+	<field name="clausula1" class="java.lang.String"/>
+	<field name="requisito1" class="java.lang.String"/>
+	<field name="declaracion1" class="java.lang.String"/>
+	<field name="codigo1" class="java.lang.String"/>
+	<field name="clausula2" class="java.lang.String"/>
+	<field name="requisito2" class="java.lang.String"/>
+	<field name="declaracion2" class="java.lang.String"/>
+	<field name="codigo2" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="572" splitType="Stretch">
+			<image>
+				<reportElement uuid="11d01885-8b6e-4bb0-8828-3107a1859c41" x="0" y="0" width="752" height="572"/>
+				<imageExpression><![CDATA["/home/edgar/Documentos/Informacion/UL04-M05F1_Desviación_Causas_y_Acciones_2014_01_08_06_08_23_076-page-001.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="cb075d22-2228-49cc-8278-298e1104289e" x="615" y="134" width="83" height="14"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="17c979fc-182a-42da-9f05-1ec474b19b45" x="34" y="177" width="326" height="45"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="15337dbe-881d-4a15-b935-35063356517d" x="368" y="179" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1bcb9443-e09b-4dfc-a1b9-4fb5ce42dd96" x="369" y="195" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==2)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="212e7510-2e21-4b9d-9579-de64eb62a525" x="368" y="212" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==3)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a2dff95e-49e3-4f1b-be68-ecd939439cfd" x="501" y="212" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==6)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3db9c823-a474-4212-a3fa-4f4d85a34d01" x="501" y="195" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==5)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79244a97-7a79-4854-b01e-434477e9d410" x="501" y="179" width="6" height="10">
+					<printWhenExpression><![CDATA[new Boolean($F{procedencia}.intValue()==4)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="df4407fc-4284-49a7-b62e-e1ac12b3d617" x="641" y="179" width="57" height="43"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="61940620-56aa-42e3-9ba8-f477db152976" x="125" y="239" width="43" height="81"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clausula1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f7602a8b-02f8-4cf2-86ba-06a3d3610bf6" x="125" y="320" width="43" height="81"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clausula2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77bf0c08-41f5-4c10-a2b8-04d1976b452f" x="178" y="239" width="214" height="81"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requisito1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efceb515-7d69-4362-bb21-264480b07e16" x="178" y="320" width="214" height="81"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requisito2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cace2b6c-86c6-45bb-bdea-f9f91623519d" x="402" y="239" width="229" height="81"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{declaracion1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c6781b02-0866-4990-95ae-adea2ad53c6e" x="402" y="320" width="229" height="81"/>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{declaracion2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b1c09056-a6de-45a1-93b1-1148b18387d9" x="641" y="239" width="57" height="81"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4d7747c0-231b-430a-8f3e-bcfff2a31a4d" x="641" y="320" width="57" height="81"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

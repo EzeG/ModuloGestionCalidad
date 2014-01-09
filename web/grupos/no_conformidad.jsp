@@ -140,7 +140,12 @@
                             <p id="declaracion_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
-                    </tr>   
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
                 </table> 
             </div>
         </fieldset>
