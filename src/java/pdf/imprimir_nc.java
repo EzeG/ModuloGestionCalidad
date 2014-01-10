@@ -60,9 +60,9 @@ public class imprimir_nc extends org.apache.struts.action.Action {
             throws Exception {
 
         Class.forName("org.postgresql.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/prueba", "postgres", "postgres");
+        Connection conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CALIDAD", "postgres", "123");
 
-        JasperReport reporte = (JasperReport) JRLoader.loadObject("/home/edgar/NetBeansProjects/ModuloGestionCalidad/quejatemplate.jasper");
+        JasperReport reporte = (JasperReport) JRLoader.loadObject("/home/ani/NewTrySI/Sistemas1/ModuloGestionCalidad/quejatemplate.jasper");
 
         Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("registronc", request.getParameter("registro"));

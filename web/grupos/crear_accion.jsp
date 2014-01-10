@@ -67,13 +67,31 @@ String error= (String) request.getAttribute("error");%>
                 </html:select>
             </td>
          </tr>
-        <tr>
+                <tr>
             <td><p style="font-size: 14px"><b>Proceso:</b></p></td>
             <td>
-                <html:text styleId="proceso" property="proceso" value="<%=proceso%>" style="width:300px; color:gray; font-size: 14px" />
-                <p id="proceso_error" style="font-size: 12px; color: #B22222"></p>
+                <html:select style="font-size: 14px; height: 24px " property="proceso">
+                <html:option value="Acciones Correctivas">Acciones Correctivas</html:option>
+                <html:option value="Acciones Preventivas">Acciones Preventivas</html:option>
+                <html:option value="Auditoría interna o externa">Auditoría interna o externa</html:option>
+                <html:option value="Calibración">Calibración</html:option>
+                <html:option value="Compras a proveedores en el extranjero">Compras a proveedores en el extranjero</html:option>
+                <html:option value="Compras Nacionales">Compras Nacionales</html:option>
+                <html:option value="Control de Documentos">Control de Documentos</html:option>
+                <html:option value="Control de Registros">Control de Registros</html:option>
+                <html:option value="Control de Trabajo No Conforme">Control de Trabajo No Conforme</html:option>
+                <html:option value="Dirección">Dirección</html:option>
+                <html:option value="Ensayo">Ensayo</html:option>
+                <html:option value="Mejora">Mejora</html:option>
+                <html:option value="Organización">Organización</html:option>
+                <html:option value="Planificación">Planificación</html:option>
+                <html:option value="Revisión del SGC">Revisión del SGC</html:option>
+                <html:option value="Revisión pedidos, ofertas y contratos">Revisión pedidos, ofertas y contratos</html:option>
+                <html:option value="Servicios al Cliente">Servicios al Cliente</html:option>
+                <html:option value="Tratamiento de quejas">Tratamiento de quejas</html:option>
+                </html:select>
             </td>
-        </tr>
+         </tr>
 
         <tr>
              <td><p style="font-size: 14px"><b>Responsable:</b></p></td>
