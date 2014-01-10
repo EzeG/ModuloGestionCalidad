@@ -47,7 +47,7 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
         NoConformidad nc1;
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         nc = (NoConformidad) form;
-      
+        nc.setCodigo_nc2(nc.getCodigo_nc1());
         Grupo group = new Grupo();
         group.setNombre_grupo(nc.getGrupo_nc());
         NC = DBMS.getInstance().consultarNC("UL04/"+nc.getRegistro_nc());

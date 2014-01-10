@@ -45,7 +45,7 @@ public class CrearGrupo extends org.apache.struts.action.Action {
         Grupo group = (Grupo) form;
         NoConformidad nc= new NoConformidad("UL04/"+group.getRegistro_nc(), group.getSituacion_nc(), group.getOrigen_nc(), 
                                            group.getClausula_nc1(), group.getRequisito_nc1(), group.getDeclaracion_nc1(), group.getCodigo_nc1(),
-                                            group.getClausula_nc2(), group.getRequisito_nc2(), group.getDeclaracion_nc2(), group.getCodigo_nc2());
+                                            group.getClausula_nc2(), group.getRequisito_nc2(), group.getDeclaracion_nc2(), group.getCodigo_nc1());
         ArrayList<Usuario> users;
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         ArrayList<Usuario> cache = new ArrayList<Usuario>();

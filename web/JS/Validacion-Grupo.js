@@ -13,8 +13,10 @@ codigo_nc1= document.getElementById("codigo_nc1");
 clausula_nc2= document.getElementById("clausula_nc2");
 requisito_nc2= document.getElementById("requisito_nc2");
 declaracion_nc2= document.getElementById("declaracion_nc2");
-codigo_nc2= document.getElementById("codigo_nc2");
 submit=document.getElementById("submit");
+
+
+
 
 
 //se definen contadores de textareas
@@ -37,7 +39,6 @@ codigo_nc1_error= document.getElementById("codigo_nc1_error");
 clausula_nc2_error= document.getElementById("clausula_nc2_error");
 requisito_nc2_error= document.getElementById("requisito_nc2_error");
 declaracion_nc2_error= document.getElementById("declaracion_nc2_error");
-codigo_nc2_error= document.getElementById("codigo_nc2_error");
 
 submit_error=document.getElementById("submit_error");
 error_style=document.getElementById("error_style");
@@ -60,7 +61,6 @@ codigo_nc1_value= false;
 clausula_nc2_value= false;
 requisito_nc2_value= false;
 declaracion_nc2_value= false;
-codigo_nc2_value= false;
 /*
  * se desactiva el boton de submit hasta que se llene correctamente el formulario
  */
@@ -81,7 +81,6 @@ if(nombre_grupo.value== "Nombre del Grupo"){
     clausula_nc2_value= true;
     requisito_nc2_value= true;
     declaracion_nc2_value= true;
-    codigo_nc2_value= true;
     
     if(error_style.value=="El grupo ya existe."){
         nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px; border-color: #B22222");
@@ -104,7 +103,6 @@ if(miembros_grupo.value=="Encargado del Grupo" ){
     clausula_nc2_value= true;
     requisito_nc2_value= true;
     declaracion_nc2_value= true;
-    codigo_nc2_value= true;
     
     if(error_style.value=="Persona no registrada."
             || error_style.value=="Debe ingresar al menos un usuario en el grupo."){
@@ -128,7 +126,6 @@ if(registro_nc.value=="12345"){
     clausula_nc2_value= true;
     requisito_nc2_value= true;
     declaracion_nc2_value= true;
-    codigo_nc2_value= true;
     
     if(error_style.value=="Ya existe una no conformidad con este registro."){
         registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #B22222");
@@ -193,12 +190,6 @@ if(codigo_nc1.value=="Codigo"){
     codigo_nc1.setAttribute("style","color: gray; font-size: 14px");      
 }else{
     codigo_nc1.setAttribute("style","color: black; font-size: 14px");  
-}
-
-if(codigo_nc2.value=="Codigo"){
-    codigo_nc2.setAttribute("style","color: gray; font-size: 14px");      
-}else{
-    codigo_nc2.setAttribute("style","color: black; font-size: 14px");  
 }
 
 
@@ -401,14 +392,6 @@ declaracion_nc2.onfocus = function() {
  }
 };
 
-codigo_nc2.onfocus = function() {
-     codigo_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
-     codigo_nc2_error.innerHTML = "";
- if (codigo_nc2.value == "Codigo") {
-     codigo_nc2.value = ""; 
- }
-};
-
 /*
  * onblur events
  * 
@@ -442,7 +425,7 @@ var inject3 = /^"(.*)"|'(.*)'/;
  }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 string_grupo.onblur = function() {
@@ -463,7 +446,7 @@ string_grupo.onblur = function() {
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 registro_nc.onblur = function() {
@@ -487,7 +470,7 @@ registro_nc.onblur = function() {
     }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 situacion_nc.onblur = function() {
@@ -519,7 +502,7 @@ situacion_nc.onblur = function() {
  }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 clausula_nc1.onblur = function() {
@@ -545,7 +528,7 @@ clausula_nc1.onblur = function() {
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 requisito_nc1.onblur = function() {
@@ -577,7 +560,7 @@ requisito_nc1.onblur = function() {
  }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 declaracion_nc1.onblur = function() {
@@ -609,7 +592,7 @@ declaracion_nc1.onblur = function() {
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 codigo_nc1.onblur = function() {
@@ -638,7 +621,7 @@ codigo_nc1.onblur = function() {
  
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 clausula_nc2.onblur = function() {
@@ -664,7 +647,7 @@ clausula_nc2.onblur = function() {
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 requisito_nc2.onblur = function() {
@@ -696,7 +679,7 @@ requisito_nc2.onblur = function() {
  }
   submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 declaracion_nc2.onblur = function() {
@@ -728,36 +711,7 @@ declaracion_nc2.onblur = function() {
  }
  submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
                      requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
-};
-
-codigo_nc2.onblur = function() {
-    codigo_nc2.value = codigo_nc2.value.trim();
- if (codigo_nc2.value == "") {
-     codigo_nc2.setAttribute("style", "color: gray; font-size: 14px; border-color: #B22222");
-     codigo_nc2_error.innerHTML = "Codigo de no conformidad es obligatorio";
-     codigo_nc2.value = "Codigo";
-     codigo_nc2_value = false;
- }else{
-     if (codigo_nc2.value.length > 29){
-         codigo_nc2.setAttribute("style", "color: black; font-size: 14px; border-color: #B22222");
-         codigo_nc2_error.innerHTML = "El codigo de la no conformidad es muy largo";
-         codigo_nc2_value = false;
-     }else if(inject2.test(codigo_nc2.value) || inject.test(codigo_nc2.value) || inject3.test(codigo_nc2.value)){
-         codigo_nc2.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
-         codigo_nc2_error.innerHTML = "Formato invalido para el codigo de la no conformidad";
-         codigo_nc2_value = false;
-     }else{
-                codigo_nc2_error.innerHTML = "";
-                codigo_nc2.setAttribute("style", "color: black; font-size: 14px");
-                codigo_nc2_value = true;
-   
-     }
- }
- 
- submit.disabled = !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value && clausula_nc1_value && 
-                     requisito_nc1_value && declaracion_nc1_value && codigo_nc1_value && clausula_nc2_value && 
-                     requisito_nc2_value && declaracion_nc2_value && codigo_nc2_value);
+                     requisito_nc2_value && declaracion_nc2_value);
 };
 
 

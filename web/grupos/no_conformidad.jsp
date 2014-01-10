@@ -59,30 +59,30 @@
                     </html:select>
                 </td>
             </tr>
-        </table>
-        <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
-        <fieldset style="margin-left:20px; margin-right: 20px">    
-            <table>
-                <tr>
+                            <tr>
                     <td>
                         <p style="font-size: 14px"><b>Codigo:</b></p>
                     </td>
                     <td>
-                        <html:text styleClass="boton1"  styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:text styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
                     </td>
                 <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                 </tr>
+        </table>
+        <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
+        <fieldset style="margin-left:20px; margin-right: 20px">    
+            <table>
+                    <tr>
+                        <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
+                        <td>
+                            <html:text styleClass= "boton1" styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
+                            <p id="clausula_nc1_error" style="font-size: 12px; color: #B22222"></p>
+                        </td>
+                    </tr>  
             </table> 
 
             <div id="desplegable1"> 
                 <table>
-                    <tr>
-                        <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
-                        <td>
-                            <html:text styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
-                            <p id="clausula_nc1_error" style="font-size: 12px; color: #B22222"></p>
-                        </td>
-                    </tr>  
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
@@ -106,25 +106,17 @@
         <p style="font-size: 14px; color:gray" align="center"><b>ISO/IEC 17025 </b></p>
         <fieldset style="margin-left:20px; margin-right: 20px"> 
             <table>
-                <tr>
-                    <td>
-                        <p style="font-size: 14px"><b>Codigo:</b></p>
-                    </td>
-                    <td>
-                        <html:text styleClass="boton2"  styleId="codigo_nc2" property="codigo_nc2" value="<%=codigo2%>" style="color: gray; font-size: 14px"/>
-                    </td>
-                <p id="codigo_nc2_error" style="font-size: 12px; color: #B22222"></p>
-                </tr>
+                                    <tr>
+                        <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
+                        <td>
+                            <html:text styleClass="boton2" styleId="clausula_nc2" property="clausula_nc2" value="<%=clausula2%>" style="color: gray; font-size: 14px"/>
+                            <p id="clausula_nc2_error" style="font-size: 12px; color: #B22222"></p>
+                        </td>
+                    </tr>
             </table>
             <div id="desplegable2"> 
                 <table>
-                    <tr>
-                        <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
-                        <td>
-                            <html:text styleId="clausula_nc2" property="clausula_nc2" value="<%=clausula2%>" style="color: gray; font-size: 14px"/>
-                            <p id="clausula_nc2_error" style="font-size: 12px; color: #B22222"></p>
-                        </td>
-                    </tr>   
+   
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
