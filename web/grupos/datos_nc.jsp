@@ -99,7 +99,6 @@
                 <p style="font-size: 12px">
                     <b>Requisito:</b>
                 </p>
-                <bean:write name="nc" property="declaracion_nc1"/>
                 <bean:write name="nc" property="requisito_nc2"/>
             </td>
         </tr>
@@ -122,7 +121,6 @@
                 <p style="font-size: 12px">
                     <b>Declaracion de la No Conformidad:</b>
                 </p>
-                <bean:write name="nc" property="codigo_nc1"/>
                 <bean:write name="nc" property="declaracion_nc1"/>
             </td>
             <td>
