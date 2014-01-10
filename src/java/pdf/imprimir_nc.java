@@ -5,6 +5,10 @@
  */
 package pdf;
 
+import DBMS.DBMS;
+import domain.Accion;
+import domain.NoConformidad;
+import domain.Usuario;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -70,9 +74,49 @@ public class imprimir_nc extends org.apache.struts.action.Action {
          exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File("/home/edgar/NetBeansProjects/ModuloGestionCalidad/quejagenerada.pdf"));
          exporter.exportReport();*/
         String nombreArchivo = "NoConformidad.pdf";
-        JasperViewer.viewReport (reporteQueja);
+        JasperViewer.viewReport(reporteQueja);
         JasperExportManager.exportReportToPdfFile(reporteQueja, nombreArchivo);
 
+        NoConformidad nc = new NoConformidad();
+        String nombreNc = (String) request.getParameter("registro");
+        String origen = "";
+        ArrayList<Accion> acciones_preventivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_correctivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
+        nc = DBMS.getInstance().buscarNc(nombreNc);
+
+        /* Origen segun el numero */
+        if (nc.getOrigen_nc() == 1) {
+            origen = "Queja";
+        } else if (nc.getOrigen_nc() == 2) {
+            origen = "Auditoria";
+        } else if (nc.getOrigen_nc() == 3) {
+            origen = "Revision del SGC";
+        } else if (nc.getOrigen_nc() == 4) {
+            origen = "Oportunidad de Mejora";
+        } else if (nc.getOrigen_nc() == 5) {
+            origen = "Trabajo No Conforme";
+        } else if (nc.getOrigen_nc() == 6) {
+            origen = "Otro";
+        }
+        request.setAttribute("nc", nc);
+        request.setAttribute("origen", origen);
+        acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
+        acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+        acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
+        request.setAttribute("AccionPreventiva", acciones_preventivas);
+        request.setAttribute("AccionCorrectiva", acciones_correctivas);
+        request.setAttribute("AccionTerminada", acciones_terminadas);
+        String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
+        Usuario usuario;
+        usuario = (Usuario) request.getSession().getAttribute("usuario");
+        String usbid = usuario.getUsbid();
+
+        if (DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
+            request.setAttribute("visible", "visible");
+        } else {
+            request.setAttribute("visible", "hidden");
+        }
 
         return mapping.findForward(SUCCESS);
     }

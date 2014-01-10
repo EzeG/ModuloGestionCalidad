@@ -32,6 +32,19 @@
     String visual = "visibility : " + visible;
 %>
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
+<div align="right">
+    <div >
+    <html:form action="/nueva_accion">
+        <html:hidden property="registro_nc" value="<%=registro_nc%>" />
+        <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
+    </html:form>
+    </div>
+    <div style="margin-right: 100px; margin-top: -24px">
+        <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
+            <html:submit style="<%=visual%>" styleId="agregarp" value="Imprimir" />
+        </html:link>
+    </div>
+</div>
 <table>
     <tr>
         <td>
@@ -294,13 +307,3 @@
         </table>
     </div>
 </div>
-<br/>
-<center>
-    <html:form action="/nueva_accion">
-        <html:hidden property="registro_nc" value="<%=registro_nc%>" />
-        <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
-    </html:form>
-    <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
-        <html:submit style="<%=visual%>" styleId="agregarp" value="Imprimir" />
-    </html:link>
-</center>
