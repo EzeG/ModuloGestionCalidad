@@ -54,7 +54,6 @@ public class TerminarAccion extends org.apache.struts.action.Action {
         terminada = DBMS.getInstance().terminarAccion(acc.getRegistro_nc(), acc.getAccion());
         if(terminada) {
             acc.setMensaje("La acción '"+acc.getAccion()+"' ha sido terminada.");
-            ArrayList<Usuario> usuarios = DBMS.getInstance().consultarUsuariosCalidad();
             final String username = "ulab-calidad@usb.ve";
 		final String password = "coordcalidad";
                 String to;
@@ -71,14 +70,12 @@ public class TerminarAccion extends org.apache.struts.action.Action {
 				return new PasswordAuthentication(username, password);
 			}
 		  });
-            for (int i=0; i < usuarios.size();i++) {
-                to = usuarios.get(i).getEmail();
                 try {
  
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(username));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse(to));
+				InternetAddress.parse(username));
 			message.setSubject("SIGULAB-Accion terminada");
 			message.setText("Se ha terminada la acción "+acc.getAccion()+" asociada a la no conformidad "+acc.getRegistro_nc()+"\n\nPara más información ingrese al módulo de gestión de calidad SIGULAB");
  
@@ -87,7 +84,6 @@ public class TerminarAccion extends org.apache.struts.action.Action {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-            }
         }
         else {
             acc.setMensaje("La acción '"+acc.getAccion()+"' no se ha podido terminar.");

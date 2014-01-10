@@ -83,8 +83,6 @@
             <td>
                 <p align="center"><b>ISO/IEC 17025</b></p><br>
                 <p style="font-size: 12px">
-                    <b>Clausula:</b>
-                    <bean:write name="nc" property="clausula_nc1"/>
                     <b>Codigo:</b>
                     <bean:write name="nc" property="codigo_nc2"/>
                 </p>
