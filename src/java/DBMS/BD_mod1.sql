@@ -130,13 +130,13 @@ ALTER TABLE "mod1".Acciones ADD
 INSERT INTO "mod1".USUARIO VALUES ('admin', 'admin@usb.ve', 'admin', 'admin', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Militza Macías', 'ulab-calidad@usb.ve', 'ulab-calidad', 'member', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Susana Ferreira', 'anna.gomez.op@gmail.com', 'ferreira','member', 0);
-INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'hpani_radcliffe@hotmail.com', 'sanchezy', 'member', 0);
+INSERT INTO "mod1".USUARIO VALUES ('Yetzana Sánchez', 'ulab-calidad@usb.ve', 'sanchezy', 'member', 0);
 INSERT INTO "mod1".USUARIO VALUES ('Adelis Lucinchi', 'alucinchi@usb.ve', 'alucinchi', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Luis Alvarez', 'lualvare@usb.ve', 'lualvare', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Gregorio Ruiz', 'jgruiz@usb.ve', 'jgruiz', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Ana Guadalupe Ramos', 'aramos@usb.ve', 'aramos', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('Wilfrido Gonzalez', 'wgonzal@usb.ve', 'wgonzal', 'member', 1);
-INSERT INTO "mod1".USUARIO VALUES ('Héctor Rojas', 'hrojas@usb.ve', 'hrojas', 'member', 1);
+INSERT INTO "mod1".USUARIO VALUES ('Héctor Rojas', 'anna.gomez.op@gmail.com', 'hrojas', 'member', 1);
 INSERT INTO "mod1".USUARIO VALUES ('José Salazar', 'jarriojas@usb.ve', 'jarriojas', 'member', 1);
 
 ------------------------ Inserts Temporales Grupo ------ferreira@sub.ve'---------sanchezy@usb.ve---------
@@ -149,6 +149,8 @@ INSERT INTO mod1.conforma (registrogrupo, usbid, cargo)
 	VALUES ('Laboratorio E', 'jgruiz', 1);
 INSERT INTO mod1.conforma (registrogrupo, usbid, cargo) 
 	VALUES ('Laboratorio E', 'aramos', 1);
+INSERT INTO mod1.conforma (registrogrupo, usbid, cargo) 
+	VALUES ('Laboratorio E', 'hrojas', 1);
 --- No Conformidad del grupo ---
 INSERT INTO mod1.noconformidad (fecha, registro, situacion, procedencia, clausula1, requisito1, declaracion1, codigo1, clausula2, requisito2, declaracion2, codigo2) 
 	VALUES ('2013-12-29 21:52:01.82', 'UL04/13213', 'Inconformidad del cliente en cuanto al producto entregado por prestación de servicio a la empresa TurboCare, C.A., según queja registrada como UL04/13-230', 1, '7.2.2', 'La organización debe revisar los requisitos relacionados con el producto () antes de que se comprometa a proporcionar un producto al cliente. () Deben mantenerse registros de los resultados de la revisión y de las acciones originadas por la misma', 'El laboratorio no mantiene registros que evidencien que se hayan revisado los requisitos relacionados con el producto solicitado antes que se comprometiera a proporcionarlo, lo que contraviene lo establecido en la cláusula 7.2.2 de la norma ISO 9001:2008', 'NC131111a', '4.1.1 a)', 'Las políticas y los procedimientos para las revisiones de los pedidos, las ofertas y los contratos, que den por resultado un contrato para la realización de un ensayo o una calibración, deben asegurar que: a) los requisitos, incluidos los métodos a utilizar, están adecuadamente definidos, documentados y entendidos', 'Las políticas y los procedimientos para las revisiones de los pedidos, las ofertas y los contratos, que den por resultado un contrato para la realización de un ensayo o una calibración, deben asegurar que: a) los requisitos, incluidos los métodos a utilizar, están adecuadamente definidos, documentados y entendidos', 'NC131111b');
@@ -156,15 +158,15 @@ INSERT INTO mod1.noconformidad (fecha, registro, situacion, procedencia, clausul
 INSERT INTO "mod1".trabaja VALUES ('Laboratorio E', 'UL04/13213');
 --- Acciones asociadas a la No Conformidad ---
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Repetir el Ensayo de Microscopia Electrónica', 'Correctiva', 1, 'Microscopía Electrónica', 'Prof. Marlon Cruz', 'Microsocopio Electrónico e insumos', '11-11-1111', '11-11-1111');
+	VALUES ('UL04/13213', 'Repetir el Ensayo de Microscopia Electrónica', 'Correctiva', 1, 'Microscopía Electrónica', 'jgruiz', 'Microsocopio Electrónico e insumos', '11-11-1111', '11-11-1111');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Elaborar el informe técnico del ensayo', 'Correctiva', 2, 'Microscopía electrónica', 'Prof. Marlon Cruz', 'Microscopio Electrónico e Insumos', '12-12-1999', '12-12-1999');
+	VALUES ('UL04/13213', 'Elaborar el informe técnico del ensayo', 'Correctiva', 2, 'Microscopía electrónica', 'jgruiz', 'Microscopio Electrónico e Insumos', '12-12-1999', '12-12-1999');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Modificar el procedimiento de revisión de pedidos, ofertas y contratos', 'Correctiva', 3, 'Coord. de Calidad Lab E', 'ing. Héctor Rojas', 'Computadora', '12-12-1111', '12-12-1222');
+	VALUES ('UL04/13213', 'Modificar el procedimiento de revisión de pedidos, ofertas y contratos', 'Correctiva', 3, 'Coord. de Calidad Lab E', 'hrojas', 'Computadora', '12-12-1111', '12-12-1222');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Seguimiento a los cambios realizados en el punto anterior', 'Correctiva', 4, 'Coord. de Calidad Lab E', 'Ing. Héctor Rojas', 'Computadora', '12-12-1111', '12-12-1111');
+	VALUES ('UL04/13213', 'Seguimiento a los cambios realizados en el punto anterior', 'Correctiva', 4, 'Coord. de Calidad Lab E', 'hrojas', 'Computadora', '12-12-1111', '12-12-1111');
 INSERT INTO mod1.acciones (registronc, accion, tipo, prioridad, proceso, responsable, recursos, fechai, fechaf) 
-	VALUES ('UL04/13213', 'Elaborar un listado de ensayos comunes y su alcance para Microscopía  Electrónica', 'Preventiva', 5, 'Microscopía Electrónica', 'Prof. Marlon cruz', 'Computadora', '11-11-1111', '11-11-1111');
+	VALUES ('UL04/13213', 'Elaborar un listado de ensayos comunes y su alcance para Microscopía  Electrónica', 'Preventiva', 5, 'Microscopía Electrónica', 'aramos', 'Computadora', '11-11-1111', '11-11-1111');
 
 ------------------------ Inserts Temporales Publicacion ------------------------
 
@@ -179,3 +181,27 @@ Atentamente,
 
 Coordinación de la Calidad 
 Unidad de Laboratorios');
+
+INSERT INTO mod1.publicacion (titulo, contenido) 
+	VALUES ('Unidad de Laboratorios retira desechos químicos del Pabellón 3', 'Unidad de Laboratorios retira desechos químicos del Pabellón 3
+
+La Unidad de Laboratorios conjuntamente con la Dirección de Planta
+Física, Mantenimiento Ambiental, Bomberos Metropolitanos y Bomberos
+Voluntarios de la USB, y el apoyo del Vicerrectorado Administrativo,
+retiró los materiales peligrosos que se encontraban en el Pabellón 3,
+estructura que fue demolida recientemente debido a las condiciones de
+infraestructura que presentaba.
+Yumaiti Ortega, gestor de Desechos de la Unidad de Laboratorios informó
+que los materiales removidos (reactivos vencidos y otras mezclas) que se
+encontraban en esa área fueron trasladados al almacén temporal de
+desechos, ubicado en el área de servicios.
+Ortega también explicó que el almacén temporal quedó en su máxima
+capacidad, por lo tanto la Universidad está en la búsqueda de recursos y
+de empresas certificadas por el Ministerio del Ambiente para la
+disposición final de esas sustancias.
+A pesar de que la mayoría de los nuevos desechos se están tratando
+adecuadamente y se han disminuido las cantidades, la Unidad de
+Laboratorios tiene dificultades financieras para atender las necesidades
+de la universidad en materia de sustancias químicas, refirió Ortega, y
+que el problema más grave siegue siendo los pasivos ambientales.
+http://usbnoticias.info/post/29915');

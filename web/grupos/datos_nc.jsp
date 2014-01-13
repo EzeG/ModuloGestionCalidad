@@ -41,7 +41,7 @@
     </div>
     <div style="margin-right: 100px; margin-top: -24px">
         <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
-            <html:submit style="<%=visual%>" styleId="agregarp" value="Imprimir" />
+            <html:submit styleId="agregarp" value="Imprimir" />
         </html:link>
     </div>
 </div>

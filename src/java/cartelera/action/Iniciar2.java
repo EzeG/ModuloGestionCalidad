@@ -46,7 +46,6 @@ public class Iniciar2 extends org.apache.struts.action.Action {
             Collections.reverse(listMsg);
             request.setAttribute("listMsg", listMsg);
             request.setAttribute("usuario", usuario);
-            request.getSession().setAttribute("usuario", usuario);
             return mapping.findForward(SUCCESS);
 
         }else{

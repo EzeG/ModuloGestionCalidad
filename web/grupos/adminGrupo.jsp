@@ -6,7 +6,7 @@
 
 
 <p style="margin-top: -10px; color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
-                    <%= request.getAttribute("nombreGrupo")%>
+    <%= request.getAttribute("nombreGrupo")%>
 
 </p>
 <table style="margin-bottom: -5px;">
@@ -18,7 +18,7 @@
     </td>
     <td style="vertical-align: middle">
         <p style="margin-left: 93px"><b>USBID::</b><p>
-     </td>
+    </td>
 </table>
 <div id="miembros">
     <table style="">
@@ -42,53 +42,59 @@
 <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
     <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">No Conformidades</p>
 </div>
-        <center>           
-            <button id="button" style="width: 580px; height: 60px;" >
-                <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
-                    Activas
-                </b>
-            </button>
-        </center>
-            <br/>
+<center>           
+    <button id="button" style="width: 580px; height: 60px;" >
+        <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
+            Activas
+        </b>
+    </button>
+</center>
+<br/>
 <div id="desplegable1">
-<div id="noconformidades">
+    <div id="noconformidades">
 
-    <table border = "1">
+        <table border = "1">
             <tr bgcolor="#D3D3D3" style="font-size: 12px">
                 <td align="center">
                     <b>Registro</b>
+                </td>
+                <td align="center">
+                    <b>Codigo</b>
                 </td>
                 <td align="center">
                     <b>Situación</b>
                 </td>
             </tr>
             <logic:iterate id="ncG" name="noConformidad">
-                    <tr>
-                        <td style="vertical-align: middle">
-                            <html:link action="linkNc" paramId="NoConformidad" paramName="ncG"
-                                       paramProperty="registro_nc" >
-                            <bean:write name="ncG" property="registro_nc" />           
-                            </html:link>
-                        </td>
-                        <td style="vertical-align: middle">
-                            <bean:write name="ncG" property="situacion_nc" />
-                        </td>
-                    </tr>
-             </logic:iterate>
-    </table>
+                <tr>
+                    <td style="vertical-align: middle">
+                        <html:link action="linkNc" paramId="NoConformidad" paramName="ncG"
+                                   paramProperty="registro_nc" >
+                            <bean:write name="ncG" property="registro_nc" />          
+                        </html:link>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <bean:write name="ncG" property="codigo_nc1" />          
+                    </td>
+                    <td style="vertical-align: middle">
+                        <bean:write name="ncG" property="situacion_nc" />
+                    </td>
+                </tr>
+            </logic:iterate>
+        </table>
+    </div>
 </div>
-            </div>
-            <br/>
-                    <center>           
-            <button id="button2" style="width: 580px; height: 60px;" >
-                <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
-                    Terminadas
-                </b>
-            </button>
-        </center>
-            <br/>
-                    
-                    
+<br/>
+<center>           
+    <button id="button2" style="width: 580px; height: 60px;" >
+        <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
+            Terminadas
+        </b>
+    </button>
+</center>
+<br/>
+
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" />

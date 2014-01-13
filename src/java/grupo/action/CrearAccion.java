@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionMapping;
 
 import java.util.ArrayList;
 import DBMS.DBMS;
+import java.util.Date;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -49,6 +50,7 @@ public class CrearAccion extends org.apache.struts.action.Action {
             throws Exception {
 
         Accion accion = (Accion) form;
+        Date fechaI = accion.getFechainicio();
 
         if(DBMS.getInstance().agregarAccion(accion)){
             NoConformidad nc;

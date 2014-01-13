@@ -49,9 +49,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/CALIDAD",
+                    "jdbc:postgresql://localhost:5432/prueba",
                     "postgres",
-                    "123");
+                    "postgres");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -323,6 +323,7 @@ public class DBMS {
     
     public boolean agregarAccion(Accion ac) {
         PreparedStatement acAgregar;
+        
         try {
             acAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".acciones VALUES (?,?,?,?,?,?,?,?,?,?);");
             acAgregar.setString(1, ac.getRegistro_nc());
