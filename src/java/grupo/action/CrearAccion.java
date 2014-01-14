@@ -53,45 +53,65 @@ public class CrearAccion extends org.apache.struts.action.Action {
         Date fechaI = accion.getFechainicio();
 
         if(DBMS.getInstance().agregarAccion(accion)){
-            NoConformidad nc;
-            String origen = "";
-            ArrayList<Accion> acciones_preventivas;
-            ArrayList<Accion> acciones_correctivas;
-            ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
-            nc = DBMS.getInstance().buscarNc(accion.getRegistro_nc());
-
-            /* Origen segun el numero */
-            if(nc.getOrigen_nc() == 1){
-                origen = "Queja";
-            } else if(nc.getOrigen_nc() == 2){
-                origen = "Auditoria";
-            } else if(nc.getOrigen_nc() == 3){
-                origen = "Revision del SGC";
-            } else if(nc.getOrigen_nc() == 4){
-                origen = "Oportunidad de Mejora";
-            } else if(nc.getOrigen_nc() == 5){
-                origen = "Trabajo No Conforme";
-            } else if(nc.getOrigen_nc() == 6){
-                origen = "Otro";
-            }  
-            request.setAttribute("nc", nc);
-            request.setAttribute("origen", origen);
-            acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
-            acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
-            acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
-            request.setAttribute("AccionPreventiva", acciones_preventivas);
-            request.setAttribute("AccionCorrectiva", acciones_correctivas);
-            request.setAttribute("AccionTerminada", acciones_terminadas);
-            String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
-            Usuario usuario;
-            usuario = (Usuario) request.getSession().getAttribute("usuario");
-            String usbid = usuario.getUsbid();
-
-             if(DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
-                 request.setAttribute("visible", "visible");
-             }else{
-                 request.setAttribute("visible", "hidden");
-             }    
+             NoConformidad nc = new NoConformidad();
+        String nombreNc = accion.getRegistro_nc();
+        String origen = "";
+        ArrayList<Accion> acciones_preventivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_correctivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
+        nc = DBMS.getInstance().buscarNc(nombreNc);
+        ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+        String registroGrupo;
+        request.setAttribute("registro_nc", nombreNc);
+        registroGrupo = DBMS.getInstance().buscarGrupoPNC(nombreNc);
+        if (registroGrupo != null) {
+            listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
+        }
+        request.setAttribute("accion","Accion");
+        request.setAttribute("proceso", "Proceso");
+        request.setAttribute("responsable", "Responsable");
+        request.setAttribute("recursos", "Recursos");
+        request.setAttribute("error", "");
+        request.setAttribute("integrantes", listUsuarios);
+        request.setAttribute("error", "Ya existe la acción");
+        
+        /* Origen segun el numero */
+        if(nc.getOrigen_nc() == 1){
+            origen = "Queja";
+        } else if(nc.getOrigen_nc() == 2){
+            origen = "Auditoria";
+        } else if(nc.getOrigen_nc() == 3){
+            origen = "Revision del SGC";
+        } else if(nc.getOrigen_nc() == 4){
+            origen = "Oportunidad de Mejora";
+        } else if(nc.getOrigen_nc() == 5){
+            origen = "Trabajo No Conforme";
+        } else if(nc.getOrigen_nc() == 6){
+            origen = "Otro";
+        }  
+        if(nc.getRequisito_nc1().equals("--------"))
+            nc.setCodigo_nc1("--------");
+        if(nc.getRequisito_nc2().equals("--------"))
+            nc.setCodigo_nc2("--------");
+        request.setAttribute("nc", nc);
+        request.setAttribute("origen", origen);
+        acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
+        acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+        acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
+        request.setAttribute("AccionPreventiva", acciones_preventivas);
+        request.setAttribute("AccionCorrectiva", acciones_correctivas);
+        request.setAttribute("AccionTerminada", acciones_terminadas);
+        request.setAttribute("error", "");
+        String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
+        Usuario usuario;
+        usuario = (Usuario) request.getSession().getAttribute("usuario");
+        String usbid = usuario.getUsbid();
+            
+         if(DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
+             request.setAttribute("visible", "visible");
+         }else{
+             request.setAttribute("visible", "hidden");
+         }    
             //request.setAttribute("visible", "visible");
              final String username = "ulab-calidad@usb.ve";
 		final String password = "coordcalidad";
@@ -131,20 +151,72 @@ public class CrearAccion extends org.apache.struts.action.Action {
             return mapping.findForward(SUCCESS);
             
         }else{
-            ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
-            String registroGrupo;
-            String registro_nc= accion.getRegistro_nc();
-            request.setAttribute("registro_nc", registro_nc);
-            registroGrupo = DBMS.getInstance().buscarGrupoPNC(registro_nc);
-            if (registroGrupo != null) {
-                listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
-            }
-            request.setAttribute("accion","Accion");
-            request.setAttribute("proceso", "Proceso");
-            request.setAttribute("responsable", "Responsable");
-            request.setAttribute("recursos", "Recursos");
-            request.setAttribute("integrantes", listUsuarios);
-            request.setAttribute("error", "Ya existe la acción");
+
+
+
+                       
+            
+        NoConformidad nc = new NoConformidad();
+        String nombreNc = accion.getRegistro_nc();
+        String origen = "";
+        ArrayList<Accion> acciones_preventivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_correctivas = new ArrayList<Accion>();
+        ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
+        nc = DBMS.getInstance().buscarNc(nombreNc);
+        ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+        String registroGrupo;
+        request.setAttribute("registro_nc", nombreNc);
+        registroGrupo = DBMS.getInstance().buscarGrupoPNC(nombreNc);
+        if (registroGrupo != null) {
+            listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
+        }
+        request.setAttribute("accion","Accion");
+        request.setAttribute("proceso", "Proceso");
+        request.setAttribute("responsable", "Responsable");
+        request.setAttribute("recursos", "Recursos");
+        request.setAttribute("error", "");
+        request.setAttribute("integrantes", listUsuarios);
+        request.setAttribute("error", "ya existe la acción que intentó agregar");
+        
+        /* Origen segun el numero */
+        if(nc.getOrigen_nc() == 1){
+            origen = "Queja";
+        } else if(nc.getOrigen_nc() == 2){
+            origen = "Auditoria";
+        } else if(nc.getOrigen_nc() == 3){
+            origen = "Revision del SGC";
+        } else if(nc.getOrigen_nc() == 4){
+            origen = "Oportunidad de Mejora";
+        } else if(nc.getOrigen_nc() == 5){
+            origen = "Trabajo No Conforme";
+        } else if(nc.getOrigen_nc() == 6){
+            origen = "Otro";
+        }  
+        if(nc.getRequisito_nc1().equals("--------"))
+            nc.setCodigo_nc1("--------");
+        if(nc.getRequisito_nc2().equals("--------"))
+            nc.setCodigo_nc2("--------");
+        request.setAttribute("nc", nc);
+        request.setAttribute("origen", origen);
+        acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
+        acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
+        acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
+        request.setAttribute("AccionPreventiva", acciones_preventivas);
+        request.setAttribute("AccionCorrectiva", acciones_correctivas);
+        request.setAttribute("AccionTerminada", acciones_terminadas);
+        String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
+        Usuario usuario;
+        usuario = (Usuario) request.getSession().getAttribute("usuario");
+        String usbid = usuario.getUsbid();
+            
+         if(DBMS.getInstance().verificarMiembroEncargado(usbid, NombreG)) {
+             request.setAttribute("visible", "visible");
+         }else{
+             request.setAttribute("visible", "hidden");
+         }    
+       
+        
+        
             return mapping.findForward(FAILURE);
         }    
     }

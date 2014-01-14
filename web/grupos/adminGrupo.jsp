@@ -14,13 +14,13 @@
                 <html:img  src="images/miembros.png"  width="64px" height="63px" align="center"/>
             </button>
         </div>
-        <div style= "margin-top: -74.5px; margin-left: 250px">
+        <div style= "margin-top: -75px; margin-left: 250px">
             <button class = "button" id="button">
                 <html:img  src="images/nc_activas.png"  width="73px" height="63px" align="center"/>
             </button>
         </div>
 
-        <div style= "margin-top: -74.5px; margin-left: 380px">
+        <div style= "margin-top: -75.5px; margin-left: 380px">
             <button class = "button" id="button2">
                 <html:img  src="images/nc_terminadas.png"  width="73px" height="63px" align="center"/>
             </button>

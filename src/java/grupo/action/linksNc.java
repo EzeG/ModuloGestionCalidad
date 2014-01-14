@@ -45,6 +45,19 @@ public class linksNc extends org.apache.struts.action.Action {
         ArrayList<Accion> acciones_correctivas = new ArrayList<Accion>();
         ArrayList<Accion> acciones_terminadas = new ArrayList<Accion>();
         nc = DBMS.getInstance().buscarNc(nombreNc);
+        ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+        String registroGrupo;
+        request.setAttribute("registro_nc", nombreNc);
+        registroGrupo = DBMS.getInstance().buscarGrupoPNC(nombreNc);
+        if (registroGrupo != null) {
+            listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
+        }
+        request.setAttribute("accion","Accion");
+        request.setAttribute("proceso", "Proceso");
+        request.setAttribute("responsable", "Responsable");
+        request.setAttribute("recursos", "Recursos");
+        request.setAttribute("error", "");
+        request.setAttribute("integrantes", listUsuarios);
         
         /* Origen segun el numero */
         if(nc.getOrigen_nc() == 1){

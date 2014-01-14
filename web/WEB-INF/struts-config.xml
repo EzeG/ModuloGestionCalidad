@@ -113,7 +113,7 @@
         <action path="/CrearAccion" name="Accion" scope="session" 
                 type="grupo.action.CrearAccion" validate="false">
             <forward name="success" path="/grupos/vista_datos_nc.jsp"/>
-            <forward name="failure" path="/grupos/vista_crear_accion.jsp" />
+            <forward name="failure" path="/grupos/vista_datos_nc.jsp" />
         </action>
         
         

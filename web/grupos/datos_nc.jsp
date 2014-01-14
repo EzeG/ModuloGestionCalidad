@@ -8,49 +8,60 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
-<head>
-    <script type="text/javascript" src="JS/Validacion-No_conformidades.js"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
-    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#button").click(function() {
-                $("#desplegable1").slideToggle("slow");
-            });
-            $("#button2").click(function() {
-                $("#desplegable2").slideToggle("slow");
-            });
-            $("#desplegable1").css({display: 'none'});
-            $("#desplegable2").css({display: 'none'});
-        });
 
-    </script>
-</head>
 <%NoConformidad nc = (NoConformidad) request.getAttribute("nc");
     String registro_nc = nc.getRegistro_nc();
     String visible = (String) request.getAttribute("visible");
     String visual = "visibility : " + visible;
+    String error= (String) request.getAttribute("error");
 %>
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
-<div align="right">
-    <div >
-    <html:form action="/nueva_accion">
-        <html:hidden property="registro_nc" value="<%=registro_nc%>" />
-        <html:submit style="<%=visual%>" styleId="agregarp" value="+ Acción" />
-    </html:form>
-    </div>
-    <div style="margin-right: 100px; margin-top: -24px">
-        <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
-            <html:submit styleId="agregarp" value="Imprimir" />
-        </html:link>
-    </div>
+<p align="center" id="registro_nc_error" style="font-size: 14px; color: #B22222; margin-top: -20px"><b><%=error%></b></p>
+<div id="menu_grupos">
+    <table>
+        <tr>
+            <td style="vertical-align: middle; width: 135px">
+                <button class = "button" id="button">
+                    <html:img  src="images/acciones_activas.png"  width="51px" height="63px" align="center"/>
+                </button>
+            </td>
+            
+            <td style="vertical-align: middle; width: 135px">
+                <button class = "button" id="button1">
+                    <html:img  src="images/acciones_activas.png"  width="51px" height="63px" align="center"/>
+                </button>
+            </td>
+            
+            <td style="vertical-align: middle; width: 135px">
+                <button class="button" id="button2">
+                    <html:img  src="images/acciones_terminadas.png"  width="51px" height="63px" align="center"/>
+                </button>
+            </td>
+
+            <td>
+                
+                    <button class = "button" style="<%=visual%>" id="button3">
+                        <html:img  src="images/agregar_accion.png"  width="51px" height="63px" align="center"/>
+                    </button>
+                
+            </td>
+            
+            <td style="vertical-align: middle; width: 135px">
+                <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
+                    <button class="button">
+                        <html:img  src="images/generar_pdf.png"  width="53px" height="63px" align="center"/>
+                    </button>
+                </html:link>
+            </td>
+        </tr>
+    </table>
 </div>
+<div id="info">
+
 <table>
     <tr>
         <td>
-            <p style="margin-top: -10px; color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
-                No Conformidad
-            </p>
+            <p > No Conformidad </p>
         </td>
         <td align = "right">
             <p style="font-size: 12px; margin-top: -10px">
@@ -145,14 +156,10 @@
         </tr>
     </table>
 </div>
-<center>           
-    <button id="button" style="width: 580px; height: 60px;" ><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Activas</b></button>
-</center>
-<br/>
-<div id="desplegable1">           
-    <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-        <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Preventivas</p></center>
-    </div>
+</div>
+            
+<div id="desplegable">           
+    <p>Acciones preventivas:</p>
     <center>            
         <div id="noconformidades">
 
@@ -202,10 +209,10 @@
         </div>
     </center>
     <br/>
-
-    <div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-        <center><p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Correctivas</p></center>
-    </div>    
+ </div>
+        
+ <div id="desplegable1">
+    <p>Acciones correctivas:</p>
     <center>
         <div id="noconformidades">
             <table border = "1">
@@ -252,13 +259,9 @@
         </div>
     </center>
 </div>              
-<br>    
 
-<center>
-    <button id="button2"  style="width: 580px; height: 60px;"><b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">Acciones Terminadas</b></button>
-</center>
-<br/>
 <div id="desplegable2">
+    <p>Acciones terminadas:</p>
     <div id="noconformidades">
         <table border = "1">
             <tr bgcolor="#D3D3D3" style="font-size: 12px">
@@ -303,3 +306,177 @@
         </table>
     </div>
 </div>
+            
+<div id="desplegable3">
+    <%
+String accion= (String) request.getAttribute("accion");
+String proceso= (String) request.getAttribute("proceso");
+String responsable= (String) request.getAttribute("responsable");
+String recursos= (String) request.getAttribute("recursos");
+%>
+
+
+<table>
+    <tr>
+        <td>
+            <p> Añadir nueva Acción:</p>
+        </td>
+        <td>
+            <p style="font-size: 12px">
+                <b>Registro:</b><%=registro_nc%>
+            </p>
+        </td>
+    </tr>
+</table>
+  
+             
+<html:form action="/CrearAccion">
+    <fieldset>  
+    <table style="margin-left: 10px">
+        <tr>
+            <td><p style="font-size: 14px"><b>Accion:</b></p></td>
+            <td>
+                <html:hidden property="registro_nc" value="<%=registro_nc%>"/>
+            <html:text styleId="accion" property="accion" value="<%=accion%>" style="width:300px; color:gray; font-size: 14px" />
+            <p id="accion_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Tipo:</b></p></td>
+            <td>
+                <html:select style="font-size: 14px; height: 24px " property="tipo">
+                <html:option value="Preventiva">Preventiva</html:option>
+                <html:option value="Correctiva">Correctiva</html:option>
+                </html:select>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Prioridad:</b></p></td>
+            <td>
+                <html:select style="font-size: 14px; height: 24px " property="prioridad">
+                <html:option value="1">1</html:option>
+                <html:option value="2">2</html:option>
+                <html:option value="3">3</html:option>
+                <html:option value="4">4</html:option>
+                <html:option value="5">5</html:option>
+                <html:option value="6">6</html:option>
+                <html:option value="7">7</html:option>
+                <html:option value="8">8</html:option>
+                <html:option value="9">9</html:option>
+                <html:option value="10">10</html:option>
+                </html:select>
+            </td>
+         </tr>
+                <tr>
+            <td><p style="font-size: 14px"><b>Proceso:</b></p></td>
+            <td>
+                <html:select style="font-size: 14px; height: 24px " property="proceso">
+                <html:option value="Acciones Correctivas">Acciones Correctivas</html:option>
+                <html:option value="Acciones Preventivas">Acciones Preventivas</html:option>
+                <html:option value="Auditoría interna o externa">Auditoría interna o externa</html:option>
+                <html:option value="Calibración">Calibración</html:option>
+                <html:option value="Compras a proveedores en el extranjero">Compras a proveedores en el extranjero</html:option>
+                <html:option value="Compras Nacionales">Compras Nacionales</html:option>
+                <html:option value="Control de Documentos">Control de Documentos</html:option>
+                <html:option value="Control de Registros">Control de Registros</html:option>
+                <html:option value="Control de Trabajo No Conforme">Control de Trabajo No Conforme</html:option>
+                <html:option value="Dirección">Dirección</html:option>
+                <html:option value="Ensayo">Ensayo</html:option>
+                <html:option value="Mejora">Mejora</html:option>
+                <html:option value="Organización">Organización</html:option>
+                <html:option value="Planificación">Planificación</html:option>
+                <html:option value="Revisión del SGC">Revisión del SGC</html:option>
+                <html:option value="Revisión pedidos, ofertas y contratos">Revisión pedidos, ofertas y contratos</html:option>
+                <html:option value="Servicios al Cliente">Servicios al Cliente</html:option>
+                <html:option value="Tratamiento de quejas">Tratamiento de quejas</html:option>
+                </html:select>
+            </td>
+         </tr>
+
+        <tr>
+             <td><p style="font-size: 14px"><b>Responsable:</b></p></td>
+            <td>
+             <html:select style="font-size: 14px; height: 24px " property="responsable">
+                <html:options collection="integrantes" labelProperty="nombre" property="usbid" />
+             </html:select>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Fecha Inicio:</b></p></td>
+            <td>
+                <html:text styleId="fechainicioinput" property="fechainicioinput" value="dd-mm-yyyy" style="width:300px; color:gray; font-size: 14px"/>
+                <p id="fechainicioinput_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Fecha Culminación:</b></p></td>
+            <td>
+                <html:text styleId="fechafinalinput" property="fechafinalinput" value="dd-mm-yyyy" style="width:300px; color:gray; font-size: 14px"/>
+                <p id="fechafinalinput_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><p style="font-size: 14px"><b>Recursos:</b></p></td>
+            <td>
+                <html:textarea styleId="recursos" property="recursos" value="<%=recursos%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                <p id="recursos_counter"  style="margin-left: 290px; font-size: 10px; color: gray">199</p>
+                <p id="recursos_error" style="font-size: 12px; color: #B22222"></p>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<html:submit styleId="submit" value="Agregar"/>
+</html:form>
+</div>
+            
+            <head>
+    
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" />
+    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="JS/Validacion-Accion.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#button").click(function() {
+                $("#desplegable1").hide();
+                $("#desplegable2").hide();
+                $("#desplegable3").hide();
+                $("#registro_nc_error").hide();
+                $("#info").fadeIn("slow");
+                $("#desplegable").fadeIn("slow").delay(1000);
+                
+                
+            });
+            
+            $("#button1").click(function() {
+                $("#desplegable").hide();
+                $("#desplegable2").hide();
+                $("#desplegable3").hide();
+                $("#registro_nc_error").hide();
+                $("#info").fadeIn("slow");
+                $("#desplegable1").fadeIn("slow");
+                
+            });
+            $("#button2").click(function() {
+                $("#desplegable").hide();
+                $("#desplegable1").hide();
+                $("#desplegable3").hide();
+                $("#registro_nc_error").hide();
+                $("#info").fadeIn("slow");
+                $("#desplegable2").fadeIn("slow");
+            });
+            $("#button3").click(function() {
+                $("#desplegable").hide();
+                $("#desplegable1").hide();
+                $("#desplegable2").hide();
+                $("#registro_nc_error").hide();
+                $("#info").hide();
+                $("#desplegable3").fadeIn("slow");
+            });
+            $("#desplegable").css({display: 'none'});
+            $("#desplegable1").css({display: 'none'});
+            $("#desplegable2").css({display: 'none'});
+            $("#desplegable3").css({display: 'none'});
+        });
+
+    </script>  
+</head>
