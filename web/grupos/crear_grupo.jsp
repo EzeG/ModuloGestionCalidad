@@ -6,8 +6,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 
-<html:link action="tab_grupos"><p>Atras</p></html:link>
-
     <p id="submit_error" align="center" style="font-size: 16px; color: #B22222">
     <bean:write name="grupito" property="error" filter="false"/>
 </p>
@@ -37,14 +35,16 @@
                 <tr>
                     <td>
                         <p style="font-size: 14px"><b>Nombre: </b> </p>
-                        <html:text  styleId="nombre_grupo"   property="nombre_grupo" value="<%=nombreG%>" alt="Nombre Grupo" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="nombre_grupo"   property="nombre_grupo" value="<%=nombreG%>" alt="Nombre Grupo" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:img styleId="nombre_grupo_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                         <p id="nombre_grupo_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p style="font-size: 14px"><b>Encargado:</b> </p>
-                        <html:text styleId="string_grupo" property="string_grupo" value="<%=miembrosG%>" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="string_grupo" property="string_grupo" value="<%=miembrosG%>" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:img styleId="string_grupo_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                         <p id="string_grupo_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr>
@@ -59,17 +59,18 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Registro:</b></p></td>
                 <td>
-                    <html:text  styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
-                      
+                    <html:text  styleClass="textbox" styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
+                    <html:img styleId="registro_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>  
  
-                   <span style= "margin-left: -152px; font-size: 14px" >UL04/</span> 
+                   <span style= "margin-left: -180px; font-size: 14px" >UL04/</span> 
                     <p id="registro_nc_error" style="font-size: 12px; color: #B22222">
                 </td>
             </tr>
             <tr>
                 <td><p style="font-size: 14px"><b>Situacion:</b></p></td>
                 <td>
-                    <html:textarea  styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                    <html:textarea styleClass="textbox" styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                    <html:img styleId="situacion_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                     <p id="situacion_nc_counter"  style="margin-left: 290px; font-size: 10px; color: gray">4999</p>
                     <p id="situacion_nc_error" style="font-size: 12px; color: #B22222"></p>
                 </td>                   
@@ -77,7 +78,7 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                 <td>
-                    <html:select style="font-size: 14px; height: 24px " property="origen_nc">
+                    <html:select styleClass="textbox" style="font-size: 14px; height: 24px " property="origen_nc">
                         <html:option value="1">Queja</html:option>
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
@@ -93,9 +94,11 @@
                         <p style="font-size: 14px"><b>Codigo:</b></p>
                     </td>
                     <td>
-                        <html:text styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:img styleId="codigo_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
+                        <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
-                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
+            
                 </tr>
         </table>
         <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
@@ -105,6 +108,7 @@
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
                             <html:text styleClass="boton1" styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
+                            <html:img styleId="clausula_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
                         <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
@@ -119,6 +123,7 @@
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
                             <html:textarea styleId="requisito_nc1" property="requisito_nc1" value="<%=requisito1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="requisito_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -127,6 +132,7 @@
                         <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc1" property="declaracion_nc1" value="<%=declaracion1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="declaracion_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -142,6 +148,7 @@
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
                             <html:text styleClass="boton2" styleId="clausula_nc2" property="clausula_nc2" value="<%=clausula2%>" style="color: gray; font-size: 14px"/>
+                            <html:img styleId="clausula_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
                     </tr>   
@@ -153,6 +160,7 @@
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
                             <html:textarea styleId="requisito_nc2" property="requisito_nc2" value="<%=requisito2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="requisito_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -161,6 +169,7 @@
                         <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc2" property="declaracion_nc2" value="<%=declaracion2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="declaracion_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -191,10 +200,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".boton1").focus(function() {
-                $("#desplegable1").slideToggle("slow");
+                $("#desplegable1").slideDown("slow");
+                $("#desplegable2").slideUp("slow");
+            });
+            $(".textbox").focus(function() {
+                $("#desplegable1").slideUp("slow");
+                $("#desplegable2").slideUp("slow");
             });
             $(".boton2").focus(function() {
-                $("#desplegable2").slideToggle("slow");
+                $("#desplegable2").slideDown("slow");
+                $("#desplegable1").slideUp("slow");
             });
             $("#desplegable1").css({display: 'none'});
             $("#desplegable2").css({display: 'none'});

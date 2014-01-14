@@ -265,6 +265,19 @@ blockquote:hover {
 
 }
 
+#grupos-lista{
+    height: 424px;
+    border-style: groove;
+    display: block;
+    border-width: thin;
+    margin: 0;
+    padding: 0 5px;
+    position: relative;
+    z-index: 1;
+    overflow: auto;
+
+}
+
 #responsableAccion {
     width: 300px;
 }
@@ -396,3 +409,5 @@ blockquote:hover {
     -moz-transition: all 1s linear;
     -webkit-transition: all 1s linear;
 }
+
+

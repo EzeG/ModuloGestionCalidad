@@ -47,7 +47,7 @@
 		<band height="572" splitType="Stretch">
 			<image>
 				<reportElement uuid="11d01885-8b6e-4bb0-8828-3107a1859c41" x="0" y="0" width="752" height="572"/>
-				<imageExpression><![CDATA["/home/edgar/Documentos/Informacion/UL04-M05F1_Desviación_Causas_y_Acciones_2014_01_08_06_08_23_076-page-001.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Users/Gabriel/Pictures/abstracto2-fondos-para-twitter1.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement uuid="cb075d22-2228-49cc-8278-298e1104289e" x="615" y="134" width="83" height="14"/>

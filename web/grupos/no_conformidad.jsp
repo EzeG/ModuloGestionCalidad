@@ -155,10 +155,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".boton1").focus(function() {
-                $("#desplegable1").slideToggle("slow");
+                $("#desplegable1").slideDown("slow");
+                $("#desplegable2").slideUp("slow");
+            });
+            $(".textbox").focus(function() {
+                $("#desplegable1").slideUp("slow");
+                $("#desplegable2").slideUp("slow");
             });
             $(".boton2").focus(function() {
-                $("#desplegable2").slideToggle("slow");
+                $("#desplegable2").slideDown("slow");
+                $("#desplegable1").slideUp("slow");
             });
             $("#desplegable1").css({display: 'none'});
             $("#desplegable2").css({display: 'none'});
