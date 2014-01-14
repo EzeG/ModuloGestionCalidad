@@ -86,9 +86,9 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                                 request.setAttribute("codigo_nc1", group.getCodigo_nc1());
                                 
                                 request.setAttribute("clausula_nc1", group.getClausula_nc2());
-                                request.setAttribute("requisito_nc1", group.getRequisito_nc2());
-                                request.setAttribute("declaracion_nc1", group.getDeclaracion_nc2());
-                                request.setAttribute("codigo_nc1", group.getCodigo_nc2());
+                                request.setAttribute("requisito_nc2", group.getRequisito_nc2());
+                                request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
+                                request.setAttribute("codigo_nc2", group.getCodigo_nc2());
                                 
                                 request.setAttribute("error", group.getError());
                                 return mapping.findForward(FAILURE);
@@ -107,10 +107,10 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                         request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
                         request.setAttribute("codigo_nc1", group.getCodigo_nc1());
 
-                        request.setAttribute("clausula_nc1", group.getClausula_nc2());
-                        request.setAttribute("requisito_nc1", group.getRequisito_nc2());
-                        request.setAttribute("declaracion_nc1", group.getDeclaracion_nc2());
-                        request.setAttribute("codigo_nc1", group.getCodigo_nc2());
+                        request.setAttribute("clausula_nc2", group.getClausula_nc2());
+                        request.setAttribute("requisito_nc2", group.getRequisito_nc2());
+                        request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
+                        request.setAttribute("codigo_nc2", group.getCodigo_nc2());
                         
                         request.setAttribute("error", group.getError());
                         return mapping.findForward(FAILURE);
@@ -128,10 +128,10 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                     request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
                     request.setAttribute("codigo_nc1", group.getCodigo_nc1());
 
-                    request.setAttribute("clausula_nc1", group.getClausula_nc2());
-                    request.setAttribute("requisito_nc1", group.getRequisito_nc2());
-                    request.setAttribute("declaracion_nc1", group.getDeclaracion_nc2());
-                    request.setAttribute("codigo_nc1", group.getCodigo_nc2());
+                    request.setAttribute("clausula_nc2", group.getClausula_nc2());
+                    request.setAttribute("requisito_nc2", group.getRequisito_nc2());
+                    request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
+                    request.setAttribute("codigo_nc2", group.getCodigo_nc2());
                                 
                     request.setAttribute("error", group.getError());
                     return mapping.findForward(FAILURE);
@@ -150,10 +150,10 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                 request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
                 request.setAttribute("codigo_nc1", group.getCodigo_nc1());
 
-                request.setAttribute("clausula_nc1", group.getClausula_nc2());
-                request.setAttribute("requisito_nc1", group.getRequisito_nc2());
-                request.setAttribute("declaracion_nc1", group.getDeclaracion_nc2());
-                request.setAttribute("codigo_nc1", group.getCodigo_nc2());
+                request.setAttribute("clausula_nc2", group.getClausula_nc2());
+                request.setAttribute("requisito_nc2", group.getRequisito_nc2());
+                request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
+                request.setAttribute("codigo_nc2", group.getCodigo_nc2());
                                 
                 request.setAttribute("error", group.getError());
                 return mapping.findForward(FAILURE);
@@ -171,10 +171,10 @@ public class CrearGrupo extends org.apache.struts.action.Action {
             request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
             request.setAttribute("codigo_nc1", group.getCodigo_nc1());
 
-            request.setAttribute("clausula_nc1", group.getClausula_nc2());
-            request.setAttribute("requisito_nc1", group.getRequisito_nc2());
-            request.setAttribute("declaracion_nc1", group.getDeclaracion_nc2());
-            request.setAttribute("codigo_nc1", group.getCodigo_nc2());
+            request.setAttribute("clausula_nc2", group.getClausula_nc2());
+            request.setAttribute("requisito_nc2", group.getRequisito_nc2());
+            request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
+            request.setAttribute("codigo_nc2", group.getCodigo_nc2());
                                 
             request.setAttribute("error", group.getError());
             return mapping.findForward(FAILURE);

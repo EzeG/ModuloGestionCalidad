@@ -411,3 +411,20 @@ blockquote:hover {
 }
 
 
+#menu{
+    background: #324C86;
+    height: 79px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 30px;
+    padding-bottom: 13.5px;
+}
+
+#menu_grupos{
+    background: #324C86;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}

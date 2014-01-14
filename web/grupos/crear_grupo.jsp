@@ -67,7 +67,7 @@
                 </td>
             </tr>
             <tr>
-                <td><p style="font-size: 14px"><b>Situacion:</b></p></td>
+                <td><p style="font-size: 14px"><b>Situación:</b></p></td>
                 <td>
                     <html:textarea styleClass="textbox" styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
                     <html:img styleId="situacion_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
@@ -91,7 +91,7 @@
             </tr>
                             <tr>
                     <td>
-                        <p style="font-size: 14px"><b>Codigo:</b></p>
+                        <p style="font-size: 14px"><b>Código:</b></p>
                     </td>
                     <td>
                         <html:text styleClass="textbox" styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
@@ -129,7 +129,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
+                        <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc1" property="declaracion_nc1" value="<%=declaracion1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="declaracion_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
@@ -166,7 +166,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
+                        <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc2" property="declaracion_nc2" value="<%=declaracion2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="declaracion_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>

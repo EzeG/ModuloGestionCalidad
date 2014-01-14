@@ -65,7 +65,7 @@
         <tr>
             <td>
                 <p style="font-size: 12px">
-                    <b>Situacion:</b>
+                    <b>Situación:</b>
                 </p>
                 <bean:write name="nc" property="situacion_nc"/>
             </td>
@@ -89,14 +89,14 @@
             <td style="width: 50%">
                 <p align="center"><b>Norma ISO 9001:</b></p><br>
                 <p style="font-size: 12px">
-                    <b>Codigo:</b>
+                    <b>Código:</b>
                     <bean:write name="nc" property="codigo_nc1"/>
                 </p>
             </td>
             <td>
                 <p align="center"><b>ISO/IEC 17025</b></p><br>
                 <p style="font-size: 12px">
-                    <b>Codigo:</b>
+                    <b>Código:</b>
                     <bean:write name="nc" property="codigo_nc2"/>
                 </p>
             </td>
@@ -132,13 +132,13 @@
         <tr>
             <td>
                 <p style="font-size: 12px">
-                    <b>Declaracion de la No Conformidad:</b>
+                    <b>Declaración:</b>
                 </p>
                 <bean:write name="nc" property="declaracion_nc1"/>
             </td>
             <td>
                 <p style="font-size: 12px">
-                    <b>Declaracion de la No Conformidad:</b>
+                    <b>Declaración:</b>
                 </p>
                 <bean:write name="nc" property="declaracion_nc2"/>
             </td>
@@ -209,7 +209,7 @@
     <center>
         <div id="noconformidades">
             <table border = "1">
-                <tr bgcolor="#D3D3D3">
+                <tr bgcolor="#D3D3D3" style="font-size: 12px">
                     <td align="center">
                         <b>Acción</b>
                     </td>
@@ -261,7 +261,7 @@
 <div id="desplegable2">
     <div id="noconformidades">
         <table border = "1">
-            <tr bgcolor="#D3D3D3">
+            <tr bgcolor="#D3D3D3" style="font-size: 12px">
                 <td align="center">
                     <b>Acción</b>
                 </td>

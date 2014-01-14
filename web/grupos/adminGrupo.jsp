@@ -4,55 +4,66 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-
 <p style="margin-top: -10px; color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
     <%= request.getAttribute("nombreGrupo")%>
-
 </p>
-<table style="margin-bottom: -5px;">
-    <td style="vertical-align: middle">
-        <b>Miembro:</b>           
-    </td>
-    <td style="vertical-align: middle">
-        <p style="margin-left: 97px"><b>E-mail:</b><p>
-    </td>
-    <td style="vertical-align: middle">
-        <p style="margin-left: 93px"><b>USBID::</b><p>
-    </td>
-</table>
-<div id="miembros">
-    <table style="">
-        <tr>
-        </tr>
-        <logic:iterate id="usuarioG" name="usuariosGrupo">
-            <tr>
-                <td style="vertical-align: middle">
-                    <bean:write name="usuarioG" property="nombre" />           
+<div id="menu">
+        <img src="images/menu_grupo.png" style="margin-top: -30px; margin-left: -30px"/>
+        <div style="margin-top: -90px; margin-left:30px">
+            <button class="button" id="button1">
+                <html:img  src="images/miembros.png"  width="64px" height="63px" align="center"/>
+            </button>
+        </div>
+        <div style= "margin-top: -74.5px; margin-left: 250px">
+            <button class = "button" id="button">
+                <html:img  src="images/nc_activas.png"  width="73px" height="63px" align="center"/>
+            </button>
+        </div>
+
+        <div style= "margin-top: -74.5px; margin-left: 380px">
+            <button class = "button" id="button2">
+                <html:img  src="images/nc_terminadas.png"  width="73px" height="63px" align="center"/>
+            </button>
+        </div>
+        
+</div>
+           
+<br/>                
+
+<div id="desplegable1">
+    <p>Miembros del Grupo:</p>
+    <div id="grupos-lista">
+        <table border = "1">
+            <tr bgcolor="#D3D3D3" style="font-size: 12px">
+                <td align="center">
+                    <b>Miembro:</b>
                 </td>
-                <td>
-                    <bean:write name="usuarioG" property="email" />
+                <td align="center">
+                    <b>E-mail:</b>
                 </td>
-                <td>
-                    <bean:write name="usuarioG" property="usbid" /> 
+                <td align="center">
+                    <b>USBID:</b>
                 </td>
             </tr>
-        </logic:iterate>
-    </table>
+            <logic:iterate id="usuarioG" name="usuariosGrupo">
+                <tr>
+                    <td style="vertical-align: middle">
+                        <bean:write name="usuarioG" property="nombre" />           
+                    </td>
+                    <td>
+                        <bean:write name="usuarioG" property="email" />
+                    </td>
+                    <td>
+                        <bean:write name="usuarioG" property="usbid" /> 
+                    </td>
+                </tr>
+            </logic:iterate>
+        </table>
+    </div>
 </div>
-<div style="vertical-align: middle; width: 560px; margin-bottom: -4px; margin-top: 10px">
-    <p style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">No Conformidades</p>
-</div>
-<center>           
-    <button id="button" style="width: 580px; height: 60px;" >
-        <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
-            Activas
-        </b>
-    </button>
-</center>
-<br/>
-<div id="desplegable1">
-    <div id="noconformidades">
-
+<div id="desplegable">
+    <p>No Conformidades Activas:</p>
+    <div id="grupos-lista">
         <table border = "1">
             <tr bgcolor="#D3D3D3" style="font-size: 12px">
                 <td align="center">
@@ -84,15 +95,12 @@
         </table>
     </div>
 </div>
-<br/>
-<center>           
-    <button id="button2" style="width: 580px; height: 60px;" >
-        <b style="color:#336699; font-size: 14px; font-weight: bolder; size: 80px">
-            Terminadas
-        </b>
-    </button>
-</center>
-<br/>
+<div id="desplegable2">
+    <p>No Conformidades Terminadas:</p>
+    <div id="grupos-lista">
+        
+    </div>
+</div>
 
 
 <head>
@@ -102,15 +110,27 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#button").click(function() {
-                $("#desplegable1").slideToggle("slow");
+                $("#desplegable1").hide();
+                $("#desplegable2").hide();
+                $("#desplegable").fadeIn("slow").delay(1000);
+                
+            });
+            
+            $("#button1").click(function() {
+                $("#desplegable").hide();
+                $("#desplegable2").hide();
+                $("#desplegable1").fadeIn("slow");
             });
             $("#button2").click(function() {
-                $("#desplegable2").slideToggle("slow");
+                $("#desplegable").hide();
+                $("#desplegable1").hide();
+                $("#desplegable2").fadeIn("slow");
             });
+            $("#desplegable").css({display: 'none'});
             $("#desplegable1").css({display: 'none'});
             $("#desplegable2").css({display: 'none'});
         });
 
-    </script>     
+    </script>    
 </head>
 

@@ -7,8 +7,6 @@
 package grupo.action;
 
 import domain.Grupo;
-import DBMS.DBMS;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -44,14 +42,14 @@ public class nuevoGrupo extends org.apache.struts.action.Action {
         request.setAttribute("nombre_grupo","Nombre del Grupo");
         request.setAttribute("string_grupo", "Encargado del Grupo");
         request.setAttribute("registro_nc", "12345");
-        request.setAttribute("situacion_nc", "Describa la inconformidad");
+        request.setAttribute("situacion_nc", "Describa la no conformidad");
         request.setAttribute("clausula_nc1", "Clausula");
         request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaracion");
-        request.setAttribute("codigo_nc1", "Codigo");
+        request.setAttribute("declaracion_nc1", "Declaración");
+        request.setAttribute("codigo_nc1", "Código");
         request.setAttribute("clausula_nc2", "Clausula");
         request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaracion");
+        request.setAttribute("declaracion_nc2", "Declaración");
         request.setAttribute("codigo_nc2", "Codigo");
         request.setAttribute("error", "");
         return mapping.findForward(SUCCESS);

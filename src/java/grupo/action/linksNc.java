@@ -60,6 +60,10 @@ public class linksNc extends org.apache.struts.action.Action {
         } else if(nc.getOrigen_nc() == 6){
             origen = "Otro";
         }  
+        if(nc.getRequisito_nc1().equals("--------"))
+            nc.setCodigo_nc1("--------");
+        if(nc.getRequisito_nc2().equals("--------"))
+            nc.setCodigo_nc2("--------");
         request.setAttribute("nc", nc);
         request.setAttribute("origen", origen);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());

@@ -8,7 +8,7 @@
     <bean:write name="grupitos" property="error" filter="false"/>
 </div>
 
-<div>
+<div id="menu_grupos">
     <table>
         <tr>
             <td style="vertical-align: middle; width: 135px">

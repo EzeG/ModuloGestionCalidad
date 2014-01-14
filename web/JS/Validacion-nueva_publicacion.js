@@ -39,6 +39,8 @@ if (contenido_publicacion.value == "Escriba aqui el contenido de la publicacion"
 
 }
 
+
+
 contenido_publicacion.onkeydown = function(){
     cantidad = contenido_publicacion.value.length;
     if (cantidad>4999){
@@ -59,7 +61,7 @@ contenido_publicacion.onkeypress = function(){
     contenido_publicacion_counter.innerHTML= (4999 - cantidad).toString();
 }
 
-titulo_publicacion.focus = function() {
+titulo_publicacion.onfocus = function() {
     titulo_publicacion.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
     titulo_publicacion_error.innerHTML = "";
  if (titulo_publicacion.value == "Titulo de la Publicacion") {
@@ -67,7 +69,7 @@ titulo_publicacion.focus = function() {
  }
 }
 
-contenido_publicacion.focus = function() {
+contenido_publicacion.onfocus = function() {
     contenido_publicacion.setAttribute("style", "height: 100px; width:495px; color: black; font-size: 14px; border-color: #127ba5");
     contenido_publicacion_error.innerHTML = "";
  if (contenido_publicacion.value == "Escriba aqui el contenido de la publicacion") {
@@ -75,7 +77,7 @@ contenido_publicacion.focus = function() {
  }
 }
 
-titulo_publicacion.focus = function() {
+titulo_publicacion.onblur = function() {
     titulo_publicacion.value = titulo_publicacion.value.trim();
     minuscula=titulo_publicacion.value.charAt(0)+"";
     mayuscula=minuscula.toUpperCase();

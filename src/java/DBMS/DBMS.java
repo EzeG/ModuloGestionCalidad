@@ -332,7 +332,10 @@ public class DBMS {
             acAgregar.setInt(4, ac.getPrioridad());
             acAgregar.setString(5, ac.getProceso());
             acAgregar.setString(6, ac.getResponsable());
-            acAgregar.setString(7, ac.getRecursos());
+            if (ac.getRecursos().equals("Recursos"))
+                acAgregar.setString(7, "--------");
+            else
+                acAgregar.setString(7, ac.getRecursos());
             acAgregar.setString(8, "activa");
             acAgregar.setDate(9, new java.sql.Date(ac.getFechainicio().getTime()));
             acAgregar.setDate(10, new java.sql.Date(ac.getFechafinal().getTime()));
@@ -356,13 +359,26 @@ public class DBMS {
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
             ncAgregar.setInt(4, nc.getOrigen_nc());
-            ncAgregar.setString(5, nc.getClausula_nc1());
-            ncAgregar.setString(6, nc.getRequisito_nc1());
-            ncAgregar.setString(7, nc.getDeclaracion_nc1());
+            if(nc.getClausula_nc1().equals("Clausula") || nc.getRequisito_nc1().equals("Requisito") || nc.getDeclaracion_nc1().equals("Declaración")){
+                ncAgregar.setString(5, "--------");
+                ncAgregar.setString(6, "--------");
+                ncAgregar.setString(7, "--------");
+            }
+            else{
+                ncAgregar.setString(5, nc.getClausula_nc1());
+                ncAgregar.setString(6, nc.getRequisito_nc1());
+                ncAgregar.setString(7, nc.getDeclaracion_nc1());
+            }
             ncAgregar.setString(8, nc.getCodigo_nc1());
-            ncAgregar.setString(9, nc.getClausula_nc2());
-            ncAgregar.setString(10, nc.getRequisito_nc2());
-            ncAgregar.setString(11, nc.getDeclaracion_nc2());
+            if(nc.getClausula_nc2().equals("Clausula") || nc.getRequisito_nc2().equals("Requisito") || nc.getDeclaracion_nc2().equals("Declaración")){
+                ncAgregar.setString(9, "--------");
+                ncAgregar.setString(10, "--------");
+                ncAgregar.setString(11, "--------");
+            }else{
+                ncAgregar.setString(9, nc.getClausula_nc2());
+                ncAgregar.setString(10, nc.getRequisito_nc2());
+                ncAgregar.setString(11, nc.getDeclaracion_nc2());
+            }
             ncAgregar.setString(12, nc.getCodigo_nc2());
             Integer i = ncAgregar.executeUpdate();
             return i > 0;
