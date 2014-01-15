@@ -18,38 +18,39 @@
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
 <p align="center" id="registro_nc_error" style="font-size: 14px; color: #B22222; margin-top: -20px"><b><%=error%></b></p>
 <div id="menu_grupos">
-    <table>
+    <html:img  src="images/menu_acciones.png" style="margin-top: -10px; margin-left: -10px"/>
+    <table style="margin-top:-120px">
         <tr>
             <td style="vertical-align: middle; width: 135px">
                 <button class = "button" id="button">
-                    <html:img  src="images/acciones_activas.png"  width="51px" height="63px" align="center"/>
+                    <html:img  src="images/acciones_preventivas.png"  width="69px" height="73px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
                 <button class = "button" id="button1">
-                    <html:img  src="images/acciones_activas.png"  width="51px" height="63px" align="center"/>
+                    <html:img  src="images/acciones_correctivas.png"  width="69px" height="73px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
                 <button class="button" id="button2">
-                    <html:img  src="images/acciones_terminadas.png"  width="51px" height="63px" align="center"/>
+                    <html:img  src="images/acciones_terminadas.png"  width="69px" height="73px" align="center"/>
                 </button>
             </td>
 
             <td>
                 
                     <button class = "button" style="<%=visual%>" id="button3">
-                        <html:img  src="images/agregar_accion.png"  width="51px" height="63px" align="center"/>
+                        <html:img  src="images/agregar_accion.png"  width="69px" height="73px" align="center"/>
                     </button>
                 
             </td>
             
             <td style="vertical-align: middle; width: 135px">
                 <html:link action="imprimir_nc" paramName="nc" paramProperty="registro_nc" paramId="registro">
-                    <button class="button">
-                        <html:img  src="images/generar_pdf.png"  width="53px" height="63px" align="center"/>
+                    <button class="button" style="margin-left: 20px">
+                        <html:img  src="images/generar_pdf.png"  width="61px" height="73px" align="center"/>
                     </button>
                 </html:link>
             </td>
