@@ -27,6 +27,9 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String registro_nc;
     private String situacion_nc;
     private int origen_nc;
+    private String codigo_origen_nc;
+    private String existe;
+    private String nombre_grupo_aux;
 
     
     private String clausula_nc1;
@@ -42,6 +45,32 @@ public class Grupo extends org.apache.struts.action.ActionForm {
     private String grupo_nc;
     private String encargado;
 
+    public String getExiste() {
+        return existe;
+    }
+
+    public void setExiste(String existe) {
+        this.existe = existe;
+    }
+
+    public String getNombre_grupo_aux() {
+        return nombre_grupo_aux;
+    }
+
+    public void setNombre_grupo_aux(String nombre_grupo_aux) {
+        this.nombre_grupo_aux = nombre_grupo_aux;
+    }
+
+    
+    
+    public String getCodigo_origen_nc() {
+        return codigo_origen_nc;
+    }
+
+    public void setCodigo_origen_nc(String codigo_origen_nc) {
+        this.codigo_origen_nc = codigo_origen_nc;
+    }
+    
     public String getEncargado() {
         return encargado;
     }

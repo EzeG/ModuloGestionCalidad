@@ -147,7 +147,7 @@ public class DBMS {
             ResultSet rs = ncConsulta.executeQuery();
             while (rs.next()) {
                 NoConformidad nc = new NoConformidad(rs.getString("registro"), rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
-                        rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"));
+                        rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"), rs.getString("registrod"));
                 noConformidades.add(nc);
             }
             return noConformidades;
@@ -346,6 +346,36 @@ public class DBMS {
         }
         return false;
     }
+    
+    public boolean agregarQueja(Queja qu) {
+        PreparedStatement quAgregar;
+        Date ref = new Date();
+        Timestamp fecha = new Timestamp(ref.getTime());
+        
+        try {
+            quAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".quejas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            quAgregar.setString(1, qu.getRegistro());
+            quAgregar.setString(2, qu.getEmpresa());
+            quAgregar.setString(3, qu.getCodigo_telefono()+"-"+qu.getTelefono());
+            quAgregar.setString(4, qu.getCodigo_fax()+"-"+qu.getFax());
+            quAgregar.setString(5, qu.getCodigo_celular()+"-"+qu.getCelular());
+            quAgregar.setString(6, qu.getDireccion());
+            quAgregar.setString(7, qu.getContacto());
+            quAgregar.setString(8, qu.getVinculo());
+            quAgregar.setString(9, qu.getEmail());
+            quAgregar.setString(10, qu.getContrato());
+            quAgregar.setString(11, qu.getExposicion());
+            quAgregar.setString(12, qu.getAcciones());
+            quAgregar.setBoolean(13, false);
+            quAgregar.setString(14, "");
+            quAgregar.setTimestamp(15, fecha);
+            Integer i = quAgregar.executeUpdate();
+            return i > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean agregaNoConformidad(NoConformidad nc) {
         PreparedStatement ncAgregar;
@@ -354,7 +384,7 @@ public class DBMS {
         String buff;
 
         try {
-            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".noconformidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            ncAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".noconformidad VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
             ncAgregar.setTimestamp(1, fecha);
             ncAgregar.setString(2, nc.getRegistro_nc());
             ncAgregar.setString(3, nc.getSituacion_nc());
@@ -380,6 +410,8 @@ public class DBMS {
                 ncAgregar.setString(11, nc.getDeclaracion_nc2());
             }
             ncAgregar.setString(12, nc.getCodigo_nc2());
+            ncAgregar.setString(13, "activa");
+            ncAgregar.setString(14, nc.getCodigo_origen_nc());
             Integer i = ncAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
@@ -430,6 +462,7 @@ public class DBMS {
                 nc.setRegistro_nc(rs.getString("registro"));
                 nc.setSituacion_nc(rs.getString("situacion"));
                 nc.setOrigen_nc(rs.getInt("procedencia"));
+                nc.setCodigo_origen_nc(rs.getString("registrod"));
 
                 nc.setClausula_nc1(rs.getString("clausula1"));
                 nc.setRequisito_nc1(rs.getString("requisito1"));
@@ -495,7 +528,82 @@ public class DBMS {
         }
         return false;
     }
+    
+    public ArrayList<Queja> consultarQuejas() {
+        PreparedStatement psConsultar;
+        ArrayList<Queja> quejas = new ArrayList<Queja>(0);
 
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".Quejas;");
+            ResultSet rs = psConsultar.executeQuery();
+            while (rs.next()) {
+                Queja q = new Queja();
+                q.setRegistro(rs.getString("registro"));
+                q.setEmpresa(rs.getString("empresa"));
+                q.setTelefono(rs.getString("telefono"));
+                q.setFax(rs.getString("fax"));
+                q.setCelular(rs.getString("celular"));
+                q.setDireccion(rs.getString("direccion"));
+                q.setContacto(rs.getString("contacto"));
+                q.setVinculo(rs.getString("vinculo"));
+                q.setEmail(rs.getString("email"));
+                q.setContrato(rs.getString("contrato"));
+                q.setExposicion(rs.getString("exposicion"));
+                q.setAcciones(rs.getString("acciones"));
+                q.setLeido(rs.getBoolean("leido"));
+                q.setRegistro_nc(rs.getString("registronc"));
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String resultado = formato.format(rs.getTimestamp("fecha"));
+                q.setFecha(resultado);
+                
+                quejas.add(q);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        return quejas;
+    }
+    
+    public Queja consultarQueja(String registro) {
+        PreparedStatement psConsultar;
+        Queja quejas = new Queja();
+
+        try {
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".Quejas WHERE registro ='" + registro + "';");
+            ResultSet rs = psConsultar.executeQuery();
+            if (rs.next()) {
+                Queja q = new Queja();
+                q.setRegistro(rs.getString("registro"));
+                q.setEmpresa(rs.getString("empresa"));
+                q.setTelefono(rs.getString("telefono"));
+                q.setFax(rs.getString("fax"));
+                q.setCelular(rs.getString("celular"));
+                q.setDireccion(rs.getString("direccion"));
+                q.setContacto(rs.getString("contacto"));
+                q.setVinculo(rs.getString("vinculo"));
+                q.setEmail(rs.getString("email"));
+                q.setContrato(rs.getString("contrato"));
+                q.setExposicion(rs.getString("exposicion"));
+                q.setAcciones(rs.getString("acciones"));
+                q.setLeido(rs.getBoolean("leido"));
+                q.setRegistro_nc(rs.getString("registronc"));
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String resultado = formato.format(rs.getTimestamp("fecha"));
+                q.setFecha(resultado);
+                
+                quejas=q;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        return quejas;
+    }
+    
+    
     public ArrayList<Grupo> consultarGrupos() {
         PreparedStatement psConsultar;
         ArrayList<Grupo> grupos = new ArrayList<Grupo>(0);
@@ -770,7 +878,40 @@ public class DBMS {
         }
         return false;
     }
-    
+    public void quejaLeida(String registro) {
+        PreparedStatement modificar;
+        try {
+            modificar = conexion.prepareStatement("UPDATE mod1.Quejas SET leido = true WHERE Registro = \'"
+                    +registro+"\';");
+            Integer i = modificar.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void asociarQueja(String registro_queja, String registro_nc) {
+        PreparedStatement modificar;
+        try {
+            modificar = conexion.prepareStatement("UPDATE mod1.Quejas SET registronc = \'"+ registro_nc +"\' WHERE Registro = \'" +registro_queja +"\';");
+            Integer i = modificar.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void quejaNoLeida(String registro) {
+        PreparedStatement modificar;
+        try {
+            modificar = conexion.prepareStatement("UPDATE mod1.Quejas SET leido = false WHERE Registro = \'"
+                    +registro+"\';");
+            Integer i = modificar.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean terminarAccion(String nc, String accion) {
         PreparedStatement modificar;
         try {

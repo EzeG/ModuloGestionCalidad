@@ -46,7 +46,7 @@ public class FuncionGrupos extends org.apache.struts.action.Action {
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
         int Cargo = usuario.getCargo();
         
-        String rango = "encargado";
+
         Grupo grupo = new Grupo();
         if (Cargo== 0){
             grupos = DBMS.getInstance().consultarGruposActivos();

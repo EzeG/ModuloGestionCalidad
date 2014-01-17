@@ -4,29 +4,29 @@
  * and open the template in the editor.
  */
 
-package grupo.action;
+package queja.action;
 
-import domain.Grupo;
-import domain.NoConformidad;
-import domain.Usuario;
+import DBMS.DBMS;
+import domain.Publicacion;
+import domain.Queja;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import java.util.ArrayList;
-import DBMS.*;
-
 /**
  *
- * @author ani
+ * @author Gabriel
  */
-public class AgregarNC extends org.apache.struts.action.Action {
+public class CrearQueja extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
-
+    private static final String FAILURE = "failure";
     /**
      * This is the action called from the Struts framework.
      *
@@ -41,22 +41,16 @@ public class AgregarNC extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Grupo grupo = (Grupo) form;
-        ArrayList<Usuario> listGrupo;
-        NoConformidad nc = new NoConformidad();
-        
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "12345");
-        request.setAttribute("situacion_nc", "Describa la no conformidad");
-        request.setAttribute("clausula_nc1", "Clausula");
-        request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaración");
-        request.setAttribute("codigo_nc1", "Código");
-        request.setAttribute("clausula_nc2", "Clausula");
-        request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaración");
-        request.setAttribute("codigo_nc2", "Código");
-        return mapping.findForward(SUCCESS);
+            Queja qu= (Queja) form;
+            
+            List<Publicacion> listMsg = new ArrayList<Publicacion>();
+            listMsg = DBMS.getInstance().consultarPublicacion();
+            Collections.reverse(listMsg);
+            request.setAttribute("listMsg", listMsg);
+            if(DBMS.getInstance().agregarQueja(qu)){
+                return mapping.findForward(SUCCESS);
+            }else{
+                return mapping.findForward(FAILURE);
+            }
     }
 }

@@ -28,20 +28,25 @@
 
 
 <html:form styleId="no_conformidad" action="/CrearNoConformidad">
+   </fieldset>             
+<p>No Conformidad: </p>
     <fieldset>
         <table style="margin-left: 10px">
             <tr>
                 <td><p style="font-size: 14px"><b>Registro:</b></p></td>
                 <td>
-                    <html:text  styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
-                    <span style= "margin-left: -152px; font-size: 14px" >UL04/</span> 
+                    <html:text  styleClass="textbox" styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
+                    <html:img styleId="registro_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>  
+ 
+                   <span style= "margin-left: -180px; font-size: 14px" >UL04/</span> 
                     <p id="registro_nc_error" style="font-size: 12px; color: #B22222">
                 </td>
             </tr>
             <tr>
-                <td><p style="font-size: 14px"><b>Situacion:</b></p></td>
+                <td><p style="font-size: 14px"><b>Situación:</b></p></td>
                 <td>
-                    <html:textarea  styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                    <html:textarea styleClass="textbox" styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                    <html:img styleId="situacion_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                     <p id="situacion_nc_counter"  style="margin-left: 290px; font-size: 10px; color: gray">4999</p>
                     <p id="situacion_nc_error" style="font-size: 12px; color: #B22222"></p>
                 </td>                   
@@ -49,7 +54,7 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                 <td>
-                    <html:select style="font-size: 14px; height: 24px " property="origen_nc">
+                    <html:select styleClass="textbox" style="font-size: 14px; height: 24px " property="origen_nc">
                         <html:option value="1">Queja</html:option>
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
@@ -57,44 +62,54 @@
                         <html:option value="5">Trabajo No Conforme</html:option>
                         <html:option value="6">Otro</html:option>
                     </html:select>
+                    <html:text  styleClass="textbox" styleId="codigo_origen_nc" property="codigo_origen_nc" value="Código" style="width:100px; color: gray; font-size: 14px"/>
                 </td>
+                
             </tr>
                             <tr>
                     <td>
-                        <p style="font-size: 14px"><b>Codigo:</b></p>
+                        <p style="font-size: 14px"><b>Código:</b></p>
                     </td>
                     <td>
-                        <html:text styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:img styleId="codigo_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
+                        <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
-                <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
+            
                 </tr>
         </table>
         <p style="font-size: 14px; color:gray" align="center"><b>Norma ISO 9001: </b></p>
         <fieldset style="margin-left:20px; margin-right: 20px">    
             <table>
-                    <tr>
+             <tr>
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
-                            <html:text styleClass= "boton1" styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
+                            <html:text styleClass="boton1" styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
+                            <html:img styleId="clausula_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
+                        <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </tr>  
+                    
             </table> 
 
             <div id="desplegable1"> 
                 <table>
+ 
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
                             <html:textarea styleId="requisito_nc1" property="requisito_nc1" value="<%=requisito1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="requisito_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
                     </tr>
                     <tr>
-                        <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
+                        <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc1" property="declaracion_nc1" value="<%=declaracion1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="declaracion_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -106,38 +121,36 @@
         <p style="font-size: 14px; color:gray" align="center"><b>ISO/IEC 17025 </b></p>
         <fieldset style="margin-left:20px; margin-right: 20px"> 
             <table>
-                                    <tr>
+                 <tr>
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
                             <html:text styleClass="boton2" styleId="clausula_nc2" property="clausula_nc2" value="<%=clausula2%>" style="color: gray; font-size: 14px"/>
+                            <html:img styleId="clausula_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
-                    </tr>
+                    </tr>   
             </table>
             <div id="desplegable2"> 
                 <table>
-   
+                   
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
                             <html:textarea styleId="requisito_nc2" property="requisito_nc2" value="<%=requisito2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="requisito_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
                     </tr>
                     <tr>
-                        <td><p style="font-size: 14px"><b>Declaracion:</b></p></td>
+                        <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
                             <html:textarea  styleId="declaracion_nc2" property="declaracion_nc2" value="<%=declaracion2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:img styleId="declaracion_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                        </td>
-                    </tr>
+                    </tr>   
                 </table> 
             </div>
         </fieldset>

@@ -2,6 +2,8 @@
  * textboxs y textareas
  * 
  */
+nombre_grupo= document.getElementById("nombre_grupo");
+miembros_grupo= document.getElementById("string_grupo");
 registro_nc= document.getElementById("registro_nc");
 situacion_nc= document.getElementById("situacion_nc");
 clausula_nc1= document.getElementById("clausula_nc1");
@@ -11,11 +13,12 @@ codigo_nc1= document.getElementById("codigo_nc1");
 clausula_nc2= document.getElementById("clausula_nc2");
 requisito_nc2= document.getElementById("requisito_nc2");
 declaracion_nc2= document.getElementById("declaracion_nc2");
+codigo_origen_nc=document.getElementById("codigo_origen_nc");
 submit=document.getElementById("submit");
 
-inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
-inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
-inject3 = /^"(.*)"|'(.*)'/;
+
+
+
 
 //se definen contadores de textareas
 situacion_nc_counter= document.getElementById("situacion_nc_counter");
@@ -25,9 +28,10 @@ requisito_nc2_counter= document.getElementById("requisito_nc2_counter");
 declaracion_nc2_counter= document.getElementById("declaracion_nc2_counter");
 
 //se definen los mensajes de error
+nombre_grupo_error = document.getElementById("nombre_grupo_error");
+string_grupo_error = document.getElementById("string_grupo_error");
 registro_nc_error= document.getElementById("registro_nc_error");
 situacion_nc_error= document.getElementById("situacion_nc_error");
-
 clausula_nc1_error= document.getElementById("clausula_nc1_error");
 requisito_nc1_error= document.getElementById("requisito_nc1_error");
 declaracion_nc1_error= document.getElementById("declaracion_nc1_error");
@@ -36,29 +40,53 @@ clausula_nc2_error= document.getElementById("clausula_nc2_error");
 requisito_nc2_error= document.getElementById("requisito_nc2_error");
 declaracion_nc2_error= document.getElementById("declaracion_nc2_error");
 
+submit_error=document.getElementById("submit_error");
+error_style=document.getElementById("error_style");
+
+nombre_grupo_image = document.getElementById("nombre_grupo_image");
+string_grupo_image = document.getElementById("string_grupo_image");
+registro_nc_image= document.getElementById("registro_nc_image");
+situacion_nc_image= document.getElementById("situacion_nc_image");
+clausula_nc1_image= document.getElementById("clausula_nc1_image");
+requisito_nc1_image= document.getElementById("requisito_nc1_image");
+declaracion_nc1_image= document.getElementById("declaracion_nc1_image");
+codigo_nc1_image= document.getElementById("codigo_nc1_image");
+clausula_nc2_image= document.getElementById("clausula_nc2_image");
+requisito_nc2_image= document.getElementById("requisito_nc2_image");
+declaracion_nc2_image= document.getElementById("declaracion_nc2_image");
+
+//Declarando las expresiones regulares para pevenir injection
+inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+inject3 = /^"(.*)"|'(.*)'/;
 
 //se definen las variables de validacion
+nombre_grupo_value = false;
+string_grupo_value = false;
 registro_nc_value= false;
 situacion_nc_value= false;
+codigo_nc1_value= false;
 
 clausula_nc1_value= false;
 requisito_nc1_value= false;
 declaracion_nc1_value= false;
-codigo_nc1_value= false;
+
 clausula_nc2_value= false;
 requisito_nc2_value= false;
 declaracion_nc2_value= false;
+
 /*
  * se desactiva el boton de submit hasta que se llene correctamente el formulario
  */
 submit.disabled = true;
 
+
 //se inicializan los estilos de los textbox y textareas
-
-
-if(registro_nc.value=="12345"){
-    registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: gray; font-size: 14px");
+if(nombre_grupo.value== "Nombre del Grupo"){
+    nombre_grupo.setAttribute("style", "width:500px; color: gray; font-size: 14px");
 }else{
+    string_grupo_value = true;
+    registro_nc_value= true;
     situacion_nc_value= true;
     
     clausula_nc1_value= true;
@@ -68,8 +96,57 @@ if(registro_nc.value=="12345"){
     clausula_nc2_value= true;
     requisito_nc2_value= true;
     declaracion_nc2_value= true;
-    registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #B22222");
+    
+    if(error_style.value=="El grupo ya existe."){
+        nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px; border-color: #B22222");
+    }else{
+        nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px");
+    }  
+}
 
+if(miembros_grupo.value=="Encargado del Grupo" ){
+    miembros_grupo.setAttribute("style","width:500px; color:gray; font-size: 14px");
+}else{
+    nombre_grupo_value = true;
+    registro_nc_value= true;
+    situacion_nc_value= true;
+    
+    clausula_nc1_value= true;
+    requisito_nc1_value= true;
+    declaracion_nc1_value= true;
+    codigo_nc1_value= true;
+    clausula_nc2_value= true;
+    requisito_nc2_value= true;
+    declaracion_nc2_value= true;
+    
+    if(error_style.value=="Persona no registrada."
+            || error_style.value=="Debe ingresar al menos un usuario en el grupo."){
+        miembros_grupo.setAttribute("style","width:500px; color:black; font-size: 14px; border-color: #B22222");
+    }else{
+        miembros_grupo.setAttribute("style","width:500px; color:black; font-size: 14px");
+    }
+}       
+
+if(registro_nc.value=="12345"){
+    registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: gray; font-size: 14px");
+}else{
+    nombre_grupo_value = true;
+    string_grupo_value = true;
+    situacion_nc_value= true;
+    
+    clausula_nc1_value= true;
+    requisito_nc1_value= true;
+    declaracion_nc1_value= true;
+    codigo_nc1_value= true;
+    clausula_nc2_value= true;
+    requisito_nc2_value= true;
+    declaracion_nc2_value= true;
+    
+    if(error_style.value=="Ya existe una no conformidad con este registro."){
+        registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #B22222");
+    }else{
+        registro_nc.setAttribute("style","padding-left: 48px; width:100px; color: black; font-size: 14px");
+    }
 }
 
 if(situacion_nc.value=="Describa la no conformidad"){
@@ -133,7 +210,6 @@ if(codigo_nc1.value=="C"+'\u00f3'+"digo"){
 
 norma1 = (clausula_nc1_value && requisito_nc1_value && declaracion_nc1_value);
 norma2 = (clausula_nc2_value && requisito_nc2_value && declaracion_nc2_value);
-
 
 
 situacion_nc.onkeydown = function(){
@@ -236,13 +312,28 @@ declaracion_nc2.onkeypress = function(){
     declaracion_nc2_counter.innerHTML= (4999 - cantidad).toString();
 };
 
-alert("llega");
 /*
  * 
  * onclick events
  */
 
+nombre_grupo.onfocus = function() {
+    nombre_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
+    nombre_grupo_error.innerHTML = "";
+    nombre_grupo_image.setAttribute("src", "images/empty.png");
+ if (nombre_grupo.value == "Nombre del Grupo") {
+     nombre_grupo.value = "";
+ }
+};
 
+string_grupo.onfocus = function() {
+    string_grupo_error.innerHTML = "";
+    string_grupo_image.setAttribute("src", "images/empty.png");
+    string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
+    if (string_grupo.value == "Encargado del Grupo") {
+        string_grupo.value = "";
+    }
+};
 
 registro_nc.onfocus = function() {
     registro_nc.setAttribute("style", "padding-left: 48px; width:100px; color: black; font-size: 14px; border-color: #127ba5");
@@ -290,12 +381,7 @@ declaracion_nc1.onfocus = function() {
  }
 };
 
-codigo_origen_nc.onfocus = function() {
-    codigo_origen_nc.setAttribute("style", "width:100px; color:black; font-size: 14px; border-color: #127ba5");
- if (codigo_origen_nc.value == "C"+'\u00f3'+"digo") {
-     codigo_origen_nc.value = "";
- }
-};
+
 
 codigo_nc1.onfocus = function() {
      codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
@@ -336,7 +422,7 @@ declaracion_nc2.onfocus = function() {
 };
 
 function evaluarCampos(){
-  return  !(registro_nc_value && situacion_nc_value &&
+  return  !(nombre_grupo_value&& string_grupo_value && registro_nc_value && situacion_nc_value &&
              codigo_nc1_value && (norma1 || norma2));
 }
 
@@ -356,6 +442,61 @@ function evaluarNorma2(){
  * onblur events
  * 
  */
+nombre_grupo.onblur = function() {
+    nombre_grupo.value = nombre_grupo.value.trim();
+    minuscula=nombre_grupo.value.charAt(0)+"";
+    mayuscula=minuscula.toUpperCase();
+    nombre_grupo.value = mayuscula + nombre_grupo.value.substring(1, nombre_grupo.value.length);
+ if (nombre_grupo.value == "") {
+     nombre_grupo.setAttribute("style", "width:500px; color: gray; font-size: 14px; border-color: #B22222");
+     nombre_grupo_error.innerHTML = "Nombre del grupo es requerido";
+     nombre_grupo_image.setAttribute("src", "images/error.png");
+     nombre_grupo.value = "Nombre del Grupo";
+     nombre_grupo_value = false;
+ }else{
+     var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
+var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
+var inject3 = /^"(.*)"|'(.*)'/;
+     if (nombre_grupo.value.length > 29){
+         nombre_grupo.setAttribute("style", "width:500px; color: black; font-size: 14px; border-color: #B22222");
+         nombre_grupo_error.innerHTML = "El nombre del grupo es muy largo";
+         nombre_grupo_image.setAttribute("src","images/error.png");
+         nombre_grupo_value = false;
+    }else if(inject2.test(nombre_grupo.value) || inject.test(nombre_grupo.value) || inject3.test(nombre_grupo.value)){
+         nombre_grupo.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         nombre_grupo_error.innerHTML = "Formato invalido para el nombre del grupo";
+         nombre_grupo_image.setAttribute("src","images/error.png");
+         nombre_grupo_value = false;
+     }else{
+        nombre_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px");
+        nombre_grupo_image.setAttribute("src","images/checked.png");
+        nombre_grupo_value = true;
+    }
+ }
+  submit.disabled = evaluarCampos();
+};
+
+string_grupo.onblur = function() {
+ if (string_grupo.value == "") {
+     string_grupo.setAttribute("style", "width:500px; color: gray; font-size: 14px; border-color: #B22222");
+     string_grupo_error.innerHTML = "El grupo debe estar formado por al menos una persona";
+     string_grupo.value = "Encargado del Grupo";
+     string_grupo_image.setAttribute("src", "images/error.png");
+     string_grupo_value = false;
+ }else{
+    if(inject2.test(string_grupo.value) || inject.test(string_grupo.value) || inject3.test(string_grupo.value)){
+         string_grupo.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
+         string_grupo_error.innerHTML = "Formato invalido para los integrantes del grupo";
+         string_grupo_image.setAttribute("src", "images/error.png");
+         string_grupo_value = false;
+     } else {
+     string_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px");
+     string_grupo_image.setAttribute("src", "images/checked.png");
+     string_grupo_value = true;
+ }
+ }
+ submit.disabled = evaluarCampos();
+};
 
 registro_nc.onblur = function() {
     registro_nc.value = registro_nc.value.trim();
@@ -416,17 +557,7 @@ situacion_nc.onblur = function() {
   submit.disabled = evaluarCampos();
 };
 
-codigo_origen_nc.onblur = function(){
-    codigo_origen_nc.value = codigo_origen_nc.value.trim();
-    if (codigo_origen_nc.value == ""){
-        codigo_origen_nc.setAttribute("style", "width:100px; color: gray; font-size: 14px")
-        codigo_origen_nc.value = "C"+'\u00f3'+"digo";
-    }else{
-                codigo_origen_nc.setAttribute("style", "width:100px; color: black; font-size: 14px")
 
-    }
-        
-};
 
 clausula_nc1.onblur = function() {
     clausula_nc1.value = clausula_nc1.value.trim();
@@ -656,3 +787,13 @@ declaracion_nc2.onblur = function() {
  norma2 = evaluarNorma2();
  submit.disabled = evaluarCampos();
 };
+
+
+
+
+
+
+
+
+
+

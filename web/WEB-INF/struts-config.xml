@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="Queja" type="domain.Queja"/>
         <form-bean name="Accion" type="domain.Accion"/>
         <form-bean name="ListaPublicaciones" type="domain.ListaPublicaciones"/>
         <form-bean name="Usuario" type="domain.Usuario"/>
@@ -68,8 +69,6 @@
                 scope="session" validate="false" 
                 parameter="/cartelera/vista_adminCartelera.jsp"/>
         
-        <action path="/quejas" type="org.apache.struts.actions.ForwardAction"
-                scope="session" parameter="/construccion/vista_construccion.jsp"/>
         
         <action path="/procesos" type="org.apache.struts.actions.ForwardAction" 
                 scope="session" validate="false" 
@@ -180,6 +179,28 @@
         
         <action path="/imprimir_nc" type="pdf.imprimir_nc">
             <forward name="success" path="/grupos/vista_datos_nc.jsp"/>
+        </action>
+        
+        <action path="/LinkQueja" type="queja.action.LinkQueja">
+            <forward name="success" path="/quejas/vista_datos_queja.jsp"/>
+        </action>
+        <action name="Queja" path="/Crear_Queja" scope="session" 
+                type="queja.action.CrearQueja" validate="false">
+            <forward name="success" path="/home/vista_home.jsp"/>
+            <forward name="failure" path="/quejas/vista_quejate.jsp"/>
+        </action>
+        
+        
+        <action input="/" name="Grupo" path="/Crear_NC_Queja" scope="session" type="queja.action.CrearNoConformidad">
+            <forward name="success" path="/quejas/vista_datos_queja.jsp"/>
+            <forward name="failure" path="/quejas/vista_datos_queja.jsp"/>
+        </action>
+        <action path="/Quejas" type="queja.action.Quejas">
+            <forward name="success" path="/quejas/vista_quejas.jsp"/>
+            <forward name="failure" path="/home/vista_home.jsp"/>
+        </action>
+        <action path="/Quejate" type="queja.action.Quejate">
+            <forward name="success" path="/quejas/vista_quejate.jsp"/>
         </action>
 
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"

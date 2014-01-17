@@ -39,7 +39,8 @@ CREATE TABLE mod1.noconformidad(
   declaracion2 VARCHAR(5000),
   codigo2 VARCHAR(30),
   estado VARCHAR(30) NOT NULL DEFAULT ('activa'), 
-  CONSTRAINT pk_noconformidad PRIMARY KEY (registro )
+  registrod VARCHAR(30),
+  CONSTRAINT pk_noconformidad PRIMARY KEY (registro)
 )
 WITH (
 OIDS = FALSE
@@ -100,6 +101,29 @@ WITH (
 )
 ;
 
+CREATE TABLE "mod1".Quejas
+(
+    registro character varying(20) NOT NULL,
+    empresa character varying(90), 
+    telefono character varying(17),
+    fax character varying(17), 
+    celular character varying(17),  
+    direccion character varying(500), 
+    contacto character varying(50), 
+    vinculo character varying(20),
+    email character varying(50), 
+    contrato character varying(15),
+    exposicion character varying(5000), 
+    acciones character varying(5000), 
+    leido boolean, 
+    registronc character varying(20),
+    fecha timestamp NOT NULL DEFAULT ('now'::text)::timestamp(2),
+	CONSTRAINT PK_QUEJAS PRIMARY KEY (registro)
+) 
+WITH (
+  OIDS = FALSE
+);
+
 ---------------------------- Foreign Keys --------------------------
 
 ALTER TABLE "mod1".Conforma ADD
@@ -125,6 +149,8 @@ ALTER TABLE "mod1".Trabaja ADD
 ALTER TABLE "mod1".Acciones ADD
   CONSTRAINT FK_Acciones_NOCONFORMIDAD FOREIGN KEY (Registronc)
     REFERENCES "mod1".NOCONFORMIDAD(registro);
+
+
 
 ------------------------ Inserts Temporales ------------------------
 INSERT INTO "mod1".USUARIO VALUES ('admin', 'admin@usb.ve', 'admin', 'admin', 0);

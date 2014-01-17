@@ -205,7 +205,7 @@
                 $("#desplegable1").hide();
                 $("#desplegable2").fadeIn("slow");
             });
-            $("#desplegable").css({display: 'none'});
+
             $("#desplegable1").css({display: 'none'});
             $("#desplegable2").css({display: 'none'});
         });
