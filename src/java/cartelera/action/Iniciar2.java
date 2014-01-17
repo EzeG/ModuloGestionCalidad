@@ -11,6 +11,7 @@ import DBMS.DBMS;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -47,6 +48,7 @@ public class Iniciar2 extends org.apache.struts.action.Action {
             request.setAttribute("listMsg", listMsg);
             request.setAttribute("usuario", usuario);
             return mapping.findForward(SUCCESS);
+            
 
         }else{
             request.setAttribute("error", "El nombre de usuario o la contraseña introducidos no son correctos.");

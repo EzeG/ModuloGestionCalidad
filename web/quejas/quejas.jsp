@@ -8,20 +8,20 @@
     <table>
         <tr>
             <td style="vertical-align: middle; width: 135px">
-                <button class = "button" id="button">
-                    Todas
+                <button class = "button" id="button" align="center">
+                    <html:img  src="images/quejas.png"  width="69px" height="69px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
-                <button class = "button" id="button1">
-                    No Leidas
+                <button class = "button" id="button1" align="center">
+                    <html:img  src="images/no_leidas.png"  width="69px" height="69px" align="center"/>
                 </button>
             </td>
             
-            <td style="vertical-align: middle; width: 135px">
+            <td style="vertical-align: middle; width: 135px" align="center">
                 <button class="button" id="button2">
-                    Leidas
+                    <html:img  src="images/leidas.png"  width="69px" height="69px" align="center"/>
                 </button>
             </td>
             
@@ -36,24 +36,27 @@
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="listQuejas">           
-            <tr id="lista">
-                
+            <tr id="<bean:write name="infoQueja" property="leido"/>">
+                <td style="width: 10px">
+                    <input type="checkbox" name="registro_queja" value="<bean:write name="infoQueja" property="registro"/>">
+                </td>
                 <td style="width: 580px">
+                    
                     <html:link action="/LinkQueja" paramId="verQueja" paramName="infoQueja" paramProperty="registro" > 
                         <p style="color: #1c6ea0; font-size: 12px; margin-top: 3px">
-                            <bean:write name="infoQueja" property="registro"/><br/>
+                            <bean:write name="infoQueja" property="registro"/>
                         </p>
                     </html:link>
                 </td>
                 
                 <td style="width: 580px">
                         <p style="color: #1c6ea0; font-size: 12px; margin-top: 3px">
-                            <bean:write name="infoQueja" property="contacto"/><br/>
+                            <bean:write name="infoQueja" property="contacto"/>
                         </p>
                 </td>
                 <td style="width: 580px">
                         <p style="color: #1c6ea0; font-size: 12px; margin-top: 3px">
-                            <bean:write name="infoQueja" property="fecha"/><br/>
+                            <bean:write name="infoQueja" property="fecha"/>
                         </p>
                 </td>
             </tr>  
@@ -66,10 +69,13 @@
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="QuejasNoLeidas">           
-            <tr id="lista">
-                
+            <tr id="<bean:write name="infoQueja" property="leido"/>">
+                <td style="width: 10px">
+                    <input type="checkbox" name="registro_queja" value="<bean:write name="infoQueja" property="registro"/>">
+                </td>
                 <td style="width: 580px">
-                    <html:link action="/LinkQueja" > 
+                    
+                    <html:link action="/LinkQueja" paramId="verQueja" paramName="infoQueja" paramProperty="registro" > 
                         <p style="color: #1c6ea0; font-size: 12px; margin-top: 3px">
                             <bean:write name="infoQueja" property="registro"/><br/>
                         </p>
@@ -96,10 +102,12 @@
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="QuejasLeidas">           
-            <tr id="lista">
-                
+            <tr id="<bean:write name="infoQueja" property="leido"/>">
+                <td style="width: 10px">
+                    <input type="checkbox" name="registro_queja" value="<bean:write name="infoQueja" property="registro"/>">
+                </td>
                 <td style="width: 580px">
-                    <html:link action="/LinkQueja"> 
+                    <html:link action="/LinkQueja" paramId="verQueja" paramName="infoQueja" paramProperty="registro" > 
                         <p style="color: #1c6ea0; font-size: 12px; margin-top: 3px">
                             <bean:write name="infoQueja" property="registro"/><br/>
                         </p>

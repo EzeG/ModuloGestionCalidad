@@ -428,3 +428,34 @@ blockquote:hover {
     border-radius: 5px;
     padding: 10px;
 }
+
+#true{
+    background-color: #FFFFFF;
+    -moz-box-shadow:inset 0px 5px 3px #000000;
+    -webkit-box-shadow:inset 0px 5px 3px #000000;
+    box-shadow:inset 0px 5px 3px #000000;
+    border-top: 1px;
+    border-top-color: gray;
+  
+}
+
+#false{
+    background-color: #EEEEEE;
+    border-top: 1px;
+    border-top-color: gray;
+}
+
+#true:hover {
+    background: #F9F9F9;
+    -o-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -webkit-transition: all 1s linear;
+}
+
+#false:hover {
+    background: #E9E9E9;
+    -o-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -webkit-transition: all 1s linear;
+}
+

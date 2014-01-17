@@ -197,6 +197,7 @@
         </action>
         <action path="/Quejas" type="queja.action.Quejas">
             <forward name="success" path="/quejas/vista_quejas.jsp"/>
+            <forward name="failure" path="/home/vista_home.jsp"/>
         </action>
         <action path="/Quejate" type="queja.action.Quejate">
             <forward name="success" path="/quejas/vista_quejate.jsp"/>

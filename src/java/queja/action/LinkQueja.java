@@ -48,6 +48,9 @@ public class LinkQueja extends org.apache.struts.action.Action {
         NoConformidad nc= new NoConformidad();
         DBMS.getInstance().quejaLeida(registro_queja);
         request.setAttribute("queja", queja);
+        if (!queja.getRegistro_nc().equals("")){
+            nc=DBMS.getInstance().buscarNc(queja.getRegistro_nc());
+        }
         request.setAttribute("nc", nc);
         request.setAttribute("grupos", grupos);
         request.setAttribute("origen", "queja");

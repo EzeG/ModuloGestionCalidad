@@ -1,3 +1,4 @@
+<%@page import="domain.Queja"%>
 <%@page contentType="text/html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
@@ -21,31 +22,44 @@
 
 <%String error = (String) request.getAttribute("error");%>
 
+<%String visual1;
+  String visual2;
+  Queja  queja = (Queja) request.getAttribute("queja");
+  String registro_nc= queja.getRegistro_nc();
+  if(registro_nc.equals("")){
+      visual1="visibility: visible";
+      visual2="visibility: hidden";
+  }else{
+      visual2="visibility: visible";
+      visual1="visibility: hidden";
+  }
+%>
+
 <%=error%>
 <div id="menu_grupos">
     <table>
         <tr>
             <td style="vertical-align: middle; width: 135px">
                 <button class = "button" id="button">
-                    INfo de la queja
+                    <html:img  src="images/queja.png"  width="69px" height="69px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
-                <button class = "button" id="button1">
-                    Agregar NC
+                <button class = "button" id="button1" style="<%=visual1%>">
+                    <html:img  src="images/crear_nc.png"  width="128px" height="69px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
-                <button class="button" id="button2">
-                    ver NC asociada
+                <button class="button" id="button2" style="<%=visual2%>">
+                    <html:img  src="images/nc_asociada.png"  width="71px" height="69px" align="center"/>
                 </button>
             </td>
             
             <td style="vertical-align: middle; width: 135px">
                 <button class="button" id="button3">
-                    ver pdf
+                    <html:img  src="images/generar_pdf.png"  width="61px" height="73px" align="center"/>
                 </button>
             </td>
         </tr>
