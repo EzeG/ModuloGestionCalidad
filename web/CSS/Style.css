@@ -134,7 +134,7 @@ blockquote:hover {
 }
 
 #lista:hover {
-    background: #BCF7FF;
+    background: #E7E7E7;
     -o-transition: all 1s linear;
     -moz-transition: all 1s linear;
     -webkit-transition: all 1s linear;
@@ -265,7 +265,7 @@ blockquote:hover {
 
 }
 
-#grupos-lista{
+#grupos-lista, #quejas{
     height: 424px;
     border-style: groove;
     display: block;
@@ -412,7 +412,7 @@ blockquote:hover {
 
 
 #menu{
-    background: #324C86;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(60%,#e7e7e7));
     height: 79px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -422,7 +422,7 @@ blockquote:hover {
 }
 
 #menu_grupos{
-    background: #324C86;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(60%,#e7e7e7));
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;

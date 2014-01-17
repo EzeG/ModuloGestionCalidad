@@ -48,7 +48,6 @@ public class AgregarPersonas extends org.apache.struts.action.Action {
         for(int j =0; j<listGrupo.size(); j++){
             listGrupo.get(j).setGrupo(grupo.getNombre_grupo());
         }
-        
         request.setAttribute("huerfanos", listGrupo);
         request.setAttribute("grupito", grupo);
         request.setAttribute("nombreG", grupo.getNombre_grupo());

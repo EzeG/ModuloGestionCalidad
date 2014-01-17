@@ -21,6 +21,7 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
     private String registro_nc;
     private String situacion_nc;
     private int origen_nc;
+    private String codigo_origen_nc;
     
     private String clausula_nc1;
     private String requisito_nc1;
@@ -35,6 +36,14 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
     private String grupo_nc;
     private String error;
 
+    public String getCodigo_origen_nc() {
+        return codigo_origen_nc;
+    }
+
+    public void setCodigo_origen_nc(String codigo_origen_nc) {
+        this.codigo_origen_nc = codigo_origen_nc;
+    }
+    
     public String getFecha_nc() {
         return fecha_nc;
     }
@@ -168,7 +177,7 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
      * @param codigo2
 
      */
-     public NoConformidad(String registro, String situacion, int origen, String clausula1, String requisito1, String declaracion1, String codigo1,String clausula2, String requisito2, String declaracion2, String codigo2) {
+     public NoConformidad(String registro, String situacion, int origen, String clausula1, String requisito1, String declaracion1, String codigo1,String clausula2, String requisito2, String declaracion2, String codigo2, String codigo_origen_nc) {
         super();
         // TODO Auto-generated constructor stub
 
@@ -185,6 +194,7 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
         this.requisito_nc2 = requisito2;
         this.declaracion_nc2 = declaracion2;
         this.codigo_nc2 = codigo2;
+        this.codigo_origen_nc = codigo_origen_nc;
     }
     
     

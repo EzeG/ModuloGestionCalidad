@@ -4,25 +4,24 @@
  * and open the template in the editor.
  */
 
-package grupo.action;
+package queja.action;
 
+import DBMS.DBMS;
 import domain.Grupo;
-import domain.NoConformidad;
-import domain.Usuario;
+import domain.Queja;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import java.util.ArrayList;
-import DBMS.*;
-
 /**
  *
- * @author ani
+ * @author Gabriel
  */
-public class AgregarNC extends org.apache.struts.action.Action {
+public class Quejas extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -41,22 +40,23 @@ public class AgregarNC extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Grupo grupo = (Grupo) form;
-        ArrayList<Usuario> listGrupo;
-        NoConformidad nc = new NoConformidad();
         
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "12345");
-        request.setAttribute("situacion_nc", "Describa la no conformidad");
-        request.setAttribute("clausula_nc1", "Clausula");
-        request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaración");
-        request.setAttribute("codigo_nc1", "Código");
-        request.setAttribute("clausula_nc2", "Clausula");
-        request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaración");
-        request.setAttribute("codigo_nc2", "Código");
+        ArrayList<Queja> quejas = DBMS.getInstance().consultarQuejas();
+        ArrayList<Queja> leidas = new ArrayList<Queja>(0);
+        ArrayList<Queja> noleidas= new ArrayList<Queja>(0);
+
+        for(int i=0; i < quejas.size(); i++){
+            Queja queja=quejas.get(i);
+            if (queja.isLeido())
+                leidas.add(queja);
+            else
+                noleidas.add(queja);    
+        }
+        request.setAttribute("listQuejas", quejas);
+        request.setAttribute("QuejasNoLeidas", noleidas);
+        request.setAttribute("QuejasLeidas", leidas);
         return mapping.findForward(SUCCESS);
     }
+
+  
 }

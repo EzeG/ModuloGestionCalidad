@@ -64,11 +64,12 @@
                                 <div class="content">
                                     <ul class="menu"><li class="first leaf"><html:link action="agenda"><p>Agenda</p></html:link></li>
                                         <li class="leaf"><html:link action="cartelera"><p>Cartelera</p></html:link></li>
-                                        <li class="leaf"><html:link action="quejas"><p>Quejas</p></html:link></li>
+                                        <li class="leaf"><html:link action="Quejas"><p>Quejas</p></html:link></li>
                                         <li class="last leaf"><html:link action="procesos"><p>Procesos</p></html:link></li>
                                         <li class="last leaf"><html:link action="estadisticas"><p>Estadisticas</p></html:link></li>
                                         <li class="last leaf"><html:link action="tab_grupos"><p>Grupos</p></html:link></li>
                                         <li class="last leaf"><html:link action="login"><p>Cerrar Sesión</p></html:link></li>
+                                        <li class="leaf"><html:link action="Quejate"><p>Quéjate</p></html:link></li>
 
                                     </ul>
                                 </div>

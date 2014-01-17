@@ -86,6 +86,7 @@
                         <html:option value="5">Trabajo No Conforme</html:option>
                         <html:option value="6">Otro</html:option>
                     </html:select>
+                    <html:text  styleClass="textbox" styleId="codigo_origen_nc"  property="codigo_origen_nc" value="Código" style="width:100px; color: gray; font-size: 14px"/>
                 </td>
                 
             </tr>
