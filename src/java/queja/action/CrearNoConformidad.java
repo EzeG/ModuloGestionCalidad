@@ -58,6 +58,7 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
                 if (asocio){
                     nc = DBMS.getInstance().buscarNc(nc.getRegistro_nc());
                     DBMS.getInstance().asociarQueja(queja.getRegistro(),nc.getRegistro_nc());
+                    queja = DBMS.getInstance().consultarQueja(queja.getRegistro());
                     request.setAttribute("queja", queja);
                     request.setAttribute("nc", nc);
                     request.setAttribute("grupos", grupos);
@@ -156,6 +157,7 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
                                 if (asocio){
                                     nc = DBMS.getInstance().buscarNc(nc.getRegistro_nc());
                                     DBMS.getInstance().asociarQueja(queja.getRegistro(),nc.getRegistro_nc());
+                                    queja = DBMS.getInstance().consultarQueja(queja.getRegistro());
                                     request.setAttribute("queja", queja);
                                     request.setAttribute("nc", nc);
                                     request.setAttribute("grupos", grupos);

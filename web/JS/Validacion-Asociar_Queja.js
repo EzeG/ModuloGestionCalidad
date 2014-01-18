@@ -14,6 +14,8 @@ clausula_nc2= document.getElementById("clausula_nc2");
 requisito_nc2= document.getElementById("requisito_nc2");
 declaracion_nc2= document.getElementById("declaracion_nc2");
 codigo_origen_nc=document.getElementById("codigo_origen_nc");
+button5=document.getElementById("button5");
+button6=document.getElementById("button6");
 submit=document.getElementById("submit");
 
 
@@ -212,6 +214,7 @@ norma1 = (clausula_nc1_value && requisito_nc1_value && declaracion_nc1_value);
 norma2 = (clausula_nc2_value && requisito_nc2_value && declaracion_nc2_value);
 
 
+
 situacion_nc.onkeydown = function(){
     cantidad = situacion_nc.value.length;
     if (cantidad>4999){
@@ -316,6 +319,8 @@ declaracion_nc2.onkeypress = function(){
  * 
  * onclick events
  */
+
+
 
 nombre_grupo.onfocus = function() {
     nombre_grupo.setAttribute("style", "width:500px; color:black; font-size: 14px; border-color: #127ba5");
@@ -437,7 +442,22 @@ function evaluarNorma2(){
 }
 
 
+button6.onclick=function(){
+    nombre_grupo_value=true;
+    string_grupo_value=true;
+    submit.disabled=evaluarCampos();
+};
 
+button5.onclick=function(){
+    if(nombre_grupo.value == "Nombre del Grupo" || string_grupo.value == "Encargado del Grupo"){
+        nombre_grupo_value=false;
+        string_grupo_value=false;
+    }else{
+        nombre_grupo_value=true;
+        string_grupo_value=true;
+        submit.disabled=evaluarCampos();
+    }
+};
 /*
  * onblur events
  * 

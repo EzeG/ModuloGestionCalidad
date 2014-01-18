@@ -320,13 +320,14 @@
 <div id="desplegable2">    
     <table>
     <tr>
-        <td>
-            <p > No Conformidad </p>
-        </td>
         <td align = "right">
             <p style="font-size: 12px; margin-top: -10px">
                 <b>Registro:</b>
-                <bean:write name="nc" property="registro_nc"/>
+                    <html:link action="linkNc" paramId="NoConformidad" paramName="nc"
+                            paramProperty="registro_nc" >
+                            <bean:write name="nc" property="registro_nc"/>         
+                    </html:link>
+                
             </p>
         </td>
     </tr>

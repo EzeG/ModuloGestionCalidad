@@ -50,7 +50,7 @@ public class Quejas extends org.apache.struts.action.Action {
             ArrayList<Queja> quejas = DBMS.getInstance().consultarQuejas();
             ArrayList<Queja> leidas = new ArrayList<Queja>(0);
             ArrayList<Queja> noleidas= new ArrayList<Queja>(0);
-
+            Collections.reverse(quejas);
             for(int i=0; i < quejas.size(); i++){
                 Queja queja=quejas.get(i);
                 if (queja.isLeido())
@@ -58,6 +58,7 @@ public class Quejas extends org.apache.struts.action.Action {
                 else
                     noleidas.add(queja);    
             }
+            
             request.setAttribute("listQuejas", quejas);
             request.setAttribute("QuejasNoLeidas", noleidas);
             request.setAttribute("QuejasLeidas", leidas);

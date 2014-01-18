@@ -31,7 +31,7 @@ String acciones="acciones";
                     <td><p style="font-size: 14px"><b>Empresa:</b></p></td>
                     <td>
                     <html:text styleId="empresa" property="empresa" value="<%=empresa%>" style="width:300px; color:gray; font-size: 14px" />
-                    <p id="registro_error" style="font-size: 12px; color: #B22222"></p>
+                    <p id="empresa_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +101,7 @@ String acciones="acciones";
                     </td>
                 </tr>
                 <tr>
-                    <td><p style="font-size: 14px"><b>Telefono:</b></p></td>
+                    <td><p style="font-size: 14px"><b>Fax:</b></p></td>
                     <td>
                         <html:select style="font-size: 14px; height: 24px " property="codigo_fax">
                         <html:option value=""> </html:option>  
@@ -167,7 +167,7 @@ String acciones="acciones";
                     </td>
                 </tr>
                 <tr>
-                    <td><p style="font-size: 14px"><b>Telefono:</b></p></td>
+                    <td><p style="font-size: 14px"><b>Celular:</b></p></td>
                     <td>
                         <html:select style="font-size: 14px; height: 24px " property="codigo_celular">
                         <html:option value=""> </html:option>  
@@ -249,7 +249,7 @@ String acciones="acciones";
 
 <head>
     <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
-    <script type="text/javascript" src="JS/sesion.js"></script>
+    <script type="text/javascript" src="JS/Validacion-quejate.js"></script>
     <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
 
 </head>
