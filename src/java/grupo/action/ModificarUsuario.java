@@ -51,13 +51,12 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
             throws Exception {
         Usuario user = (Usuario) form;
         ArrayList<Usuario> listGrupo;
-        int N= 10;
         user.setUsbid(user.getUsbid());
-        String usbid[]=usbid=request.getParameterValues("usbid");
+        String usbid[]=request.getParameterValues("usbid");
         final String username = "ulab-calidad@usb.ve";
         final String password = "coordcalidad";
         
-        
+        if(usbid != null){
         for (int i=0; i<usbid.length;i++){
             
             if(usbid[i]!=null){
@@ -95,7 +94,9 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
                 } 
                 }
             }
-        }     
+        }  
+        
+    }
         listGrupo = DBMS.getInstance().usuariosSinGrupo("Grupo1");
         for (int j = 0; j < listGrupo.size(); j++) {
                 listGrupo.get(j).setGrupo(user.getGrupo());

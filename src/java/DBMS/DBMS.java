@@ -534,7 +534,7 @@ public class DBMS {
         ArrayList<Queja> quejas = new ArrayList<Queja>(0);
 
         try {
-            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".Quejas;");
+            psConsultar = conexion.prepareStatement("SELECT * FROM \"mod1\".Quejas order by fecha;");
             ResultSet rs = psConsultar.executeQuery();
             while (rs.next()) {
                 Queja q = new Queja();
@@ -889,6 +889,7 @@ public class DBMS {
             e.printStackTrace();
         }
     }
+    
     public void asociarQueja(String registro_queja, String registro_nc) {
         PreparedStatement modificar;
         try {
