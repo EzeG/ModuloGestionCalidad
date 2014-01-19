@@ -79,7 +79,6 @@
                 <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                 <td>
                     <html:select styleClass="textbox" style="font-size: 14px; height: 24px " property="origen_nc">
-                        <html:option value="1">Queja</html:option>
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
                         <html:option value="4">Oportunidad de Mejora</html:option>

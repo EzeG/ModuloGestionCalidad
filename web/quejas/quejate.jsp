@@ -37,8 +37,7 @@ String acciones="acciones";
                 <tr>
                     <td><p style="font-size: 14px"><b>Telefono:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 24px " property="codigo_telefono">
-                        <html:option value=""> </html:option>  
+                        <html:select style="font-size: 14px; height: 24px " property="codigo_telefono"> 
                         <html:option value="0212">0212</html:option>
                         <html:option value="0234">0234</html:option>
                         <html:option value="0235">0235</html:option>
@@ -103,8 +102,7 @@ String acciones="acciones";
                 <tr>
                     <td><p style="font-size: 14px"><b>Fax:</b></p></td>
                     <td>
-                        <html:select style="font-size: 14px; height: 24px " property="codigo_fax">
-                        <html:option value=""> </html:option>  
+                        <html:select style="font-size: 14px; height: 24px " property="codigo_fax"> 
                         <html:option value="0212">0212</html:option>
                         <html:option value="0234">0234</html:option>
                         <html:option value="0235">0235</html:option>
@@ -170,7 +168,6 @@ String acciones="acciones";
                     <td><p style="font-size: 14px"><b>Celular:</b></p></td>
                     <td>
                         <html:select style="font-size: 14px; height: 24px " property="codigo_celular">
-                        <html:option value=""> </html:option>  
                         <html:option value="0412">0412</html:option>
                         <html:option value="0424">0424</html:option>
                         <html:option value="0416">0416</html:option>

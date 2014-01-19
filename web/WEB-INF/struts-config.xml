@@ -175,6 +175,7 @@
         
         <action name="Accion" path="/terminaraccion" type="grupo.action.TerminarAccion">
             <forward name ="success" path="/grupos/vista_accioncerrada.jsp"/>
+            <forward name ="failure" path="/construccion/vista_construccion.jsp"/>
         </action>
         
         <action path="/imprimir_nc" type="pdf.imprimir_nc">

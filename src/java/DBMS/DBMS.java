@@ -130,6 +130,7 @@ public class DBMS {
                 String fecha = df.format(rs.getDate("fecha"));
                 NoConformidad nc = new NoConformidad(fecha, regNc, rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
                         rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"));
+                nc.setCodigo_origen_nc(rs.getString("registrod"));
                 return nc;
             }
             return null;
@@ -148,6 +149,7 @@ public class DBMS {
             while (rs.next()) {
                 NoConformidad nc = new NoConformidad(rs.getString("registro"), rs.getString("situacion"), rs.getInt("procedencia"), rs.getString("clausula1"), rs.getString("requisito1"), rs.getString("declaracion1"), rs.getString("codigo1"),
                         rs.getString("clausula2"), rs.getString("requisito2"), rs.getString("declaracion2"), rs.getString("codigo2"), rs.getString("registrod"));
+                nc.setEstado(rs.getString("estado"));
                 noConformidades.add(nc);
             }
             return noConformidades;
@@ -180,6 +182,22 @@ public class DBMS {
         PreparedStatement usConsulta;
         try {
             usConsulta = conexion.prepareStatement("SELECT Email FROM mod1.USUARIO WHERE USBID = \'" + id + "\';");
+            ResultSet rs = usConsulta.executeQuery();
+            if (rs.next()) {
+                return rs.getString("Email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+    
+      public String getEmailQueja(String queja) {
+        PreparedStatement usConsulta;
+        try {
+            usConsulta = conexion.prepareStatement("SELECT Email FROM mod1.quejas WHERE registro = \'" + queja + "\';");
             ResultSet rs = usConsulta.executeQuery();
             if (rs.next()) {
                 return rs.getString("Email");
@@ -773,6 +791,30 @@ public class DBMS {
             return null;
         }
         
+        public ArrayList<Accion> consultarAccionesNoTerminadas(String registro) {
+            PreparedStatement acConsulta;
+            Usuario us;
+            String responsable;
+            try {
+                ArrayList<Accion> acciones = new ArrayList<Accion>();
+                acConsulta = conexion.prepareStatement("SELECT * FROM mod1.Acciones WHERE estado != \'terminada\' AND registronc = \'" + registro + "\' order by prioridad;");
+                ResultSet rs = acConsulta.executeQuery();
+                while (rs.next()) {
+                    us = buscarUsuario(rs.getString("responsable"));
+                    if(us == null) {
+                        responsable = rs.getString("responsable");
+                    } else responsable = us.getNombre()+"-"+us.getUsbid();
+                    Accion ac = new Accion(rs.getString("registronc"), rs.getString("accion"), rs.getString("tipo"), rs.getInt("prioridad"),rs.getString("proceso"), responsable, rs.getString("recursos"), rs.getTimestamp("FechaI"), rs.getTimestamp("FechaF"));
+                    ac.setEstado(rs.getString("estado"));
+                    acciones.add(ac);
+                }
+                return acciones;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        
         public ArrayList<Accion> consultarAccionesCorrectivas(String registro) {
         PreparedStatement acConsulta;
         Usuario us;
@@ -918,6 +960,20 @@ public class DBMS {
         try {
             modificar = conexion.prepareStatement("UPDATE mod1.Acciones SET estado = \'terminada\' WHERE Registronc = \'"
                     +nc+"\' AND Accion = \'"+accion+"\';");
+            Integer i = modificar.executeUpdate();
+            return (i > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
+    public boolean terminarNoConformidad(String nc) {
+        PreparedStatement modificar;
+        try {
+            modificar = conexion.prepareStatement("UPDATE mod1.noconformidad SET estado = \'terminada\' WHERE Registro = \'"
+                    +nc+"\';");
             Integer i = modificar.executeUpdate();
             return (i > 0);
         } catch (SQLException e) {

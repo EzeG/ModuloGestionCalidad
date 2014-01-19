@@ -236,7 +236,7 @@ declaracion_nc2.onkeypress = function(){
     declaracion_nc2_counter.innerHTML= (4999 - cantidad).toString();
 };
 
-alert("llega");
+
 /*
  * 
  * onclick events
