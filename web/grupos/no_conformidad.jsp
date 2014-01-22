@@ -27,8 +27,7 @@
 <%String codigo2 = (String) request.getAttribute("codigo_nc2");%>
 
 
-<html:form styleId="no_conformidad" action="/CrearNoConformidad">
-   </fieldset>             
+<html:form styleId="no_conformidad" action="/CrearNoConformidad">         
 <p>No Conformidad: </p>
     <fieldset>
         <table style="margin-left: 10px">

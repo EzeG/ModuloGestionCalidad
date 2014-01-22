@@ -103,7 +103,7 @@ WITH (
 
 CREATE TABLE "mod1".Quejas
 (
-    registro character varying(20) NOT NULL,
+    registro serial,
     empresa character varying(90), 
     telefono character varying(17),
     fax character varying(17), 

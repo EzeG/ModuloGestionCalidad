@@ -5,7 +5,7 @@
  */
 
 package queja.action;
-
+import domain.Queja;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -35,7 +35,9 @@ public class Quejate extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
+        Queja qu = new Queja();
+        qu.setError(""); 
+        request.setAttribute("queja", qu);
         return mapping.findForward(SUCCESS);
     }
 }

@@ -40,6 +40,7 @@ public class Queja extends org.apache.struts.action.ActionForm {
     private boolean leido;
     private String registro_nc;
     private String fecha;
+    private String error;
 
     public String getCodigo_telefono() {
         return codigo_telefono;
@@ -187,7 +188,13 @@ public class Queja extends org.apache.struts.action.ActionForm {
     }
 
   
+    public void setError(String err) {
+        this.error = err;
+    }
     
+    public String getError() {
+        return this.error;
+    }
     
     
     public Queja() {

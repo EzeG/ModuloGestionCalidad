@@ -50,6 +50,8 @@ public class CrearQueja extends org.apache.struts.action.Action {
             if(DBMS.getInstance().agregarQueja(qu)){
                 return mapping.findForward(SUCCESS);
             }else{
+                qu.setError("No se pudo agregar su queja. Asegúrese de llenar bien todos los campos"); 
+                request.setAttribute("queja", qu);
                 return mapping.findForward(FAILURE);
             }
     }

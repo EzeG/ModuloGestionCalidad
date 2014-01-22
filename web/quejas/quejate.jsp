@@ -4,7 +4,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <%
-String registro="registro";
 String empresa="empresa";
 String telefono="telefono";
 String fax="fax";
@@ -20,17 +19,11 @@ String acciones="acciones";
     <html:form action="/Crear_Queja">
         <fieldset>  
             <table style="margin-left: 10px">
-                <tr>
-                    <td><p style="font-size: 14px"><b>Registro:</b></p></td>
-                    <td>
-                    <html:text styleId="registro" property="registro" value="<%=registro%>" style="width:100px; color:gray; font-size: 14px" />
-                    <p id="registro_error" style="font-size: 12px; color: #B22222"></p>
-                    </td>
-                </tr>
+                <p id="error_error" style="font-size: 14px; color: #B22222"><center><b><bean:write name="queja" property="error" filter="false"/></b></center></p>
                 <tr>
                     <td><p style="font-size: 14px"><b>Empresa:</b></p></td>
                     <td>
-                    <html:text styleId="empresa" property="empresa" value="<%=empresa%>" style="width:300px; color:gray; font-size: 14px" />
+                    <html:text styleId="empresa" property="empresa" value="empresa" style="width:300px; color:gray; font-size: 14px" />
                     <p id="empresa_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
                 </tr>

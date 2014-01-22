@@ -21,11 +21,11 @@ exposicion_counter = document.getElementById("exposicion_counter");
 acciones_counter = document.getElementById("acciones_counter");
 
 //se definen los mensajes de error
-registro_error= document.getElementById("registro_error");
 empresa_error= document.getElementById("empresa_error");
 telefono_error= document.getElementById("telefono_error");
 fax_error = document.getElementById("fax_error");
 celular_error = document.getElementById("celular_error");
+error_error = document.getElementById("error_error");
 direccion_error = document.getElementById("direccion_error");
 contacto_error = document.getElementById("contacto_error");
 email_error = document.getElementById("email_error");
@@ -34,7 +34,7 @@ exposicion_error = document.getElementById("exposicion_error");
 acciones_error = document.getElementById("acciones_error");
 
 //se definen las variables de validacion
-registro_value= false;
+registro_value= true;
 empresa_value= false;
 telefono_value= false;
 fax_value = false;
@@ -53,10 +53,10 @@ acciones_value = false;
 submit.disabled = true;
 
 //se inicializan los estilos de los textbox y textareas
-
-
-if(registro.value == "registro"){
-    registro.setAttribute("style"," width:100px; color: gray; font-size: 14px");
+        
+        
+if(empresa.value == "empresa"){
+    empresa.setAttribute("style","width:300px; color: gray; font-size: 14px");
 }else{
     empresa_value= true;
     telefono_value= true;
@@ -69,12 +69,6 @@ if(registro.value == "registro"){
     exposicion_value = true;
     acciones_value = true;
     submit_value= true;
-    registro.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #B22222");
-}
-        
-if(empresa.value == "empresa"){
-    empresa.setAttribute("style","width:300px; color: gray; font-size: 14px");
-}else{
     empresa.setAttribute("style","width:300px; color: black; font-size: 14px");
 }
 
@@ -136,15 +130,9 @@ if(acciones.value == "acciones"){
  * 
  * onfocusevents
  */
-registro.onfocus = function(){
-registro.setAttribute("style","width:100px; color: black; font-size: 14px; border-color: #127ba5"); 
-registro_error.innerHTML = ""; 
-if (registro.value == "registro") {
- registro.value="";
- }
- };
- 
+
 empresa.onfocus = function(){
+error_error.innerHTML = ""; 
 empresa.setAttribute("style","width:300px; color: black; font-size: 14px; border-color: #127ba5"); 
 empresa_error.innerHTML = ""; 
 if (empresa.value == "empresa") { 
@@ -232,29 +220,7 @@ function evaluarCampos(){
           && direccion_value && contacto_value && email_value && contrato_value &&  
           exposicion_value  && acciones_value);
 }
-
-registro.onblur = function(){
-registro.value = registro.value.trim();
-	if(registro.value==""){
-		registro.setAttribute("style","width:100px; color: gray; font-size: 14px; border-color: #B22222");
-		registro_error.innerHTML = "registro es requerido";
-		registro.value = "registro";
-		registro_value = false;
- }else{
-	var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
-	var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
-	var inject3 = /^"(.*)"|'(.*)'/;
-	if(inject2.test(registro.value) || inject.test(registro.value) || inject3.test(registro.value) || registro.value.length > 19){
-            registro.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
-            registro_error.innerHTML = "registro posee un formato invalido o es muy largo";
-            registro_value = false;
-     }else{
-        registro.setAttribute("style", "width:100px; color:black; font-size: 14px");
-        registro_value = true;
-        submit.disabled= evaluarCampos();
-    }
- }
- };
+ 
  
  empresa.onblur = function(){
 empresa.value = empresa.value.trim();
@@ -263,6 +229,7 @@ empresa.value = empresa.value.trim();
 		empresa_error.innerHTML = "empresa es requerido";
 		empresa.value = "empresa";
 		empresa_value = false;
+                empresa_image.setAttribute("src", "images/error.png");
  }else{
 	var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
 	var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
@@ -270,10 +237,12 @@ empresa.value = empresa.value.trim();
 	if(inject2.test(empresa.value) || inject.test(empresa.value) || inject3.test(empresa.value) || empresa.value.length > 89){
 		empresa.setAttribute("style", "width:300px; color: black; font-size: 14px; border-color: #B22222");
                 empresa_error.innerHTML = "empresa posee un formato invalido o es muy largo";
+                empresa_image.setAttribute("src", "images/error.png");
                 empresa_value = false;
      }else{
         empresa.setAttribute("style", "width:300px; color:black; font-size: 14px");
         empresa_value = true;
+        empresa_image.setAttribute("src", "images/checked.png");
         submit.disabled= evaluarCampos();
     }
  }
@@ -292,10 +261,12 @@ if(telefono.value==""){
 	if(inject2.test(telefono.value) || inject.test(telefono.value) || inject3.test(telefono.value) || !dateTel.test(telefono.value)){
 		telefono.setAttribute("style", "width:100px; color: black; font-size: 14px; border-color: #B22222");
          telefono_error.innerHTML = "telefono posee un formato invalido";
+         telefono_image.setAttribute("src", "images/error.png");
          telefono_value = false;
      }else{
         telefono.setAttribute("style", "width:100px; color:black; font-size: 14px");
         telefono_value = true;
+        telefono_image.setAttribute("src", "images/checked.png");
         submit.disabled= evaluarCampos();
     }
  }
@@ -445,6 +416,7 @@ exposicion.value = exposicion.value.trim();
 		exposicion_error.innerHTML = "exposicion es requerido";
 		exposicion.value = "exposicion";
 		exposicion_value = false;
+                exposicion_image.setAttribute("src", "images/error.png");
  }else{
 	var inject2 = /^\b(ALTER|alter|CREATE|create|DELETE|delete|DROP|drop|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|insert( +into){0,1}|MERGE|merge|SELECT|select|UPDATE|update|UNION( +ALL){0,1})|union( +all){0,1}\b/;
 	var inject = /\w*((\%27)|(\'))((\%6F)|o|O|(\%4F))((\%72)|r|R|(\%52))/;
@@ -453,6 +425,7 @@ exposicion.value = exposicion.value.trim();
 		exposicion.setAttribute("style", "height: 100px; width:300px; color: black; font-size: 14px; border-color: #B22222");
          exposicion_error.innerHTML = "exposicion posee un formato invalido o muy largo";
          exposicion_value = false;
+         exposicion_image.setAttribute("src", "images/error.png");
      }else{
         exposicion.setAttribute("style", "height: 100px; width:300px; color:black; font-size: 14px");
         exposicion_value = true;

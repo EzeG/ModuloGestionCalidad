@@ -94,14 +94,14 @@
             </td>
         </tr>
     </table>
-<html:form action="terminaraccion">
+<html:form action="terminaraccion" >
     <html:hidden property="accion" value="<%=accion%>" />
     <html:hidden property="registro_nc" value="<%=registronc%>" />
     <div id="desplegable1">
         <input type="button" value="Terminar Acción" id="agregarp" class="button1"/>
     </div>
     <div id="desplegable2">
-        <p style="font-size: 14px "><b>¿esta seguro que desea terminar esta acción?</b></p>
+        <p style="font-size: 14px "><b>¿Está seguro que desea terminar esta acción?</b></p>
     <html:submit style="<%=vis%>" styleId="agregarp" value="Aceptar" />
      <input type="button" value="Cancelar" id="agregarp" class="button2"/> 
     </div>

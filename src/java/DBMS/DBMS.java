@@ -49,9 +49,9 @@ public class DBMS {
 //                    "<nombre de usuario psql>",
 //                    "<clave de usuario psql>");
             conexion = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/NOMBRE",
+                    "jdbc:postgresql://localhost:5432/CALIDAD",
                     "postgres",
-                    "17744256");
+                    "123");
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -371,22 +371,21 @@ public class DBMS {
         Timestamp fecha = new Timestamp(ref.getTime());
         
         try {
-            quAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".quejas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-            quAgregar.setString(1, qu.getRegistro());
-            quAgregar.setString(2, qu.getEmpresa());
-            quAgregar.setString(3, qu.getCodigo_telefono()+"-"+qu.getTelefono());
-            quAgregar.setString(4, qu.getCodigo_fax()+"-"+qu.getFax());
-            quAgregar.setString(5, qu.getCodigo_celular()+"-"+qu.getCelular());
-            quAgregar.setString(6, qu.getDireccion());
-            quAgregar.setString(7, qu.getContacto());
-            quAgregar.setString(8, qu.getVinculo());
-            quAgregar.setString(9, qu.getEmail());
-            quAgregar.setString(10, qu.getContrato());
-            quAgregar.setString(11, qu.getExposicion());
-            quAgregar.setString(12, qu.getAcciones());
-            quAgregar.setBoolean(13, false);
-            quAgregar.setString(14, "");
-            quAgregar.setTimestamp(15, fecha);
+            quAgregar = conexion.prepareStatement("INSERT INTO \"mod1\".Quejas (empresa, telefono, fax, celular, direccion, contacto, vinculo, email, contrato, exposicion, acciones, leido, registronc, fecha) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            quAgregar.setString(1, qu.getEmpresa());
+            quAgregar.setString(2, qu.getCodigo_telefono()+"-"+qu.getTelefono());
+            quAgregar.setString(3, qu.getCodigo_fax()+"-"+qu.getFax());
+            quAgregar.setString(4, qu.getCodigo_celular()+"-"+qu.getCelular());
+            quAgregar.setString(5, qu.getDireccion());
+            quAgregar.setString(6, qu.getContacto());
+            quAgregar.setString(7, qu.getVinculo());
+            quAgregar.setString(8, qu.getEmail());
+            quAgregar.setString(9, qu.getContrato());
+            quAgregar.setString(10, qu.getExposicion());
+            quAgregar.setString(11, qu.getAcciones());
+            quAgregar.setBoolean(12, false);
+            quAgregar.setString(13, "");
+            quAgregar.setTimestamp(14, fecha);
             Integer i = quAgregar.executeUpdate();
             return i > 0;
         } catch (SQLException e) {
