@@ -35,7 +35,10 @@
                     </tr>
                 </tbody>
             </table>
+             
         </html:form>
+        <br/>
+        <center><html:link action="quejatesinlogin"><p>Quéjate</p></html:link></center>
         
     </div>
 </body>

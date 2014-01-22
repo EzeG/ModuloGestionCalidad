@@ -208,6 +208,13 @@
             <forward name="success" path="/quejas/vista_quejas.jsp"/>
             <forward name="failure" path="/home/vista_home.jsp"/>
         </action>
+        <action name="Queja" path="/crearquejalogin" type="queja.action.CrearQuejaLogin">
+            <forward name="success" path="/home/vista_login.jsp"/>
+            <forward name="failure" path="/quejas/vista_quejate2.jsp"/>
+        </action>
+        <action name="Queja" path="/quejatesinlogin" type="queja.action.QuejateSinLogin">
+            <forward name="success" path="/quejas/vista_quejate2.jsp"/>
+        </action>
         
         
         <action path="/mod_publicacion" type="org.apache.struts.actions.ForwardAction"
