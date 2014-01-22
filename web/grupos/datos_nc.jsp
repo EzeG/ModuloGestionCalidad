@@ -9,14 +9,12 @@
 
 
 
-<%NoConformidad nc = (NoConformidad) request.getAttribute("nc");
-    String registro_nc = nc.getRegistro_nc();
+<%
     String visible = (String) request.getAttribute("visible");
     String visual = "visibility : " + visible;
-    String error= (String) request.getAttribute("error");
 %>
 <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
-<p align="center" id="registro_nc_error" style="font-size: 14px; color: #B22222; margin-top: -20px"><b><%=error%></b></p>
+<p align="center" id="registro_nc_error" style="font-size: 14px; color: #B22222; margin-top: -20px"><b><bean:write name="nc" property="error"/></b></p>
 <div id="menu_grupos">
     <html:img  src="images/menu_acciones.png" style="margin-top: -10px; margin-left: -10px"/>
     <table style="margin-top:-120px">
@@ -84,7 +82,7 @@
             <td>
                 <p style="font-size: 12px">
                     <b>Origen:</b>
-                    <%= request.getAttribute("origen")%>
+                    <bean:write name ="nc" property="codigo_origen_nc" />
                 </p>
             </td>
             <td>
@@ -309,13 +307,6 @@
 </div>
             
 <div id="desplegable3">
-    <%
-String accion= (String) request.getAttribute("accion");
-String proceso= (String) request.getAttribute("proceso");
-String responsable= (String) request.getAttribute("responsable");
-String recursos= (String) request.getAttribute("recursos");
-%>
-
 
 <table>
     <tr>
@@ -324,7 +315,7 @@ String recursos= (String) request.getAttribute("recursos");
         </td>
         <td>
             <p style="font-size: 12px">
-                <b>Registro:</b><%=registro_nc%>
+                <b>Registro:</b><bean:write name = "nc" property="registro_nc"/>
             </p>
         </td>
     </tr>
@@ -337,8 +328,8 @@ String recursos= (String) request.getAttribute("recursos");
         <tr>
             <td><p style="font-size: 14px"><b>Accion:</b></p></td>
             <td>
-                <html:hidden property="registro_nc" value="<%=registro_nc%>"/>
-            <html:text styleId="accion" property="accion" value="<%=accion%>" style="width:300px; color:gray; font-size: 14px" />
+                <html:hidden property="registro_nc" name="nc"/>
+            <html:text styleId="accion" property="accion" name = "accion" style="width:300px; color:gray; font-size: 14px" />
             <p id="accion_error" style="font-size: 12px; color: #B22222"></p>
             </td>
         </tr>
@@ -419,7 +410,7 @@ String recursos= (String) request.getAttribute("recursos");
         <tr>
             <td><p style="font-size: 14px"><b>Recursos:</b></p></td>
             <td>
-                <html:textarea styleId="recursos" property="recursos" value="<%=recursos%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                <html:textarea styleId="recursos" property="recursos" name="accion" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
                 <p id="recursos_counter"  style="margin-left: 290px; font-size: 10px; color: gray">199</p>
                 <p id="recursos_error" style="font-size: 12px; color: #B22222"></p>
             </td>

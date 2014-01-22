@@ -10,8 +10,7 @@
 
 <!DOCTYPE html>
 
-<% String accion = (String) request.getAttribute("accion");
-    String registronc = (String) request.getAttribute("noconformidad");
+<% 
     String visible = (String) request.getAttribute("visible");
     String vis = "visibility : "+visible;%>
     <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
@@ -95,14 +94,14 @@
         </tr>
     </table>
 <html:form action="terminaraccion" >
-    <html:hidden property="accion" value="<%=accion%>" />
-    <html:hidden property="registro_nc" value="<%=registronc%>" />
+    <html:hidden property="accion" name="Accionn" />
+    <html:hidden property="registro_nc" name="Accionn" />
     <div id="desplegable1">
         <input type="button" value="Terminar Acción" id="agregarp" class="button1"/>
     </div>
     <div id="desplegable2">
         <p style="font-size: 14px "><b>¿Está seguro que desea terminar esta acción?</b></p>
-    <html:submit style="<%=vis%>" styleId="agregarp" value="Aceptar" />
+    <html:submit style="" styleId="agregarp" value="Aceptar" />
      <input type="button" value="Cancelar" id="agregarp" class="button2"/> 
     </div>
 </html:form>   

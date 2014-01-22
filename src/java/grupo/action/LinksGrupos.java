@@ -60,7 +60,7 @@ public class LinksGrupos extends org.apache.struts.action.Action {
                     ncs_terminadas.add(ncs.get(i));
                 }
             }
-            request.setAttribute("nombreGrupo", group.getNombre_grupo());
+            request.setAttribute("Grupo", group);
             request.setAttribute("usuariosGrupo", group.getIntegrantes_grupo());
             request.setAttribute("noConformidad", ncs_activas);
             request.setAttribute("noConformidad2", ncs_terminadas);

@@ -39,6 +39,7 @@ public class linksNc extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         NoConformidad nc = new NoConformidad();
+        Accion accion = new Accion();
         String nombreNc = (String) request.getParameter("NoConformidad");
         String origen = "";
         ArrayList<Accion> acciones_preventivas = new ArrayList<Accion>();
@@ -47,16 +48,11 @@ public class linksNc extends org.apache.struts.action.Action {
         nc = DBMS.getInstance().buscarNc(nombreNc);
         ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
         String registroGrupo;
-        request.setAttribute("registro_nc", nombreNc);
         registroGrupo = DBMS.getInstance().buscarGrupoPNC(nombreNc);
         if (registroGrupo != null) {
             listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
         }
-        request.setAttribute("accion","Accion");
-        request.setAttribute("proceso", "Proceso");
-        request.setAttribute("responsable", "Responsable");
-        request.setAttribute("recursos", "Recursos");
-        request.setAttribute("error", "");
+
         request.setAttribute("integrantes", listUsuarios);
         
         /* Origen segun el numero */
@@ -77,8 +73,14 @@ public class linksNc extends org.apache.struts.action.Action {
             nc.setCodigo_nc1("--------");
         if(nc.getRequisito_nc2().equals("--------"))
             nc.setCodigo_nc2("--------");
+        nc.setError("");
+        nc.setCodigo_origen_nc(origen);
         request.setAttribute("nc", nc);
-        request.setAttribute("origen", origen);
+        accion.setAccion("Accion");
+        accion.setProceso("Proceso");
+        accion.setResponsable("Responsable");
+        accion.setRecursos("Recursos");
+        request.setAttribute("accion", accion);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
         acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
         acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());

@@ -290,12 +290,6 @@ declaracion_nc1.onfocus = function() {
  }
 };
 
-codigo_origen_nc.onfocus = function() {
-    codigo_origen_nc.setAttribute("style", "width:100px; color:black; font-size: 14px; border-color: #127ba5");
- if (codigo_origen_nc.value == "C"+'\u00f3'+"digo") {
-     codigo_origen_nc.value = "";
- }
-};
 
 codigo_nc1.onfocus = function() {
      codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
@@ -416,17 +410,6 @@ situacion_nc.onblur = function() {
   submit.disabled = evaluarCampos();
 };
 
-codigo_origen_nc.onblur = function(){
-    codigo_origen_nc.value = codigo_origen_nc.value.trim();
-    if (codigo_origen_nc.value == ""){
-        codigo_origen_nc.setAttribute("style", "width:100px; color: gray; font-size: 14px")
-        codigo_origen_nc.value = "C"+'\u00f3'+"digo";
-    }else{
-                codigo_origen_nc.setAttribute("style", "width:100px; color: black; font-size: 14px")
-
-    }
-        
-};
 
 clausula_nc1.onblur = function() {
     clausula_nc1.value = clausula_nc1.value.trim();

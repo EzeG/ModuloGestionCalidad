@@ -97,7 +97,7 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
         }  
         
     }
-        listGrupo = DBMS.getInstance().usuariosSinGrupo("Grupo1");
+        listGrupo = DBMS.getInstance().usuariosSinGrupo(user.getGrupo());
         for (int j = 0; j < listGrupo.size(); j++) {
                 listGrupo.get(j).setGrupo(user.getGrupo());
             }
@@ -108,7 +108,7 @@ public class ModificarUsuario extends org.apache.struts.action.Action {
         ncs = DBMS.getInstance().consultarTrabaja(nombreGroup);                         
         users = DBMS.getInstance().consultarUsuariosGU(nombreGroup);    
         Grupo group = new Grupo(nombreGroup, users);
-            request.setAttribute("nombreGrupo", group.getNombre_grupo());
+            request.setAttribute("grupito", group);
             request.setAttribute("usuariosGrupo", group.getIntegrantes_grupo());
             request.setAttribute("noConformidad", ncs);
             request.setAttribute("huerfanos", listGrupo);

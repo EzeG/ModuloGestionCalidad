@@ -51,7 +51,7 @@ public class CrearAccion extends org.apache.struts.action.Action {
 
         Accion accion = (Accion) form;
         Date fechaI = accion.getFechainicio();
-
+        Accion accionTemp = new Accion();
         if(DBMS.getInstance().agregarAccion(accion)){
              NoConformidad nc = new NoConformidad();
         String nombreNc = accion.getRegistro_nc();
@@ -62,19 +62,11 @@ public class CrearAccion extends org.apache.struts.action.Action {
         nc = DBMS.getInstance().buscarNc(nombreNc);
         ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
         String registroGrupo;
-        request.setAttribute("registro_nc", nombreNc);
         registroGrupo = DBMS.getInstance().buscarGrupoPNC(nombreNc);
         if (registroGrupo != null) {
             listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
         }
-        request.setAttribute("accion","Accion");
-        request.setAttribute("proceso", "Proceso");
-        request.setAttribute("responsable", "Responsable");
-        request.setAttribute("recursos", "Recursos");
-        request.setAttribute("error", "");
         request.setAttribute("integrantes", listUsuarios);
-        request.setAttribute("error", "Ya existe la acción");
-        
         /* Origen segun el numero */
         if(nc.getOrigen_nc() == 1){
             origen = "Queja";
@@ -93,15 +85,20 @@ public class CrearAccion extends org.apache.struts.action.Action {
             nc.setCodigo_nc1("--------");
         if(nc.getRequisito_nc2().equals("--------"))
             nc.setCodigo_nc2("--------");
+        nc.setCodigo_origen_nc(origen);
+        nc.setError("");
         request.setAttribute("nc", nc);
-        request.setAttribute("origen", origen);
+        accionTemp.setAccion("Accion");
+        accionTemp.setProceso("Proceso");
+        accionTemp.setResponsable("Responsable");
+        accionTemp.setRecursos("Recursos");
+        request.setAttribute("accion", accionTemp);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
         acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
         acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());
         request.setAttribute("AccionPreventiva", acciones_preventivas);
         request.setAttribute("AccionCorrectiva", acciones_correctivas);
         request.setAttribute("AccionTerminada", acciones_terminadas);
-        request.setAttribute("error", "");
         String NombreG = DBMS.getInstance().buscarGrupoPNC(nc.getRegistro_nc());
         Usuario usuario;
         usuario = (Usuario) request.getSession().getAttribute("usuario");
@@ -170,13 +167,10 @@ public class CrearAccion extends org.apache.struts.action.Action {
         if (registroGrupo != null) {
             listUsuarios = DBMS.getInstance().consultarUsuariosGU(registroGrupo);
         }
-        request.setAttribute("accion","Accion");
-        request.setAttribute("proceso", "Proceso");
-        request.setAttribute("responsable", "Responsable");
-        request.setAttribute("recursos", "Recursos");
-        request.setAttribute("error", "");
+
+        request.setAttribute("accion", accion);
         request.setAttribute("integrantes", listUsuarios);
-        request.setAttribute("error", "ya existe la acción que intentó agregar");
+        nc.setError("Ya existe la acción que intentó agregar");
         
         /* Origen segun el numero */
         if(nc.getOrigen_nc() == 1){
@@ -196,8 +190,13 @@ public class CrearAccion extends org.apache.struts.action.Action {
             nc.setCodigo_nc1("--------");
         if(nc.getRequisito_nc2().equals("--------"))
             nc.setCodigo_nc2("--------");
+        nc.setCodigo_origen_nc(origen);
         request.setAttribute("nc", nc);
-        request.setAttribute("origen", origen);
+        accionTemp.setAccion("Accion");
+        accionTemp.setProceso("Proceso");
+        accionTemp.setResponsable("Responsable");
+        accionTemp.setRecursos("Recursos");
+        request.setAttribute("accion", accionTemp);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
         acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
         acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());

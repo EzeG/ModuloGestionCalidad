@@ -44,19 +44,21 @@ public class AgregarNC extends org.apache.struts.action.Action {
         Grupo grupo = (Grupo) form;
         ArrayList<Usuario> listGrupo;
         NoConformidad nc = new NoConformidad();
-        
-        request.setAttribute("grupito", grupo);
-        request.setAttribute("nombreG", grupo.getNombre_grupo());
-        request.setAttribute("registro_nc", "12345");
-        request.setAttribute("situacion_nc", "Describa la no conformidad");
-        request.setAttribute("clausula_nc1", "Clausula");
-        request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaración");
-        request.setAttribute("codigo_nc1", "Código");
-        request.setAttribute("clausula_nc2", "Clausula");
-        request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaración");
-        request.setAttribute("codigo_nc2", "Código");
+        nc.setError("");
+        nc.setRegistro_nc("12345");
+        nc.setSituacion_nc("Describa la no conformidad");
+        nc.setClausula_nc1("Clausula");
+        nc.setRequisito_nc1("Requisito");
+        nc.setDeclaracion_nc1("Declaración");
+        nc.setCodigo_nc1("Código");
+        nc.setClausula_nc2("Clausula");
+        nc.setRequisito_nc2("Requisito");
+        nc.setDeclaracion_nc2("Declaración");
+        nc.setCodigo_nc2("Código");
+        nc.setCodigo_origen_nc("Código");
+        nc.setGrupo_nc(grupo.getNombre_grupo());
+        request.setAttribute("noConformidad", nc);
+
         return mapping.findForward(SUCCESS);
     }
 }

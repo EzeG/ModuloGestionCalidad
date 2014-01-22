@@ -51,24 +51,25 @@ public class LinkQueja extends org.apache.struts.action.Action {
         if (!queja.getRegistro_nc().equals("")){
             nc=DBMS.getInstance().buscarNc(queja.getRegistro_nc());
         }
+        nc.setCodigo_origen_nc("queja");
         request.setAttribute("nc", nc);
         request.setAttribute("grupos", grupos);
-        request.setAttribute("origen", "queja");
-        request.setAttribute("nombre_grupo","Nombre del Grupo");
-        request.setAttribute("string_grupo", "Encargado del Grupo");
-        request.setAttribute("registro_nc", "12345");
-        request.setAttribute("codigo_queja", queja.getRegistro());
-        request.setAttribute("situacion_nc", "Describa la no conformidad");
-        request.setAttribute("clausula_nc1", "Clausula");
-        request.setAttribute("requisito_nc1", "Requisito");
-        request.setAttribute("declaracion_nc1", "Declaración");
-        request.setAttribute("codigo_nc1", "Código");
-        request.setAttribute("clausula_nc2", "Clausula");
-        request.setAttribute("requisito_nc2", "Requisito");
-        request.setAttribute("declaracion_nc2", "Declaración");
-        request.setAttribute("codigo_nc2", "Codigo");
-        
-        request.setAttribute("error", "");
+        Grupo grupo = new Grupo();
+        grupo.setNombre_grupo("Nombre del Grupo");
+        grupo.setString_grupo("Encargado del Grupo");
+        grupo.setRegistro_nc("12345");
+        grupo.setSituacion_nc("Describa la no conformidad");
+        grupo.setClausula_nc1("Clausula");
+        grupo.setRequisito_nc1("Requisito");
+        grupo.setDeclaracion_nc1("Declaración");
+        grupo.setCodigo_nc1("Código");
+        grupo.setClausula_nc2("Clausula");
+        grupo.setRequisito_nc2("Requisito");
+        grupo.setDeclaracion_nc2("Declaración");
+        grupo.setCodigo_nc2("Código");
+        grupo.setError("");
+        grupo.setCodigo_origen_nc(queja.getRegistro());
+        request.setAttribute("grupito", grupo);
         
         return mapping.findForward(SUCCESS);
     }

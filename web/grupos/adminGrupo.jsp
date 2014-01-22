@@ -5,7 +5,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <p style="margin-top: -10px; color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
-    <%= request.getAttribute("nombreGrupo")%>
+    <bean:write name="Grupo" property="nombre_grupo" />
 </p>
 <div id="menu">
         <img src="images/menu_grupo.png" style="margin-top: -30px; margin-left: -30px"/>

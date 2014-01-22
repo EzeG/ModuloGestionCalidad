@@ -67,8 +67,8 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setError(String err) {
+        this.error = err;
     }
 
     public String getGrupo_nc() {
