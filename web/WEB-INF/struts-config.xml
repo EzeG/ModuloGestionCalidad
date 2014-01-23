@@ -36,9 +36,7 @@
             <forward name="success" path="/iniciar.do"/>
             <forward name="failure" path="/cartelera/vista_crear_publicacion.jsp"/>
         </action>    
-        
-         
-        
+
         <action name="Publicacion" path="/iniciar" scope="session" type="cartelera.action.Iniciar" validate="false">
             <forward name="success" path="/home/vista_home.jsp"/>
         </action>
@@ -260,6 +258,7 @@
     <plug-in className="org.apache.struts.tiles.TilesPlugin" >
         <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />      
         <set-property property="moduleAware" value="true" />
+        <set-property property="definitions-parser-validate" value="true" />
     </plug-in>
     
     <!-- ========================= Validator plugin ================================= -->

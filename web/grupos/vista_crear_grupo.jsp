@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<tiles:insert page="../cod_plantilla.jsp" flush="true">
+<tiles:insert definition="plantilla"">
     <tiles:put name="titulo" value="Crear Grupo" />
     <tiles:put name="cuerpo" value="/grupos/crear_grupo.jsp" />
 </tiles:insert>
