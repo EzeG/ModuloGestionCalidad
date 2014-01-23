@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/01/2014, 07:13:30 PM
+    Author     : edgar
+*/
+
+/* Contenedor
+-------------------------------------------------------------------------*/
+contenedor{
+    width: 960px;
+    height: 1000px;
+    margin: 0 auto;
+    position: fixed;
+}
+
+
+/* Header
+-------------------------------------------------------------------------*/
+header{
+    width: 960px;
+    height: 171px;
+    background: #1c6ea0;
+    position: relative;
+}
+
+/* Links
+-------------------------------------------------------------------------*/
+a,
+a:visited {
+  color: #1c6ea0;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #42a9be;  
+}
+.pager a:hover,
+.pager a:active,
+.pager a:focus {
+  background-color: #1c6ea0;
+  color: #fff;
+}
