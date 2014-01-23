@@ -7,13 +7,9 @@
 package queja.action;
 
 import DBMS.DBMS;
-import domain.Grupo;
-import domain.Publicacion;
-import domain.Queja;
-import domain.Usuario;
+import domain.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,12 +21,11 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author Gabriel
  */
-public class Quejas extends org.apache.struts.action.Action {
+public class MarcarQueja extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
     private static final String FAILURE = "failure";
-
     /**
      * This is the action called from the Struts framework.
      *
@@ -45,6 +40,25 @@ public class Quejas extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        String queja[]=request.getParameterValues("registro_queja");
+        String accion=request.getParameter("accion");
+        
+        if(queja != null){
+            if (accion.equals("Leida")){
+                for (int i=0; i<queja.length;i++){
+                    if(queja[i]!=null){
+                        DBMS.getInstance().quejaLeida(queja[i]);  
+                    }
+                }
+            }else{
+                for (int i=0; i<queja.length;i++){
+                    if(queja[i]!=null){
+                        DBMS.getInstance().quejaNoLeida(queja[i]);  
+                    }
+                }
+            }
+        }
+        
         Usuario us = (Usuario) request.getSession().getAttribute("usuario");
         if(us.getCargo()==0){
             ArrayList<Queja> quejas = DBMS.getInstance().consultarQuejas();
@@ -52,11 +66,11 @@ public class Quejas extends org.apache.struts.action.Action {
             ArrayList<Queja> noleidas= new ArrayList<Queja>(0);
             Collections.reverse(quejas);
             for(int i=0; i < quejas.size(); i++){
-                Queja queja=quejas.get(i);
-                if (queja.isLeido())
-                    leidas.add(queja);
+                Queja queja1=quejas.get(i);
+                if (queja1.isLeido())
+                    leidas.add(queja1);
                 else
-                    noleidas.add(queja);    
+                    noleidas.add(queja1);    
             }
             
             request.setAttribute("listQuejas", quejas);
@@ -71,7 +85,7 @@ public class Quejas extends org.apache.struts.action.Action {
             request.setAttribute("usuario", us);
             return mapping.findForward(FAILURE);
         }
-    }
+        
 
-  
+    }
 }

@@ -4,6 +4,8 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+<h2><bean:write name="grupito" property="nombre_grupo"/></h2>
+
 <html:form action="/modificarUsuarios">
 <div id="listapersonas">  
     <table>

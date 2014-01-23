@@ -44,19 +44,20 @@ public class LinkAccion extends org.apache.struts.action.Action {
         usuario = (Usuario) request.getSession().getAttribute("usuario");
         String usbid = usuario.getUsbid();
         informacion = DBMS.getInstance().consultarAccionCorrectiva(accionForm.getRegistro_nc(), accionForm.getAccion());
-        if(informacion != null) {
-            request.setAttribute("Accionn", informacion);
-        }
-        request.setAttribute("noconformidad", accionForm.getRegistro_nc());
-        request.setAttribute("accion", accionForm.getAccion());
+
          if(DBMS.getInstance().verificarMiembroEncargadoAccion(usbid, accionForm.getRegistro_nc(), accionForm.getAccion())) {
-            if(informacion.getEstado().equals("terminada")) request.setAttribute("visible", "hidden");
-                 else request.setAttribute("visible", "visible");
-  
-                 
+            if(informacion.getEstado().equals("terminada")) {
+                request.setAttribute("visible", "hidden");
+            }
+            else {
+                request.setAttribute("visible", "visible");
+            }     
          }else{
              request.setAttribute("visible", "hidden");
          }   
+        if(informacion != null) {
+            request.setAttribute("Accionn", informacion);
+        }
         return mapping.findForward(SUCCESS);
     }
 }

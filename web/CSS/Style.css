@@ -258,7 +258,6 @@ blockquote:hover {
     display: block;
     border-width: thin;
     margin: 0;
-    padding: 0 5px;
     position: relative;
     z-index: 1;
     overflow: auto;

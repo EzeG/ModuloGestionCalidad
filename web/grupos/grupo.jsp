@@ -157,11 +157,10 @@
     <div id="grupos-lista">  
         <table>
             <logic:iterate id="infoGrupo" name="listInactivos">
-                <td>
-                       <IMG  src="images/grupos-inactivos.png"  WIDTH=29 HEIGHT=21/>
-
-                    </td>
                 <tr id="lista">
+                    <td>
+                       <IMG  src="images/grupos-mini.png"  WIDTH=29 HEIGHT=21/>
+                    </td>
                     <td style="width: 580px">
                         <html:link action="/linkGrupos" paramId="verGrupo"
                                    paramName="infoGrupo" paramProperty="nombre_grupo"> 

@@ -100,8 +100,14 @@ public class imprimir_nc extends org.apache.struts.action.Action {
         } else if (nc.getOrigen_nc() == 6) {
             origen = "Otro";
         }
+        nc.setCodigo_origen_nc(origen);
         request.setAttribute("nc", nc);
-        request.setAttribute("origen", origen);
+        Accion accion = new Accion();
+        accion.setAccion("Accion");
+        accion.setProceso("Proceso");
+        accion.setResponsable("Responsable");
+        accion.setRecursos("Recursos");
+        request.setAttribute("accion", accion);
         acciones_preventivas = DBMS.getInstance().consultarAccionesPreventivas(nc.getRegistro_nc());
         acciones_correctivas = DBMS.getInstance().consultarAccionesCorrectivas(nc.getRegistro_nc());
         acciones_terminadas = DBMS.getInstance().consultarAccionesTerminadas(nc.getRegistro_nc());

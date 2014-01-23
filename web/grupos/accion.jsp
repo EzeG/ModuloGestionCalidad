@@ -9,14 +9,8 @@
 
 
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
-    <script type="text/javascript" src="JS/sesion.js"></script>
-    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
 
-</head>
-<% String accion = (String) request.getAttribute("accion");
-    String registronc = (String) request.getAttribute("noconformidad");
+<% 
     String visible = (String) request.getAttribute("visible");
     String vis = "visibility : "+visible;%>
     <html:hidden property="" styleId="encargado" value="<%=visible%>"/>
@@ -99,10 +93,39 @@
             </td>
         </tr>
     </table>
-      
+<html:form action="terminaraccion" >
+    <html:hidden property="accion" name="Accionn" />
+    <html:hidden property="registro_nc" name="Accionn" />
+    <div id="desplegable1">
+        <input type="button" value="Terminar Acción" id="agregarp" class="button1"/>
+    </div>
+    <div id="desplegable2">
+        <p style="font-size: 14px "><b>¿Está seguro que desea terminar esta acción?</b></p>
+    <html:submit style="" styleId="agregarp" value="Aceptar" />
+     <input type="button" value="Cancelar" id="agregarp" class="button2"/> 
+    </div>
+</html:form>   
 </body>
-<html:form action="terminaraccion">
-    <html:hidden property="accion" value="<%=accion%>" />
-    <html:hidden property="registro_nc" value="<%=registronc%>" />
-    <html:submit style="<%=vis%>" styleId="agregarp" value="Terminar Acción" />
-</html:form> 
+
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="CSS/Style.css" /> 
+    <script type="text/javascript" src="JS/sesion.js"></script>
+    <script type="text/javascript" src="JS/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".button1").focus(function() {
+                $("#desplegable1").hide();
+                $("#desplegable2").fadeIn("slow");
+            });
+            $(".button2").focus(function() {
+                $("#desplegable2").hide();
+                $("#desplegable1").fadeIn("slow");
+            });
+            $("#desplegable2").css({display: 'none'});
+        });
+
+    </script>
+    
+</head>

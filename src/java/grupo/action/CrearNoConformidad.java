@@ -47,9 +47,8 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
         NoConformidad nc1;
         ArrayList<NoConformidad> NC = new ArrayList<NoConformidad>();
         nc = (NoConformidad) form;
+        NoConformidad noConformidad = new NoConformidad();
         nc.setCodigo_nc2(nc.getCodigo_nc1());
-        Grupo group = new Grupo();
-        group.setNombre_grupo(nc.getGrupo_nc());
         NC = DBMS.getInstance().consultarNC("UL04/"+nc.getRegistro_nc());
         
 
@@ -58,59 +57,35 @@ public class CrearNoConformidad extends org.apache.struts.action.Action {
             if (DBMS.getInstance().agregaNoConformidad(nc)) {
                 boolean asocio = DBMS.getInstance().asociarNoConformidad(nc.getGrupo_nc(),nc.getRegistro_nc());
                 if (asocio) {
+                    Grupo grupo = new Grupo();
+                    grupo.setNombre_grupo("Nombre del Grupo");
+                    grupo.setString_grupo("Encargado del Grupo");
+                    grupo.setRegistro_nc("12345");
+                    grupo.setSituacion_nc("Describa la no conformidad");
+                    grupo.setClausula_nc1("Clausula");
+                    grupo.setRequisito_nc1("Requisito");
+                    grupo.setDeclaracion_nc1("Declaración");
+                    grupo.setCodigo_nc1("Código");
+                    grupo.setClausula_nc2("Clausula");
+                    grupo.setRequisito_nc2("Requisito");
+                    grupo.setDeclaracion_nc2("Declaración");
+                    grupo.setCodigo_nc2("Código");
+                    grupo.setError("");
+                    request.setAttribute("grupito", grupo);
                     return mapping.findForward(SUCCESS);
                 } else {
-                    group.setError("Ocurrio un error asociando la no conformidad.");
-                    request.setAttribute("grupito", group);
-                    request.setAttribute("nombreG", nc.getGrupo_nc());
-                    request.setAttribute("registro_nc", nc.getRegistro_nc());
-                    request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                    
-                    request.setAttribute("clausula_nc1", nc.getClausula_nc1());
-                    request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
-                    request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
-                    request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
-                    
-                    request.setAttribute("clausula_nc2", nc.getClausula_nc2());
-                    request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
-                    request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
-                    request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
+                    nc.setError("Ocurrio un error asociando la no conformidad.");
+                    request.setAttribute("noConformidad", nc);
                     return mapping.findForward(FAILURE);
                 }
             } else {
-                group.setError("Error al crear no conformidad.");
-                request.setAttribute("grupito", group);
-                request.setAttribute("nombreG", nc.getGrupo_nc());
-                request.setAttribute("registro_nc", nc.getRegistro_nc());
-                request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                
-                request.setAttribute("clausula_nc1", nc.getClausula_nc1());
-                request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
-                request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
-                request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
-
-                request.setAttribute("clausula_nc2", nc.getClausula_nc2());
-                request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
-                request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
-                request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
+                nc.setError("Error al crear no conformidad.");
+                request.setAttribute("noConformidad", nc);
                 return mapping.findForward(FAILURE);
             }
         }else{
-                group.setError("Ya existe otra no conformidad con este Registro."); 
-                request.setAttribute("grupito", group);
-                request.setAttribute("nombreG", nc.getGrupo_nc());
-                request.setAttribute("registro_nc", nc.getRegistro_nc());
-                request.setAttribute("situacion_nc", nc.getSituacion_nc());
-                
-                request.setAttribute("clausula_nc1", nc.getClausula_nc1());
-                request.setAttribute("requisito_nc1", nc.getRequisito_nc1());
-                request.setAttribute("declaracion_nc1", nc.getDeclaracion_nc1());
-                request.setAttribute("codigo_nc1", nc.getCodigo_nc1());
-
-                request.setAttribute("clausula_nc2", nc.getClausula_nc2());
-                request.setAttribute("requisito_nc2", nc.getRequisito_nc2());
-                request.setAttribute("declaracion_nc2", nc.getDeclaracion_nc2());
-                request.setAttribute("codigo_nc2", nc.getCodigo_nc2());
+                nc.setError("Ya existe otra no conformidad con este Registro.");
+                request.setAttribute("noConformidad", nc);
                 return mapping.findForward(FAILURE);
         }
         

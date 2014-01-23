@@ -16,6 +16,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import java.util.ArrayList;
 import DBMS.*;
+import domain.Queja;
 
 /**
  *
@@ -44,15 +45,25 @@ public class LinksGrupos extends org.apache.struts.action.Action {
         ArrayList<Usuario> users;
         ArrayList<NoConformidad> ncs;
         String nombreGroup = (String) request.getParameter("verGrupo");    
-        ncs = DBMS.getInstance().consultarTrabaja(nombreGroup);                         
+        ncs = DBMS.getInstance().consultarTrabaja(nombreGroup); 
+        ArrayList<NoConformidad> ncs_activas = new ArrayList<NoConformidad>(0);
+        ArrayList<NoConformidad> ncs_terminadas = new ArrayList<NoConformidad>(0);
         users = DBMS.getInstance().consultarUsuariosGU(nombreGroup);    
         Grupo group = new Grupo(nombreGroup, users);
         if (ncs.isEmpty()){
            return mapping.findForward(FAILURE); 
         }else{
-            request.setAttribute("nombreGrupo", group.getNombre_grupo());
+            for(int i=0; i < ncs.size();i++){
+                if(ncs.get(i).getEstado().equals("activa")){
+                    ncs_activas.add(ncs.get(i));
+                }else{
+                    ncs_terminadas.add(ncs.get(i));
+                }
+            }
+            request.setAttribute("Grupo", group);
             request.setAttribute("usuariosGrupo", group.getIntegrantes_grupo());
-            request.setAttribute("noConformidad", ncs);
+            request.setAttribute("noConformidad", ncs_activas);
+            request.setAttribute("noConformidad2", ncs_terminadas);
             return mapping.findForward(SUCCESS);
         }
     }

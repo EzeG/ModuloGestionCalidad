@@ -31,8 +31,25 @@
     </table>
 </div>
                 
-                
+           
 <div id="desplegable">
+    <html:form action="/Marcar_Queja"> 
+        <table>
+            <tr>
+                <td>
+                    Marcar como: 
+                </td>
+                <td>
+                    <select  name="accion">
+                        <option value="Leida">Leida</option>
+                        <option value="NoLeida">NoLeida</option>
+                    </select>
+                </td>
+                <td>
+                    <html:submit styleId="agregar" value="Aceptar"/>
+                </td>
+            </tr>
+        </table>
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="listQuejas">           
@@ -63,9 +80,29 @@
         </logic:iterate>
      </table>
     </div>
+    
+</html:form>
 </div>
 
+
 <div id="desplegable1">
+    <html:form action="/Marcar_Queja"> 
+        <table>
+            <tr>
+                <td>
+                    Marcar como: 
+                </td>
+                <td>
+                    <select  name="accion">
+                        <option value="Leida">Leida</option>
+                        <option value="NoLeida">NoLeida</option>
+                    </select>
+                </td>
+                <td>
+                    <html:submit styleId="agregar" value="Aceptar"/>
+                </td>
+            </tr>
+        </table>
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="QuejasNoLeidas">           
@@ -96,9 +133,27 @@
         </logic:iterate>
      </table>
         </div>
+    </html:form>
 </div>
 
 <div id="desplegable2">
+    <html:form action="/Marcar_Queja"> 
+        <table>
+            <tr>
+                <td>
+                    Marcar como: 
+                </td>
+                <td>
+                    <select  name="accion">
+                        <option value="Leida">Leida</option>
+                        <option value="NoLeida">NoLeida</option>
+                    </select>
+                </td>
+                <td>
+                    <html:submit styleId="agregar" value="Aceptar"/>
+                </td>
+            </tr>
+        </table>
     <div id="quejas">
     <table>
         <logic:iterate id="infoQueja" name="QuejasLeidas">           
@@ -128,6 +183,7 @@
         </logic:iterate>
      </table>
     </div>
+    </html:form>
 </div>
 
 

@@ -35,6 +35,17 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
     
     private String grupo_nc;
     private String error;
+    private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     public String getCodigo_origen_nc() {
         return codigo_origen_nc;
@@ -56,8 +67,8 @@ public class NoConformidad extends org.apache.struts.action.ActionForm {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setError(String err) {
+        this.error = err;
     }
 
     public String getGrupo_nc() {

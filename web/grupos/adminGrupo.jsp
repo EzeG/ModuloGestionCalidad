@@ -5,7 +5,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <p style="margin-top: -10px; color:#336699; font-size: 1.154em; font-weight: bolder; size: 80px">
-    <%= request.getAttribute("nombreGrupo")%>
+    <bean:write name="Grupo" property="nombre_grupo" />
 </p>
 <div id="menu">
         <img src="images/menu_grupo.png" style="margin-top: -30px; margin-left: -30px"/>
@@ -98,6 +98,35 @@
 <div id="desplegable2">
     <p>No Conformidades Terminadas:</p>
     <div id="grupos-lista">
+        <table border = "1">
+            <tr bgcolor="#D3D3D3" style="font-size: 12px">
+                <td align="center">
+                    <b>Registro</b>
+                </td>
+                <td align="center">
+                    <b>Codigo</b>
+                </td>
+                <td align="center">
+                    <b>Situación</b>
+                </td>
+            </tr>
+            <logic:iterate id="ncG1" name="noConformidad2">
+                <tr>
+                    <td style="vertical-align: middle">
+                        <html:link action="linkNc" paramId="NoConformidad" paramName="ncG1"
+                                   paramProperty="registro_nc" >
+                            <bean:write name="ncG1" property="registro_nc" />          
+                        </html:link>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <bean:write name="ncG1" property="codigo_nc1" />          
+                    </td>
+                    <td style="vertical-align: middle">
+                        <bean:write name="ncG1" property="situacion_nc" />
+                    </td>
+                </tr>
+            </logic:iterate>
+        </table>
         
     </div>
 </div>

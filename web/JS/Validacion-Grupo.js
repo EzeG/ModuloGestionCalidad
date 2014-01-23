@@ -13,7 +13,6 @@ codigo_nc1= document.getElementById("codigo_nc1");
 clausula_nc2= document.getElementById("clausula_nc2");
 requisito_nc2= document.getElementById("requisito_nc2");
 declaracion_nc2= document.getElementById("declaracion_nc2");
-codigo_origen_nc=document.getElementById("codigo_origen_nc");
 submit=document.getElementById("submit");
 
 
@@ -380,12 +379,6 @@ declaracion_nc1.onfocus = function() {
  }
 };
 
-codigo_origen_nc.onfocus = function() {
-    codigo_origen_nc.setAttribute("style", "width:100px; color:black; font-size: 14px; border-color: #127ba5");
- if (codigo_origen_nc.value == "C"+'\u00f3'+"digo") {
-     codigo_origen_nc.value = "";
- }
-};
 
 codigo_nc1.onfocus = function() {
      codigo_nc1.setAttribute("style", "color: black; font-size: 14px; border-color: #127ba5");
@@ -559,18 +552,6 @@ situacion_nc.onblur = function() {
     }
  }
   submit.disabled = evaluarCampos();
-};
-
-codigo_origen_nc.onblur = function(){
-    codigo_origen_nc.value = codigo_origen_nc.value.trim();
-    if (codigo_origen_nc.value == ""){
-        codigo_origen_nc.setAttribute("style", "width:100px; color: gray; font-size: 14px")
-        codigo_origen_nc.value = "C"+'\u00f3'+"digo";
-    }else{
-                codigo_origen_nc.setAttribute("style", "width:100px; color: black; font-size: 14px")
-
-    }
-        
 };
 
 clausula_nc1.onblur = function() {

@@ -17,7 +17,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <%String mensaje = (String)request.getAttribute("mensaje");%>
     <body>
         <h1 style="color:#336699" align="center" ><bean:write name="Accion" property="mensaje"/></h1>
         

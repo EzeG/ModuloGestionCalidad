@@ -42,12 +42,7 @@
                         </ul>
                     </div>
 
-                <div id="centro">
-                <html:link action="iniciar.do">
-                    <p style="font-weight: bold">
-                        Inicio
-                    </p>
-                </html:link>
+                    <div id="centro">
                     <tiles:insert attribute="cuerpo" />
                 </div>
 

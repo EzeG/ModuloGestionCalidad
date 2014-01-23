@@ -75,113 +75,28 @@ public class CrearGrupo extends org.apache.struts.action.Action {
                             } else {
                                 group.setError("Ocurrio un error asociando la no conformidad.");
                                 request.setAttribute("grupito", group);
-                                request.setAttribute("nombre_grupo",group.getNombre_grupo());
-                                request.setAttribute("string_grupo", group.getString_grupo());
-                                request.setAttribute("registro_nc", group.getRegistro_nc());
-                                request.setAttribute("situacion_nc", group.getSituacion_nc());
-                                request.setAttribute("codigo_queja", group.getCodigo_origen_nc());
-                                
-                                request.setAttribute("clausula_nc1", group.getClausula_nc1());
-                                request.setAttribute("requisito_nc1", group.getRequisito_nc1());
-                                request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
-                                request.setAttribute("codigo_nc1", group.getCodigo_nc1());
-                                
-                                request.setAttribute("clausula_nc1", group.getClausula_nc2());
-                                request.setAttribute("requisito_nc2", group.getRequisito_nc2());
-                                request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
-                                request.setAttribute("codigo_nc2", group.getCodigo_nc2());
-                                
-                                request.setAttribute("error", group.getError());
                                 return mapping.findForward(FAILURE);
                             }
                         }
                     } else {
                         group.setError("El grupo ya existe.");
                         request.setAttribute("grupito", group);
-                        request.setAttribute("nombre_grupo",group.getNombre_grupo());
-                        request.setAttribute("string_grupo", group.getString_grupo());
-                        request.setAttribute("registro_nc", group.getRegistro_nc());
-                        request.setAttribute("situacion_nc", group.getSituacion_nc());
-                        request.setAttribute("codigo_queja", group.getCodigo_origen_nc());
-                        
-                        request.setAttribute("clausula_nc1", group.getClausula_nc1());
-                        request.setAttribute("requisito_nc1", group.getRequisito_nc1());
-                        request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
-                        request.setAttribute("codigo_nc1", group.getCodigo_nc1());
-
-                        request.setAttribute("clausula_nc2", group.getClausula_nc2());
-                        request.setAttribute("requisito_nc2", group.getRequisito_nc2());
-                        request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
-                        request.setAttribute("codigo_nc2", group.getCodigo_nc2());
-                        
-                        request.setAttribute("error", group.getError());
                         return mapping.findForward(FAILURE);
                     }
                 } else {
                     group.setError("Debe ingresar al menos un usuario en el grupo.");
                     request.setAttribute("grupito", group);
-                    request.setAttribute("nombre_grupo",group.getNombre_grupo());
-                    request.setAttribute("string_grupo", group.getString_grupo());
-                    request.setAttribute("registro_nc", group.getRegistro_nc());
-                    request.setAttribute("situacion_nc", group.getSituacion_nc());
-                    request.setAttribute("codigo_queja", group.getCodigo_origen_nc());
-                    
-                    request.setAttribute("clausula_nc1", group.getClausula_nc1());
-                    request.setAttribute("requisito_nc1", group.getRequisito_nc1());
-                    request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
-                    request.setAttribute("codigo_nc1", group.getCodigo_nc1());
-
-                    request.setAttribute("clausula_nc2", group.getClausula_nc2());
-                    request.setAttribute("requisito_nc2", group.getRequisito_nc2());
-                    request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
-                    request.setAttribute("codigo_nc2", group.getCodigo_nc2());
-                                
-                    request.setAttribute("error", group.getError());
                     return mapping.findForward(FAILURE);
                 }
 
            }else{
                 group.setError("Persona no registrada.");
                 request.setAttribute("grupito", group);
-                request.setAttribute("nombre_grupo",group.getNombre_grupo());
-                request.setAttribute("string_grupo", group.getString_grupo());
-                request.setAttribute("registro_nc", group.getRegistro_nc());
-                request.setAttribute("situacion_nc", group.getSituacion_nc());
-                request.setAttribute("codigo_queja", group.getCodigo_origen_nc());
-                
-                request.setAttribute("clausula_nc1", group.getClausula_nc1());
-                request.setAttribute("requisito_nc1", group.getRequisito_nc1());
-                request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
-                request.setAttribute("codigo_nc1", group.getCodigo_nc1());
-
-                request.setAttribute("clausula_nc2", group.getClausula_nc2());
-                request.setAttribute("requisito_nc2", group.getRequisito_nc2());
-                request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
-                request.setAttribute("codigo_nc2", group.getCodigo_nc2());
-                                
-                request.setAttribute("error", group.getError());
                 return mapping.findForward(FAILURE);
             }
         } else {
             group.setError("Ya existe una no conformidad con este registro.");
             request.setAttribute("grupito", group);
-            request.setAttribute("nombre_grupo",group.getNombre_grupo());
-            request.setAttribute("string_grupo", group.getString_grupo());
-            request.setAttribute("registro_nc", group.getRegistro_nc());
-            request.setAttribute("situacion_nc", group.getSituacion_nc());
-            request.setAttribute("codigo_queja", group.getCodigo_origen_nc());
-            
-            request.setAttribute("clausula_nc1", group.getClausula_nc1());
-            request.setAttribute("requisito_nc1", group.getRequisito_nc1());
-            request.setAttribute("declaracion_nc1", group.getDeclaracion_nc1());
-            request.setAttribute("codigo_nc1", group.getCodigo_nc1());
-
-            request.setAttribute("clausula_nc2", group.getClausula_nc2());
-            request.setAttribute("requisito_nc2", group.getRequisito_nc2());
-            request.setAttribute("declaracion_nc2", group.getDeclaracion_nc2());
-            request.setAttribute("codigo_nc2", group.getCodigo_nc2());
-                                
-            request.setAttribute("error", group.getError());
             return mapping.findForward(FAILURE);
         }
         return null;

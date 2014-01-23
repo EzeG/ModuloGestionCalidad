@@ -9,23 +9,6 @@
     <p id="submit_error" align="center" style="font-size: 16px; color: #B22222">
     <bean:write name="grupito" property="error" filter="false"/>
 </p>
-
-<%String nombreG = (String) request.getAttribute("nombre_grupo");%>
-<%String miembrosG = (String) request.getAttribute("string_grupo");%>
-<%String registro = (String) request.getAttribute("registro_nc");%>
-<%String situacion = (String) request.getAttribute("situacion_nc");%>
-
-<%String clausula1 = (String) request.getAttribute("clausula_nc1");%>
-<%String requisito1 = (String) request.getAttribute("requisito_nc1");%>
-<%String declaracion1 = (String) request.getAttribute("declaracion_nc1");%>
-<%String codigo1 = (String) request.getAttribute("codigo_nc1");%>
-
-<%String clausula2 = (String) request.getAttribute("clausula_nc2");%>
-<%String requisito2 = (String) request.getAttribute("requisito_nc2");%>
-<%String declaracion2 = (String) request.getAttribute("declaracion_nc2");%>
-<%String codigo2 = (String) request.getAttribute("codigo_nc2");%>
-
-<%String error = (String) request.getAttribute("error");%>
 <p>Grupo: </p>
 <fieldset>
     <html:form action="/CrearGrupo">
@@ -35,7 +18,7 @@
                 <tr>
                     <td>
                         <p style="font-size: 14px"><b>Nombre: </b> </p>
-                        <html:text styleClass="textbox" styleId="nombre_grupo"   property="nombre_grupo" value="<%=nombreG%>" alt="Nombre Grupo" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="nombre_grupo"   property="nombre_grupo" name="grupito" alt="Nombre Grupo" style="width:500px; color:gray; font-size: 14px"/>
                         <html:img styleId="nombre_grupo_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                         <p id="nombre_grupo_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
@@ -43,7 +26,7 @@
                 <tr>
                     <td>
                         <p style="font-size: 14px"><b>Encargado:</b> </p>
-                        <html:text styleClass="textbox" styleId="string_grupo" property="string_grupo" value="<%=miembrosG%>" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="string_grupo" property="string_grupo" name="grupito" alt="Integrantes" style="width:500px; color:gray; font-size: 14px"/>
                         <html:img styleId="string_grupo_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                         <p id="string_grupo_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
@@ -59,7 +42,7 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Registro:</b></p></td>
                 <td>
-                    <html:text  styleClass="textbox" styleId="registro_nc" property="registro_nc" value="<%=registro%>" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
+                    <html:text  styleClass="textbox" styleId="registro_nc" property="registro_nc" name="grupito" style="padding-left: 48px; width:100px; color: gray; font-size: 14px"/>
                     <html:img styleId="registro_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>  
  
                    <span style= "margin-left: -180px; font-size: 14px" >UL04/</span> 
@@ -69,7 +52,7 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Situación:</b></p></td>
                 <td>
-                    <html:textarea styleClass="textbox" styleId="situacion_nc" property="situacion_nc" value="<%=situacion%>" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
+                    <html:textarea styleClass="textbox" styleId="situacion_nc" property="situacion_nc" name="grupito" style="height: 100px; width:300px; color: gray; font-size: 14px"/>
                     <html:img styleId="situacion_nc_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                     <p id="situacion_nc_counter"  style="margin-left: 290px; font-size: 10px; color: gray">4999</p>
                     <p id="situacion_nc_error" style="font-size: 12px; color: #B22222"></p>
@@ -78,15 +61,13 @@
             <tr>
                 <td><p style="font-size: 14px"><b>Origen:</b></p></td>
                 <td>
-                    <html:select styleClass="textbox" style="font-size: 14px; height: 24px " property="origen_nc">
-                        <html:option value="1">Queja</html:option>
+                    <html:select styleClass="textbox" style="font-size: 14px; height: 24px " property="origen_nc" name="grupito">
                         <html:option value="2">Auditoria</html:option>
                         <html:option value="3">Revision del SGC</html:option>
                         <html:option value="4">Oportunidad de Mejora</html:option>
                         <html:option value="5">Trabajo No Conforme</html:option>
                         <html:option value="6">Otro</html:option>
                     </html:select>
-                    <html:text  styleClass="textbox" styleId="codigo_origen_nc"  property="codigo_origen_nc" value="Código" style="width:100px; color: gray; font-size: 14px"/>
                 </td>
                 
             </tr>
@@ -95,7 +76,7 @@
                         <p style="font-size: 14px"><b>Código:</b></p>
                     </td>
                     <td>
-                        <html:text styleClass="textbox" styleId="codigo_nc1" property="codigo_nc1" value="<%=codigo1%>" style="color: gray; font-size: 14px"/>
+                        <html:text styleClass="textbox" styleId="codigo_nc1" property="codigo_nc1" name="grupito" style="color: gray; font-size: 14px"/>
                         <html:img styleId="codigo_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                         <p id="codigo_nc1_error" style="font-size: 12px; color: #B22222"></p>
                     </td>
@@ -108,7 +89,7 @@
              <tr>
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
-                            <html:text styleClass="boton1" styleId="clausula_nc1" property="clausula_nc1" value="<%=clausula1%>" style="color: gray; font-size: 14px"/>
+                            <html:text styleClass="boton1" styleId="clausula_nc1" property="clausula_nc1" name="grupito" style="color: gray; font-size: 14px"/>
                             <html:img styleId="clausula_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc1_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -123,7 +104,7 @@
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
-                            <html:textarea styleId="requisito_nc1" property="requisito_nc1" value="<%=requisito1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:textarea styleId="requisito_nc1" property="requisito_nc1" name="grupito" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="requisito_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc1_error" style="font-size: 12px; color: #B22222"></p>
@@ -132,7 +113,7 @@
                     <tr>
                         <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
-                            <html:textarea  styleId="declaracion_nc1" property="declaracion_nc1" value="<%=declaracion1%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:textarea  styleId="declaracion_nc1" property="declaracion_nc1" name="grupito" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="declaracion_nc1_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc1_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc1_error" style="font-size: 12px; color: #B22222"></p>
@@ -148,7 +129,7 @@
                  <tr>
                         <td><p style="font-size: 14px"><b>Clausula:</b></p></td>
                         <td>
-                            <html:text styleClass="boton2" styleId="clausula_nc2" property="clausula_nc2" value="<%=clausula2%>" style="color: gray; font-size: 14px"/>
+                            <html:text styleClass="boton2" styleId="clausula_nc2" property="clausula_nc2" name="grupito" style="color: gray; font-size: 14px"/>
                             <html:img styleId="clausula_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: -4px; margin-left:5px"/>
                             <p id="clausula_nc2_error" style="font-size: 12px; color: #B22222"></p>
                         </td>
@@ -160,7 +141,7 @@
                     <tr>
                         <td><p style="font-size: 14px"><b>Requisito:</b></p></td>
                         <td>
-                            <html:textarea styleId="requisito_nc2" property="requisito_nc2" value="<%=requisito2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:textarea styleId="requisito_nc2" property="requisito_nc2" name="grupito" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="requisito_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="requisito_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="requisito_nc2_error" style="font-size: 12px; color: #B22222"></p>
@@ -169,7 +150,7 @@
                     <tr>
                         <td><p style="font-size: 14px"><b>Declaración:</b></p></td>
                         <td>
-                            <html:textarea  styleId="declaracion_nc2" property="declaracion_nc2" value="<%=declaracion2%>" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
+                            <html:textarea  styleId="declaracion_nc2" property="declaracion_nc2" name="grupito" style="height: 100px; width:250px; color: gray; font-size: 14px"/>
                             <html:img styleId="declaracion_nc2_image" height="20px" width="20px" src="images/empty.png" style="margin-bottom: 90px; margin-left:5px"/>
                             <p id="declaracion_nc2_counter"  style="margin-left: 220px; font-size: 10px; color: gray">4999</p>
                             <p id="declaracion_nc2_error" style="font-size: 12px; color: #B22222"></p>
@@ -180,7 +161,7 @@
         </fieldset>
     </fieldset>
     <html:submit styleId="submit" value="Aceptar" />
-    <html:hidden styleId="error_style" name="error_style" property="error" value="<%=error%>"/>
+    <html:hidden styleId="error_style" property="error" name="grupito"/>
 </html:form>
 <div style="margin: -24px 0 0 90px; position: absolute">
     <html:link action="tab_grupos">

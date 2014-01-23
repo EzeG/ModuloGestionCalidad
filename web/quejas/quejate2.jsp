@@ -16,7 +16,7 @@ String exposicion="exposicion";
 String acciones="acciones";
 %>
 <div>
-    <html:form action="/Crear_Queja">
+    <html:form action="/crearquejalogin">
         <fieldset>  
             <table style="margin-left: 10px">
                 <p id="error_error" style="font-size: 14px; color: #B22222"><center><b><bean:write name="queja" property="error" filter="false"/></b></center></p>
